@@ -1,3 +1,5 @@
+domainName: example.com
+
 googleClientId: ""
 facebookClientId: ""
 githubClientId: ""
@@ -8,3 +10,6 @@ postgresql:
   persistence:
     size: 2Gi
 
+nginx-ingress:
+  image:
+    tag: 0.17.1

@@ -11,7 +11,7 @@
     "test": "jest",
     "test:ci": "yarn test --coverage",
     "test:watch": "jest --onlyChanged --watch",
-    "prebuild": "yarn typecheck:ts && yarn clean",
+    "prebuild": "yarn clean",
     "typecheck:ts": "tsc",
     "clean": "rimraf dist"
   },
@@ -30,11 +30,12 @@
     "babel-plugin-dynamic-import-node": "^2.0.0",
     "jest": "^23.4.1",
     "nodemon": "^1.18.3",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "typescript": "^2.9.2"
   },
   "dependencies": {
     "apollo-server-express": "^2.0.0",
-    "core-js": "3.0.0-beta.3",
+    "core-js": "2.5.7",
     "express": "^4.16.3",
     "graphql": "^0.13.2",
     "knex": "^0.15.2",

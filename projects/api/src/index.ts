@@ -1,4 +1,5 @@
-import 'core-js/features/array/flat-map';
+import 'core-js/fn/array/flat-map';
+import 'core-js/fn/array/flatten';
 
 import './config/config';
 import logger from './core/logger';

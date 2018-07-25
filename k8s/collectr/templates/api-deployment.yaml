@@ -25,6 +25,6 @@ spec:
     spec:
       containers:
         - name: api
-          image: collectrorg/api
+          image: collectrorg/api:latest
           ports:
             - containerPort: 4000
