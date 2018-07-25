@@ -1,0 +1,50 @@
+{
+  "name": "collectr_api",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "main": "dist/app.js",
+  "scripts": {
+    "start:prod": "node dist/index.js",
+    "start:dev": "nodemon --exec babel-node --extensions \".ts,.tsx\" src/index.ts",
+    "build": "babel --extensions \".ts,.tsx\" --out-dir dist src",
+    "test": "jest",
+    "test:ci": "yarn test --coverage",
+    "test:watch": "jest --onlyChanged --watch",
+    "prebuild": "yarn typecheck:ts && yarn clean",
+    "typecheck:ts": "tsc",
+    "clean": "rimraf dist"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.54",
+    "@babel/core": "^7.0.0-beta.54",
+    "@babel/node": "^7.0.0-beta.54",
+    "@babel/plugin-proposal-optional-catch-binding": "^7.0.0-beta.54",
+    "@babel/preset-env": "^7.0.0-beta.54",
+    "@babel/preset-typescript": "^7.0.0-beta.54",
+    "@types/graphql": "^0.13.3",
+    "@types/jest": "^23.3.0",
+    "@types/node": "^10.5.2",
+    "babel-core": "^7.0.0-0",
+    "babel-jest": "^23.4.0",
+    "babel-plugin-dynamic-import-node": "^2.0.0",
+    "jest": "^23.4.1",
+    "nodemon": "^1.18.3",
+    "rimraf": "^2.6.2"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.0.0",
+    "core-js": "3.0.0-beta.3",
+    "express": "^4.16.3",
+    "graphql": "^0.13.2",
+    "knex": "^0.15.2",
+    "pg": "^7.4.3",
+    "winston": "^3.0.0"
+  },
+  "resolutions": {
+    "babel-core": "^7.0.0-bridge.0"
+  },
+  "engines": {
+    "node": ">= 10.0.0"
+  }
+}

@@ -1,0 +1,10 @@
+googleClientId: ""
+facebookClientId: ""
+githubClientId: ""
+
+postgresql:
+  imageTag: 10.4
+  postgresDatabase: collectr
+  persistence:
+    size: 2Gi
+

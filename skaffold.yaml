@@ -1,0 +1,22 @@
+apiVersion: skaffold/v1alpha2
+kind: Config
+
+build:
+  artifacts:
+    - imageName: collectrorg/api
+      workspace: ./projects/api
+      docker:
+        dockerfilePath: Dockerfile
+
+  local:
+    skipPush: false
+
+deploy:
+  helm:
+    releases:
+      - name: collectr
+        chartPath: ./k8s/collectr
+        setValues:
+          googleClientSecret: $GOOGLE_CLIENT_SECRET
+          facebookClientSecret: $FACEBOOK_CLIENT_SECRET
+          githubClientSecret: $GITHUB_CLIENT_SECRET

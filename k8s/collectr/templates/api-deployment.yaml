@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-api-deployment
+  labels:
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    app: collectr
+    component: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: collectr
+      component: api
+  template:
+    metadata:
+      labels:
+        heritage: {{ .Release.Service }}
+        release: {{ .Release.Name }}
+        chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+        app: collectr
+        component: api
+    spec:
+      containers:
+        - name: api
+          image: collectrorg/api
+          ports:
+            - containerPort: 4000

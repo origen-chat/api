@@ -1,0 +1,17 @@
+# Dependencies
+node_modules
+
+# Artifacts
+projects/api/dist
+
+# Testing
+coverage
+
+# Misc
+k8s/collectr/charts
+.env
+*.pyc
+.DS_Store
+.idea
+*.sw*
+*.log*
