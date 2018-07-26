@@ -34,6 +34,13 @@ module.exports = {
   rules: {
     'no-use-before-define': 'off',
 
+    'unicorn/filename-case': 'off',
+
+    'react/jsx-filename-extension': [
+      'error',
+      { extensions: ['.js', '.jsx', '.tsx'] },
+    ],
+
     'import/no-named-as-default': 'off',
     'import/no-extraneous-dependencies': 'off',
     'import/prefer-default-export': 'off',
@@ -53,6 +60,12 @@ module.exports = {
     {
       files: ['**/*.ts', '**/*.tsx'],
       parser: 'typescript-eslint-parser',
+      rules: {
+        'no-undef': 'off',
+        'no-unused-vars': 'off',
+
+        'react/prop-types': 'off',
+      },
     },
   ],
 };
