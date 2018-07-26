@@ -13,6 +13,13 @@ metadata:
 
 spec:
   rules:
+  - host: {{ .Values.domainName }}
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: {{ .Release.Name }}-web-service
+          servicePort: 80
   - host: api.{{ .Values.domainName }}
     http:
       paths:

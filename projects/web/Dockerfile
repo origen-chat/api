@@ -1,0 +1,13 @@
+FROM node:10.7.0-alpine AS builder
+ENV NODE_ENV=${NODE_ENV:-production}
+WORKDIR /usr/src/app
+COPY package.json yarn.lock ./
+RUN yarn install --production=false
+COPY . .
+RUN yarn build
+
+# ---
+
+FROM nginx:1.15.2-alpine
+COPY --from=builder /usr/src/app/build/ /usr/share/nginx/html/
+COPY nginx/nginx.conf /etc/nginx/sites-available/collectr.conf

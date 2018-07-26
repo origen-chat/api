@@ -1,17 +1,19 @@
 const path = require('path');
 
 const merge = require('webpack-merge');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const webpackCommonConfig = require('./webpack.common');
 
-const webpackDevConfig = merge(webpackCommonConfig, {
+const webpackProdConfig = merge(webpackCommonConfig, {
   mode: 'production',
   devtool: 'source-map',
+  bail: true,
 
   entry: ['./src/index.tsx'],
   output: {
-    filename: 'static/js/bundle.js',
-    chunkFilename: 'static/js/[name].chunk.js',
+    filename: 'static/js/[name].[chunkhash:8].js',
+    chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
     publicPath: '/',
     path: path.resolve(__dirname, 'dist'),
   },
@@ -24,9 +26,6 @@ const webpackDevConfig = merge(webpackCommonConfig, {
         use: [
           {
             loader: 'thread-loader',
-            options: {
-              poolTimeout: Infinity,
-            },
           },
           {
             loader: 'babel-loader',
@@ -36,6 +35,11 @@ const webpackDevConfig = merge(webpackCommonConfig, {
             },
           },
         ],
+      },
+      {
+        test: /\.svg$/,
+        exclude: /node_modules/,
+        use: ['@svgr/webpack'],
       },
       {
         test: /\.(graphql|gql)$/,
@@ -56,14 +60,22 @@ const webpackDevConfig = merge(webpackCommonConfig, {
     ],
   },
 
+  plugins: [
+    new HtmlWebpackPlugin({
+      inject: true,
+      template: 'public/index.html',
+    }),
+  ],
+
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
+
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
   },
-
-  serve: {
-    open: true,
-    port: 4000,
-  },
 });
 
-module.exports = webpackDevConfig;
+module.exports = webpackProdConfig;
