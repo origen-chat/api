@@ -2,8 +2,12 @@ const path = require('path');
 
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const webpackCommonConfig = require('./webpack.common');
+
+const distFolderName = 'dist';
 
 const webpackProdConfig = merge(webpackCommonConfig, {
   mode: 'production',
@@ -15,7 +19,7 @@ const webpackProdConfig = merge(webpackCommonConfig, {
     filename: 'static/js/[name].[chunkhash:8].js',
     chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
     publicPath: '/',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, distFolderName),
   },
 
   module: {
@@ -61,10 +65,18 @@ const webpackProdConfig = merge(webpackCommonConfig, {
   },
 
   plugins: [
+    new CleanWebpackPlugin([distFolderName]),
     new HtmlWebpackPlugin({
       inject: true,
       template: 'public/index.html',
     }),
+    new CopyWebpackPlugin([
+      {
+        from: 'public/*',
+        flatten: true,
+        ignore: ['index.html'],
+      },
+    ]),
   ],
 
   optimization: {

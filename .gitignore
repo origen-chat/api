@@ -3,6 +3,7 @@ node_modules
 
 # Artifacts
 projects/api/dist
+projects/web/dist
 
 # Testing
 coverage

@@ -2,6 +2,7 @@ const path = require('path');
 
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 const webpackCommonConfig = require('./webpack.common');
 
@@ -67,6 +68,7 @@ const webpackDevConfig = merge(webpackCommonConfig, {
       inject: true,
       template: 'public/index.html',
     }),
+    new FriendlyErrorsWebpackPlugin(),
   ],
 
   optimization: {
@@ -83,6 +85,13 @@ const webpackDevConfig = merge(webpackCommonConfig, {
     open: true,
     port: 4000,
     content: path.resolve(__dirname, 'public'),
+    devMiddleware: {
+      publicPath: '/',
+      logLevel: 'silent',
+    },
+    hotClient: {
+      logLevel: 'silent',
+    },
   },
 });
 

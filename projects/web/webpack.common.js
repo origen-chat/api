@@ -11,6 +11,7 @@ const webpackConfig = {
     new EnvironmentPlugin(['NODE_ENV']),
     new InjectManifest({
       swSrc: path.join('src', 'serviceWorker', 'index.ts'),
+      swDest: 'service-worker.js',
     }),
   ],
 };
