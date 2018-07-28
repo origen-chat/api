@@ -1,6 +1,6 @@
 {
   "name": "collectr",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "index.js",
   "repository": "git@github.com:strattadb/collectr.git",
   "author": "Diego Stratta <strattadb@gmail.com>",
@@ -22,7 +22,7 @@
     "eslint-plugin-prettier": "2.6.2",
     "eslint-plugin-react": "7.10.0",
     "eslint-plugin-typescript": "0.12.0",
-    "eslint-plugin-unicorn": "4.0.3",
+    "eslint-plugin-unicorn": "5.0.0",
     "husky": "1.0.0-rc.13",
     "lint-staged": "7.2.0",
     "prettier": "1.13.7",
