@@ -9,7 +9,7 @@ projects/web/dist
 coverage
 
 # Misc
-k8s/collectr/charts
+k8s/**/charts
 .env
 *.pyc
 .DS_Store

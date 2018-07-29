@@ -3,7 +3,7 @@ kind: Config
 
 build:
   artifacts:
-    - imageName: collectrorg/api
+    - imageName: looporg/api
       workspace: ./projects/api
       docker:
         dockerfilePath: Dockerfile
@@ -14,8 +14,8 @@ build:
 deploy:
   helm:
     releases:
-      - name: collectr
-        chartPath: ./k8s/collectr
+      - name: loop
+        chartPath: ./k8s/loop
         setValues:
           googleClientSecret: $GOOGLE_CLIENT_SECRET
           facebookClientSecret: $FACEBOOK_CLIENT_SECRET

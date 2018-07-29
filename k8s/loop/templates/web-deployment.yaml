@@ -6,13 +6,13 @@ metadata:
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-    app: collectr
+    app: loop
     component: web
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: collectr
+      app: loop
       component: web
   template:
     metadata:
@@ -20,11 +20,11 @@ spec:
         heritage: {{ .Release.Service }}
         release: {{ .Release.Name }}
         chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-        app: collectr
+        app: loop
         component: web
     spec:
       containers:
         - name: web
-          image: collectrorg/web:latest
+          image: looporg/web:latest
           ports:
             - containerPort: 4000

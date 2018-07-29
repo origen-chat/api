@@ -6,7 +6,7 @@ githubClientId: ""
 
 postgresql:
   imageTag: 10.4
-  postgresDatabase: collectr
+  postgresDatabase: loop
   persistence:
     size: 2Gi
 

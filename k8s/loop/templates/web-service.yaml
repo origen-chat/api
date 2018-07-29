@@ -1,17 +1,17 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Name }}-api-service
+  name: {{ .Release.Name }}-web-service
   labels:
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-    app: collectr
-    component: api
+    app: loop
+    component: web
 spec:
   selector:
-    app: collectr
-    component: api
+    app: loop
+    component: web
   ports:
     - port: 80
       targetPort: 4000
