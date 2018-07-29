@@ -799,9 +799,9 @@ damerau-levenshtein@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/damerau-levenshtein/-/damerau-levenshtein-1.0.4.tgz#03191c432cb6eea168bb77f3a55ffdccb8978514"
 
-danger@3.8.0:
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/danger/-/danger-3.8.0.tgz#04d61683195ddd98e9395342d9d1985a4aacacef"
+danger@3.8.1:
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/danger/-/danger-3.8.1.tgz#f660b5ee7709f9dab250a2c59f02b25c43227d75"
   dependencies:
     "@octokit/rest" "^15.5.0"
     babel-polyfill "^6.23.0"
@@ -1116,9 +1116,9 @@ eslint-plugin-typescript@0.12.0:
   dependencies:
     requireindex "~1.1.0"
 
-eslint-plugin-unicorn@4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-unicorn/-/eslint-plugin-unicorn-4.0.3.tgz#7e9998711bf237809ed1881a51a77000b2f40586"
+eslint-plugin-unicorn@5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-unicorn/-/eslint-plugin-unicorn-5.0.0.tgz#3cd37e9202892c4f819c3ce76dcbcae415c84b1d"
   dependencies:
     clean-regexp "^1.0.0"
     eslint-ast-utils "^1.0.0"
