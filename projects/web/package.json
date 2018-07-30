@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -26,13 +26,13 @@
     "styled-components": "3.3.3"
   },
   "devDependencies": {
-    "@babel/core": "7.0.0-beta.54",
-    "@babel/plugin-proposal-class-properties": "7.0.0-beta.54",
-    "@babel/plugin-proposal-optional-catch-binding": "7.0.0-beta.54",
-    "@babel/plugin-syntax-dynamic-import": "7.0.0-beta.54",
-    "@babel/preset-env": "7.0.0-beta.54",
-    "@babel/preset-react": "7.0.0-beta.54",
-    "@babel/preset-typescript": "7.0.0-beta.54",
+    "@babel/core": "7.0.0-beta.55",
+    "@babel/plugin-proposal-class-properties": "7.0.0-beta.55",
+    "@babel/plugin-proposal-optional-catch-binding": "7.0.0-beta.55",
+    "@babel/plugin-syntax-dynamic-import": "7.0.0-beta.55",
+    "@babel/preset-env": "7.0.0-beta.55",
+    "@babel/preset-react": "7.0.0-beta.55",
+    "@babel/preset-typescript": "7.0.0-beta.55",
     "@svgr/webpack": "2.1.1",
     "@types/enzyme": "3.1.12",
     "@types/enzyme-adapter-react-16": "1.0.2",
