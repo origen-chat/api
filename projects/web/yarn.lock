@@ -1032,7 +1032,7 @@ anymatch@^2.0.0:
     micromatch "^3.1.4"
     normalize-path "^2.1.1"
 
-apollo-boost@^0.1.12:
+apollo-boost@0.1.12:
   version "0.1.12"
   resolved "https://registry.yarnpkg.com/apollo-boost/-/apollo-boost-0.1.12.tgz#f595ccdc0adb5dcd6313cd9f0bf7187de2eb2f14"
   dependencies:
