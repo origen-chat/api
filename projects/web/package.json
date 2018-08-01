@@ -6,7 +6,6 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-serve --config webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config webpack.prod.js",
-    "prebuild": "yarn typecheck:ts",
     "test": "cross-env NODE_ENV=test jest",
     "test:watch": "yarn test --onlyChanged --watch",
     "test:ci": "yarn test --coverage",

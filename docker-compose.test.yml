@@ -1,0 +1,29 @@
+version: '3'
+services:
+  api:
+    build:
+      context: ./projects/api
+      dockerfile: dev.dockerfile
+    environment:
+      - VIRTUAL_HOST=api.margaret.test
+      - VIRTUAL_PORT=4000
+
+      - CI
+      - MIX_ENV=test
+
+  web:
+    build:
+      context: ./projects/web
+      dockerfile: dev.dockerfile
+    environment:
+      - VIRTUAL_HOST=margaret.test
+      - VIRTUAL_PORT=3000
+
+      - CI
+
+  ml:
+    build:
+      context: ./projects/ml
+      dockerfile: dev.dockerfile
+    environment:
+      - CI

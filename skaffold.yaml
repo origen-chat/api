@@ -8,6 +8,11 @@ build:
       docker:
         dockerfilePath: Dockerfile
 
+    - imageName: looporg/web
+      workspace: ./projects/web
+      docker:
+        dockerfilePath: Dockerfile
+
   local:
     skipPush: false
 

@@ -1,37 +1,52 @@
 version: '3'
-
 services:
   nginx-proxy:
-    image: jwilder/nginx-proxy
-    depends_on:
-      - api
+    image: jwilder/nginx-proxy:latest
     ports:
       - "80:80"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
+    depends_on:
+      - api
+      - web
 
   api:
     build:
       context: ./projects/api
       dockerfile: dev.dockerfile
-    depends_on:
-      - postgres
+    ports:
+      - "4000:4000"
     volumes:
       - ./projects/api:/usr/src/app
       - /usr/src/app/node_modules
-    ports:
-      - "4000:4000"
+    depends_on:
+      - postgres
     environment:
-      - VIRTUAL_HOST=api.margaret.com
+      - VIRTUAL_HOST=api.dev.loop.com
       - VIRTUAL_PORT=4000
-      - GRAPHQL_SERVER_PORT=4000
+
+      - NODE_ENV=development
+
+  web:
+    build:
+      context: ./projects/web
+      dockerfile: dev.dockerfile
+    ports:
+      - "3000:4000"
+    volumes:
+      - ./projects/web:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      - VIRTUAL_HOST=dev.loop.com
+      - VIRTUAL_PORT=4000
+
+      - NODE_ENV=development
+
 
   postgres:
     image: postgres:10.4
     volumes:
       - postgres_data:/var/lib/postgresql/data/
-    ports:
-      -
 
 volumes:
-  postgres_data
+  postgres_data:
