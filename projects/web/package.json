@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -16,9 +16,9 @@
     "graphql": "0.13.2",
     "graphql-tag": "2.9.2",
     "raven-js": "3.26.4",
-    "react": "16.4.1",
+    "react": "16.4.2",
     "react-apollo": "2.1.9",
-    "react-dom": "16.4.1",
+    "react-dom": "16.4.2",
     "react-ga": "2.5.3",
     "react-helmet": "5.2.0",
     "react-router-dom": "4.3.1",
@@ -59,7 +59,7 @@
     "jest-enzyme": "6.0.2",
     "jest-styled-components": "5.0.1",
     "react-hot-loader": "4.3.4",
-    "react-test-renderer": "16.4.1",
+    "react-test-renderer": "16.4.2",
     "thread-loader": "1.2.0",
     "typescript": "3.0.1",
     "webpack": "4.16.3",
