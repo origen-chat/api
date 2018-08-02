@@ -1,6 +1,6 @@
 {
   "name": "loop_api",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "private": true,
   "license": "MIT",
   "main": "dist/app.js",
@@ -24,7 +24,7 @@
     "@babel/preset-typescript": "7.0.0-beta.55",
     "@types/graphql": "0.13.3",
     "@types/jest": "23.3.1",
-    "@types/knex": "^0.14.19",
+    "@types/knex": "0.14.19",
     "@types/node": "10.5.5",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "23.4.2",
@@ -32,7 +32,7 @@
     "jest": "23.4.2",
     "nodemon": "1.18.3",
     "rimraf": "2.6.2",
-    "ts-node": "^7.0.0",
+    "ts-node": "7.0.0",
     "typescript": "3.0.1"
   },
   "dependencies": {
