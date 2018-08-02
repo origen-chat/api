@@ -1,5 +1,3 @@
-const resolver = {
-  Query: {},
-};
+const queryResolver = {};
 
-export default resolver;
+export default queryResolver;

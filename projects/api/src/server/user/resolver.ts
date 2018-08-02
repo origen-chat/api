@@ -1,3 +1,3 @@
-const resolver = { User: {} };
+const userResolver = {};
 
-export default resolver;
+export default userResolver;

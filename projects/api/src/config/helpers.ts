@@ -1,18 +1,14 @@
 import { ConfigError } from './errors';
 import { GetEnvOrThrowOptions, ValueType } from './types';
 
-const defautlGetEnvOrThrowOptions: GetEnvOrThrowOptions = {
-  valueType: 'string',
-};
-
-export const getEnvOrThrow = (
+export function getEnvOrThrow(
   key: string,
-  options: GetEnvOrThrowOptions = defautlGetEnvOrThrowOptions,
-): string | number | boolean => {
+  options: GetEnvOrThrowOptions,
+): string | number | boolean {
   const value = process.env[key];
 
   if (!value) {
-    if (!options.defaultValue) {
+    if (options.defaultValue === undefined) {
       throw new ConfigError(`${key} not set`);
     } else {
       return options.defaultValue;
@@ -20,12 +16,12 @@ export const getEnvOrThrow = (
   }
 
   return castValue(value, options.valueType);
-};
+}
 
-export const castValue = (
+export function castValue(
   value: string,
-  type: ValueType = 'string',
-): string | number | boolean => {
+  type: ValueType,
+): string | number | boolean {
   if (type === 'boolean') {
     return !!value;
   }
@@ -35,4 +31,4 @@ export const castValue = (
   }
 
   return value;
-};
+}

@@ -1,5 +1,3 @@
-const resolver = {
-  Mutation: {},
-};
+const mutationResolver = {};
 
-export default resolver;
+export default mutationResolver;

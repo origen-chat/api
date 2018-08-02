@@ -24,8 +24,11 @@ services:
     environment:
       - VIRTUAL_HOST=api.dev.loop.com
       - VIRTUAL_PORT=4000
-
       - NODE_ENV=development
+      - DB_HOST=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=loop_dev
 
   web:
     build:
@@ -39,7 +42,6 @@ services:
     environment:
       - VIRTUAL_HOST=dev.loop.com
       - VIRTUAL_PORT=4000
-
       - NODE_ENV=development
 
 
@@ -47,6 +49,10 @@ services:
     image: postgres:10.4
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=loop_dev
 
 volumes:
   postgres_data:
