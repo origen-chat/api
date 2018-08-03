@@ -5,6 +5,11 @@ import {
   usersTableName,
 } from './constants';
 
+export type UniqueUsername = Readonly<{
+  username: string;
+  usernameIdentifier: string;
+}>;
+
 export async function getUnusedUsernameIdentifier(
   username: string,
 ): Promise<string> {

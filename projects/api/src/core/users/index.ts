@@ -2,6 +2,8 @@ export {
   getUserById,
   insertUser,
   getUserByEmail,
-  getUserByUsernameAndUsernameIdentifier,
+  getUserByUniqueUsername,
+  GetUserByUniqueUsernameArgs,
 } from './users';
+export { UniqueUsername } from './usernames';
 export { User } from './types';

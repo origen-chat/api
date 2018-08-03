@@ -13,11 +13,3 @@ export type User = Readonly<{
   insertedAt: number;
   updatedAt: number;
 }>;
-
-export type GetUserByArgs =
-  | Readonly<{ id: number }>
-  | Readonly<{ username: string; usernameIdentifier: string }>
-  | Readonly<{ email: string }>;
-
-export type InsertUserArgs = Pick<User, 'username' | 'email'> &
-  Partial<Pick<User, 'firstName' | 'lastName'>>;

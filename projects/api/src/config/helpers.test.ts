@@ -10,7 +10,7 @@ describe('getEnvOrThrow', () => {
     const testProcessEnv: NodeJS.ProcessEnv = {};
     mockProcessEnv(testProcessEnv);
 
-    expect(() => getEnvOrThrow(name)).toThrow();
+    expect(() => getEnvOrThrow(name, { valueType: 'string' })).toThrow();
   });
 
   test("doesn't throw when environmental variable is set", () => {
@@ -19,7 +19,7 @@ describe('getEnvOrThrow', () => {
     const testProcessEnv: NodeJS.ProcessEnv = { [name]: value };
     mockProcessEnv(testProcessEnv);
 
-    expect(() => getEnvOrThrow(name)).not.toThrow();
+    expect(() => getEnvOrThrow(name, { valueType: 'string' })).not.toThrow();
   });
 
   test('returns default value when environmental variable is not set', () => {
@@ -28,7 +28,7 @@ describe('getEnvOrThrow', () => {
     mockProcessEnv(testProcessEnv);
 
     const defaultValue = 'default';
-    const result = getEnvOrThrow(name, { defaultValue });
+    const result = getEnvOrThrow(name, { valueType: 'string', defaultValue });
 
     expect(result).toBe(defaultValue);
   });
@@ -40,7 +40,7 @@ describe('getEnvOrThrow', () => {
     mockProcessEnv(testProcessEnv);
 
     const defaultValue = 'default';
-    const result = getEnvOrThrow(name, { defaultValue });
+    const result = getEnvOrThrow(name, { valueType: 'string', defaultValue });
 
     expect(result).not.toBe(defaultValue);
     expect(result).toBe(value);

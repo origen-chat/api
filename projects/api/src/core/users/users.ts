@@ -1,22 +1,29 @@
 import db from '../db';
 import { usersTableName } from './constants';
-import { GetUserByArgs, InsertUserArgs, User } from './types';
-import { getUnusedUsernameIdentifier } from './usernames';
+import { User } from './types';
+import { getUnusedUsernameIdentifier, UniqueUsername } from './usernames';
 
-export function getUserById(id: number): Promise<User | null> {
+export async function getUserById(id: number): Promise<User | null> {
   return getUserBy({ id });
 }
 
-export async function getUserByUsernameAndUsernameIdentifier(
-  username: string,
-  usernameIdentifier: string,
-): Promise<User | null> {
+export type GetUserByUniqueUsernameArgs = Readonly<UniqueUsername>;
+
+export async function getUserByUniqueUsername({
+  username,
+  usernameIdentifier,
+}: GetUserByUniqueUsernameArgs): Promise<User | null> {
   return getUserBy({ username, usernameIdentifier });
 }
 
 export async function getUserByEmail(email: string): Promise<User | null> {
   return getUserBy({ email });
 }
+
+export type GetUserByArgs =
+  | Readonly<{ id: number }>
+  | Readonly<UniqueUsername>
+  | Readonly<{ email: string }>;
 
 async function getUserBy(args: GetUserByArgs): Promise<User | null> {
   const user: User | null = await db
@@ -27,6 +34,9 @@ async function getUserBy(args: GetUserByArgs): Promise<User | null> {
 
   return user;
 }
+
+export type InsertUserArgs = Pick<User, 'username' | 'email'> &
+  Partial<Pick<User, 'firstName' | 'lastName'>>;
 
 export async function insertUser(args: InsertUserArgs): Promise<User> {
   const usernameIdentifier = await getUnusedUsernameIdentifier(args.username);
