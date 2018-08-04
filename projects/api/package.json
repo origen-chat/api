@@ -1,6 +1,6 @@
 {
   "name": "loop_api",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "private": true,
   "license": "MIT",
   "main": "dist/app.js",
@@ -22,7 +22,7 @@
     "@babel/plugin-proposal-optional-catch-binding": "7.0.0-beta.55",
     "@babel/preset-env": "7.0.0-beta.55",
     "@babel/preset-typescript": "7.0.0-beta.55",
-    "@types/graphql": "0.13.3",
+    "@types/graphql": "0.13.4",
     "@types/jest": "23.3.1",
     "@types/knex": "0.14.19",
     "@types/node": "10.5.5",
