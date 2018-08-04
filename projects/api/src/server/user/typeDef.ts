@@ -3,7 +3,14 @@ import { gql } from 'apollo-server-express';
 export const User = gql`
   type User {
     id: ID!
-    username: String
+
+    uniqueUsername: UniqueUsername!
+
+    email: Email!
+    unverifiedEmail: Email
+
+    firstName: String
+    lastName: String
   }
 `;
 
