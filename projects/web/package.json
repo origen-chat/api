@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -34,7 +34,7 @@
     "@babel/preset-typescript": "7.0.0-beta.55",
     "@svgr/webpack": "2.1.1",
     "@types/enzyme": "3.1.13",
-    "@types/enzyme-adapter-react-16": "1.0.2",
+    "@types/enzyme-adapter-react-16": "1.0.3",
     "@types/graphql": "0.13.3",
     "@types/jest": "23.3.1",
     "@types/node": "10.5.5",
