@@ -1,6 +1,6 @@
 {
   "name": "loop",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "index.js",
   "repository": "git@github.com:strattadb/loop.git",
   "author": "Diego Stratta <strattadb@gmail.com>",
@@ -13,7 +13,7 @@
     "@commitlint/travis-cli": "7.0.0",
     "codecov": "3.0.4",
     "danger": "3.8.3",
-    "eslint": "5.2.0",
+    "eslint": "5.3.0",
     "eslint-config-airbnb": "17.0.0",
     "eslint-config-prettier": "2.9.0",
     "eslint-plugin-import": "2.13.0",
