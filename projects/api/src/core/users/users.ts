@@ -48,3 +48,31 @@ export async function insertUser(args: InsertUserArgs): Promise<User> {
 
   return user;
 }
+
+export type UpdateUserArgs = {
+  username?: string;
+};
+
+export async function updateUser(
+  user: User,
+  args: UpdateUserArgs,
+): Promise<User> {
+  const data = { ...args };
+
+  return db(usersTableName)
+    .where({ id: user.id })
+    .update(data, '*');
+}
+
+export async function verifyEmail(user: User): Promise<User> {
+  if (!user.unverifiedEmail) {
+    throw new Error("user doesn't have an unverified email to verify");
+  }
+
+  const data: Partial<User> = {
+    email: user.unverifiedEmail,
+    unverifiedEmail: null,
+  };
+
+  return updateUser(user, data);
+}

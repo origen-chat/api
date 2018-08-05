@@ -1,12 +1,16 @@
-import { ApolloError } from 'apollo-server-express';
+import { ApolloError, AuthenticationError } from 'apollo-server-express';
 
 import { users } from '../../core';
+import { Resolver, Root } from '../types';
 
-const queryResolver = {
-  user: resolveUser,
+type ResolveUserArgs = {
+  uniqueUsername: users.UniqueUsername;
 };
 
-async function resolveUser(root: any, args: any): Promise<users.User> {
+export const resolveUser: Resolver<Root, ResolveUserArgs> = async (
+  root,
+  args,
+) => {
   const { uniqueUsername } = args;
 
   const user = await users.getUserByUniqueUsername(uniqueUsername);
@@ -16,6 +20,19 @@ async function resolveUser(root: any, args: any): Promise<users.User> {
   }
 
   return user;
-}
+};
+
+export const resolveViewer: Resolver<Root> = (root, args, { viewer }) => {
+  if (!viewer) {
+    throw new AuthenticationError('viewer not authenticated');
+  }
+
+  return viewer;
+};
+
+const queryResolver = {
+  user: resolveUser,
+  viewer: resolveViewer,
+};
 
 export default queryResolver;

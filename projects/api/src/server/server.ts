@@ -3,6 +3,7 @@ import express from 'express';
 
 import { env } from '../config';
 import logger from '../core/logger';
+import { makeContext } from './context';
 import { resolvers, typeDefs } from './schema';
 
 const { graphQLServerPort } = env;
@@ -12,6 +13,7 @@ export async function startGraphQLServer() {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
+    context: makeContext,
   });
 
   server.applyMiddleware({ app });

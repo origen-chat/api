@@ -15,28 +15,32 @@ function serialize(email: string): string {
   return email;
 }
 
-function parseValue(value: unknown): string {
+function parseValue(value: unknown): string | undefined {
   if (typeof value !== 'string') {
-    throw new TypeError('expected value to be string');
+    return undefined;
   }
 
-  if (!emailRegex.test(value)) {
-    throw new TypeError('value is not valid email address');
+  if (!isEmailValid(value)) {
+    return undefined;
   }
 
   return value;
 }
 
-function parseLiteral(ast: ASTNode): string {
+function parseLiteral(ast: ASTNode): string | undefined {
   if (ast.kind !== Kind.STRING) {
-    throw new TypeError('expected value to be string');
+    return undefined;
   }
 
-  if (!emailRegex.test(ast.value)) {
-    throw new TypeError('value is not valid email address');
+  if (!isEmailValid(ast.value)) {
+    return undefined;
   }
 
   return ast.value;
+}
+
+function isEmailValid(email: string): boolean {
+  return emailRegex.test(email);
 }
 
 export default emailResolver;
