@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "1.0.31",
+  "version": "1.0.32",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -56,7 +56,7 @@
     "friendly-errors-webpack-plugin": "1.7.0",
     "html-webpack-plugin": "3.2.0",
     "jest": "23.4.2",
-    "jest-enzyme": "6.0.2",
+    "jest-enzyme": "6.0.3",
     "jest-styled-components": "5.0.1",
     "react-hot-loader": "4.3.4",
     "react-test-renderer": "16.4.2",
