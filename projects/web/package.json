@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "1.0.34",
+  "version": "1.0.35",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -17,7 +17,7 @@
     "graphql-tag": "2.9.2",
     "raven-js": "3.26.4",
     "react": "16.4.2",
-    "react-apollo": "2.1.9",
+    "react-apollo": "2.1.11",
     "react-dom": "16.4.2",
     "react-ga": "2.5.3",
     "react-helmet": "5.2.0",
