@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "1.0.32",
+  "version": "1.0.33",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -51,7 +51,7 @@
     "clean-webpack-plugin": "0.1.19",
     "copy-webpack-plugin": "4.5.2",
     "cross-env": "5.2.0",
-    "enzyme": "3.4.0",
+    "enzyme": "3.4.1",
     "enzyme-adapter-react-16": "1.2.0",
     "friendly-errors-webpack-plugin": "1.7.0",
     "html-webpack-plugin": "3.2.0",
