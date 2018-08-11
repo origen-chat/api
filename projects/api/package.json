@@ -1,6 +1,6 @@
 {
   "name": "loop_api",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "private": true,
   "license": "MIT",
   "main": "dist/app.js",
@@ -32,7 +32,7 @@
     "jest": "23.5.0",
     "nodemon": "1.18.3",
     "rimraf": "2.6.2",
-    "ts-node": "7.0.0",
+    "ts-node": "7.0.1",
     "typescript": "3.0.1"
   },
   "dependencies": {
