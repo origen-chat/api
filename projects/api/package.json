@@ -1,6 +1,6 @@
 {
   "name": "loop_api",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "private": true,
   "license": "MIT",
   "main": "dist/app.js",
@@ -25,7 +25,7 @@
     "@types/graphql": "0.13.4",
     "@types/jest": "23.3.1",
     "@types/knex": "0.14.20",
-    "@types/node": "10.5.7",
+    "@types/node": "10.5.8",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "23.4.2",
     "babel-plugin-dynamic-import-node": "2.0.0",
