@@ -1,6 +1,6 @@
 {
   "name": "loop",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "main": "index.js",
   "repository": "git@github.com:strattadb/loop.git",
   "author": "Diego Stratta <strattadb@gmail.com>",
@@ -20,7 +20,7 @@
     "eslint-plugin-jest": "21.21.0",
     "eslint-plugin-jsx-a11y": "6.1.1",
     "eslint-plugin-prettier": "2.6.2",
-    "eslint-plugin-react": "7.11.0",
+    "eslint-plugin-react": "7.11.1",
     "eslint-plugin-typescript": "0.12.0",
     "eslint-plugin-unicorn": "5.0.0",
     "husky": "1.0.0-rc.13",
