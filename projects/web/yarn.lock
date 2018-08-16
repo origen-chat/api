@@ -667,9 +667,9 @@
     prettier "^1.14.2"
     svgo "^1.0.5"
 
-"@svgr/webpack@2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@svgr/webpack/-/webpack-2.2.0.tgz#f7fb61f8d358db3122dd65995710e9dcd597d896"
+"@svgr/webpack@2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@svgr/webpack/-/webpack-2.2.1.tgz#c2426674bf4d3110b157a10a4b06cb26b18b1db1"
   dependencies:
     "@babel/core" "^7.0.0-rc.1"
     "@babel/plugin-proposal-object-rest-spread" "^7.0.0-rc.1"
