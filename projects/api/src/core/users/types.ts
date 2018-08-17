@@ -1,15 +1,17 @@
-export type User = Readonly<{
-  id: number;
+import { Identifiable, Nullable, Timestamps } from '../types';
 
+export type User = Readonly<{
   username: string;
   usernameIdentifier: string;
 
+  bio: Nullable<string>;
+  avatarUrl: Nullable<string>;
+
   email: string;
-  unverifiedEmail: string | null;
+  unverifiedEmail: Nullable<string>;
 
-  firstName: string | null;
-  lastName: string | null;
-
-  insertedAt: number;
-  updatedAt: number;
-}>;
+  firstName: Nullable<string>;
+  lastName: Nullable<string>;
+}> &
+  Identifiable &
+  Timestamps;

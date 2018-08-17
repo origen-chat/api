@@ -13,7 +13,7 @@ async function createSocialLoginsTable(knex: Knex): Promise<void> {
       .unsigned()
       .primary();
 
-    table.string('uid', 128).notNullable();
+    table.string('providerUserId', 128).notNullable();
     table.string('provider', 16).notNullable();
 
     table
