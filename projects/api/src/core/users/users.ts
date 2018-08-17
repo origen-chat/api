@@ -1,7 +1,8 @@
 import db from '../db';
+import { Nullable } from '../types';
 import { usersTableName } from './constants';
-import { User } from './types';
-import { getUnusedUsernameIdentifier, UniqueUsername } from './usernames';
+import { UniqueUsername, User } from './types';
+import { getUnusedUsernameIdentifier } from './usernames';
 
 export async function getUserById(id: number): Promise<User | null> {
   return getUserBy({ id });
@@ -51,6 +52,8 @@ export async function insertUser(args: InsertUserArgs): Promise<User> {
 
 export type UpdateUserArgs = {
   username?: string;
+  email?: string;
+  unverifiedEmail?: Nullable<string>;
 };
 
 export async function updateUser(
@@ -69,7 +72,7 @@ export async function verifyEmail(user: User): Promise<User> {
     throw new Error("user doesn't have an unverified email to verify");
   }
 
-  const data: Partial<User> = {
+  const data: UpdateUserArgs = {
     email: user.unverifiedEmail,
     unverifiedEmail: null,
   };

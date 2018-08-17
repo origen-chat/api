@@ -5,6 +5,5 @@ export {
   getUserByUniqueUsername,
   GetUserByUniqueUsernameArgs,
 } from './users';
-export { UniqueUsername } from './usernames';
-export { User } from './types';
+export { User, UniqueUsername } from './types';
 export { usersTableName } from './constants';

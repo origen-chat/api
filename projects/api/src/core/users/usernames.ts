@@ -4,15 +4,11 @@ import {
   usernameIdentifierLength,
   usersTableName,
 } from './constants';
-
-export type UniqueUsername = Readonly<{
-  username: string;
-  usernameIdentifier: string;
-}>;
+import { UsernameIdentifier } from './types';
 
 export async function getUnusedUsernameIdentifier(
   username: string,
-): Promise<string> {
+): Promise<UsernameIdentifier> {
   checkUsernameCount(username);
 
   const usernameIdentifier = await doGetUnusedUsernameIdentifier(username);
@@ -40,7 +36,7 @@ async function getUsernameCount(username: string): Promise<number> {
 
 async function doGetUnusedUsernameIdentifier(
   username: string,
-): Promise<string> {
+): Promise<UsernameIdentifier> {
   const query = `
     SELECT
       generate_series::varchar AS "unusedUsernameIdentifier"

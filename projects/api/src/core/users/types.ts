@@ -1,9 +1,6 @@
 import { Identifiable, Nullable, Timestamps } from '../types';
 
 export type User = Readonly<{
-  username: string;
-  usernameIdentifier: string;
-
   bio: Nullable<string>;
   avatarUrl: Nullable<string>;
 
@@ -14,4 +11,12 @@ export type User = Readonly<{
   lastName: Nullable<string>;
 }> &
   Identifiable &
+  UniqueUsername &
   Timestamps;
+
+export type UniqueUsername = Readonly<{
+  username: string;
+  usernameIdentifier: UsernameIdentifier;
+}>;
+
+export type UsernameIdentifier = string;
