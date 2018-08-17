@@ -703,9 +703,9 @@
   version "23.3.1"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.1.tgz#a4319aedb071d478e6f407d1c4578ec8156829cf"
 
-"@types/knex@0.14.20":
-  version "0.14.20"
-  resolved "https://registry.yarnpkg.com/@types/knex/-/knex-0.14.20.tgz#55c86ba91bd9635c5e77dc78ff5a460c06288d50"
+"@types/knex@0.14.21":
+  version "0.14.21"
+  resolved "https://registry.yarnpkg.com/@types/knex/-/knex-0.14.21.tgz#d95f90b33a65140057c450ea8094ec213e78d551"
   dependencies:
     "@types/bluebird" "*"
     "@types/events" "*"
