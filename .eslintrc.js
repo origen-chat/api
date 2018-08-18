@@ -66,6 +66,7 @@ module.exports = {
         'no-restricted-globals': 'off',
 
         'react/prop-types': 'off',
+        'react/destructuring-assignment': 'off',
 
         'import/export': 'off',
       },

@@ -1,32 +1,30 @@
 import db from '../db';
-import { Nullable } from '../types';
+import { Email, ID, Nullable } from '../types';
 import { usersTableName } from './constants';
 import { UniqueUsername, User } from './types';
 import { getUnusedUsernameIdentifier } from './usernames';
 
-export async function getUserById(id: number): Promise<User | null> {
+export async function getUserById(id: ID): Promise<Nullable<User>> {
   return getUserBy({ id });
 }
-
-export type GetUserByUniqueUsernameArgs = Readonly<UniqueUsername>;
 
 export async function getUserByUniqueUsername({
   username,
   usernameIdentifier,
-}: GetUserByUniqueUsernameArgs): Promise<User | null> {
+}: UniqueUsername): Promise<Nullable<User>> {
   return getUserBy({ username, usernameIdentifier });
 }
 
-export async function getUserByEmail(email: string): Promise<User | null> {
+export async function getUserByEmail(email: Email): Promise<Nullable<User>> {
   return getUserBy({ email });
 }
 
 export type GetUserByArgs =
-  | Readonly<{ id: number }>
-  | Readonly<UniqueUsername>
-  | Readonly<{ email: string }>;
+  | Readonly<{ id: ID }>
+  | UniqueUsername
+  | Readonly<{ email: Email }>;
 
-async function getUserBy(args: GetUserByArgs): Promise<User | null> {
+async function getUserBy(args: GetUserByArgs): Promise<Nullable<User>> {
   const user: User | null = await db
     .select('*')
     .from(usersTableName)
@@ -45,26 +43,28 @@ export async function insertUser(args: InsertUserArgs): Promise<User> {
   const argsWithUsernameIdentifier: InsertUserArgs &
     Pick<User, 'usernameIdentifier'> = { ...args, usernameIdentifier };
 
-  const user = await db(usersTableName).insert(argsWithUsernameIdentifier, '*');
+  const user = await db
+    .insert(argsWithUsernameIdentifier)
+    .into(usersTableName)
+    .returning('*');
 
   return user;
 }
 
-export type UpdateUserArgs = {
-  username?: string;
-  email?: string;
-  unverifiedEmail?: Nullable<string>;
-};
+export type UpdateUserArgs = Partial<
+  Pick<User, 'username' | 'email' | 'unverifiedEmail'>
+>;
 
 export async function updateUser(
   user: User,
   args: UpdateUserArgs,
 ): Promise<User> {
-  const data = { ...args };
-
-  return db(usersTableName)
+  const updatedUser: User = await db(usersTableName)
+    .update(args)
     .where({ id: user.id })
-    .update(data, '*');
+    .returning('*');
+
+  return updatedUser;
 }
 
 export async function verifyEmail(user: User): Promise<User> {

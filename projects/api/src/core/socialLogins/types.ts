@@ -4,8 +4,8 @@ export type SocialLogin = Readonly<{
   userId: ID;
 }> &
   Identifiable &
-  Timestamps &
-  SocialCredentials;
+  SocialCredentials &
+  Timestamps;
 
 export type SocialCredentials = Readonly<{
   providerUserId: ProviderUserId;

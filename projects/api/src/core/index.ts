@@ -6,6 +6,7 @@ import * as payments from './payments';
 import * as reactions from './reactions';
 import * as socialLogins from './socialLogins';
 import * as stars from './stars';
+import * as types from './types';
 import * as userChannelSettings from './userChannelSettings';
 import * as userNotifications from './userNotifications';
 import * as users from './users';
@@ -28,4 +29,5 @@ export {
   notifications,
   userNotifications,
   payments,
+  types,
 };

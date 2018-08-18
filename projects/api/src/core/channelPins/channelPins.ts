@@ -1,7 +1,7 @@
 import { Channel } from '../channels';
 import db from '../db';
 import { Message } from '../messages';
-import { Nullable } from '../types';
+import { ID, Nullable } from '../types';
 import { channelPinsTableName } from './constants';
 import { ChannelPin } from './types';
 
@@ -9,31 +9,52 @@ export async function pinMessage(
   channel: Channel,
   message: Message,
 ): Promise<ChannelPin> {
-  return insertChannelPin(channel, message);
+  return insertChannelPin({ channelId: channel.id, messageId: message.id });
 }
 
-export async function insertChannelPin(
-  channel: Channel,
-  message: Message,
-): Promise<ChannelPin> {
-  const data = { channelId: channel.id, messageId: message.id };
+type InsertChannelPinArgs = Pick<ChannelPin, 'channelId' | 'messageId'>;
 
+async function insertChannelPin(
+  args: InsertChannelPinArgs,
+): Promise<ChannelPin> {
   const channelPin: ChannelPin = await db
-    .insert(data)
+    .insert(args)
     .into(channelPinsTableName)
     .returning('*');
 
   return channelPin;
 }
 
-export async function getChannelPin(
+export async function getChannelPinByChannelAndMessage(
   channel: Channel,
   message: Message,
+): Promise<Nullable<ChannelPin>> {
+  const channelPin = await getChannelPinBy({
+    channelId: channel.id,
+    messageId: message.id,
+  });
+
+  return channelPin;
+}
+
+export async function getChannelPinById(id: ID): Promise<Nullable<ChannelPin>> {
+  const channelPin = await getChannelPinBy({ id });
+
+  return channelPin;
+}
+
+type GetChannelPinByArgs =
+  | Pick<ChannelPin, 'id'>
+  | Pick<ChannelPin, 'channelId' | 'messageId'>;
+
+async function getChannelPinBy(
+  args: GetChannelPinByArgs,
 ): Promise<Nullable<ChannelPin>> {
   const channelPin: Nullable<ChannelPin> = await db
     .select('*')
     .from(channelPinsTableName)
-    .where({ channelId: channel.id, messageId: message.id });
+    .where(args)
+    .first();
 
   return channelPin;
 }
@@ -42,14 +63,16 @@ export async function isMessagePinned(
   channel: Channel,
   message: Message,
 ): Promise<boolean> {
-  return false;
+  const channelPin = await getChannelPinByChannelAndMessage(channel, message);
+
+  return !!channelPin;
 }
 
 export async function unpinMessage(
   channel: Channel,
   message: Message,
 ): Promise<ChannelPin> {
-  const channelPin = await getChannelPin(channel, message);
+  const channelPin = await getChannelPinByChannelAndMessage(channel, message);
 
   if (!channelPin) {
     throw new Error('message is not pinned');

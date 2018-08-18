@@ -1,14 +1,18 @@
-import { users } from '../core';
+import { MergeInfo } from 'apollo-server-express';
+import { GraphQLResolveInfo } from 'graphql';
+import { types, users } from '../core';
 
-export type Resolver<TParent, TArgs = {}> = (
-  parentOrRoot: TParent | Root,
+export type Resolver<TParent = Root, TArgs = {}, TReturn = any> = (
+  parentOrRoot: TParent,
   args: TArgs,
   context: Context,
-  info: any,
-) => any;
+  info: Info,
+) => TReturn | Promise<TReturn>;
 
 export type Root = null;
 
 export type Context = Readonly<{
-  viewer: users.User | null;
+  viewer: types.Nullable<users.User>;
 }>;
+
+export type Info = GraphQLResolveInfo & { mergeInfo: MergeInfo };

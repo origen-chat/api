@@ -1,21 +1,22 @@
 import db from '../db';
-import * as users from '../users';
+import { Nullable } from '../types';
+import { User, usersTableName } from '../users';
 import { socialLoginsTableName } from './constants';
 import { SocialCredentials } from './types';
 
-export async function getUserBySocialCredentials({
-  uid,
-  provider,
-}: SocialCredentials): Promise<users.User | null> {
-  const user = await db
-    .select('*')
-    .from(users.usersTableName)
+export async function getUserBySocialCredentials(
+  socialCredentials: SocialCredentials,
+): Promise<Nullable<User>> {
+  const user: Nullable<User> = await db
+    .select('u.*')
+    .from(usersTableName)
+    .as('u')
     .innerJoin(
       socialLoginsTableName,
       `${socialLoginsTableName}.userId`,
-      `${users.usersTableName}.id`,
+      `${usersTableName}.id`,
     )
-    .where({ uid, provider })
+    .where(socialCredentials)
     .first();
 
   return user;

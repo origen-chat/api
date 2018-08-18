@@ -12,7 +12,9 @@ export async function startGraphQLServer() {
   const app = express();
   const server = new ApolloServer({
     typeDefs,
-    resolvers,
+    resolvers: resolvers as any,
+    mocks: true,
+    mockEntireSchema: false,
     context: makeContext,
   });
 
