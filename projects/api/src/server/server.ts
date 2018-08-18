@@ -6,14 +6,14 @@ import logger from '../core/logger';
 import { makeContext } from './context';
 import { resolvers, typeDefs } from './schema';
 
-const { graphQLServerPort } = env;
+const { graphQLServerPort, mockSchema } = env;
 
 export async function startGraphQLServer() {
   const app = express();
   const server = new ApolloServer({
     typeDefs,
     resolvers: resolvers as any,
-    mocks: true,
+    mocks: mockSchema,
     mockEntireSchema: false,
     context: makeContext,
   });

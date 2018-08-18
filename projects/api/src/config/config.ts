@@ -43,6 +43,11 @@ const dbName = getEnvOrThrow('DB_NAME', {
   valueType: 'string',
 }) as string;
 
+const mockSchema = getEnvOrThrow('MOCK_SCHEMA', {
+  valueType: 'boolean',
+  defaultValue: environment === 'development',
+}) as boolean;
+
 export const env = {
   environment,
   logLevel,
@@ -52,4 +57,5 @@ export const env = {
   dbUser,
   dbPassword,
   dbName,
+  mockSchema,
 };
