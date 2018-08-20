@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "1.0.52",
+  "version": "1.0.53",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -49,7 +49,7 @@
     "babel-plugin-dynamic-import-node": "2.0.0",
     "babel-plugin-styled-components": "1.5.1",
     "clean-webpack-plugin": "0.1.19",
-    "connect-history-api-fallback": "^1.5.0",
+    "connect-history-api-fallback": "1.5.0",
     "copy-webpack-plugin": "4.5.2",
     "cross-env": "5.2.0",
     "enzyme": "3.4.4",
@@ -59,7 +59,7 @@
     "jest": "23.5.0",
     "jest-enzyme": "6.0.3",
     "jest-styled-components": "6.1.0",
-    "koa-connect": "^2.0.1",
+    "koa-connect": "2.0.1",
     "react-hot-loader": "4.3.4",
     "react-test-renderer": "16.4.2",
     "thread-loader": "1.2.0",
