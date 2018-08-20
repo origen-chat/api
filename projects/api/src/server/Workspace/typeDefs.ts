@@ -18,6 +18,8 @@ const Workspace = gql`
       before: String
     ): WorkspaceChannelConnection!
 
+    defaultChannel: Channel!
+
     members(
       first: Int
       after: String

@@ -9,7 +9,7 @@ export async function getWorkspaceById(id: ID): Promise<Nullable<Workspace>> {
   return workspace;
 }
 
-type GetWorkspaceBy = Pick<Workspace, 'id'>;
+type GetWorkspaceBy = Pick<Workspace, 'id'> | Pick<Workspace, 'name'>;
 
 async function getWorkspaceBy(
   args: GetWorkspaceBy,
@@ -19,6 +19,14 @@ async function getWorkspaceBy(
     .from(workspacesTableName)
     .where(args)
     .first();
+
+  return workspace;
+}
+
+export async function getWorkspaceByName(
+  name: string,
+): Promise<Nullable<Workspace>> {
+  const workspace = await getWorkspaceBy({ name });
 
   return workspace;
 }

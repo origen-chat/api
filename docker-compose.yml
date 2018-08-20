@@ -3,7 +3,7 @@ services:
   nginx-proxy:
     image: jwilder/nginx-proxy:latest
     ports:
-      - "80:80"
+      - '80:80'
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     depends_on:
@@ -15,7 +15,7 @@ services:
       context: ./projects/api
       dockerfile: dev.dockerfile
     ports:
-      - "4000:4000"
+      - '4000:4000'
     volumes:
       - ./projects/api:/usr/src/app
       - /usr/src/app/node_modules
@@ -35,7 +35,8 @@ services:
       context: ./projects/web
       dockerfile: dev.dockerfile
     ports:
-      - "3000:4000"
+      - '3000:4000'
+      - '4001:4001'
     volumes:
       - ./projects/web:/usr/src/app
       - /usr/src/app/node_modules
@@ -43,7 +44,6 @@ services:
       - VIRTUAL_HOST=dev.loop.com
       - VIRTUAL_PORT=4000
       - NODE_ENV=development
-
 
   postgres:
     image: postgres:10.4
@@ -55,4 +55,4 @@ services:
       - POSTGRES_DB=loop_dev
 
 volumes:
-  postgres_data:
+  postgres_data: null

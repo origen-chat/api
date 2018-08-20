@@ -13,7 +13,11 @@ async function createWorkspacesTable(knex: Knex): Promise<void> {
       .unsigned()
       .primary();
 
-    table.string('name', 64).notNullable();
+    table
+      .string('name', 64)
+      .notNullable()
+      .unique();
+
     table.string('description', 256);
 
     table.timestamp('insertedAt', true).defaultTo(knex.fn.now());

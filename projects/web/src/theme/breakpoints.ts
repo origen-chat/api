@@ -1,7 +1,7 @@
 export type BreakpointKey = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 
-export type Breakpoints = { readonly [K in BreakpointKey]: string };
-export type BreakpointsWithoutUnit = { readonly [K in BreakpointKey]: number };
+export type Breakpoints = Readonly<{ [K in BreakpointKey]: string }>;
+export type BreakpointsWithoutUnit = Readonly<{ [K in BreakpointKey]: number }>;
 
 export const breakpointsWithoutUnit: BreakpointsWithoutUnit = {
   xs: 0,

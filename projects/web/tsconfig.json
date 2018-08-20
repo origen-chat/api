@@ -1,5 +1,21 @@
 {
-  "extends": "../../tsconfig",
+  "compilerOptions": {
+    "charset": "utf8",
+    "module": "commonjs",
+    "strict": true,
+    "target": "ESNext",
+    "jsx": "react",
+    "removeComments": true,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "sourceMap": true,
+    "noErrorTruncation": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "skipLibCheck": true
+  },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
 }

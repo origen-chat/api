@@ -5,10 +5,10 @@ import {
   BreakpointsWithoutUnit,
 } from './breakpoints';
 
-export type Theme = {
+export type Theme = Readonly<{
   breakpoints: Breakpoints;
   breakpointsWithoutUnit: BreakpointsWithoutUnit;
-};
+}>;
 
 const theme: Theme = {
   breakpoints,

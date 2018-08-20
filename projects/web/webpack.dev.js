@@ -3,6 +3,8 @@ const path = require('path');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const convert = require('koa-connect');
+const history = require('connect-history-api-fallback');
 
 const webpackCommonConfig = require('./webpack.common');
 
@@ -83,6 +85,7 @@ const webpackDevConfig = merge(webpackCommonConfig, {
 
   serve: {
     open: true,
+    host: '0.0.0.0',
     port: 4000,
     content: path.resolve(__dirname, 'public'),
     devMiddleware: {
@@ -91,6 +94,14 @@ const webpackDevConfig = merge(webpackCommonConfig, {
     },
     hotClient: {
       logLevel: 'silent',
+      port: 4001,
+      host: {
+        server: '0.0.0.0',
+        client: 'localhost',
+      },
+    },
+    add(app) {
+      app.use(convert(history()));
     },
   },
 });
