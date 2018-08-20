@@ -6,6 +6,10 @@
   "scripts": {
     "start:dev": "cross-env NODE_ENV=development webpack-serve --config webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config webpack.prod.js",
+    "graphql:codegen:generate:watch": "yarn graphql:codegen:generate --watch",
+    "graphql:codegen:generate": "apollo codegen:generate --addTypename --queries=src/**/*.tsx --target=typescript --schema=schema.json __generatedTypes__",
+    "pregraphql:codegen:generate": "yarn graphql:schema:download",
+    "graphql:schema:download": "apollo schema:download schema.json",
     "test": "cross-env NODE_ENV=test jest",
     "test:watch": "yarn test --onlyChanged --watch",
     "test:ci": "yarn test --coverage",
@@ -43,6 +47,7 @@
     "@types/react-helmet": "5.0.7",
     "@types/react-router-dom": "4.3.0",
     "@types/webpack": "4.4.10",
+    "apollo": "^1.7.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "23.4.2",
     "babel-loader": "8.0.0-beta.4",
