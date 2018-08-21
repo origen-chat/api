@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "1.0.55",
+  "version": "1.0.56",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -24,7 +24,7 @@
     "react-ga": "2.5.3",
     "react-helmet": "5.2.0",
     "react-router-dom": "4.3.1",
-    "styled-components": "3.4.2"
+    "styled-components": "3.4.3"
   },
   "devDependencies": {
     "@babel/core": "7.0.0-rc.1",
