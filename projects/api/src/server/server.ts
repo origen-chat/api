@@ -6,12 +6,13 @@ import logger from '../core/logger';
 import { makeContext } from './context';
 import { resolvers, typeDefs } from './schema';
 
-const { graphQLServerPort, mockSchema } = env;
+const { graphqlServerPort, graphqlServerHost, mockSchema } = env;
 
 export async function startGraphQLServer() {
   const app = express();
+
   const server = new ApolloServer({
-    typeDefs,
+    typeDefs: typeDefs as any,
     resolvers: resolvers as any,
     mocks: mockSchema,
     mockEntireSchema: false,
@@ -20,7 +21,11 @@ export async function startGraphQLServer() {
 
   server.applyMiddleware({ app });
 
-  app.listen({ port: graphQLServerPort }, () => {
-    logger.info(`Server ready at ${server.graphqlPath}`);
+  app.listen(graphqlServerPort, graphqlServerHost, () => {
+    logger.info(
+      `Server ready at ${graphqlServerHost}:${graphqlServerPort}${
+        server.graphqlPath
+      }`,
+    );
   });
 }

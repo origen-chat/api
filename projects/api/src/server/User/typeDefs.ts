@@ -1,6 +1,8 @@
 import { gql } from 'apollo-server-express';
+import { DocumentNode } from 'graphql';
 
 import { typeDefs as channelsTypeDefs } from './channels';
+import { typeDefs as starredStarrablesTypeDefs } from './starredStarrables';
 import { typeDefs as workspacesTypeDefs } from './workspaces';
 
 export const User = gql`
@@ -31,7 +33,21 @@ export const User = gql`
       last: Int
       before: String
     ): UserChannelConnection!
+
+    starredStarrables(
+      first: Int
+      after: String
+      last: Int
+      before: String
+    ): UserStarredStarrableConnection!
   }
 `;
 
-export default [User, ...workspacesTypeDefs, ...channelsTypeDefs];
+const typeDefs: ReadonlyArray<DocumentNode> = [
+  User,
+  ...workspacesTypeDefs,
+  ...channelsTypeDefs,
+  ...starredStarrablesTypeDefs,
+];
+
+export default typeDefs;

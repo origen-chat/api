@@ -1,7 +1,9 @@
 import gql from 'graphql-tag';
 import React from 'react';
-import { Query } from 'react-apollo';
+import { Query, QueryResult } from 'react-apollo';
 import { Redirect } from 'react-router-dom';
+
+import { FirstWorkspace } from './__generatedTypes__/FirstWorkspace';
 
 export type BaseHomeProps = Readonly<
   | {
@@ -11,7 +13,11 @@ export type BaseHomeProps = Readonly<
       isAuthenticated: true;
       workspaceName: string;
       channelName: string;
-      workspaceTotalCount: number;
+      hasWorkspaces: true;
+    }
+  | {
+      isAuthenticated: true;
+      hasWorkspaces: false;
     }
 >;
 
@@ -20,13 +26,13 @@ export const BaseHome: React.SFC<BaseHomeProps> = props => {
     return <Redirect to="/signup" />;
   }
 
-  if (props.workspaceTotalCount > 0) {
-    return (
-      <Redirect to={`${props.workspaceName}/messages/${props.channelName}`} />
-    );
+  if (!props.hasWorkspaces) {
+    return <Redirect to="/workspaces/add" />;
   }
 
-  return <Redirect to="/workspaces/add" />;
+  return (
+    <Redirect to={`${props.workspaceName}/messages/${props.channelName}`} />
+  );
 };
 
 const firstWorkspaceQuery = gql`
@@ -47,22 +53,37 @@ const firstWorkspaceQuery = gql`
   }
 `;
 
-const Home: React.SFC = () => (
-  <Query query={firstWorkspaceQuery}>
-    {result => {
-      const props = makeBaseHomeProps(result);
+class FirstWorkspaceQuery extends Query<FirstWorkspace> {}
 
-      return <BaseHome {...props} />;
+const Home: React.SFC = () => (
+  <FirstWorkspaceQuery query={firstWorkspaceQuery}>
+    {result => {
+      const baseHomeProps = makeBaseHomeProps(result);
+
+      return <BaseHome {...baseHomeProps} />;
     }}
-  </Query>
+  </FirstWorkspaceQuery>
 );
 
-function makeBaseHomeProps(result: any): BaseHomeProps {
+function makeBaseHomeProps(result: QueryResult<FirstWorkspace>): BaseHomeProps {
+  if (!result.error || !result.data) {
+    return {
+      isAuthenticated: false,
+    };
+  }
+
+  if (result.data.viewer.workspaces.totalCount === 0) {
+    return {
+      isAuthenticated: true,
+      hasWorkspaces: false,
+    };
+  }
+
   return {
     isAuthenticated: true,
     workspaceName: 'test',
     channelName: 'test',
-    workspaceTotalCount: 10,
+    hasWorkspaces: true,
   };
 }
 

@@ -1,4 +1,5 @@
 import { gql } from 'apollo-server-express';
+import { DocumentNode } from 'graphql';
 
 const UserChannelConnection = gql`
   type UserChannelConnection {
@@ -15,4 +16,9 @@ const UserChannelEdge = gql`
   }
 `;
 
-export default [UserChannelConnection, UserChannelEdge];
+const typeDefs: ReadonlyArray<DocumentNode> = [
+  UserChannelConnection,
+  UserChannelEdge,
+];
+
+export default typeDefs;

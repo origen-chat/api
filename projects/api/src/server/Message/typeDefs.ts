@@ -1,16 +1,40 @@
 import { gql } from 'apollo-server-express';
+import { DocumentNode } from 'graphql';
+
+import { typeDefs as responsesTypeDefs } from './responses';
 
 const Message = gql`
-  type Message implements Node {
+  type Message implements Node & Reactable & Starrable {
     id: ID!
 
     sender: User!
+    channel: Channel!
 
-    channel: Channel
-    recipient: User
+    reactions(
+      first: Int
+      after: String
+      last: Int
+      before: String
+    ): ReactableReactionConnection!
 
-    reactions: [Reaction]!
+    parentMessage: Message
+
+    responses(
+      first: Int
+      after: String
+      last: Int
+      before: String
+    ): MessageResponseConnection!
+
+    stargazers(
+      first: Int
+      after: String
+      last: Int
+      before: String
+    ): StarrableStargazerConnection!
   }
 `;
 
-export default [Message];
+const typeDefs: ReadonlyArray<DocumentNode> = [Message, ...responsesTypeDefs];
+
+export default typeDefs;

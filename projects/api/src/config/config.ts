@@ -17,7 +17,12 @@ const logLevel = getEnvOrThrow('LOG_LEVEL', {
   valueType: 'string',
 }) as string;
 
-const graphQLServerPort = getEnvOrThrow('GRAPHQL_SERVER_PORT', {
+const graphqlServerHost = getEnvOrThrow('GRAPHQL_SERVER_HOST', {
+  defaultValue: '0.0.0.0',
+  valueType: 'string',
+}) as string;
+
+const graphqlServerPort = getEnvOrThrow('GRAPHQL_SERVER_PORT', {
   defaultValue: 4000,
   valueType: 'number',
 }) as number;
@@ -48,14 +53,25 @@ const mockSchema = getEnvOrThrow('MOCK_SCHEMA', {
   defaultValue: environment === 'development',
 }) as boolean;
 
+const googleClientId = getEnvOrThrow('GOOGLE_CLIENT_ID', {
+  valueType: 'string',
+}) as string;
+
+const googleClientSecret = getEnvOrThrow('GOOGLE_CLIENT_SECRET', {
+  valueType: 'string',
+}) as string;
+
 export const env = {
   environment,
   logLevel,
-  graphQLServerPort,
+  graphqlServerHost,
+  graphqlServerPort,
   helmReleaseName,
   dbHost,
   dbUser,
   dbPassword,
   dbName,
   mockSchema,
+  googleClientId,
+  googleClientSecret,
 };

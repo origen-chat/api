@@ -4,9 +4,9 @@ const Reaction = gql`
   type Reaction implements Node {
     id: ID!
 
-    type: String!
+    content: String!
     author: User!
-    message: Message!
+    reactable: Reactable!
   }
 `;
 
