@@ -874,14 +874,14 @@
   version "10.7.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.7.1.tgz#b704d7c259aa40ee052eec678758a68d07132a2e"
 
-"@types/passport-google-oauth@^1.0.38":
+"@types/passport-google-oauth@1.0.38":
   version "1.0.38"
   resolved "https://registry.yarnpkg.com/@types/passport-google-oauth/-/passport-google-oauth-1.0.38.tgz#4092ca4799fd9b63aa3195bc6ff802b93611983c"
   dependencies:
     "@types/express" "*"
     "@types/passport" "*"
 
-"@types/passport@*", "@types/passport@^0.4.6":
+"@types/passport@*", "@types/passport@0.4.6":
   version "0.4.6"
   resolved "https://registry.yarnpkg.com/@types/passport/-/passport-0.4.6.tgz#1c6a1a3fd105e9354816e179c5c9cd13852864d1"
   dependencies:
@@ -4937,7 +4937,7 @@ pascalcase@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/pascalcase/-/pascalcase-0.1.1.tgz#b363e55e8006ca6fe21784d2db22bd15d7917f14"
 
-passport-google-oauth20@^1.0.0:
+passport-google-oauth20@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/passport-google-oauth20/-/passport-google-oauth20-1.0.0.tgz#3b960e8a1d70d1dbe794615c827c68c40392a5d0"
   dependencies:
@@ -4956,7 +4956,7 @@ passport-strategy@1.x.x:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/passport-strategy/-/passport-strategy-1.0.0.tgz#b5539aa8fc225a3d1ad179476ddf236b440f52e4"
 
-passport@^0.4.0:
+passport@0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/passport/-/passport-0.4.0.tgz#c5095691347bd5ad3b5e180238c3914d16f05811"
   dependencies:
