@@ -1,6 +1,6 @@
 {
   "name": "loop_api",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "private": true,
   "license": "MIT",
   "main": "dist/app.js",
@@ -28,7 +28,7 @@
     "@types/jest": "23.3.1",
     "@types/knex": "0.14.21",
     "@types/node": "10.7.1",
-    "apollo": "^1.7.0",
+    "apollo": "1.7.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "23.4.2",
     "babel-plugin-dynamic-import-node": "2.0.0",
