@@ -1188,7 +1188,7 @@ apollo-utilities@^1.0.0, apollo-utilities@^1.0.1:
   dependencies:
     fast-json-stable-stringify "^2.0.0"
 
-apollo@^1.7.0:
+apollo@1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/apollo/-/apollo-1.7.0.tgz#5fc2c755ce03d15c6ef00e694120e42a843ae53a"
   dependencies:
