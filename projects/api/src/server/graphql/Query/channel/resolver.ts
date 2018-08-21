@@ -1,9 +1,9 @@
 import { AuthenticationError, ForbiddenError } from 'apollo-server-express';
 
-import { channels, types } from '../../../core';
+import { channels, types } from '../../../../core';
+import { isViewerAuthenticated } from '../../../helpers';
+import { Resolver, Root } from '../../../types';
 import { NotFoundError } from '../../errors';
-import { isViewerAuthenticated } from '../../helpers';
-import { Resolver, Root } from '../../types';
 
 export type ResolveChannelArgs = Readonly<{ id: types.ID }>;
 

@@ -1,14 +1,15 @@
 import { AuthenticationError, ForbiddenError } from 'apollo-server-express';
-import { channels, workspaces } from '../../core';
-import { NotFoundError } from '../errors';
-import { isViewerAuthenticated } from '../helpers';
-import { Resolver } from '../types';
+import { channels, workspaces } from '../../../../core';
+import { isViewerAuthenticated } from '../../../helpers';
+import { Resolver } from '../../../types';
+import { NotFoundError } from '../../errors';
 
-type ResolveChannelArgs = Readonly<{ name: string }>;
+export type ResolveChannelArgs = Readonly<{ name: string }>;
 
 const resolveChannel: Resolver<
   workspaces.Workspace,
-  ResolveChannelArgs
+  ResolveChannelArgs,
+  channels.Channel
 > = async (workspace, args, context) => {
   const { name: channelName } = args;
 
@@ -32,8 +33,4 @@ const resolveChannel: Resolver<
   return channel;
 };
 
-const workspaceResolver = {
-  channel: resolveChannel,
-};
-
-export default workspaceResolver;
+export default resolveChannel;

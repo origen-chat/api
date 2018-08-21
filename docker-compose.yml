@@ -29,6 +29,7 @@ services:
       - DB_USER=postgres
       - DB_PASSWORD=postgres
       - DB_NAME=loop_dev
+    env_file: .env
 
   web:
     build:
@@ -44,6 +45,7 @@ services:
       - VIRTUAL_HOST=dev.loop.com
       - VIRTUAL_PORT=4000
       - NODE_ENV=development
+    env_file: .env
 
   postgres:
     image: postgres:10.4

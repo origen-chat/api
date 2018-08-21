@@ -8,58 +8,58 @@
 
 import { getEnvOrThrow } from './helpers';
 
-const environment = getEnvOrThrow('NODE_ENV', {
+const environment = getEnvOrThrow<string>('NODE_ENV', {
   valueType: 'string',
-}) as string;
+});
 
-const logLevel = getEnvOrThrow('LOG_LEVEL', {
+const logLevel = getEnvOrThrow<string>('LOG_LEVEL', {
   defaultValue: 'info',
   valueType: 'string',
-}) as string;
+});
 
-const graphqlServerHost = getEnvOrThrow('GRAPHQL_SERVER_HOST', {
+const graphqlServerHost = getEnvOrThrow<string>('GRAPHQL_SERVER_HOST', {
   defaultValue: '0.0.0.0',
   valueType: 'string',
-}) as string;
+});
 
-const graphqlServerPort = getEnvOrThrow('GRAPHQL_SERVER_PORT', {
+const graphqlServerPort = getEnvOrThrow<number>('GRAPHQL_SERVER_PORT', {
   defaultValue: 4000,
   valueType: 'number',
-}) as number;
+});
 
-const helmReleaseName = getEnvOrThrow('HELM_RELEASE_NAME', {
+const helmReleaseName = getEnvOrThrow<string>('HELM_RELEASE_NAME', {
   defaultValue: '',
   valueType: 'string',
-}) as string;
+});
 
-const dbHost = getEnvOrThrow('DB_HOST', {
+const dbHost = getEnvOrThrow<string>('DB_HOST', {
   valueType: 'string',
-}) as string;
+});
 
-const dbUser = getEnvOrThrow('DB_USER', {
+const dbUser = getEnvOrThrow<string>('DB_USER', {
   valueType: 'string',
-}) as string;
+});
 
-const dbPassword = getEnvOrThrow('DB_PASSWORD', {
+const dbPassword = getEnvOrThrow<string>('DB_PASSWORD', {
   valueType: 'string',
-}) as string;
+});
 
-const dbName = getEnvOrThrow('DB_NAME', {
+const dbName = getEnvOrThrow<string>('DB_NAME', {
   valueType: 'string',
-}) as string;
+});
 
-const mockSchema = getEnvOrThrow('MOCK_SCHEMA', {
+const mockSchema = getEnvOrThrow<boolean>('MOCK_SCHEMA', {
   valueType: 'boolean',
   defaultValue: environment === 'development',
-}) as boolean;
+});
 
-const googleClientId = getEnvOrThrow('GOOGLE_CLIENT_ID', {
+const googleClientId = getEnvOrThrow<string>('GOOGLE_CLIENT_ID', {
   valueType: 'string',
-}) as string;
+});
 
-const googleClientSecret = getEnvOrThrow('GOOGLE_CLIENT_SECRET', {
+const googleClientSecret = getEnvOrThrow<string>('GOOGLE_CLIENT_SECRET', {
   valueType: 'string',
-}) as string;
+});
 
 export const env = {
   environment,

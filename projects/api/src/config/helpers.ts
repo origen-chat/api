@@ -1,34 +1,35 @@
 import { ConfigError } from './errors';
 import { GetEnvOrThrowOptions, ValueType } from './types';
 
-export function getEnvOrThrow(
+export function getEnvOrThrow<TReturn>(
   key: string,
   options: GetEnvOrThrowOptions,
-): string | number | boolean {
+): TReturn {
   const value = process.env[key];
 
   if (!value) {
     if (options.defaultValue === undefined) {
       throw new ConfigError(`${key} not set`);
     } else {
-      return options.defaultValue;
+      return options.defaultValue as any;
     }
   }
 
-  return castValue(value, options.valueType);
+  return castValue<TReturn>(value, options.valueType);
 }
 
-export function castValue(
-  value: string,
-  type: ValueType,
-): string | number | boolean {
+export function castValue<TReturn>(value: string, type: ValueType): TReturn {
   if (type === 'boolean') {
-    return !!value;
+    if (value === 'false') {
+      return false as any;
+    }
+
+    return true as any;
   }
 
   if (type === 'number') {
-    return parseInt(value, 10);
+    return parseInt(value, 10) as any;
   }
 
-  return value;
+  return value as any;
 }

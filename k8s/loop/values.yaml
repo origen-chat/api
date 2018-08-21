@@ -1,11 +1,12 @@
 domainName: example.com
 
-googleClientId: ""
-facebookClientId: ""
-githubClientId: ""
+googleClientId:
+  '509060080781-j83a38vh8nnfjb1j72c7u3oqin25ppsk.apps.googleusercontent.com'
+facebookClientId: ''
+githubClientId: ''
 
 postgresql:
-  imageTag: 10.4
+  imageTag: 10.5
   postgresDatabase: loop
   persistence:
     size: 2Gi

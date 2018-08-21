@@ -1,23 +1,27 @@
-import { ApolloServer } from 'apollo-server-express';
+import {
+  ApolloServer,
+  Config as ApolloServerConfig,
+} from 'apollo-server-express';
 import express from 'express';
 
 import { env } from '../config';
-import logger from '../core/logger';
-import { makeContext } from './context';
-import { resolvers, typeDefs } from './schema';
+import { logger } from '../core';
+import { makeContext, resolvers, typeDefs } from './graphql';
 
 const { graphqlServerPort, graphqlServerHost, mockSchema } = env;
 
 export async function startGraphQLServer() {
   const app = express();
 
-  const server = new ApolloServer({
+  const apolloServerConfig: ApolloServerConfig = {
     typeDefs: typeDefs as any,
     resolvers: resolvers as any,
     mocks: mockSchema,
     mockEntireSchema: false,
     context: makeContext,
-  });
+  };
+
+  const server = new ApolloServer(apolloServerConfig);
 
   server.applyMiddleware({ app });
 

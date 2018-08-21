@@ -1,6 +1,6 @@
-import { types, workspaces } from '../../../core';
+import { types, workspaces } from '../../../../core';
+import { Resolver, Root } from '../../../types';
 import { NotFoundError } from '../../errors';
-import { Resolver, Root } from '../../types';
 
 type ResolveChannelArgs = Readonly<{ id: types.ID }>;
 

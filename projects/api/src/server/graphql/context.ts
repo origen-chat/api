@@ -1,10 +1,11 @@
 import { Request } from 'express';
 
-import { users } from '../core';
-import { Context } from './types';
+import { users } from '../../core';
+import { Context } from '../types';
 
 export type MakeContextArgs = Readonly<{
   req: Request;
+  connection: any;
 }>;
 
 export async function makeContext({ req }: MakeContextArgs): Promise<Context> {

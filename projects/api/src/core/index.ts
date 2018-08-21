@@ -1,5 +1,6 @@
 import * as channelPins from './channelPins';
 import * as channels from './channels';
+import logger from './logger';
 import * as messages from './messages';
 import * as notifications from './notifications';
 import * as payments from './payments';
@@ -30,4 +31,5 @@ export {
   userNotifications,
   payments,
   types,
+  logger,
 };

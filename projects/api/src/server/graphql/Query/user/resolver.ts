@@ -1,6 +1,6 @@
-import { users } from '../../../core';
+import { users } from '../../../../core';
+import { Resolver, Root } from '../../../types';
 import { NotFoundError } from '../../errors';
-import { Resolver, Root } from '../../types';
 
 export type ResolveUserArgs = users.UniqueUsername;
 
