@@ -9,6 +9,7 @@ const Channel = gql`
     id: ID!
 
     name: String!
+    type: ChannelType!
     workspace: Workspace!
 
     topic: String

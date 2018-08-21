@@ -26,7 +26,7 @@ async function createSocialLoginsTable(knex: Knex): Promise<void> {
       .references('users.id')
       .onDelete('CASCADE');
 
-    table.unique(['uid', 'provider']);
+    table.unique(['providerUserId', 'provider']);
 
     table.timestamp('insertedAt', true).defaultTo(knex.fn.now());
     table.timestamp('updatedAt', true).defaultTo(knex.fn.now());

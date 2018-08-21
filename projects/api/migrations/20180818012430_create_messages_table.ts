@@ -4,7 +4,6 @@ const messagesTableName = 'messages';
 
 export async function up(knex: Knex): Promise<void> {
   await createMessagesTable(knex);
-  await addConstraintsToMessageTable(knex);
 }
 
 async function createMessagesTable(knex: Knex): Promise<void> {
@@ -18,7 +17,8 @@ async function createMessagesTable(knex: Knex): Promise<void> {
       .integer('channelId')
       .unsigned()
       .references('channels.id')
-      .onDelete('CASCADE');
+      .onDelete('CASCADE')
+      .notNullable();
 
     table
       .integer('senderId')
@@ -26,12 +26,6 @@ async function createMessagesTable(knex: Knex): Promise<void> {
       .references('users.id')
       .onDelete('CASCADE')
       .notNullable();
-
-    table
-      .integer('recipientId')
-      .unsigned()
-      .references('users.id')
-      .onDelete('CASCADE');
 
     table
       .integer('parentMessageId')
@@ -44,21 +38,6 @@ async function createMessagesTable(knex: Knex): Promise<void> {
     table.timestamp('insertedAt', true).defaultTo(knex.fn.now());
     table.timestamp('updatedAt', true).defaultTo(knex.fn.now());
   });
-}
-
-export async function addConstraintsToMessageTable(knex: Knex): Promise<void> {
-  const constraintQuery = `
-    ALTER TABLE ${messagesTableName}
-    ADD CONSTRAINT direct_or_not
-    CHECK (
-      (
-        ("recipientId" IS NOT NULL)::integer +
-        ("channelId" IS NOT NULL)::integer
-      ) = 1
-    )
-  `;
-
-  await knex.schema.raw(constraintQuery);
 }
 
 export async function down(knex: Knex): Promise<void> {

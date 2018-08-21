@@ -1,4 +1,5 @@
 import { typeDefs as channelTypeDefs } from '../Channel';
+import { typeDefs as channelTypeTypeDefs } from '../ChannelType';
 import { typeDefs as emailTypeDefs } from '../Email';
 import { typeDefs as messageTypeDefs } from '../Message';
 import { typeDefs as mutationTypeDefs } from '../Mutation';
@@ -20,6 +21,7 @@ const typeDefs = [
   ...channelTypeDefs,
   ...messageTypeDefs,
   ...reactionTypeDefs,
+  ...channelTypeTypeDefs,
 ];
 
 export default typeDefs;

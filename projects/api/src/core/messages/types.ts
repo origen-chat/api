@@ -2,7 +2,7 @@ import { RichText } from '../richText';
 import { ID, Identifiable, Nullable, Timestamps } from '../types';
 
 export type Message = Readonly<{
-  channelId: Nullable<ID>;
+  channelId: ID;
   senderId: ID;
 
   parentMessageId: Nullable<ID>;

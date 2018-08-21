@@ -1,0 +1,18 @@
+schemaPath: projects/api/schema.json
+
+projects:
+  api:
+    includes:
+      - 'projects/api/src/server/**/*.ts'
+    extensions:
+      endpoints:
+        default: http://api.dev.loop.com/graphql
+
+  web:
+    includes:
+      - 'projects/web/src/**/*.tsx'
+      - 'projects/web/src/**/*.gql'
+      - 'projects/web/src/**/*.graphql'
+    extensions:
+      endpoints:
+        default: http://api.dev.loop.com/graphql
