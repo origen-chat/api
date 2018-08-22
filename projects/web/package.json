@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "1.0.60",
+  "version": "1.0.61",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -67,7 +67,7 @@
     "react-test-renderer": "16.4.2",
     "thread-loader": "1.2.0",
     "typescript": "3.0.1",
-    "webpack": "4.17.0",
+    "webpack": "4.17.1",
     "webpack-cli": "3.1.0",
     "webpack-merge": "4.1.4",
     "webpack-serve": "2.0.2",
