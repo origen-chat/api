@@ -1,10 +1,10 @@
-import { Identifiable, Nullable, Timestamps } from '../types';
+import { Email, Identifiable, Nullable, Timestamps } from '../types';
 
 export type User = Readonly<{
   bio: Nullable<string>;
   avatarUrl: Nullable<string>;
 
-  email: string;
+  email: Email;
   unverifiedEmail: Nullable<string>;
 
   firstName: Nullable<string>;

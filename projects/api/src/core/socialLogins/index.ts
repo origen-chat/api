@@ -4,4 +4,7 @@ export {
   Provider,
   ProviderUserId,
 } from './types';
-export { getUserBySocialCredentials } from './socialLogins';
+export {
+  getUserBySocialCredentials,
+  linkSocialCredentialsToUser,
+} from './socialLogins';

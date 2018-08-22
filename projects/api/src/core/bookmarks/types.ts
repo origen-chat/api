@@ -1,6 +1,6 @@
 import { ID, Identifiable, Nullable, Timestamps } from '../types';
 
-export type Star = Readonly<{
+export type Bookmark = Readonly<{
   messageId: Nullable<ID>;
 }> &
   Identifiable &

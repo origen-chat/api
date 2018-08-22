@@ -17,23 +17,23 @@ const Channel = gql`
 
     messages(
       first: Int
-      after: String
+      after: Cursor
       last: Int
-      before: String
+      before: Cursor
     ): ChannelMessageConnection!
 
     pinnedMessages(
       first: Int
-      after: String
+      after: Cursor
       last: Int
-      before: String
+      before: Cursor
     ): ChannelPinnedMessageConnection!
 
     members(
       first: Int
-      after: String
+      after: Cursor
       last: Int
-      before: String
+      before: Cursor
     ): ChannelMemberConnection!
   }
 `;

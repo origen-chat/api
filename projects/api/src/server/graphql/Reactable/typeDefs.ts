@@ -5,11 +5,13 @@ import { typeDefs as reactionsTypeDefs } from './reactions';
 
 export const Reactable = gql`
   interface Reactable {
+    id: ID!
+
     reactions(
       first: Int
-      after: String
+      after: Cursor
       last: Int
-      before: String
+      before: Cursor
     ): ReactableReactionConnection!
   }
 `;

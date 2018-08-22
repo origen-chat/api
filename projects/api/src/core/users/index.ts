@@ -3,7 +3,7 @@ export {
   insertUser,
   getUserByEmail,
   getUserByUniqueUsername,
-  GetUserByUniqueUsernameArgs,
+  InsertUserArgs,
 } from './users';
 export { User, UniqueUsername } from './types';
 export { usersTableName } from './constants';

@@ -10,7 +10,7 @@ const ChannelPinnedMessageConnection = gql`
 
 const ChannelPinnedMessageEdge = gql`
   type ChannelPinnedMessageEdge {
-    cursor: String!
+    cursor: Cursor!
     node: Message!
   }
 `;

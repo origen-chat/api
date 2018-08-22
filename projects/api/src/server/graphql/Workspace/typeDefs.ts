@@ -13,18 +13,18 @@ const Workspace = gql`
     channel(name: String!): Channel!
     channels(
       first: Int
-      after: String
+      after: Cursor
       last: Int
-      before: String
+      before: Cursor
     ): WorkspaceChannelConnection!
 
     defaultChannel: Channel!
 
     members(
       first: Int
-      after: String
+      after: Cursor
       last: Int
-      before: String
+      before: Cursor
     ): WorkspaceMemberConnection!
   }
 `;

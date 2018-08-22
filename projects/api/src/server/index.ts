@@ -1,1 +1,1 @@
-export { startGraphQLServer } from './server';
+export { startServer } from './server';

@@ -1,8 +1,8 @@
 import { gql } from 'apollo-server-express';
 import { DocumentNode } from 'graphql';
 
+import { typeDefs as bookmarkedBookmarkablesTypeDefs } from './bookmarkedBookmarkables';
 import { typeDefs as channelsTypeDefs } from './channels';
-import { typeDefs as starredStarrablesTypeDefs } from './starredStarrables';
 import { typeDefs as workspacesTypeDefs } from './workspaces';
 
 export const User = gql`
@@ -20,26 +20,28 @@ export const User = gql`
 
     workspaces(
       first: Int
-      after: String
+      after: Cursor
       last: Int
-      before: String
+      before: Cursor
     ): UserWorkspaceConnection!
 
     channels(
       workspaceId: ID!
 
       first: Int
-      after: String
+      after: Cursor
       last: Int
-      before: String
+      before: Cursor
     ): UserChannelConnection!
 
-    starredStarrables(
+    bookmarkedBookmarkables(
+      workspaceId: ID!
+
       first: Int
-      after: String
+      after: Cursor
       last: Int
-      before: String
-    ): UserStarredStarrableConnection!
+      before: Cursor
+    ): UserBookmarkedBookmarkableConnection!
   }
 `;
 
@@ -47,7 +49,7 @@ const typeDefs: ReadonlyArray<DocumentNode> = [
   User,
   ...workspacesTypeDefs,
   ...channelsTypeDefs,
-  ...starredStarrablesTypeDefs,
+  ...bookmarkedBookmarkablesTypeDefs,
 ];
 
 export default typeDefs;

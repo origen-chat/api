@@ -33,6 +33,10 @@ export type Edge<TNode, TExtraData = {}> = Readonly<{
 
 export type Cursor = Base64;
 
+export type CursorData = Readonly<{
+  order: ReadonlyArray<string>;
+}>;
+
 export type PaginationArgs = ForwardPaginationArgs | BackwardPaginationArgs;
 
 export type ForwardPaginationArgs = Readonly<{

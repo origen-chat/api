@@ -10,7 +10,7 @@ const WorkspaceMemberConnection = gql`
 
 const WorkspaceMemberEdge = gql`
   type WorkspaceMemberEdge {
-    cursor: String!
+    cursor: Cursor!
     node: User!
   }
 `;

@@ -1,9 +1,9 @@
 import { gql } from 'apollo-server-express';
 import { DocumentNode } from 'graphql';
 
+import { typeDefs as addBookmarkTypeDefs } from './addBookmark';
 import { typeDefs as addChannelTypeDefs } from './addChannel';
 import { typeDefs as addReactionTypeDefs } from './addReaction';
-import { typeDefs as addStarTypeDefs } from './addStar';
 import { typeDefs as createWorkspaceTypeDefs } from './createWorkspace';
 import { typeDefs as deleteChannelTypeDefs } from './deleteChannel';
 import { typeDefs as deleteMessageTypeDefs } from './deleteMessage';
@@ -12,8 +12,8 @@ import { typeDefs as editMessageTypeDefs } from './editMessage';
 import { typeDefs as joinChannelTypeDefs } from './joinChannel';
 import { typeDefs as leaveChannelTypeDefs } from './leaveChannel';
 import { typeDefs as pinMessageTypeDefs } from './pinMessage';
+import { typeDefs as removeBookmarkTypeDefs } from './removeBookmark';
 import { typeDefs as removeReactionTypeDefs } from './removeReaction';
-import { typeDefs as removeStarTypeDefs } from './removeStar';
 import { typeDefs as sendMessageTypeDefs } from './sendMessage';
 import { typeDefs as unpinMessageTypeDefs } from './unpinMessage';
 import { typeDefs as updateChannelTypeDefs } from './updateChannel';
@@ -40,8 +40,8 @@ export const Mutation = gql`
     addReaction(input: AddReactionInput): AddReactionPayload!
     removeReaction(input: RemoveReactionInput): RemoveReactionPayload!
 
-    addStar(input: AddStarInput): AddStarPayload!
-    removeStar(input: RemoveStarInput): RemoveStarPayload!
+    addBookmark(input: AddBookmarkInput): AddBookmarkPayload!
+    removeBookmark(input: RemoveBookmarkInput): RemoveBookmarkPayload!
 
     pinMessage(input: PinMessageInput): PinMessagePayload!
     unpinMessage(input: UnpinMessageInput): UnpinMessagePayload!
@@ -66,8 +66,8 @@ const typeDefs: ReadonlyArray<DocumentNode> = [
   ...deleteMessageTypeDefs,
   ...addReactionTypeDefs,
   ...removeReactionTypeDefs,
-  ...addStarTypeDefs,
-  ...removeStarTypeDefs,
+  ...addBookmarkTypeDefs,
+  ...removeBookmarkTypeDefs,
   ...pinMessageTypeDefs,
   ...unpinMessageTypeDefs,
 ];

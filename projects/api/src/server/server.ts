@@ -7,11 +7,14 @@ import express from 'express';
 import { env } from '../config';
 import { logger } from '../core';
 import { makeContext, resolvers, typeDefs } from './graphql';
+import { router } from './router';
 
 const { graphqlServerPort, graphqlServerHost, mockSchema } = env;
 
-export async function startGraphQLServer() {
+export async function startServer() {
   const app = express();
+
+  app.use(router);
 
   const apolloServerConfig: ApolloServerConfig = {
     typeDefs: typeDefs as any,
@@ -27,7 +30,7 @@ export async function startGraphQLServer() {
 
   app.listen(graphqlServerPort, graphqlServerHost, () => {
     logger.info(
-      `Server ready at ${graphqlServerHost}:${graphqlServerPort}${
+      `Server ready at http://${graphqlServerHost}:${graphqlServerPort}${
         server.graphqlPath
       }`,
     );

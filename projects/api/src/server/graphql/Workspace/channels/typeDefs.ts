@@ -10,7 +10,7 @@ const WorkspaceChannelConnection = gql`
 
 const WorkspaceChannelEdge = gql`
   type WorkspaceChannelEdge {
-    cursor: String!
+    cursor: Cursor!
     node: Channel!
   }
 `;

@@ -11,7 +11,7 @@ const MessageResponseConnection = gql`
 
 const MessageResponseEdge = gql`
   type MessageResponseEdge {
-    cursor: String!
+    cursor: Cursor!
     node: Message!
   }
 `;

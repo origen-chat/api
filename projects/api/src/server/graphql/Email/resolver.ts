@@ -4,8 +4,6 @@ const emailRegex = /@/;
 
 const emailResolver = new GraphQLScalarType({
   name: 'Email',
-  description: 'The `Email` scalar type represents an email address.',
-
   serialize,
   parseValue,
   parseLiteral,

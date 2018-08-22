@@ -10,7 +10,7 @@ const ChannelMemberConnection = gql`
 
 const ChannelMemberEdge = gql`
   type ChannelMemberEdge {
-    cursor: String!
+    cursor: Cursor!
     node: User!
   }
 `;

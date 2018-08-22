@@ -11,7 +11,7 @@ const UserChannelConnection = gql`
 
 const UserChannelEdge = gql`
   type UserChannelEdge {
-    cursor: String!
+    cursor: Cursor!
     node: Channel!
   }
 `;

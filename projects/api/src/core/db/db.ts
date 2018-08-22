@@ -1,6 +1,6 @@
 import Knex, { Config as KnexConfig } from 'knex';
 
-import { env } from '../config';
+import { env } from '../../config';
 
 export type KnexEnvironment = 'production' | 'development' | 'test';
 

@@ -5,6 +5,7 @@ export {
   Connection,
   Edge,
   Cursor,
+  CursorData,
   PageInfo,
   PaginationArgs,
   ForwardPaginationArgs,

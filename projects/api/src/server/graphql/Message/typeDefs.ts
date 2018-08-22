@@ -4,7 +4,7 @@ import { DocumentNode } from 'graphql';
 import { typeDefs as responsesTypeDefs } from './responses';
 
 const Message = gql`
-  type Message implements Node & Reactable & Starrable {
+  type Message implements Node & Reactable & Bookmarkable {
     id: ID!
 
     sender: User!
@@ -12,26 +12,22 @@ const Message = gql`
 
     reactions(
       first: Int
-      after: String
+      after: Cursor
       last: Int
-      before: String
+      before: Cursor
     ): ReactableReactionConnection!
 
     parentMessage: Message
 
     responses(
       first: Int
-      after: String
+      after: Cursor
       last: Int
-      before: String
+      before: Cursor
     ): MessageResponseConnection!
 
-    stargazers(
-      first: Int
-      after: String
-      last: Int
-      before: String
-    ): StarrableStargazerConnection!
+    viewerCanBookmark: Boolean!
+    viewerHasBookmarked: Boolean!
   }
 `;
 

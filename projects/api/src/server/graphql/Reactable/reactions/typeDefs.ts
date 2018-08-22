@@ -10,7 +10,7 @@ const ReactableReactionConnection = gql`
 
 const ReactableReactionEdge = gql`
   type ReactableReactionEdge {
-    cursor: String!
+    cursor: Cursor!
     node: Reaction!
   }
 `;

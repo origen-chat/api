@@ -10,7 +10,7 @@ const ChannelMessageConnection = gql`
 
 const ChannelMessageEdge = gql`
   type ChannelMessageEdge {
-    cursor: String!
+    cursor: Cursor!
     node: Message!
   }
 `;
