@@ -27,3 +27,16 @@ function getPayloadForJWT(user: users.User): Payload {
 
   return payload;
 }
+
+export async function getUserFromJWT(token: string): Promise<users.User> {
+  const payload = jwt.verify(token, env.jwtSecret, { issuer: jwtIssuer });
+  const userId = (payload as any).sub;
+
+  const user = await users.getUserById(userId);
+
+  if (!user) {
+    throw new Error('invalid JWT');
+  }
+
+  return user;
+}

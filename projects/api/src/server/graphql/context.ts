@@ -1,6 +1,7 @@
 import { Request } from 'express';
 
-import { users } from '../../core';
+import { types, users } from '../../core';
+import { getUserFromJWT } from '../authentication';
 import { Context } from '../types';
 
 export type MakeContextArgs = Readonly<{
@@ -9,6 +10,12 @@ export type MakeContextArgs = Readonly<{
 }>;
 
 export async function makeContext({ req }: MakeContextArgs): Promise<Context> {
+  const context = makeContextFromHttpRequest(req);
+
+  return context;
+}
+
+async function makeContextFromHttpRequest(req: Request): Promise<Context> {
   const authorizationHeader = req.headers.authorization;
 
   const viewer = await getUserFromAuthorizationHeader(authorizationHeader);
@@ -19,11 +26,27 @@ export async function makeContext({ req }: MakeContextArgs): Promise<Context> {
 }
 
 async function getUserFromAuthorizationHeader(
-  authorizationHeader: string | undefined,
-): Promise<users.User | null> {
+  authorizationHeader: types.Undefinable<string>,
+): Promise<types.Nullable<users.User>> {
   if (!authorizationHeader) {
     return null;
   }
 
-  return null;
+  try {
+    const token = extractJWTFromAuthorizationHeader(authorizationHeader);
+
+    const user = await getUserFromJWT(token);
+
+    return user;
+  } catch {
+    return null;
+  }
+}
+
+function extractJWTFromAuthorizationHeader(
+  authorizationHeader: string,
+): string {
+  const [, token] = authorizationHeader.split('Bearer ');
+
+  return token;
 }
