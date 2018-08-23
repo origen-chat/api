@@ -909,9 +909,9 @@
   version "10.9.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.9.0.tgz#d2824d342b1d733e22ef169708bd254924db16bd"
 
-"@types/passport-google-oauth@1.0.38":
-  version "1.0.38"
-  resolved "https://registry.yarnpkg.com/@types/passport-google-oauth/-/passport-google-oauth-1.0.38.tgz#4092ca4799fd9b63aa3195bc6ff802b93611983c"
+"@types/passport-google-oauth@1.0.39":
+  version "1.0.39"
+  resolved "https://registry.yarnpkg.com/@types/passport-google-oauth/-/passport-google-oauth-1.0.39.tgz#af0e9035a1c3e03849d86baabfcec4c210ab49d1"
   dependencies:
     "@types/express" "*"
     "@types/passport" "*"
