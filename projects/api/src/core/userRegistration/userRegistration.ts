@@ -1,10 +1,10 @@
-import { transaction } from '../db';
+import { beginTransaction } from '../db';
 import {
   getUserBySocialCredentials,
   linkSocialCredentialsToUser,
   SocialCredentials,
-  SocialLogin,
 } from '../socialLogins';
+import { DBOptions } from '../types';
 import { getUserByEmail, insertUser, InsertUserArgs, User } from '../users';
 
 export async function getUserBySocialCredentialsOrRegisterUser(
@@ -39,8 +39,9 @@ async function registerUser(
   socialCredentials: SocialCredentials,
   userData: InsertUserArgs,
 ): Promise<User> {
-  const { user } = await transaction(() =>
-    insertUserAndLinkSocialCredentials(socialCredentials, userData),
+  const user = await insertUserAndLinkSocialCredentials(
+    socialCredentials,
+    userData,
   );
 
   return user;
@@ -49,12 +50,20 @@ async function registerUser(
 async function insertUserAndLinkSocialCredentials(
   socialCredentials: SocialCredentials,
   userData: InsertUserArgs,
-): Promise<{ user: User; socialLogin: SocialLogin }> {
-  const user = await insertUser(userData);
-  const socialLogin = await linkSocialCredentialsToUser(
-    user,
-    socialCredentials,
-  );
+): Promise<User> {
+  const transaction = await beginTransaction();
+  try {
+    const opts: DBOptions = { transaction };
 
-  return { user, socialLogin };
+    const user = await insertUser(userData, opts);
+    await linkSocialCredentialsToUser(user, socialCredentials, opts);
+
+    await transaction.commit();
+
+    return user;
+  } catch (error) {
+    await transaction.rollback();
+
+    throw error;
+  }
 }

@@ -11,3 +11,4 @@ export {
   ForwardPaginationArgs,
   BackwardPaginationArgs,
 } from './relay';
+export { DBOptions } from './db';

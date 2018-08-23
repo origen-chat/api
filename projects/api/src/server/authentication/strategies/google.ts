@@ -5,8 +5,8 @@ import {
 } from 'passport-google-oauth20';
 
 import { env } from '../../../config';
-import { users } from '../../../core';
 import { makeOauth2CallbackUrl } from '../../helpers';
+import { DoneFunction, oauth2VerifyFunction } from './helpers';
 
 const { googleClientId, googleClientSecret } = env;
 
@@ -21,11 +21,11 @@ export const googleStrategy = new GoogleStrategy(
   verifyFunction,
 );
 
-export type DoneFunction = (error: any, user?: users.User) => void;
-
-function verifyFunction(
+async function verifyFunction(
   accessToken: string,
   refreshToken: string,
   profile: Profile,
   done: DoneFunction,
-): void {}
+): Promise<void> {
+  await oauth2VerifyFunction(profile, done);
+}

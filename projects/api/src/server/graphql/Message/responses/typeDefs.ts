@@ -4,7 +4,7 @@ import { DocumentNode } from 'graphql';
 const MessageResponseConnection = gql`
   type MessageResponseConnection {
     pageInfo: PageInfo!
-    totalCount: Int!
+    totalCount: NonNegativeInt!
     edges: [MessageResponseEdge]
   }
 `;

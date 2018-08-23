@@ -3,7 +3,7 @@ import { gql } from 'apollo-server-express';
 const WorkspaceMemberConnection = gql`
   type WorkspaceMemberConnection {
     pageInfo: PageInfo!
-    totalCount: Int!
+    totalCount: NonNegativeInt!
     edges: [WorkspaceMemberEdge]
   }
 `;

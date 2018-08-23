@@ -65,6 +65,7 @@ module.exports = {
         'no-undef': 'off',
         'no-unused-vars': 'off',
         'no-restricted-globals': 'off',
+        'prefer-destructuring': 'off',
 
         'react/prop-types': 'off',
         'react/destructuring-assignment': 'off',

@@ -1,3 +1,3 @@
-import { knexConfigs } from './src/core/db';
+import { db } from './src/core';
 
-module.exports = knexConfigs;
+export default db.knexConfigs;

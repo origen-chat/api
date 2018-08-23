@@ -9,6 +9,7 @@ import { typeDefs as emailTypeDefs } from '../Email';
 import { typeDefs as messageTypeDefs } from '../Message';
 import { typeDefs as mutationTypeDefs } from '../Mutation';
 import { typeDefs as nodeTypeDefs } from '../Node';
+import { typeDefs as nonNegativeIntTypeDefs } from '../NonNegativeInt';
 import { typeDefs as pageInfoTypeDefs } from '../PageInfo';
 import { typeDefs as queryTypeDefs } from '../Query';
 import { typeDefs as reactableTypeDefs } from '../Reactable';
@@ -25,6 +26,7 @@ const typeDefs: ReadonlyArray<DocumentNode> = [
   ...nodeTypeDefs,
   ...emailTypeDefs,
   ...cursorTypeDefs,
+  ...nonNegativeIntTypeDefs,
   ...userTypeDefs,
   ...workspaceTypeDefs,
   ...channelTypeDefs,

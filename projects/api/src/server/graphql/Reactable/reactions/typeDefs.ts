@@ -3,7 +3,7 @@ import { gql } from 'apollo-server-express';
 const ReactableReactionConnection = gql`
   type ReactableReactionConnection {
     pageInfo: PageInfo!
-    totalCount: Int!
+    totalCount: NonNegativeInt!
     edges: [ReactableReactionEdge]
   }
 `;

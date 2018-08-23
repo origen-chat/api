@@ -9,7 +9,7 @@ export function getEnvOrThrow<TReturn>(
 
   if (!value) {
     if (options.defaultValue === undefined) {
-      throw new ConfigError(`${key} not set`);
+      throw new ConfigError(`${key} environmental variable not set`);
     } else {
       return options.defaultValue as any;
     }

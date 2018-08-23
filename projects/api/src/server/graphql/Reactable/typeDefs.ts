@@ -8,9 +8,9 @@ export const Reactable = gql`
     id: ID!
 
     reactions(
-      first: Int
+      first: NonNegativeInt
       after: Cursor
-      last: Int
+      last: NonNegativeInt
       before: Cursor
     ): ReactableReactionConnection!
   }

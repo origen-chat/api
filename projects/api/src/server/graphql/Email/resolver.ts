@@ -37,8 +37,12 @@ function parseLiteral(ast: ASTNode): string | undefined {
   return ast.value;
 }
 
-function isEmailValid(email: string): boolean {
-  return emailRegex.test(email);
+function isEmailValid(value: string): boolean {
+  if (!emailRegex.test(value)) {
+    return false;
+  }
+
+  return true;
 }
 
 export default emailResolver;

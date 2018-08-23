@@ -7,8 +7,14 @@ import { makeOauth2CallbackUrl } from '../helpers';
 const router = Router();
 
 router.get(
+  '/auth/google',
+  passport.authenticate([googleStrategy.name], { scope: ['email'] }),
+  oauth2CallbackController,
+);
+
+router.get(
   makeOauth2CallbackUrl(),
-  passport.authenticate([googleStrategy.name]),
+  passport.authenticate([googleStrategy.name], { session: false }),
   oauth2CallbackController,
 );
 

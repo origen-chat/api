@@ -6,6 +6,7 @@ import express from 'express';
 
 import { env } from '../config';
 import { logger } from '../core';
+import { passport } from './authentication';
 import { makeContext, resolvers, typeDefs } from './graphql';
 import { router } from './router';
 
@@ -14,6 +15,7 @@ const { graphqlServerPort, graphqlServerHost, mockSchema } = env;
 export async function startServer() {
   const app = express();
 
+  app.use(passport.initialize());
   app.use(router);
 
   const apolloServerConfig: ApolloServerConfig = {

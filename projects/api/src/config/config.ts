@@ -61,6 +61,10 @@ const googleClientSecret = getEnvOrThrow<string>('GOOGLE_CLIENT_SECRET', {
   valueType: 'string',
 });
 
+const jwtSecret = getEnvOrThrow<string>('JWT_SECRET', {
+  valueType: 'string',
+});
+
 export const env = {
   environment,
   logLevel,
@@ -74,4 +78,5 @@ export const env = {
   mockSchema,
   googleClientId,
   googleClientSecret,
+  jwtSecret,
 };

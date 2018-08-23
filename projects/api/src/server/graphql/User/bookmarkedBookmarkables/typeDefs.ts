@@ -4,7 +4,7 @@ import { DocumentNode } from 'graphql';
 const UserBookmarkedBookmarkableConnection = gql`
   type UserBookmarkedBookmarkableConnection {
     pageInfo: PageInfo!
-    totalCount: Int!
+    totalCount: NonNegativeInt!
     edges: [UserBookmarkedBookmarkableEdge]
   }
 `;

@@ -4,7 +4,7 @@ import { DocumentNode } from 'graphql';
 const UserChannelConnection = gql`
   type UserChannelConnection {
     pageInfo: PageInfo!
-    totalCount: Int!
+    totalCount: NonNegativeInt!
     edges: [UserChannelEdge]
   }
 `;

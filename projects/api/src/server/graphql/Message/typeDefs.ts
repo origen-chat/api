@@ -11,18 +11,18 @@ const Message = gql`
     channel: Channel!
 
     reactions(
-      first: Int
+      first: NonNegativeInt
       after: Cursor
-      last: Int
+      last: NonNegativeInt
       before: Cursor
     ): ReactableReactionConnection!
 
     parentMessage: Message
 
     responses(
-      first: Int
+      first: NonNegativeInt
       after: Cursor
-      last: Int
+      last: NonNegativeInt
       before: Cursor
     ): MessageResponseConnection!
 

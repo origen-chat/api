@@ -19,27 +19,27 @@ export const User = gql`
     lastName: String
 
     workspaces(
-      first: Int
+      first: NonNegativeInt
       after: Cursor
-      last: Int
+      last: NonNegativeInt
       before: Cursor
     ): UserWorkspaceConnection!
 
     channels(
       workspaceId: ID!
 
-      first: Int
+      first: NonNegativeInt
       after: Cursor
-      last: Int
+      last: NonNegativeInt
       before: Cursor
     ): UserChannelConnection!
 
     bookmarkedBookmarkables(
       workspaceId: ID!
 
-      first: Int
+      first: NonNegativeInt
       after: Cursor
-      last: Int
+      last: NonNegativeInt
       before: Cursor
     ): UserBookmarkedBookmarkableConnection!
   }

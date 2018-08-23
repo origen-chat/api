@@ -16,23 +16,23 @@ const Channel = gql`
     purpose: String
 
     messages(
-      first: Int
+      first: NonNegativeInt
       after: Cursor
-      last: Int
+      last: NonNegativeInt
       before: Cursor
     ): ChannelMessageConnection!
 
     pinnedMessages(
-      first: Int
+      first: NonNegativeInt
       after: Cursor
-      last: Int
+      last: NonNegativeInt
       before: Cursor
     ): ChannelPinnedMessageConnection!
 
     members(
-      first: Int
+      first: NonNegativeInt
       after: Cursor
-      last: Int
+      last: NonNegativeInt
       before: Cursor
     ): ChannelMemberConnection!
   }

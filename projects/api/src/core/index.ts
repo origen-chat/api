@@ -1,6 +1,7 @@
 import * as bookmarks from './bookmarks';
 import * as channelPins from './channelPins';
 import * as channels from './channels';
+import * as db from './db';
 import logger from './logger';
 import * as messages from './messages';
 import * as notifications from './notifications';
@@ -34,4 +35,5 @@ export {
   payments,
   types,
   logger,
+  db,
 };

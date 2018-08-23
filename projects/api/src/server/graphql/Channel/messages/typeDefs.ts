@@ -3,7 +3,7 @@ import { gql } from 'apollo-server-express';
 const ChannelMessageConnection = gql`
   type ChannelMessageConnection {
     pageInfo: PageInfo!
-    totalCount: Int!
+    totalCount: NonNegativeInt!
     edges: [ChannelMessageEdge]
   }
 `;

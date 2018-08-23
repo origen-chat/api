@@ -8,3 +8,4 @@ export {
   getUserBySocialCredentials,
   linkSocialCredentialsToUser,
 } from './socialLogins';
+export { providers } from './constants';

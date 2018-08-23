@@ -1,5 +1,5 @@
 import db from '../db';
-import { Email, ID, Nullable } from '../types';
+import { DBOptions, Email, ID, Nullable } from '../types';
 import { usersTableName } from './constants';
 import { UniqueUsername, User } from './types';
 import { getUnusedUsernameIdentifier } from './usernames';
@@ -37,16 +37,25 @@ async function getUserBy(args: GetUserByArgs): Promise<Nullable<User>> {
 export type InsertUserArgs = Pick<User, 'username' | 'email'> &
   Partial<Pick<User, 'firstName' | 'lastName'>>;
 
-export async function insertUser(args: InsertUserArgs): Promise<User> {
+export async function insertUser(
+  args: InsertUserArgs,
+  opts: DBOptions = {},
+): Promise<User> {
   const usernameIdentifier = await getUnusedUsernameIdentifier(args.username);
 
   const argsWithUsernameIdentifier: InsertUserArgs &
     Pick<User, 'usernameIdentifier'> = { ...args, usernameIdentifier };
 
-  const user = await db
+  const query = db
     .insert(argsWithUsernameIdentifier)
     .into(usersTableName)
     .returning('*');
+
+  if (opts.transaction) {
+    query.transacting(opts.transaction);
+  }
+
+  const [user] = await query;
 
   return user;
 }
