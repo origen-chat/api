@@ -23,7 +23,7 @@ export type BaseHomeProps = Readonly<
 
 export const BaseHome: React.SFC<BaseHomeProps> = props => {
   if (!props.isAuthenticated) {
-    return <Redirect to="/signup" />;
+    return <Redirect to="/signin" />;
   }
 
   if (!props.hasWorkspaces) {

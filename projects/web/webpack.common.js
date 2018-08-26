@@ -8,7 +8,12 @@ const webpackConfig = {
   target: 'web',
 
   plugins: [
-    new EnvironmentPlugin(['NODE_ENV']),
+    new EnvironmentPlugin([
+      'NODE_ENV',
+      'API_ENDPOINT',
+      'GRAPHQL_WS_ENDPOINT',
+      'GOOGLE_CLIENT_ID',
+    ]),
 
     new InjectManifest({
       swSrc: path.join('src', 'serviceWorker', 'index.ts'),

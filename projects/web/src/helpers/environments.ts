@@ -1,3 +1,5 @@
-export const isDevelopmentEnvironment = process.env.NODE_ENV === 'development';
+import { env } from '../config';
 
-export const isProductionEnvironment = process.env.NODE_ENV === 'production';
+export const isDevelopmentEnvironment = env.environment === 'development';
+
+export const isProductionEnvironment = env.environment === 'production';

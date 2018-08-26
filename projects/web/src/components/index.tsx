@@ -1,1 +1,1 @@
-export { default as ChannelsBar } from './ChannelsBar';
+export { default as Root } from './Root';

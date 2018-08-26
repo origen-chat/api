@@ -45,6 +45,8 @@ services:
       - VIRTUAL_HOST=dev.loop.com
       - VIRTUAL_PORT=4000
       - NODE_ENV=development
+      - API_ENDPOINT=http://api.dev.loop.com
+      - GRAPHQL_WS_ENDPOINT=ws://api.dev.loop.com/graphql
     env_file: .env
 
   postgres:

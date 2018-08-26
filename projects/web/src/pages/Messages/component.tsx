@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { ChannelsBar } from '../../components';
+import WorkspacesBar from './WorkspacesBar';
 
 const Wrapper = styled.main`
   display: flex;
@@ -13,7 +13,7 @@ const Wrapper = styled.main`
 
 export const BaseMessages: React.SFC = () => (
   <Wrapper>
-    <ChannelsBar />
+    <WorkspacesBar />
   </Wrapper>
 );
 

@@ -5,27 +5,29 @@ import { getUserFromJWT } from '../authentication';
 import { Context } from '../types';
 
 export type MakeContextArgs = Readonly<{
-  req: Request;
-  connection: any;
+  req?: Request;
+  connection?: any;
 }>;
 
-export async function makeContext({ req }: MakeContextArgs): Promise<Context> {
-  const context = makeContextFromHttpRequest(req);
+export async function makeContext(args: MakeContextArgs): Promise<Context> {
+  if (args.req) {
+    return makeContextFromHttpRequest(args.req);
+  }
 
-  return context;
+  return makeContextFromWebSocketConnection(args.connection);
 }
 
 async function makeContextFromHttpRequest(req: Request): Promise<Context> {
   const authorizationHeader = req.headers.authorization;
 
-  const viewer = await getUserFromAuthorizationHeader(authorizationHeader);
+  const viewer = await getViewerFromAuthorizationHeader(authorizationHeader);
 
   const context: Context = { viewer };
 
   return context;
 }
 
-async function getUserFromAuthorizationHeader(
+async function getViewerFromAuthorizationHeader(
   authorizationHeader: types.Undefinable<string>,
 ): Promise<types.Nullable<users.User>> {
   if (!authorizationHeader) {
@@ -49,4 +51,10 @@ function extractJWTFromAuthorizationHeader(
   const [, token] = authorizationHeader.split('Bearer ');
 
   return token;
+}
+
+function makeContextFromWebSocketConnection(connection: any) {
+  const context: Context = { viewer: null };
+
+  return context;
 }
