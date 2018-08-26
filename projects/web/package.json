@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "1.0.72",
+  "version": "1.0.73",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -14,9 +14,9 @@
     "typecheck:ts": "yarn tsc"
   },
   "dependencies": {
-    "apollo-boost": "0.1.14",
-    "apollo-cache-inmemory": "1.2.8",
-    "apollo-client": "2.4.0",
+    "apollo-boost": "0.1.15",
+    "apollo-cache-inmemory": "1.2.9",
+    "apollo-client": "2.4.1",
     "apollo-link": "1.2.2",
     "apollo-link-error": "1.1.0",
     "apollo-link-http": "1.5.4",
