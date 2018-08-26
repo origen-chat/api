@@ -65,6 +65,10 @@ const jwtSecret = getEnvOrThrow<string>('JWT_SECRET', {
   valueType: 'string',
 });
 
+const webRootUrl = getEnvOrThrow<string>('WEB_ROOT_URL', {
+  valueType: 'string',
+});
+
 export const env = {
   environment,
   logLevel,
@@ -79,4 +83,5 @@ export const env = {
   googleClientId,
   googleClientSecret,
   jwtSecret,
+  webRootUrl,
 };

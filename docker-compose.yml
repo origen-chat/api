@@ -29,6 +29,7 @@ services:
       - DB_USER=postgres
       - DB_PASSWORD=postgres
       - DB_NAME=loop_dev
+      - WEB_ROOT_URL=http://dev.loop.com
     env_file: .env
 
   web:

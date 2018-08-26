@@ -7,7 +7,7 @@ export const Routes: React.SFC = () => (
   <Switch>
     <Route exact path="/" component={Home} />
     <Route path="/signin" component={SignIn} />
-    <Route path="/auth/:provider/callback" component={Oauth2Callback} />
+    <Route path="/auth/callback" component={Oauth2Callback} />
     <Route path="/:workspace/messages/:channel" component={Messages} />
   </Switch>
 );

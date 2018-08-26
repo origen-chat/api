@@ -1,20 +1,19 @@
 import { Router } from 'express';
 
-import { googleStrategy, passport } from '../authentication';
 import { oauth2CallbackController } from '../controllers';
-import { makeOauth2CallbackUrl } from '../helpers';
+import { makeOauth2CallbackUrl, makeOauth2RequestUrl } from '../helpers';
+import { callPassportWithStrategyName } from '../middleware';
 
 const router = Router();
 
 router.get(
-  '/auth/google',
-  passport.authenticate([googleStrategy.name], { scope: ['email'] }),
-  oauth2CallbackController,
+  makeOauth2RequestUrl(),
+  callPassportWithStrategyName({ session: false, scope: ['email'] }),
 );
 
 router.get(
   makeOauth2CallbackUrl(),
-  passport.authenticate([googleStrategy.name], { session: false }),
+  callPassportWithStrategyName({ session: false }),
   oauth2CallbackController,
 );
 

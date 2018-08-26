@@ -54,7 +54,7 @@ function extractJWTFromAuthorizationHeader(
 }
 
 function makeContextFromWebSocketConnection(connection: any) {
-  const context: Context = { viewer: null };
+  const context: Context = connection.context;
 
   return context;
 }

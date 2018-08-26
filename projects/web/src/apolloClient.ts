@@ -7,6 +7,8 @@ import { WebSocketLink } from 'apollo-link-ws';
 import { getToken } from './auth';
 import { env } from './config';
 
+export type Cache = Readonly<{}>;
+
 /* eslint-disable no-console */
 /* tslint:disable no-console */
 

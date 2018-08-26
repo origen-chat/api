@@ -13,6 +13,7 @@ import { passport } from './authentication';
 import {
   handleSubscriptionConnect,
   makeContext,
+  mocks,
   resolvers,
   typeDefs,
 } from './graphql';
@@ -30,7 +31,7 @@ export async function startServer() {
   const apolloServerConfig: ApolloServerConfig = {
     typeDefs: typeDefs as any,
     resolvers: resolvers as any,
-    mocks: mockSchema,
+    mocks: mockSchema ? mocks : false,
     mockEntireSchema: false,
     context: makeContext,
     subscriptions: {

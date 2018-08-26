@@ -1,0 +1,1 @@
+export { callPassportWithStrategyName } from './auth';
