@@ -1,6 +1,6 @@
 {
   "name": "loop_api",
-  "version": "1.0.32",
+  "version": "1.0.33",
   "private": true,
   "license": "MIT",
   "main": "dist/app.js",
@@ -18,12 +18,12 @@
     "clean": "rimraf dist"
   },
   "devDependencies": {
-    "@babel/cli": "7.0.0-rc.4",
-    "@babel/core": "7.0.0-rc.4",
-    "@babel/node": "7.0.0-rc.4",
-    "@babel/plugin-proposal-optional-catch-binding": "7.0.0-rc.4",
-    "@babel/preset-env": "7.0.0-rc.4",
-    "@babel/preset-typescript": "7.0.0-rc.4",
+    "@babel/cli": "7.0.0",
+    "@babel/core": "7.0.0",
+    "@babel/node": "7.0.0",
+    "@babel/plugin-proposal-optional-catch-binding": "7.0.0",
+    "@babel/preset-env": "7.0.0",
+    "@babel/preset-typescript": "7.0.0",
     "@types/graphql": "0.13.4",
     "@types/jest": "23.3.1",
     "@types/jsonwebtoken": "7.2.8",
