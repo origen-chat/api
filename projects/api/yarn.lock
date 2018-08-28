@@ -877,9 +877,9 @@
   dependencies:
     "@types/node" "*"
 
-"@types/knex@0.14.21":
-  version "0.14.21"
-  resolved "https://registry.yarnpkg.com/@types/knex/-/knex-0.14.21.tgz#d95f90b33a65140057c450ea8094ec213e78d551"
+"@types/knex@0.14.22":
+  version "0.14.22"
+  resolved "https://registry.yarnpkg.com/@types/knex/-/knex-0.14.22.tgz#b1798678bb57df423aa15c6c0969ff373fe920eb"
   dependencies:
     "@types/bluebird" "*"
     "@types/events" "*"
