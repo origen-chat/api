@@ -36,7 +36,6 @@ async function getViewerFromAuthorizationHeader(
 
   try {
     const token = extractJWTFromAuthorizationHeader(authorizationHeader);
-
     const user = await getUserFromJWT(token);
 
     return user;

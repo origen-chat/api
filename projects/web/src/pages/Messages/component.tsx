@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import ChannelsBar from './ChannelsBar';
 import WorkspacesBar from './WorkspacesBar';
 
 const Wrapper = styled.main`
@@ -11,12 +12,11 @@ const Wrapper = styled.main`
   width: 100%;
 `;
 
-export const BaseMessages: React.SFC = () => (
+export const Messages: React.SFC = () => (
   <Wrapper>
     <WorkspacesBar />
+    <ChannelsBar />
   </Wrapper>
 );
-
-const Messages = BaseMessages;
 
 export default Messages;

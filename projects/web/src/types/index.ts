@@ -6,3 +6,4 @@ export {
   NegativeInteger,
   NonNegativeInteger,
 } from './numbers';
+export { ClassNameProp } from './props';

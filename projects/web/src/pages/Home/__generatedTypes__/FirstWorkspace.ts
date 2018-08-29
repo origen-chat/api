@@ -23,7 +23,7 @@ export interface FirstWorkspace_viewer_workspaces_edges {
 
 export interface FirstWorkspace_viewer_workspaces {
   __typename: "UserWorkspaceConnection";
-  totalCount: number;
+  totalCount: any;
   edges: (FirstWorkspace_viewer_workspaces_edges | null)[] | null;
 }
 
