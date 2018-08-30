@@ -1,10 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import { ClassNameProp } from '../../../../../types';
-import WorkspacesBarButton, {
-  WorkspacesBarButtonProps,
-} from '../../WorkspacesBarButton';
+import { ClassNameProp } from '../../../../../../types';
+import BarButton, { BarButtonProps } from '../../BarButton';
 import { Workspaces_viewer_workspaces_edges_node } from '../__generatedTypes__/Workspaces';
 
 const selectedStyle = css`
@@ -13,11 +11,10 @@ const selectedStyle = css`
   border-style: solid;
 `;
 
-type StyledWorkspacesBarButtonProps = WorkspacesBarButtonProps &
-  Readonly<{ isSelected: boolean }>;
+type StyledBarButtonProps = BarButtonProps & Readonly<{ isSelected: boolean }>;
 
-const StyledWorkspacesBarButton = styled<StyledWorkspacesBarButtonProps>(
-  ({ isSelected, ...rest }) => <WorkspacesBarButton {...rest} />,
+const StyledBarButton = styled<StyledBarButtonProps>(
+  ({ isSelected, ...rest }) => <BarButton {...rest} />,
 )`
   ${props => props.isSelected && selectedStyle};
 `;
@@ -48,14 +45,14 @@ export const Workspace: React.SFC<WorkspaceProps> = props => {
   }`;
 
   return (
-    <StyledWorkspacesBarButton
+    <StyledBarButton
       isSelected={props.isSelected}
       to={workspaceUrl}
       className={props.className}
       title={props.workspace.name}
     >
       <WorkspaceImage src="http://diylogodesigns.com/blog/wp-content/uploads/2016/04/google-logo-icon-PNG-Transparent-Background.png" />
-    </StyledWorkspacesBarButton>
+    </StyledBarButton>
   );
 };
 

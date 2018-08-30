@@ -7,9 +7,9 @@ import { ThemeProvider } from 'styled-components';
 import { Cache } from '../../apolloClient';
 import { Theme } from '../../theme';
 import PageView from '../PageView';
+import StoreProvider from '../StoreProvider';
 import ErrorBoundary from './ErrorBoundary';
 import Routes from './Routes';
-import ScrollToTop from './ScrollToTop';
 
 export type AppProps = Readonly<{
   theme: Theme;
@@ -20,11 +20,12 @@ export const App: React.SFC<AppProps> = ({ apolloClient, theme }) => (
   <Router>
     <ApolloProvider client={apolloClient}>
       <ThemeProvider theme={theme}>
-        <ErrorBoundary>
-          <ScrollToTop />
-          <PageView />
-          <Routes />
-        </ErrorBoundary>
+        <StoreProvider>
+          <ErrorBoundary>
+            <PageView />
+            <Routes />
+          </ErrorBoundary>
+        </StoreProvider>
       </ThemeProvider>
     </ApolloProvider>
   </Router>

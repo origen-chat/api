@@ -69,6 +69,7 @@ module.exports = {
         camelcase: 'off',
 
         'react/prop-types': 'off',
+        'react/sort-comp': 'off',
         'react/destructuring-assignment': 'off',
 
         'import/export': 'off',

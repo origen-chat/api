@@ -1,6 +1,6 @@
 import { css } from 'styled-components';
 
-export const workspacesBarButtonStyle = css`
+export const barButtonStyle = css`
   --side-length: calc(var(--workspaces-bar-width) * 0.75);
   --vertical-margin: var(--xxs-space);
 

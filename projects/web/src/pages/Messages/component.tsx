@@ -1,21 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import ChannelsBar from './ChannelsBar';
-import WorkspacesBar from './WorkspacesBar';
+import NavBar from './NavBar';
 
 const Wrapper = styled.main`
-  display: flex;
-  flex: row nowrap;
-
   height: 100%;
   width: 100%;
 `;
 
 export const Messages: React.SFC = () => (
   <Wrapper>
-    <WorkspacesBar />
-    <ChannelsBar />
+    <NavBar />
   </Wrapper>
 );
 

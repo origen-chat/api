@@ -8,6 +8,7 @@ const Workspace = gql`
     id: ID!
 
     name: String!
+    displayName: String!
     description: String
 
     channel(name: String!): Channel!

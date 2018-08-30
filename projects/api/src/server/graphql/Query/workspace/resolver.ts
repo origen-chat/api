@@ -1,17 +1,17 @@
-import { types, workspaces } from '../../../../core';
+import { workspaces } from '../../../../core';
 import { Resolver, Root } from '../../../types';
 import { NotFoundError } from '../../errors';
 
-type ResolveChannelArgs = Readonly<{ id: types.ID }>;
+type ResolveChannelArgs = Readonly<{ name: string }>;
 
 export const resolveWorkspace: Resolver<
   Root,
   ResolveChannelArgs,
   workspaces.Workspace
 > = async (root, args) => {
-  const { id: workspaceId } = args;
+  const { name: workspaceName } = args;
 
-  const workspace = await workspaces.getWorkspaceById(workspaceId);
+  const workspace = await workspaces.getWorkspaceByName(workspaceName);
 
   if (!workspace) {
     throw new NotFoundError('workspace not found');

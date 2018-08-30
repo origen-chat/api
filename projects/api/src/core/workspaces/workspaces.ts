@@ -31,7 +31,7 @@ export async function getWorkspaceByName(
   return workspace;
 }
 
-export type InsertWorkspaceArgs = Pick<Workspace, 'name'> &
+export type InsertWorkspaceArgs = Pick<Workspace, 'name' | 'displayName'> &
   Partial<Pick<Workspace, 'description'>>;
 
 /**
@@ -49,7 +49,7 @@ export async function insertWorkspace(
 }
 
 export type UpdateWorkspaceArgs = Partial<
-  Pick<Workspace, 'name' | 'description'>
+  Pick<Workspace, 'name' | 'displayName' | 'description'>
 >;
 
 /**

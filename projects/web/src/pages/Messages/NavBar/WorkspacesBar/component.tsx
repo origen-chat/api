@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import AddWorkspaceButton from './AddWorkspaceButton';
 import WorkspacesContainer from './WorkspacesContainer';
 
-const StyledNav = styled.nav`
+const Wrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
 
@@ -23,10 +23,10 @@ const StyledAddWorkspaceButton = styled(AddWorkspaceButton)`
 `;
 
 export const WorkapacesBar: React.SFC = () => (
-  <StyledNav>
+  <Wrapper>
     <StyledWorkspacesContainer />
     <StyledAddWorkspaceButton />
-  </StyledNav>
+  </Wrapper>
 );
 
 export default WorkapacesBar;

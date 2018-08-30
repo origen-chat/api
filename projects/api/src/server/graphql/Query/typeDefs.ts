@@ -6,7 +6,7 @@ const Query = gql`
 
     user(username: String!, usernameIdentifier: String!): User!
 
-    workspace(id: ID!): Workspace!
+    workspace(name: String!): Workspace!
 
     channel(id: ID!): Channel!
 

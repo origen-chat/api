@@ -2,19 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { workspacesBarButtonStyle } from './styles';
+import { barButtonStyle } from './styles';
 
 const StyledLink = styled(Link)`
-  ${workspacesBarButtonStyle};
+  ${barButtonStyle};
 `;
 
-export type WorkspacesBarButtonProps = Readonly<{
+export type BarButtonProps = Readonly<{
   to: string;
   title?: string;
   className?: string;
 }>;
 
-export const WorkspacesBarButton: React.SFC<WorkspacesBarButtonProps> = ({
+export const BarButton: React.SFC<BarButtonProps> = ({
   to,
   title,
   className,
@@ -25,4 +25,4 @@ export const WorkspacesBarButton: React.SFC<WorkspacesBarButtonProps> = ({
   </StyledLink>
 );
 
-export default WorkspacesBarButton;
+export default BarButton;

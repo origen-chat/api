@@ -4,7 +4,7 @@ import { Query, QueryResult } from 'react-apollo';
 import { Route } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { ClassNameProp } from '../../../../types';
+import { ClassNameProp } from '../../../../../types';
 import {
   Workspaces,
   Workspaces_viewer_workspaces_edges_node,
@@ -15,6 +15,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
   justify-content: start;
+
+  overflow-y: auto;
 `;
 
 const StyledWorkspace = styled(Workspace)`

@@ -1,2 +1,2 @@
 export { Workspace } from './types';
-export { getWorkspaceById } from './workspaces';
+export { getWorkspaceById, getWorkspaceByName } from './workspaces';

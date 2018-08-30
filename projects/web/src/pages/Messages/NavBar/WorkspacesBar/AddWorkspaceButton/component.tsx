@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import WorkspacesBarButton from '../WorkspacesBarButton';
+import BarButton from '../BarButton';
 
-const StyledWorkspacesBarButton = styled(WorkspacesBarButton)`
+const StyledBarButton = styled(BarButton)`
   margin-top: calc(var(--xxs-space) * 2);
 `;
 
@@ -14,7 +14,7 @@ export type AddWorkspaceButtonProps = Readonly<{
 export const AddWorkspaceButton: React.SFC<AddWorkspaceButtonProps> = ({
   className,
 }) => (
-  <StyledWorkspacesBarButton
+  <StyledBarButton
     to="/workspaces/add"
     title="Add a new workspace"
     className={className}

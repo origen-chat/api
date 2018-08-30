@@ -28,6 +28,10 @@ injectGlobal`
     --xl-border-radius: 50%;
 
     --workspaces-bar-width: 5rem;
+    --channels-bar-width: 16rem;
+    --nav-bar-width: calc(var(--workspaces-bar-width) + var(--channels-bar-width));
+
+    --top-bar-height: 4rem;
   }
 
   * {
