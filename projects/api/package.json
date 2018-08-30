@@ -1,6 +1,6 @@
 {
   "name": "loop_api",
-  "version": "1.0.37",
+  "version": "1.0.38",
   "private": true,
   "license": "MIT",
   "main": "dist/app.js",
@@ -40,7 +40,7 @@
     "nodemon": "1.18.4",
     "rimraf": "2.6.2",
     "ts-node": "7.0.1",
-    "typescript": "3.0.1"
+    "typescript": "3.0.3"
   },
   "dependencies": {
     "apollo-server-express": "2.0.4",
