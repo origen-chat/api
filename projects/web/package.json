@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "1.0.82",
+  "version": "1.0.84",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -51,7 +51,7 @@
     "@types/enzyme-adapter-react-16": "1.0.3",
     "@types/graphql": "0.13.4",
     "@types/jest": "23.3.1",
-    "@types/node": "10.9.3",
+    "@types/node": "10.9.4",
     "@types/react": "16.4.13",
     "@types/react-dom": "16.0.7",
     "@types/react-helmet": "5.0.7",
@@ -62,7 +62,7 @@
     "babel-jest": "23.4.2",
     "babel-loader": "8.0.0",
     "babel-plugin-dynamic-import-node": "2.1.0",
-    "babel-plugin-styled-components": "1.5.1",
+    "babel-plugin-styled-components": "1.6.0",
     "clean-webpack-plugin": "0.1.19",
     "connect-history-api-fallback": "1.5.0",
     "copy-webpack-plugin": "4.5.2",
