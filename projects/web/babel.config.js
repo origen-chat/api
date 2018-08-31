@@ -31,7 +31,10 @@ function getPlugins(babelEnv) {
     '@babel/plugin-proposal-class-properties',
     '@babel/plugin-syntax-dynamic-import',
     'react-hot-loader/babel',
-    'babel-plugin-styled-components',
+    [
+      'babel-plugin-styled-components',
+      { displayName: babelEnv === 'development' },
+    ],
   ];
 
   if (babelEnv === 'test') {

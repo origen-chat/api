@@ -6,8 +6,16 @@ import { NavBarState } from '../../../store';
 import ChannelsBar from './ChannelsBar';
 import WorkspacesBar from './WorkspacesBar';
 
-function getNavBarPositionX(navBarState: NavBarState): string {
-  if (navBarState === 'closed') {
+type GetNavBarXPositionArgs = Readonly<{
+  navBarState: NavBarState;
+  allowClosed?: boolean;
+}>;
+
+function getNavBarXPosition({
+  navBarState,
+  allowClosed = true,
+}: GetNavBarXPositionArgs): string {
+  if (allowClosed && navBarState === 'closed') {
     return 'calc(-1 * var(--nav-bar-width))';
   }
 
@@ -21,7 +29,8 @@ function getNavBarPositionX(navBarState: NavBarState): string {
 type WrapperProps = Pick<BaseNavBarProps, 'navBarState'>;
 
 const Wrapper = styled.nav<WrapperProps>`
-  --position-x: ${props => getNavBarPositionX(props.navBarState)};
+  --x-position: ${props =>
+    getNavBarXPosition({ navBarState: props.navBarState })};
 
   display: flex;
   flex-flow: row nowrap;
@@ -33,10 +42,14 @@ const Wrapper = styled.nav<WrapperProps>`
 
   transition: var(--lg-transition);
 
-  transform: translateX(var(--position-x));
+  transform: translateX(var(--x-position));
 
   @media (min-width: ${props => props.theme.breakpoints.lg}) {
-    --position-x: 0;
+    --x-position: ${props =>
+      getNavBarXPosition({
+        navBarState: props.navBarState,
+        allowClosed: false,
+      })};
   }
 `;
 

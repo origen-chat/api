@@ -1,11 +1,13 @@
 import React from 'react';
 
 import {
+  NavBarState,
   SetNavBarState,
   StoreContext,
   StoreContextActions,
   StoreContextState,
-} from '../../store';
+} from '../../../store';
+import theme from '../../../theme';
 
 export type StoreProviderProps = Readonly<{}>;
 export type StoreProviderState = StoreContextState;
@@ -16,7 +18,7 @@ export class StoreProvider extends React.Component<
   StoreProviderState
 > {
   public state: StoreProviderState = {
-    navBarState: 'closed',
+    navBarState: getInitialNavBarState(),
   };
 
   private setNavBarState: SetNavBarState = navBarState =>
@@ -35,6 +37,18 @@ export class StoreProvider extends React.Component<
       </StoreContext.Provider>
     );
   }
+}
+
+function getInitialNavBarState(): NavBarState {
+  const minWidthBreakpointLgMediaQueryMatches = window.matchMedia(
+    `(min-width: ${theme.breakpoints.lg})`,
+  ).matches;
+
+  if (minWidthBreakpointLgMediaQueryMatches) {
+    return 'open';
+  }
+
+  return 'closed';
 }
 
 export default StoreProvider;

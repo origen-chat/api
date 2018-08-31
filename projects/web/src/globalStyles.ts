@@ -3,11 +3,26 @@ import { injectGlobal } from 'styled-components';
 /* eslint-disable-next-line no-unused-expressions */
 injectGlobal`
   :root {
+    --sans-serif-font-family: sans-serif;
+    --display-font-family: var(--sans-serif-font-family);
+
     --primary-color: hsla(10, 85%, 61%, 1);
     --secondary-color: hsla(245, 91%, 74%, 1);
 
+    --primary-font-color: hsla(0, 0%, 10%, 1);
+    --secondary-font-color: hsla(0, 0%, 30%, 1);
+    --tertiary-font-color: hsla(0, 0%, 40%, 1);
+    --quaternary-font-color: hsla(0, 0%, 70%, 1);
+
     --grey: hsla(18, 22%, 91%, 1);
     --dark-grey: hsla(60, 1%, 85%, 1);
+
+    --xs-font-size: 0.8rem;
+    --sm-font-size: 0.82rem;
+    --md-font-size: 1rem;
+    --lg-font-size: 1.4rem;
+    --xl-font-size: 2.5rem;
+    --xxl-font-size: 5rem;
 
     --base-space: 0.2rem;
     --xxs-space: calc(var(--base-space) * 2);
@@ -44,15 +59,11 @@ injectGlobal`
     height: 100%;
   }
 
-  html {
-    background-color: var(--background-color);
-  }
-
   body {
     margin: 0;
-    font-family: var(--serif-font-family);
+    font-family: var(--sans-serif-font-family);
     font-size: var(--md-font-size);
-    color: var(--primary-font-color);
+    color: var(--secondary-font-color);
     line-height: 1.15;
   }
 

@@ -29,7 +29,7 @@ export type BaseWorkapacesContainerProps = Readonly<
     | {
         loading: false;
         workspaces: ReadonlyArray<Workspaces_viewer_workspaces_edges_node>;
-        selectedWorkspace: string;
+        selectedWorkspaceName: string;
         hasNextPage: boolean;
       }) &
     ClassNameProp
@@ -45,7 +45,7 @@ export const BaseWorkapacesContainer: React.SFC<
     workspaces = [1, 2, 3].map(key => <StyledWorkspace loading key={key} />);
   } else {
     workspaces = props.workspaces.map(workspace => {
-      const isSelected = props.selectedWorkspace === workspace.name;
+      const isSelected = props.selectedWorkspaceName === workspace.name;
 
       return (
         // @ts-ignore
@@ -96,7 +96,7 @@ const WorkapacesContainer: React.SFC<WorkspacesContainerProps> = props => (
     {result => (
       <Route
         render={({ match }) => {
-          const baseWorkapacesContainerProps = makeBaseWorkspacesContainer(
+          const baseWorkapacesContainerProps = makeBaseWorkspacesContainerProps(
             result,
             match.params,
             props,
@@ -109,9 +109,9 @@ const WorkapacesContainer: React.SFC<WorkspacesContainerProps> = props => (
   </WorkspacesQuery>
 );
 
-function makeBaseWorkspacesContainer(
+function makeBaseWorkspacesContainerProps(
   result: QueryResult<Workspaces>,
-  matchParams: Readonly<{ workspace: string }>,
+  matchParams: Readonly<{ workspaceName: string }>,
   props: WorkspacesContainerProps,
 ): BaseWorkapacesContainerProps {
   if (result.loading) {
@@ -126,13 +126,13 @@ function makeBaseWorkspacesContainer(
     edge => edge!.node,
   );
 
-  const selectedWorkspace = matchParams.workspace;
+  const selectedWorkspaceName = matchParams.workspaceName;
   const { hasNextPage } = result.data.viewer.workspaces.pageInfo;
 
   return {
     loading: false,
     workspaces,
-    selectedWorkspace,
+    selectedWorkspaceName,
     hasNextPage,
     className: props.className,
   };
