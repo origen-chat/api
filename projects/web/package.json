@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "1.0.86",
+  "version": "1.0.87",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -57,7 +57,7 @@
     "@types/react-helmet": "5.0.7",
     "@types/react-router-dom": "4.3.0",
     "@types/webpack": "4.4.11",
-    "apollo": "1.7.1",
+    "apollo": "1.8.3",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "23.4.2",
     "babel-loader": "8.0.0",
