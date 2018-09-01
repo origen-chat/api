@@ -1082,58 +1082,61 @@ apollo-cache-control@0.2.2:
     apollo-server-env "2.0.2"
     graphql-extensions "0.1.2"
 
-apollo-codegen-core@0.27.3:
-  version "0.27.3"
-  resolved "https://registry.yarnpkg.com/apollo-codegen-core/-/apollo-codegen-core-0.27.3.tgz#b3c9129b36f67dea8d92278f71b9120b0c3ab205"
+apollo-codegen-core@0.28.0:
+  version "0.28.0"
+  resolved "https://registry.yarnpkg.com/apollo-codegen-core/-/apollo-codegen-core-0.28.0.tgz#797eef12d4a456ab7fb4cc408977aa0dd964389d"
   dependencies:
     "@babel/generator" "7.0.0-beta.38"
+    "@babel/parser" "^7.0.0"
     "@babel/types" "7.0.0-beta.38"
+    ast-types "^0.11.5"
     common-tags "^1.5.1"
     core-js "^2.5.3"
+    recast "^0.15.3"
 
-apollo-codegen-flow-legacy@0.27.3:
-  version "0.27.3"
-  resolved "https://registry.yarnpkg.com/apollo-codegen-flow-legacy/-/apollo-codegen-flow-legacy-0.27.3.tgz#8a4e54da708b7d229af4b79e0d0744cd82b86879"
+apollo-codegen-flow-legacy@0.28.0:
+  version "0.28.0"
+  resolved "https://registry.yarnpkg.com/apollo-codegen-flow-legacy/-/apollo-codegen-flow-legacy-0.28.0.tgz#d82116d2e955dca9252e1f565b6ef62240c2a969"
   dependencies:
-    apollo-codegen-core "0.27.3"
+    apollo-codegen-core "0.28.0"
 
-apollo-codegen-flow@0.27.3:
-  version "0.27.3"
-  resolved "https://registry.yarnpkg.com/apollo-codegen-flow/-/apollo-codegen-flow-0.27.3.tgz#ba65660e1893eec067d1cd7dc6637e319741ef24"
-  dependencies:
-    "@babel/types" "7.0.0-beta.38"
-    apollo-codegen-core "0.27.3"
-    change-case "^3.0.1"
-    inflected "^2.0.3"
-
-apollo-codegen-scala@0.27.3:
-  version "0.27.3"
-  resolved "https://registry.yarnpkg.com/apollo-codegen-scala/-/apollo-codegen-scala-0.27.3.tgz#201c57cf5ecd7f2439c688a7aa23797ed7e675bb"
-  dependencies:
-    apollo-codegen-core "0.27.3"
-    change-case "^3.0.1"
-    inflected "^2.0.3"
-
-apollo-codegen-swift@0.27.3:
-  version "0.27.3"
-  resolved "https://registry.yarnpkg.com/apollo-codegen-swift/-/apollo-codegen-swift-0.27.3.tgz#2107cce727012ee2443764cb30baa0559fc052ce"
-  dependencies:
-    apollo-codegen-core "0.27.3"
-    change-case "^3.0.1"
-    inflected "^2.0.3"
-
-apollo-codegen-typescript-legacy@0.27.3:
-  version "0.27.3"
-  resolved "https://registry.yarnpkg.com/apollo-codegen-typescript-legacy/-/apollo-codegen-typescript-legacy-0.27.3.tgz#67f24c74ca901c104bd010af7e11255e480fa4fd"
-  dependencies:
-    apollo-codegen-core "0.27.3"
-
-apollo-codegen-typescript@0.27.3:
-  version "0.27.3"
-  resolved "https://registry.yarnpkg.com/apollo-codegen-typescript/-/apollo-codegen-typescript-0.27.3.tgz#de6de796a67935f18777f796f7aeb49c5636e94b"
+apollo-codegen-flow@0.28.0:
+  version "0.28.0"
+  resolved "https://registry.yarnpkg.com/apollo-codegen-flow/-/apollo-codegen-flow-0.28.0.tgz#2a8069d7cb44b7ca808aa8a8b459a3199da3154f"
   dependencies:
     "@babel/types" "7.0.0-beta.38"
-    apollo-codegen-core "0.27.3"
+    apollo-codegen-core "0.28.0"
+    change-case "^3.0.1"
+    inflected "^2.0.3"
+
+apollo-codegen-scala@0.28.0:
+  version "0.28.0"
+  resolved "https://registry.yarnpkg.com/apollo-codegen-scala/-/apollo-codegen-scala-0.28.0.tgz#6795cdcd433a4473d6a0f50b0a946c129c2d6283"
+  dependencies:
+    apollo-codegen-core "0.28.0"
+    change-case "^3.0.1"
+    inflected "^2.0.3"
+
+apollo-codegen-swift@0.28.0:
+  version "0.28.0"
+  resolved "https://registry.yarnpkg.com/apollo-codegen-swift/-/apollo-codegen-swift-0.28.0.tgz#88d7e65da266a1f1c98a59daf5b8208c201d1370"
+  dependencies:
+    apollo-codegen-core "0.28.0"
+    change-case "^3.0.1"
+    inflected "^2.0.3"
+
+apollo-codegen-typescript-legacy@0.28.0:
+  version "0.28.0"
+  resolved "https://registry.yarnpkg.com/apollo-codegen-typescript-legacy/-/apollo-codegen-typescript-legacy-0.28.0.tgz#48d52fea2ffe1c599c6cd635d70ed685f1b8bae3"
+  dependencies:
+    apollo-codegen-core "0.28.0"
+
+apollo-codegen-typescript@0.28.0:
+  version "0.28.0"
+  resolved "https://registry.yarnpkg.com/apollo-codegen-typescript/-/apollo-codegen-typescript-0.28.0.tgz#35ba5e7171d10d2b45dcbdc1ef17d294bb0b1324"
+  dependencies:
+    "@babel/types" "7.0.0-beta.38"
+    apollo-codegen-core "0.28.0"
     change-case "^3.0.1"
     inflected "^2.0.3"
 
@@ -1251,9 +1254,9 @@ apollo-utilities@^1.0.0, apollo-utilities@^1.0.1:
   dependencies:
     fast-json-stable-stringify "^2.0.0"
 
-apollo@1.8.3:
-  version "1.8.3"
-  resolved "https://registry.yarnpkg.com/apollo/-/apollo-1.8.3.tgz#c005c898f6ae92861b35fe913a85901c2f2b8fc4"
+apollo@1.9.1:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/apollo/-/apollo-1.9.1.tgz#49ae91c374f313f959547991267053c73a2b923c"
   dependencies:
     "@oclif/command" "^1.4.21"
     "@oclif/config" "^1.6.17"
@@ -1265,12 +1268,14 @@ apollo@1.8.3:
     "@types/react" "^16.3.14"
     "@types/react-dom" "^16.0.5"
     "@types/rimraf" "^2.0.2"
-    apollo-codegen-flow "0.27.3"
-    apollo-codegen-flow-legacy "0.27.3"
-    apollo-codegen-scala "0.27.3"
-    apollo-codegen-swift "0.27.3"
-    apollo-codegen-typescript "0.27.3"
-    apollo-codegen-typescript-legacy "0.27.3"
+    apollo-codegen-core "0.28.0"
+    apollo-codegen-flow "0.28.0"
+    apollo-codegen-flow-legacy "0.28.0"
+    apollo-codegen-scala "0.28.0"
+    apollo-codegen-swift "0.28.0"
+    apollo-codegen-typescript "0.28.0"
+    apollo-codegen-typescript-legacy "0.28.0"
+    apollo-engine-reporting "0.0.2"
     apollo-link "^1.2.2"
     apollo-link-http "^1.5.4"
     chalk "^2.4.1"
@@ -1377,6 +1382,10 @@ assert-plus@1.0.0, assert-plus@^1.0.0:
 assign-symbols@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/assign-symbols/-/assign-symbols-1.0.0.tgz#59667f41fadd4f20ccbc2bb96b8d4f7f78ec0367"
+
+ast-types@0.11.5, ast-types@^0.11.5:
+  version "0.11.5"
+  resolved "https://registry.yarnpkg.com/ast-types/-/ast-types-0.11.5.tgz#9890825d660c03c28339f315e9fa0a360e31ec28"
 
 astral-regex@^1.0.0:
   version "1.0.0"
@@ -5296,7 +5305,7 @@ pretty-format@^23.5.0:
     ansi-regex "^3.0.0"
     ansi-styles "^3.2.0"
 
-private@^0.1.6:
+private@^0.1.6, private@~0.1.5:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/private/-/private-0.1.8.tgz#2381edb3689f7a53d653190060fcf822d2f368ff"
 
@@ -5500,6 +5509,15 @@ realpath-native@^1.0.0:
   resolved "https://registry.yarnpkg.com/realpath-native/-/realpath-native-1.0.1.tgz#07f40a0cce8f8261e2e8b7ebebf5c95965d7b633"
   dependencies:
     util.promisify "^1.0.0"
+
+recast@^0.15.3:
+  version "0.15.3"
+  resolved "https://registry.yarnpkg.com/recast/-/recast-0.15.3.tgz#5fc1fd1c8e2d4d027ee3977a176bbb8d1c83305e"
+  dependencies:
+    ast-types "0.11.5"
+    esprima "~4.0.0"
+    private "~0.1.5"
+    source-map "~0.6.1"
 
 rechoir@^0.6.2:
   version "0.6.2"
