@@ -1,17 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import DirectMessageChannels from './DirectMessageChannels';
-import NamedChannels from './NamedChannels';
+import Heading from '../Heading';
 
-const Wrapper = styled.div`
-  margin: var(--md-space) 0;
-`;
+const Wrapper = styled.div``;
 
 export const BaseChannelsContainer: React.SFC = () => (
   <Wrapper>
-    <NamedChannels />
-    <DirectMessageChannels />
+    <Heading>Direct Messages</Heading>
   </Wrapper>
 );
 

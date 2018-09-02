@@ -11,13 +11,7 @@ import styled from 'styled-components';
 
 import { StoreConsumer } from '../../../../../../components';
 import { NavBarState, SetNavBarState } from '../../../../../../store';
-
-const StyledButton = styled.button`
-  background-color: transparent;
-  border: none;
-
-  color: var(--tertiary-font-color);
-`;
+import BarButton from '../BarButton';
 
 export type BaseToggleWorkspacesBarButtonProps = Readonly<{
   navBarState: NavBarState;
@@ -39,9 +33,9 @@ export const BaseToggleWorkspacesBarButton: React.SFC<
     props.navBarState === 'open' ? faChevronRight : faChevronLeft;
 
   return (
-    <StyledButton onClick={handleClick}>
+    <BarButton onClick={handleClick}>
       <FontAwesomeIcon icon={icon} />
-    </StyledButton>
+    </BarButton>
   );
 };
 

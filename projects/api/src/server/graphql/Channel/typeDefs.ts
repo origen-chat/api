@@ -15,6 +15,8 @@ const Channel = gql`
     topic: String
     purpose: String
 
+    viewerHasUnreadMessages: Boolean!
+
     messages(
       first: NonNegativeInt
       after: Cursor

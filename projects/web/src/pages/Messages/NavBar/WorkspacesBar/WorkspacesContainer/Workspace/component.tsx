@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 import { ClassNameProp } from '../../../../../../types';
 import BarButton, { BarButtonProps } from '../../BarButton';
 import { Workspaces_viewer_workspaces_edges_node } from '../__generatedTypes__/Workspaces';
+import LoadingWorkspace from './LoadingWorkspace';
 
 const selectedStyle = css`
   border-width: 0.15rem;
@@ -37,7 +38,7 @@ export type WorkspaceProps = Readonly<
 
 export const Workspace: React.SFC<WorkspaceProps> = props => {
   if (props.loading) {
-    return <>loading</>;
+    return <LoadingWorkspace />;
   }
 
   const workspaceUrl = `/${props.workspace.name}/messages/${

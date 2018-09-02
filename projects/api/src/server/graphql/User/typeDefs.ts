@@ -26,7 +26,8 @@ export const User = gql`
     ): UserWorkspaceConnection!
 
     channels(
-      workspaceId: ID!
+      workspaceName: String!
+      type: ChannelType
 
       first: NonNegativeInt
       after: Cursor

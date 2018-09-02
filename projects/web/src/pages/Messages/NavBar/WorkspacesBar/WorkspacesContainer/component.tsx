@@ -41,18 +41,20 @@ export const BaseWorkapacesContainer: React.SFC<
   let workspaces: ReadonlyArray<React.ReactNode>;
 
   if (props.loading) {
-    // @ts-ignore
-    workspaces = [1, 2, 3].map(key => <StyledWorkspace loading key={key} />);
+    workspaces = [1, 2, 3].map(key => (
+      <StyledWorkspace loading className={undefined} key={key} />
+    ));
   } else {
     workspaces = props.workspaces.map(workspace => {
       const isSelected = props.selectedWorkspaceName === workspace.name;
 
       return (
-        // @ts-ignore
         <StyledWorkspace
+          // @ts-ignore
           isSelected={isSelected}
           workspace={workspace}
           loading={false}
+          className={undefined}
           key={workspace.id}
         />
       );
@@ -114,17 +116,19 @@ function makeBaseWorkspacesContainerProps(
   matchParams: Readonly<{ workspaceName: string }>,
   props: WorkspacesContainerProps,
 ): BaseWorkapacesContainerProps {
+  const { className } = props;
+
   if (result.loading) {
-    return { loading: true, className: props.className };
+    return { loading: true, className };
   }
 
-  if (result.error || !result.data) {
+  if (result.error || !result.data || !result.data.viewer.workspaces.edges) {
     throw new Error('failed to load workspaces');
   }
 
-  const workspaces = result.data.viewer.workspaces.edges!.map(
-    edge => edge!.node,
-  );
+  const workspaces = result.data.viewer.workspaces.edges
+    .filter(edge => !!edge)
+    .map(edge => edge!.node);
 
   const selectedWorkspaceName = matchParams.workspaceName;
   const { hasNextPage } = result.data.viewer.workspaces.pageInfo;
@@ -134,7 +138,7 @@ function makeBaseWorkspacesContainerProps(
     workspaces,
     selectedWorkspaceName,
     hasNextPage,
-    className: props.className,
+    className,
   };
 }
 

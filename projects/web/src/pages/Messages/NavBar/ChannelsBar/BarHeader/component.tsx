@@ -8,6 +8,7 @@ import { SomethingWentWrongError } from '../../../../../errors';
 import { Workspace, WorkspaceVariables } from './__generatedTypes__/Workspace';
 import ToggleWorkspacesBarButton from './ToggleWorkspacesBarButton';
 import WorkspaceName, { WorkspaceNameProps } from './WorkspaceName';
+import WorkspaceOptionsButton from './WorkspaceOptionsButton';
 
 const Wrapper = styled.div`
   display: flex;
@@ -24,6 +25,7 @@ const Wrapper = styled.div`
 
 const StyledWorkspaceName = styled(WorkspaceName)`
   flex: 1 1 auto;
+  min-width: 0;
 `;
 
 export type BaseBarHeaderProps = Readonly<
@@ -47,7 +49,8 @@ export const BaseBarHeader: React.SFC<BaseBarHeaderProps> = props => {
   return (
     <Wrapper>
       <ToggleWorkspacesBarButton />
-      <StyledWorkspaceName {...workspaceNameProps} />
+      <StyledWorkspaceName className={undefined} {...workspaceNameProps} />
+      <WorkspaceOptionsButton />
     </Wrapper>
   );
 };
