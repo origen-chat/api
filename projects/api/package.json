@@ -1,6 +1,6 @@
 {
   "name": "loop_api",
-  "version": "1.0.43",
+  "version": "1.0.44",
   "private": true,
   "license": "MIT",
   "main": "dist/app.js",
@@ -43,7 +43,7 @@
     "typescript": "3.0.3"
   },
   "dependencies": {
-    "apollo-server-express": "2.0.4",
+    "apollo-server-express": "2.0.5",
     "core-js": "2.5.7",
     "cors": "2.8.4",
     "express": "4.16.3",
