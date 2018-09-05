@@ -825,9 +825,9 @@ damerau-levenshtein@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/damerau-levenshtein/-/damerau-levenshtein-1.0.4.tgz#03191c432cb6eea168bb77f3a55ffdccb8978514"
 
-danger@3.8.9:
-  version "3.8.9"
-  resolved "https://registry.yarnpkg.com/danger/-/danger-3.8.9.tgz#bca0f3e6eb24f5c6e3b4740f49921b9308933f50"
+danger@3.9.0:
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/danger/-/danger-3.9.0.tgz#41e6257fcfd4b92dcde16a47c96f5731931b5108"
   dependencies:
     "@octokit/rest" "^15.9.5"
     babel-polyfill "^6.23.0"
