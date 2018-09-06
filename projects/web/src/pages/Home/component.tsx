@@ -14,8 +14,8 @@ export type BaseHomeProps = Readonly<
   | {
       loading: false;
       isAuthenticated: true;
-      workspaceName: string;
-      channelName: string;
+      workspaceId: string;
+      channelId: string;
       hasWorkspaces: true;
     }
   | {
@@ -38,9 +38,7 @@ export const BaseHome: React.SFC<BaseHomeProps> = props => {
     return <Redirect to="/workspaces/add" />;
   }
 
-  return (
-    <Redirect to={`${props.workspaceName}/messages/${props.channelName}`} />
-  );
+  return <Redirect to={`${props.workspaceId}/messages/${props.channelId}`} />;
 };
 
 const firstWorkspaceQuery = gql`
@@ -50,8 +48,10 @@ const firstWorkspaceQuery = gql`
         totalCount
         edges {
           node {
+            id
             name
             defaultChannel {
+              id
               name
             }
           }
@@ -93,15 +93,15 @@ function makeBaseHomeProps(result: QueryResult<FirstWorkspace>): BaseHomeProps {
     };
   }
 
-  const workspaceName = result.data.viewer.workspaces.edges![0]!.node!.name;
-  const channelName = result.data.viewer.workspaces.edges![0]!.node!
-    .defaultChannel.name;
+  const workspaceId = result.data.viewer.workspaces.edges![0]!.node!.id;
+  const channelId = result.data.viewer.workspaces.edges![0]!.node!
+    .defaultChannel.id;
 
   return {
     loading: false,
     isAuthenticated: true,
-    workspaceName,
-    channelName,
+    workspaceId,
+    channelId,
     hasWorkspaces: true,
   };
 }

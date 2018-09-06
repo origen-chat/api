@@ -17,5 +17,5 @@ export interface Workspace {
 }
 
 export interface WorkspaceVariables {
-  workspaceName: string;
+  workspaceId: string;
 }

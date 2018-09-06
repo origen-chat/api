@@ -7,7 +7,6 @@ import {
   Props as FontAwesomeIconProps,
 } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import styled from 'styled-components';
 
 import { StoreConsumer } from '../../../../../../components';
 import { NavBarState, SetNavBarState } from '../../../../../../store';

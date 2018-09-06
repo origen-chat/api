@@ -56,8 +56,8 @@ export const BaseBarHeader: React.SFC<BaseBarHeaderProps> = props => {
 };
 
 const workspaceQuery = gql`
-  query Workspace($workspaceName: String!) {
-    workspace(name: $workspaceName) {
+  query Workspace($workspaceId: ID!) {
+    workspace(id: $workspaceId) {
       id
       name
       displayName
@@ -72,7 +72,7 @@ export const ChannelsBar: React.SFC = () => (
     render={({ match }) => (
       <WorkspaceQuery
         query={workspaceQuery}
-        variables={{ workspaceName: match.params.workspaceName }}
+        variables={{ workspaceId: match.params.workspaceId }}
       >
         {result => {
           const baseBarHeaderProps = makeBaseBarHeaderProps(result);

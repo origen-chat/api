@@ -51,9 +51,9 @@ export const BaseNamedChannels: React.SFC<BaseNamedChannelsProps> = props => {
 };
 
 const namedChannelsQuery = gql`
-  query WorkspaceNamedChannels($workspaceName: String!) {
+  query WorkspaceNamedChannels($workspaceId: ID!) {
     viewer {
-      channels(workspaceName: $workspaceName, type: NAMED, first: 10) {
+      channels(workspaceId: $workspaceId, type: NAMED, first: 10) {
         edges {
           node {
             id
@@ -76,7 +76,7 @@ export const NamedChannels: React.SFC = () => (
     render={({ match }) => (
       <NamedChannelsQuery
         query={namedChannelsQuery}
-        variables={{ workspaceName: match.params.workspaceName }}
+        variables={{ workspaceId: match.params.workspaceId }}
       >
         {result => {
           const baseNamedChannelsProps = makeBaseNamedChannelsProps(result);

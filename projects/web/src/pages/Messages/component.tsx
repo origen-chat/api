@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Chat from './Chat';
 import NavBar from './NavBar';
 
 const Wrapper = styled.main`
@@ -11,6 +12,7 @@ const Wrapper = styled.main`
 export const Messages: React.SFC = () => (
   <Wrapper>
     <NavBar />
+    <Chat />
   </Wrapper>
 );
 

@@ -32,5 +32,5 @@ export interface WorkspaceNamedChannels {
 }
 
 export interface WorkspaceNamedChannelsVariables {
-  workspaceName: string;
+  workspaceId: string;
 }

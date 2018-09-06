@@ -29,7 +29,7 @@ export type BaseWorkapacesContainerProps = Readonly<
     | {
         loading: false;
         workspaces: ReadonlyArray<Workspaces_viewer_workspaces_edges_node>;
-        selectedWorkspaceName: string;
+        selectedWorkspaceId: string;
         hasNextPage: boolean;
       }) &
     ClassNameProp
@@ -46,7 +46,7 @@ export const BaseWorkapacesContainer: React.SFC<
     ));
   } else {
     workspaces = props.workspaces.map(workspace => {
-      const isSelected = props.selectedWorkspaceName === workspace.name;
+      const isSelected = props.selectedWorkspaceId === workspace.id;
 
       return (
         <StyledWorkspace
@@ -113,7 +113,7 @@ const WorkapacesContainer: React.SFC<WorkspacesContainerProps> = props => (
 
 function makeBaseWorkspacesContainerProps(
   result: QueryResult<Workspaces>,
-  matchParams: Readonly<{ workspaceName: string }>,
+  matchParams: Readonly<{ workspaceId: string }>,
   props: WorkspacesContainerProps,
 ): BaseWorkapacesContainerProps {
   const { className } = props;
@@ -130,13 +130,13 @@ function makeBaseWorkspacesContainerProps(
     .filter(edge => !!edge)
     .map(edge => edge!.node);
 
-  const selectedWorkspaceName = matchParams.workspaceName;
+  const selectedWorkspaceId = matchParams.workspaceId;
   const { hasNextPage } = result.data.viewer.workspaces.pageInfo;
 
   return {
     loading: false,
     workspaces,
-    selectedWorkspaceName,
+    selectedWorkspaceId,
     hasNextPage,
     className,
   };

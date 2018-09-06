@@ -20,7 +20,7 @@ function getNavBarXPosition({
   }
 
   if (navBarState === 'halfOpen') {
-    return 'calc(-1* var(--workspaces-bar-width))';
+    return 'calc(-1 * var(--workspaces-bar-width))';
   }
 
   return '0';

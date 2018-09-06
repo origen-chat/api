@@ -7,11 +7,13 @@
 
 export interface FirstWorkspace_viewer_workspaces_edges_node_defaultChannel {
   __typename: "Channel";
+  id: string;
   name: string;
 }
 
 export interface FirstWorkspace_viewer_workspaces_edges_node {
   __typename: "Workspace";
+  id: string;
   name: string;
   defaultChannel: FirstWorkspace_viewer_workspaces_edges_node_defaultChannel;
 }
