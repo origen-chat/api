@@ -14,7 +14,9 @@ export type StoreContextState = Readonly<{
   navBarState: NavBarState;
 }>;
 
-export type StoreContextActions = Readonly<{ setNavBarState: SetNavBarState }>;
+export type StoreContextActions = Readonly<{
+  setNavBarState: SetNavBarState;
+}>;
 
 export type SetNavBarState = (navBarState: NavBarState) => void;
 

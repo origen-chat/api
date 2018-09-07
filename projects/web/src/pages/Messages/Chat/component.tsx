@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { StoreConsumer } from '../../../components';
 import { NavBarState, StoreContextValue } from '../../../store';
+import TopBar from './TopBar';
 
 export type BaseChatProps = Readonly<{
   navBarState: NavBarState;
@@ -49,7 +50,9 @@ const Wrapper = styled.section<WrapperProps>`
 `;
 
 export const BaseChat: React.SFC<BaseChatProps> = props => (
-  <Wrapper navBarState={props.navBarState}>chat</Wrapper>
+  <Wrapper navBarState={props.navBarState}>
+    <TopBar />
+  </Wrapper>
 );
 
 export const Chat: React.SFC = () => (
