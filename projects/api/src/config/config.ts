@@ -53,6 +53,11 @@ const mockSchema = getEnvOrThrow<boolean>('MOCK_SCHEMA', {
   defaultValue: environment === 'development',
 });
 
+const mockEntireSchema = getEnvOrThrow<boolean>('MOCK_ENTIRE_SCHEMA', {
+  valueType: 'boolean',
+  defaultValue: environment === 'development',
+});
+
 const googleClientId = getEnvOrThrow<string>('GOOGLE_CLIENT_ID', {
   valueType: 'string',
 });
@@ -80,6 +85,7 @@ export const env = {
   dbPassword,
   dbName,
   mockSchema,
+  mockEntireSchema,
   googleClientId,
   googleClientSecret,
   jwtSecret,

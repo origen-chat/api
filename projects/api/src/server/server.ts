@@ -19,7 +19,12 @@ import {
 } from './graphql';
 import { router } from './router';
 
-const { graphqlServerPort, graphqlServerHost, mockSchema } = env;
+const {
+  graphqlServerPort,
+  graphqlServerHost,
+  mockSchema,
+  mockEntireSchema,
+} = env;
 
 export async function startServer() {
   const expressApp = express();
@@ -32,7 +37,7 @@ export async function startServer() {
     typeDefs: typeDefs as any,
     resolvers: resolvers as any,
     mocks: mockSchema ? mocks : false,
-    mockEntireSchema: false,
+    mockEntireSchema,
     context: makeContext,
     subscriptions: {
       onConnect: handleSubscriptionConnect,

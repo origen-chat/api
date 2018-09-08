@@ -4,23 +4,22 @@ import { isViewerAuthenticated } from '../../../helpers';
 import { Resolver } from '../../../types';
 import { NotFoundError } from '../../errors';
 
-export type ResolveChannelArgs = Readonly<{ name: string }>;
+export type ResolveChannelArgs = Readonly<{ id: string }>;
 
 const resolveChannel: Resolver<
   workspaces.Workspace,
   ResolveChannelArgs,
   channels.Channel
 > = async (workspace, args, context) => {
-  const { name: channelName } = args;
+  const { id: channelGlobalId } = args;
+
+  const channelId = parseInt(channelGlobalId, 10);
 
   if (!isViewerAuthenticated(context)) {
     throw new AuthenticationError('unauthenticated');
   }
 
-  const channel = await channels.getChannelByWorkspaceAndName(
-    workspace,
-    channelName,
-  );
+  const channel = await channels.getChannelById(channelId);
 
   if (!channel) {
     throw new NotFoundError('channel not found');

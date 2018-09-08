@@ -11,7 +11,7 @@ const Workspace = gql`
     displayName: String!
     description: String
 
-    channel(id: ID, name: String): Channel!
+    channel(id: ID!): Channel!
     channels(
       first: NonNegativeInt
       after: Cursor

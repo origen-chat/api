@@ -1,16 +1,15 @@
 import db from '../db';
 import { ID, Nullable } from '../types';
+import { User } from '../users';
 import { getWorkspaceById, Workspace } from '../workspaces';
 import { channelsTableName } from './constants';
-import { Channel } from './types';
+import { Channel, NamedChannel } from './types';
 
 export async function getChannelById(id: ID): Promise<Nullable<Channel>> {
   return getChannelBy({ id });
 }
 
-type GetChannelByArgs =
-  | Pick<Channel, 'id'>
-  | Pick<Channel, 'workspaceId' | 'name'>;
+type GetChannelByArgs = Pick<Channel, 'id'>;
 
 async function getChannelBy(
   args: GetChannelByArgs,
@@ -24,21 +23,17 @@ async function getChannelBy(
   return channel;
 }
 
-export async function getChannelByWorkspaceAndName(
-  workspace: Workspace,
-  name: string,
-): Promise<Nullable<Channel>> {
-  return getChannelBy({ workspaceId: workspace.id, name });
-}
-
 export async function getWorkspace(channel: Channel): Promise<Workspace> {
   const workspace = (await getWorkspaceById(channel.workspaceId))!;
 
   return workspace;
 }
 
-export type InsertChannelArgs = Pick<Channel, 'name' | 'workspaceId'> &
-  Partial<Pick<Channel, 'topic' | 'purpose'>>;
+export type InsertChannelArgs = Pick<Channel, 'type' | 'workspaceId'> &
+  (
+    | (Pick<NamedChannel, 'name'> &
+        Partial<Pick<NamedChannel, 'topic' | 'purpose'>>)
+    | Readonly<{ members: ReadonlyArray<User> }>);
 
 export async function insertChannel(args: InsertChannelArgs): Promise<Channel> {
   const channel: Channel = await db
@@ -50,7 +45,7 @@ export async function insertChannel(args: InsertChannelArgs): Promise<Channel> {
 }
 
 export type UpdateChannelArgs = Partial<
-  Pick<Channel, 'name' | 'topic' | 'purpose'>
+  Pick<NamedChannel, 'name' | 'topic' | 'purpose'>
 >;
 
 export async function updateChannel(

@@ -1,4 +1,4 @@
-import { channels, types, users, workspaces } from '../../core';
+import { channels, types, users, workspaces } from '../../../core';
 
 const nodeResolver = {
   __resolveType: resolveType,

@@ -6,7 +6,7 @@ import { resolver as resolveWorkspace } from './workspace';
 const queryResolver = {
   user: resolveUser,
   channel: resolveChannel,
-  // workspace: resolveWorkspace,
+  workspace: resolveWorkspace,
   viewer: resolveViewer,
 };
 

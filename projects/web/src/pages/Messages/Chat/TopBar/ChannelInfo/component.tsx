@@ -4,30 +4,34 @@ import { Query, QueryResult } from 'react-apollo';
 import { Route } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { SomethingWentWrongError } from '../../../../../errors';
 import { ClassNameProp } from '../../../../../types';
 import {
   ChannelInfo as ChannelInfoQueryType,
+  ChannelInfo_workspace_channel_members_edges_node,
   ChannelInfoVariables,
 } from './__generatedTypes__/ChannelInfo';
 
 const Wrapper = styled.div``;
 
-const WorkspaceName = styled.div``;
+const WorkspaceDisplayName = styled.div``;
 
 export type BaseChannelInfoProps = Readonly<
   (
     | { loading: true }
     | ({
         loading: false;
-        workspaceName: string;
+        workspaceDisplayName: string;
       } & (
         | {
-            channelType: 'named';
+            channelType: 'NAMED';
             channelName: string;
           }
         | {
-            channelType: 'directMessages';
-            channelMembers: any;
+            channelType: 'DIRECT_MESSAGES';
+            channelMembers: ReadonlyArray<
+              ChannelInfo_workspace_channel_members_edges_node
+            >;
           }))) &
     ClassNameProp
 >;
@@ -39,7 +43,7 @@ export const BaseChannelInfo: React.SFC<BaseChannelInfoProps> = props => {
 
   return (
     <Wrapper className={props.className}>
-      <WorkspaceName>{props.workspaceName}</WorkspaceName>
+      <WorkspaceDisplayName>{props.workspaceDisplayName}</WorkspaceDisplayName>
       <div>channel name</div>
     </Wrapper>
   );
@@ -49,6 +53,9 @@ const channelInfoQuery = gql`
   query ChannelInfo($workspaceId: ID!, $channelId: ID!) {
     workspace(id: $workspaceId) {
       id
+      name
+      displayName
+
       channel(id: $channelId) {
         id
         type
@@ -97,7 +104,41 @@ export const ChannelInfo: React.SFC<ChannelInfoProps> = props => (
 function makeBaseChannelInfoProps(
   result: QueryResult<ChannelInfoQueryType, ChannelInfoVariables>,
 ): BaseChannelInfoProps {
-  return { loading: true };
+  if (result.loading) {
+    return { loading: true };
+  }
+
+  if (result.error || !result.data) {
+    throw new SomethingWentWrongError();
+  }
+
+  const { workspace } = result.data;
+
+  const { channel } = workspace;
+
+  const workspaceDisplayName = workspace.displayName;
+  const channelType = channel.type;
+
+  if (channelType === 'NAMED') {
+    const channelName = channel.name!;
+
+    return { loading: false, workspaceDisplayName, channelType, channelName };
+  }
+
+  if (!channel.members.edges) {
+    throw new SomethingWentWrongError();
+  }
+
+  const channelMembers = channel.members.edges
+    .filter(edge => !!edge)
+    .map(edge => edge!.node);
+
+  return {
+    loading: false,
+    workspaceDisplayName,
+    channelType,
+    channelMembers,
+  };
 }
 
 export default ChannelInfo;

@@ -35,6 +35,8 @@ export interface ChannelInfo_workspace_channel {
 export interface ChannelInfo_workspace {
   __typename: "Workspace";
   id: string;
+  name: string;
+  displayName: string;
   channel: ChannelInfo_workspace_channel;
 }
 
