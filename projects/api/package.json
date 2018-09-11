@@ -17,6 +17,21 @@
     "typecheck:ts": "tsc",
     "clean": "rimraf dist"
   },
+  "dependencies": {
+    "@strattadb/environment": "4.1.0",
+    "apollo-server-express": "2.0.6",
+    "core-js": "2.5.7",
+    "cors": "2.8.4",
+    "express": "4.16.3",
+    "graphql": "14.0.2",
+    "jsonwebtoken": "8.3.0",
+    "knex": "0.15.2",
+    "passport": "0.4.0",
+    "passport-google-oauth20": "1.0.0",
+    "passport-jwt": "4.0.0",
+    "pg": "7.4.3",
+    "winston": "3.1.0"
+  },
   "devDependencies": {
     "@babel/cli": "7.0.0",
     "@babel/core": "7.0.0",
@@ -41,20 +56,6 @@
     "rimraf": "2.6.2",
     "ts-node": "7.0.1",
     "typescript": "3.0.3"
-  },
-  "dependencies": {
-    "apollo-server-express": "2.0.6",
-    "core-js": "2.5.7",
-    "cors": "2.8.4",
-    "express": "4.16.3",
-    "graphql": "14.0.2",
-    "jsonwebtoken": "8.3.0",
-    "knex": "0.15.2",
-    "passport": "0.4.0",
-    "passport-google-oauth20": "1.0.0",
-    "passport-jwt": "4.0.0",
-    "pg": "7.4.3",
-    "winston": "3.1.0"
   },
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0"

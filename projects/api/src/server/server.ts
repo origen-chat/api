@@ -53,7 +53,7 @@ export async function startServer() {
 
   httpServer.listen(graphqlServerPort, graphqlServerHost, () => {
     logger.info(
-      `Server ready at http://${graphqlServerHost}:${graphqlServerPort}${
+      `🚀 server ready at http://${graphqlServerHost}:${graphqlServerPort}${
         apolloServer.graphqlPath
       } and at ws://${graphqlServerHost}:${graphqlServerPort}${
         apolloServer.subscriptionsPath
