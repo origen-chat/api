@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "1.0.114",
+  "version": "1.0.115",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -39,7 +39,7 @@
     "subscriptions-transport-ws": "0.9.14"
   },
   "devDependencies": {
-    "@babel/core": "7.0.0",
+    "@babel/core": "7.0.1",
     "@babel/plugin-proposal-class-properties": "7.0.0",
     "@babel/plugin-proposal-optional-catch-binding": "7.0.0",
     "@babel/plugin-syntax-dynamic-import": "7.0.0",
