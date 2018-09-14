@@ -1,6 +1,6 @@
 {
   "name": "loop_api",
-  "version": "1.0.53",
+  "version": "1.0.54",
   "private": true,
   "license": "MIT",
   "main": "dist/app.js",
@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@strattadb/environment": "4.1.0",
-    "apollo-server-express": "2.0.6",
+    "apollo-server-express": "2.0.7",
     "core-js": "2.5.7",
     "cors": "2.8.4",
     "express": "4.16.3",
