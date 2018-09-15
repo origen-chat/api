@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "1.0.125",
+  "version": "1.0.126",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -21,10 +21,10 @@
     "apollo-boost": "0.1.16",
     "apollo-cache-inmemory": "1.2.10",
     "apollo-client": "2.4.2",
-    "apollo-link": "1.2.2",
-    "apollo-link-error": "1.1.0",
-    "apollo-link-http": "1.5.4",
-    "apollo-link-ws": "1.0.8",
+    "apollo-link": "1.2.3",
+    "apollo-link-error": "1.1.1",
+    "apollo-link-http": "1.5.5",
+    "apollo-link-ws": "1.0.9",
     "graphql": "14.0.2",
     "graphql-tag": "2.9.2",
     "idb-keyval": "3.1.0",
