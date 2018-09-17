@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "1.0.132",
+  "version": "1.0.133",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -35,7 +35,7 @@
     "react-ga": "2.5.3",
     "react-helmet": "5.2.0",
     "react-router-dom": "4.3.1",
-    "styled-components": "3.4.6",
+    "styled-components": "3.4.8",
     "subscriptions-transport-ws": "0.9.14"
   },
   "devDependencies": {
