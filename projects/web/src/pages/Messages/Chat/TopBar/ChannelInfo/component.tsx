@@ -4,6 +4,7 @@ import { Query, QueryResult } from 'react-apollo';
 import { Route } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { ChannelType } from '../../../../../../__generatedTypes__/globalTypes';
 import { SomethingWentWrongError } from '../../../../../errors';
 import { ClassNameProp } from '../../../../../types';
 import {
@@ -11,10 +12,15 @@ import {
   ChannelInfo_workspace_channel_members_edges_node,
   ChannelInfoVariables,
 } from './__generatedTypes__/ChannelInfo';
+import ChannelNameOrMembers, {
+  ChannelNameOrMembersProps,
+} from './ChannelNameOrMembers';
 
 const Wrapper = styled.div``;
 
-const WorkspaceDisplayName = styled.div``;
+const WorkspaceDisplayName = styled.div`
+  font-size: var(--lg-font-size);
+`;
 
 export type BaseChannelInfoProps = Readonly<
   (
@@ -24,11 +30,11 @@ export type BaseChannelInfoProps = Readonly<
         workspaceDisplayName: string;
       } & (
         | {
-            channelType: 'NAMED';
+            channelType: ChannelType.NAMED;
             channelName: string;
           }
         | {
-            channelType: 'DIRECT_MESSAGES';
+            channelType: ChannelType.DIRECT_MESSAGES;
             channelMembers: ReadonlyArray<
               ChannelInfo_workspace_channel_members_edges_node
             >;
@@ -41,10 +47,21 @@ export const BaseChannelInfo: React.SFC<BaseChannelInfoProps> = props => {
     return null;
   }
 
+  const channelNameOrMembersProps: ChannelNameOrMembersProps =
+    props.channelType === ChannelType.NAMED
+      ? {
+          channelType: ChannelType.NAMED,
+          channelName: props.channelName,
+        }
+      : {
+          channelType: ChannelType.DIRECT_MESSAGES,
+          channelMembers: props.channelMembers,
+        };
+
   return (
     <Wrapper className={props.className}>
       <WorkspaceDisplayName>{props.workspaceDisplayName}</WorkspaceDisplayName>
-      <div>channel name</div>
+      <ChannelNameOrMembers {...channelNameOrMembersProps} />
     </Wrapper>
   );
 };
@@ -119,7 +136,7 @@ function makeBaseChannelInfoProps(
   const workspaceDisplayName = workspace.displayName;
   const channelType = channel.type;
 
-  if (channelType === 'NAMED') {
+  if (channelType === ChannelType.NAMED) {
     const channelName = channel.name!;
 
     return { loading: false, workspaceDisplayName, channelType, channelName };

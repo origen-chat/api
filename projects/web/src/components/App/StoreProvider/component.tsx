@@ -2,6 +2,8 @@ import React from 'react';
 
 import {
   NavBarState,
+  PopModal,
+  PushModal,
   SetNavBarState,
   StoreContext,
   StoreContextActions,
@@ -19,13 +21,29 @@ export class StoreProvider extends React.Component<
 > {
   public state: StoreProviderState = {
     navBarState: getInitialNavBarState(),
+    modalStack: [],
   };
 
   private setNavBarState: SetNavBarState = navBarState =>
     this.setState({ navBarState });
 
+  private pushModal: PushModal = modal =>
+    this.setState(prevState => ({
+      modalStack: [...prevState.modalStack, modal],
+    }));
+
+  private popModal: PopModal = () =>
+    this.setState(prevState => ({
+      modalStack: prevState.modalStack.slice(
+        0,
+        prevState.modalStack.length - 1,
+      ),
+    }));
+
   private actions: StoreContextActions = {
     setNavBarState: this.setNavBarState,
+    pushModal: this.pushModal,
+    popModal: this.popModal,
   };
 
   public render() {

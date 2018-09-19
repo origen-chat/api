@@ -5,4 +5,7 @@ export {
   StoreContextActions,
   NavBarState,
   SetNavBarState,
+  ModalStack,
+  PushModal,
+  PopModal,
 } from './context';

@@ -1,16 +1,40 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { StoreConsumer } from '../../../../../../components';
 import Heading from '../Heading';
 
 const Wrapper = styled.div``;
 
-export const BaseChannelsContainer: React.SFC = () => (
+export type BaseDirectMessagesChannelsProps = Readonly<{
+  openNewDirectMessagesChannelModel: () => void;
+}>;
+
+export const BaseDirectMessagesChannels: React.SFC<
+  BaseDirectMessagesChannelsProps
+> = props => (
   <Wrapper>
-    <Heading>Direct Messages</Heading>
+    <Heading onClick={props.openNewDirectMessagesChannelModel}>
+      Direct Messages
+    </Heading>
   </Wrapper>
 );
 
-const ChannelsContainer = BaseChannelsContainer;
+export const DirectMessagesChannels: React.SFC = () => (
+  <StoreConsumer>
+    {store => {
+      const newDirectMessagesChannelModel = null;
 
-export default ChannelsContainer;
+      const openNewDirectMessagesChannelModel = () =>
+        store.actions.pushModal(newDirectMessagesChannelModel);
+
+      return (
+        <BaseDirectMessagesChannels
+          openNewDirectMessagesChannelModel={openNewDirectMessagesChannelModel}
+        />
+      );
+    }}
+  </StoreConsumer>
+);
+
+export default DirectMessagesChannels;
