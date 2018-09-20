@@ -3436,9 +3436,9 @@ enzyme-adapter-utils@^1.8.0:
     object.assign "^4.1.0"
     prop-types "^15.6.2"
 
-enzyme-matchers@^6.0.4:
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/enzyme-matchers/-/enzyme-matchers-6.0.4.tgz#0a4d8303a064a00289e03d8c992277c291074bbc"
+enzyme-matchers@^6.0.5:
+  version "6.0.5"
+  resolved "https://registry.yarnpkg.com/enzyme-matchers/-/enzyme-matchers-6.0.5.tgz#d0313ccc69674b1fa6224d4154e445455f21f4d9"
   dependencies:
     circular-json-es6 "^2.0.1"
     deep-equal-ident "^1.1.1"
@@ -5126,9 +5126,9 @@ jest-each@^23.6.0:
     chalk "^2.0.1"
     pretty-format "^23.6.0"
 
-jest-environment-enzyme@^6.0.4:
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/jest-environment-enzyme/-/jest-environment-enzyme-6.0.4.tgz#1576bec170bb9025e82579bf63fadbf1aeabe944"
+jest-environment-enzyme@^6.0.5:
+  version "6.0.5"
+  resolved "https://registry.yarnpkg.com/jest-environment-enzyme/-/jest-environment-enzyme-6.0.5.tgz#33ad84e15ff32c213f73273f5f14abd569682ec4"
   dependencies:
     jest-environment-jsdom "^22.4.1"
 
@@ -5155,13 +5155,13 @@ jest-environment-node@^23.4.0:
     jest-mock "^23.2.0"
     jest-util "^23.4.0"
 
-jest-enzyme@6.0.4:
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/jest-enzyme/-/jest-enzyme-6.0.4.tgz#8dcbab186c41170fdbc2aba5137f74f799e2a578"
+jest-enzyme@6.0.5:
+  version "6.0.5"
+  resolved "https://registry.yarnpkg.com/jest-enzyme/-/jest-enzyme-6.0.5.tgz#6018676d7250b900b26fdab7bc2c824f9f81c83e"
   dependencies:
-    enzyme-matchers "^6.0.4"
+    enzyme-matchers "^6.0.5"
     enzyme-to-json "^3.3.0"
-    jest-environment-enzyme "^6.0.4"
+    jest-environment-enzyme "^6.0.5"
 
 jest-get-type@^22.1.0:
   version "22.4.3"
