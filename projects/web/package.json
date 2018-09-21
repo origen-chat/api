@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "1.0.142",
+  "version": "1.0.143",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -75,7 +75,7 @@
     "jest-enzyme": "6.1.1",
     "jest-styled-components": "6.2.0",
     "koa-connect": "2.0.1",
-    "react-hot-loader": "4.3.10",
+    "react-hot-loader": "4.3.11",
     "react-test-renderer": "16.5.2",
     "thread-loader": "1.2.0",
     "typescript": "3.0.3",
