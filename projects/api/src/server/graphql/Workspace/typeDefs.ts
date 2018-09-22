@@ -1,4 +1,5 @@
 import { gql } from 'apollo-server-express';
+import { DocumentNode } from 'graphql';
 
 import { typeDefs as channelsTypeDefs } from './channels';
 import { typeDefs as membersTypeDefs } from './members';
@@ -31,4 +32,10 @@ const Workspace = gql`
   }
 `;
 
-export default [Workspace, ...channelsTypeDefs, ...membersTypeDefs];
+const typeDefs: ReadonlyArray<DocumentNode> = [
+  Workspace,
+  ...channelsTypeDefs,
+  ...membersTypeDefs,
+];
+
+export default typeDefs;

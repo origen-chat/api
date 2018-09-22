@@ -8,4 +8,7 @@ export {
   ModalStack,
   PushModal,
   PopModal,
+  ToastQueue,
+  EnqueueToast,
+  EnqueueToastArgs,
 } from './context';

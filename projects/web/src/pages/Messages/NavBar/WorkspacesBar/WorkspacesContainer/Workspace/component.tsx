@@ -1,4 +1,5 @@
 import React from 'react';
+import { Draggable } from 'react-beautiful-dnd';
 import styled, { css } from 'styled-components';
 
 import { ClassNameProp } from '../../../../../../types';
@@ -12,17 +13,16 @@ const selectedStyle = css`
   border-style: solid;
 `;
 
-type StyledBarButtonProps = BarButtonProps & Readonly<{ isSelected: boolean }>;
+type StyledBarButtonProps = BarButtonProps &
+  Readonly<{ isSelected: boolean; workspaceLogoUrl: string }>;
 
 const StyledBarButton = styled<StyledBarButtonProps>(
   ({ isSelected, ...rest }) => <BarButton {...rest} />,
 )`
   ${props => props.isSelected && selectedStyle};
-`;
-
-const WorkspaceImage = styled.img`
-  width: 100%;
-  height: 100%;
+  background-image: url(${props => props.workspaceLogoUrl});
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 export type WorkspaceProps = Readonly<
@@ -30,6 +30,7 @@ export type WorkspaceProps = Readonly<
     | { loading: true }
     | {
         loading: false;
+        index: number;
         isSelected: boolean;
         workspace: Workspaces_viewer_workspaces_edges_node;
       }) &
@@ -41,19 +42,25 @@ export const Workspace: React.SFC<WorkspaceProps> = props => {
     return <LoadingWorkspace />;
   }
 
-  const workspaceUrl = `/${props.workspace.name}/messages/${
-    props.workspace.defaultChannel.name
+  const workspaceUrl = `/${props.workspace.id}/messages/${
+    props.workspace.defaultChannel.id
   }`;
 
   return (
-    <StyledBarButton
-      isSelected={props.isSelected}
-      to={workspaceUrl}
-      className={props.className}
-      title={props.workspace.name}
-    >
-      <WorkspaceImage src="http://diylogodesigns.com/blog/wp-content/uploads/2016/04/google-logo-icon-PNG-Transparent-Background.png" />
-    </StyledBarButton>
+    <Draggable draggableId={props.workspace.id} index={props.index}>
+      {provided => (
+        <StyledBarButton
+          isSelected={props.isSelected}
+          to={workspaceUrl}
+          title={props.workspace.name}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          workspaceLogoUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/2000px-Microsoft_logo.svg.png"
+          className={props.className}
+          domRef={provided.innerRef}
+        />
+      )}
+    </Draggable>
   );
 };
 

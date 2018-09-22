@@ -9,8 +9,10 @@ import { Theme } from '../../theme';
 import PageView from '../PageView';
 import ErrorBoundary from './ErrorBoundary';
 import ModalStack from './ModalStack';
+import ProvidedIntlProvider from './ProvidedIntlProvider';
 import Routes from './Routes';
 import StoreProvider from './StoreProvider';
+import ToastQueue from './ToastQueue';
 
 export type AppProps = Readonly<{
   theme: Theme;
@@ -20,15 +22,18 @@ export type AppProps = Readonly<{
 export const App: React.SFC<AppProps> = ({ apolloClient, theme }) => (
   <Router>
     <ApolloProvider client={apolloClient}>
-      <ThemeProvider theme={theme}>
-        <StoreProvider>
-          <ErrorBoundary>
-            <PageView />
-            <Routes />
-            <ModalStack />
-          </ErrorBoundary>
-        </StoreProvider>
-      </ThemeProvider>
+      <ProvidedIntlProvider>
+        <ThemeProvider theme={theme}>
+          <StoreProvider>
+            <ErrorBoundary>
+              <PageView />
+              <Routes />
+              <ModalStack />
+              <ToastQueue />
+            </ErrorBoundary>
+          </StoreProvider>
+        </ThemeProvider>
+      </ProvidedIntlProvider>
     </ApolloProvider>
   </Router>
 );

@@ -7,7 +7,7 @@ export const barButtonStyle = css`
   width: var(--side-length);
   height: var(--side-length);
 
-  margin: var(--vertical-margin) auto;
+  margin: var(--vertical-margin) 0;
 
   border-radius: var(--xl-border-radius);
 

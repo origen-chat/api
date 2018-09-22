@@ -1,9 +1,11 @@
 import gql from 'graphql-tag';
 import React from 'react';
 import { Query, QueryResult } from 'react-apollo';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { Route } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { InfiniteScroll } from '../../../../../components';
 import { ClassNameProp } from '../../../../../types';
 import {
   Workspaces,
@@ -15,6 +17,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
   justify-content: start;
+  align-items: center;
 
   overflow-y: auto;
 `;
@@ -30,38 +33,63 @@ export type BaseWorkapacesContainerProps = Readonly<
         loading: false;
         workspaces: ReadonlyArray<Workspaces_viewer_workspaces_edges_node>;
         selectedWorkspaceId: string;
-        hasNextPage: boolean;
+        loadMoreWorkspaces: LoadMoreWorkspaces;
+        hasMoreWorkspaces: boolean;
+        handleWorkspaceDragEnd: any;
       }) &
     ClassNameProp
 >;
 
+export type LoadMoreWorkspaces = () => Promise<void>;
+
 export const BaseWorkapacesContainer: React.SFC<
   BaseWorkapacesContainerProps
 > = props => {
-  let workspaces: ReadonlyArray<React.ReactNode>;
-
   if (props.loading) {
-    workspaces = [1, 2, 3].map(key => (
+    const loadingWorkspaces = [1, 2, 3].map(key => (
       <StyledWorkspace loading className={undefined} key={key} />
     ));
-  } else {
-    workspaces = props.workspaces.map(workspace => {
-      const isSelected = props.selectedWorkspaceId === workspace.id;
 
-      return (
-        <StyledWorkspace
-          // @ts-ignore
-          isSelected={isSelected}
-          workspace={workspace}
-          loading={false}
-          className={undefined}
-          key={workspace.id}
-        />
-      );
-    });
+    return <Wrapper className={props.className}>{loadingWorkspaces}</Wrapper>;
   }
 
-  return <Wrapper className={props.className}>{workspaces}</Wrapper>;
+  const workspaces = props.workspaces.map((workspace, index) => {
+    const isSelected = props.selectedWorkspaceId === workspace.id;
+
+    return (
+      <StyledWorkspace
+        // @ts-ignore
+        index={index}
+        isSelected={isSelected}
+        workspace={workspace}
+        loading={false}
+        className={undefined}
+        key={workspace.id}
+      />
+    );
+  });
+
+  return (
+    <DragDropContext onDragEnd={props.handleWorkspaceDragEnd}>
+      <Droppable droppableId="workspace-container">
+        {provided => (
+          <Wrapper
+            innerRef={provided.innerRef}
+            className={props.className}
+            {...provided.droppableProps}
+          >
+            <InfiniteScroll
+              loadMore={props.loadMoreWorkspaces}
+              loader="loading"
+              hasMore={props.hasMoreWorkspaces}
+            >
+              {workspaces}
+            </InfiniteScroll>
+          </Wrapper>
+        )}
+      </Droppable>
+    </DragDropContext>
+  );
 };
 
 const workspacesQuery = gql`
@@ -131,13 +159,24 @@ function makeBaseWorkspacesContainerProps(
     .map(edge => edge!.node);
 
   const selectedWorkspaceId = matchParams.workspaceId;
-  const { hasNextPage } = result.data.viewer.workspaces.pageInfo;
+
+  const loadMoreWorkspaces: any = () => {
+    console.log('sisisisisi');
+  };
+
+  const handleWorkspaceDragEnd = console.log;
+
+  const {
+    hasNextPage: hasMoreWorkspaces,
+  } = result.data.viewer.workspaces.pageInfo;
 
   return {
     loading: false,
     workspaces,
     selectedWorkspaceId,
-    hasNextPage,
+    loadMoreWorkspaces,
+    hasMoreWorkspaces,
+    handleWorkspaceDragEnd,
     className,
   };
 }

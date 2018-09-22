@@ -67,6 +67,7 @@ module.exports = {
         'no-restricted-globals': 'off',
         'prefer-destructuring': 'off',
         camelcase: 'off',
+        'no-multi-str': 'off',
 
         'react/prop-types': 'off',
         'react/sort-comp': 'off',

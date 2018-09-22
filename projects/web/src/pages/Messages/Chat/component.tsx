@@ -13,14 +13,14 @@ type WrapperProps = Pick<BaseChatProps, 'navBarState'>;
 
 type GetWrapperLeftMarginArgs = Readonly<{
   navBarState: NavBarState;
-  allow0Margin: boolean;
+  allowXPosition0: boolean;
 }>;
 
-function getWrapperLeftMargin({
+function getWrapperXPosition({
   navBarState,
-  allow0Margin,
+  allowXPosition0,
 }: GetWrapperLeftMarginArgs): string {
-  if (navBarState === 'closed' && allow0Margin) {
+  if (navBarState === 'closed' && allowXPosition0) {
     return '0';
   }
 
@@ -32,21 +32,21 @@ function getWrapperLeftMargin({
 }
 
 const Wrapper = styled.section<WrapperProps>`
---margin-left:${props =>
-  getWrapperLeftMargin({
-    navBarState: props.navBarState,
-    allow0Margin: true,
-  })};
+  --x-position: 0;
 
-  margin-left: var(--margin-left);
+  transform: translateX(var(--x-position));
+
   transition: var(--lg-transition);
 
   @media (min-width: ${props => props.theme.breakpoints.lg}) {
-    --margin-left: ${props =>
-      getWrapperLeftMargin({
+    --x-position: ${props =>
+      getWrapperXPosition({
         navBarState: props.navBarState,
-        allow0Margin: false,
+        allowXPosition0: false,
       })};
+
+    width: calc(100% - var(--x-position));
+  }
 `;
 
 export const BaseChat: React.SFC<BaseChatProps> = props => (

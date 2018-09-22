@@ -5,6 +5,8 @@ import BarButton from '../BarButton';
 
 const StyledBarButton = styled(BarButton)`
   margin-top: calc(var(--xxs-space) * 2);
+  margin-right: auto;
+  margin-left: auto;
 `;
 
 export type AddWorkspaceButtonProps = Readonly<{

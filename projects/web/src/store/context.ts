@@ -13,16 +13,20 @@ const StoreContext = React.createContext<StoreContextValue>(
 export type StoreContextState = Readonly<{
   navBarState: NavBarState;
   modalStack: ModalStack;
+  toastQueue: ToastQueue;
 }>;
 
 export type NavBarState = 'closed' | 'halfOpen' | 'open';
 
 export type ModalStack = ReadonlyArray<React.ReactNode>;
 
+export type ToastQueue = ReadonlyArray<React.ReactNode>;
+
 export type StoreContextActions = Readonly<{
   setNavBarState: SetNavBarState;
   pushModal: PushModal;
   popModal: PopModal;
+  enqueueToast: EnqueueToast;
 }>;
 
 export type SetNavBarState = (navBarState: NavBarState) => void;
@@ -30,5 +34,9 @@ export type SetNavBarState = (navBarState: NavBarState) => void;
 export type PushModal = (modal: React.ReactNode) => void;
 
 export type PopModal = () => void;
+
+export type EnqueueToast = (args: EnqueueToastArgs) => void;
+
+export type EnqueueToastArgs = Readonly<{}>;
 
 export default StoreContext;

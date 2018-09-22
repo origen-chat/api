@@ -7,6 +7,8 @@ import NavBar from './NavBar';
 const Wrapper = styled.main`
   height: 100%;
   width: 100%;
+
+  overflow: hidden;
 `;
 
 export const Messages: React.SFC = () => (

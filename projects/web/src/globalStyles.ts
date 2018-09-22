@@ -47,6 +47,10 @@ injectGlobal`
     --nav-bar-width: calc(var(--workspaces-bar-width) + var(--channels-bar-width));
 
     --top-bar-height: 4rem;
+
+    --nav-bar-z-index: 1000;
+    --modal-stack-z-index: 2000;
+    --toast-queue-z-index: 3000;
   }
 
   * {

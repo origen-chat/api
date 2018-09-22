@@ -39,10 +39,12 @@ const Wrapper = styled.nav<WrapperProps>`
   top: 0;
   left: 0;
   bottom: 0;
-
-  transition: var(--lg-transition);
+  z-index: var(--nav-bar-z-index);
 
   transform: translateX(var(--x-position));
+  box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75);
+
+  transition: var(--lg-transition);
 
   @media (min-width: ${props => props.theme.breakpoints.lg}) {
     --x-position: ${props =>

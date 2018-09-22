@@ -43,6 +43,8 @@ export const User = gql`
       last: NonNegativeInt
       before: Cursor
     ): UserBookmarkedBookmarkableConnection!
+
+    settings: UserSettings!
   }
 `;
 
