@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "1.0.148",
+  "version": "1.0.149",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -49,7 +49,7 @@
     "@svgr/webpack": "2.4.1",
     "@types/enzyme": "3.1.14",
     "@types/enzyme-adapter-react-16": "1.0.3",
-    "@types/graphql": "14.0.0",
+    "@types/graphql": "14.0.1",
     "@types/jest": "23.3.2",
     "@types/node": "10.10.3",
     "@types/react": "16.4.14",
