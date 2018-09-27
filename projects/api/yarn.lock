@@ -1041,10 +1041,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.7.1.tgz#b704d7c259aa40ee052eec678758a68d07132a2e"
   integrity sha512-EGoI4ylB/lPOaqXqtzAyL8HcgOuCtH2hkEaLmkueOYufsTFWBn4VCvlCDC2HW8Q+9iF+QVC3sxjDKQYjHQeZ9w==
 
-"@types/node@10.11.1":
-  version "10.11.1"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.11.1.tgz#adc48781dd50b2635a8a7854d99c759a26ede840"
-  integrity sha512-Mash7eQv0HOs/fBVywUGR7NLSXyMl3XHkIo/kcWBgD9ppwPYOp8UDFxZfKy9hWeVHT2p+69vgXTPbPpoeqoM8w==
+"@types/node@10.11.2":
+  version "10.11.2"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.11.2.tgz#59508b88ce90fe2742f7b8414c6f5db3e359570d"
+  integrity sha512-XubfQDIg88PGJ7netQPf3QOKHF7Xht4WXGtg5W7cGBeQs9ETbYKwfchR9o+tRRA9iLTQ7nAre85M205JbYsjJA==
 
 "@types/passport-google-oauth@1.0.39":
   version "1.0.39"
