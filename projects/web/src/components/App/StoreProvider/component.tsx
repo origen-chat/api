@@ -70,6 +70,7 @@ function getInitialState(): StoreProviderState['state'] {
   const initialState: StoreProviderState['state'] = {
     navBarState: getInitialNavBarState(),
     modalStack: [],
+    toastQueue: [],
   };
 
   return initialState;

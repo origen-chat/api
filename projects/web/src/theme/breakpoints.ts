@@ -21,3 +21,5 @@ export const breakpoints: Breakpoints = Object.entries(
   }),
   {},
 ) as Breakpoints;
+
+export default breakpoints;

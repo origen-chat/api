@@ -43,7 +43,7 @@ function renderMembers(
   const maxDisplayedAmount = 5;
 
   return members.slice(0, maxDisplayedAmount).map(member => (
-    <Member>
+    <Member key={member.id}>
       {member.username}#{member.usernameIdentifier}
     </Member>
   ));

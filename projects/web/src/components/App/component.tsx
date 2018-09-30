@@ -1,6 +1,7 @@
 import { ApolloClient } from 'apollo-client';
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
+import { Provider as ReduxProvider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
@@ -11,27 +12,31 @@ import ErrorBoundary from './ErrorBoundary';
 import ModalStack from './ModalStack';
 import ProvidedIntlProvider from './ProvidedIntlProvider';
 import Routes from './Routes';
-import StoreProvider from './StoreProvider';
 import ToastQueue from './ToastQueue';
 
 export type AppProps = Readonly<{
-  theme: Theme;
   apolloClient: ApolloClient<Cache>;
+  reduxStore: Store;
+  theme: Theme;
 }>;
 
-export const App: React.SFC<AppProps> = ({ apolloClient, theme }) => (
+export const App: React.SFC<AppProps> = ({
+  apolloClient,
+  reduxStore,
+  theme,
+}) => (
   <Router>
     <ApolloProvider client={apolloClient}>
       <ProvidedIntlProvider>
         <ThemeProvider theme={theme}>
-          <StoreProvider>
+          <ReduxProvider store={reduxStore}>
             <ErrorBoundary>
               <PageView />
               <Routes />
               <ModalStack />
               <ToastQueue />
             </ErrorBoundary>
-          </StoreProvider>
+          </ReduxProvider>
         </ThemeProvider>
       </ProvidedIntlProvider>
     </ApolloProvider>

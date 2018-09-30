@@ -2,12 +2,15 @@ import React, { StrictMode } from 'react';
 import { hot } from 'react-hot-loader';
 
 import apolloClient from '../../apolloClient';
+import { createReduxStore } from '../../store';
 import theme from '../../theme';
 import App from '../App';
 
+const reduxStore = createReduxStore();
+
 export const Root: React.SFC = () => (
   <StrictMode>
-    <App apolloClient={apolloClient} theme={theme} />
+    <App apolloClient={apolloClient} reduxStore={reduxStore} theme={theme} />
   </StrictMode>
 );
 

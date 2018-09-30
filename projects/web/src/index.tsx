@@ -1,3 +1,3 @@
-import startApplication from './main';
+import { startApplication } from './main';
 
 startApplication();

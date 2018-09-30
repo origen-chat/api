@@ -20,7 +20,11 @@ export type NavBarState = 'closed' | 'halfOpen' | 'open';
 
 export type ModalStack = ReadonlyArray<React.ReactNode>;
 
-export type ToastQueue = ReadonlyArray<React.ReactNode>;
+export type ToastQueue = ReadonlyArray<ToastArgs>;
+
+export type ToastArgs = Readonly<{
+  id: string;
+}>;
 
 export type StoreContextActions = Readonly<{
   setNavBarState: SetNavBarState;

@@ -1,5 +1,9 @@
 import { injectGlobal } from 'styled-components';
 
+import theme from './theme';
+
+const transitionsString = Object.entries(theme.transitions).join(' ');
+
 /* eslint-disable-next-line no-unused-expressions */
 injectGlobal`
   :root {
@@ -86,4 +90,6 @@ injectGlobal`
     line-height: 1.15;
     margin: 0;
   }
+
+  ${transitionsString}
 `;

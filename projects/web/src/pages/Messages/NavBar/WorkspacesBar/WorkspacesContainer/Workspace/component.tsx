@@ -17,7 +17,7 @@ type StyledBarButtonProps = BarButtonProps &
   Readonly<{ isSelected: boolean; workspaceLogoUrl: string }>;
 
 const StyledBarButton = styled<StyledBarButtonProps>(
-  ({ isSelected, ...rest }) => <BarButton {...rest} />,
+  ({ isSelected, workspaceLogoUrl, ...rest }) => <BarButton {...rest} />,
 )`
   ${props => props.isSelected && selectedStyle};
   background-image: url(${props => props.workspaceLogoUrl});

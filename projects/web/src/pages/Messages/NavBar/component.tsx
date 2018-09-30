@@ -2,7 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { StoreConsumer } from '../../../components';
-import { NavBarState } from '../../../store';
+import { NavBarState, SetNavBarState } from '../../../store';
+import theme from '../../../theme';
+import Backdrop from './Backdrop';
 import ChannelsBar from './ChannelsBar';
 import WorkspacesBar from './WorkspacesBar';
 
@@ -42,7 +44,9 @@ const Wrapper = styled.nav<WrapperProps>`
   z-index: var(--nav-bar-z-index);
 
   transform: translateX(var(--x-position));
-  box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75);
+  ${props =>
+    props.navBarState !== 'closed' &&
+    'box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75)'};
 
   transition: var(--lg-transition);
 
@@ -52,23 +56,89 @@ const Wrapper = styled.nav<WrapperProps>`
         navBarState: props.navBarState,
         allowClosed: false,
       })};
+
+    box-shadow: none;
   }
 `;
 
 export type BaseNavBarProps = Readonly<{
   navBarState: NavBarState;
+  setNavBarState: SetNavBarState;
 }>;
 
-export const BaseNavBar: React.SFC<BaseNavBarProps> = props => (
-  <Wrapper navBarState={props.navBarState}>
-    <WorkspacesBar />
-    <ChannelsBar />
-  </Wrapper>
-);
+export class BaseNavBar extends React.PureComponent<BaseNavBarProps> {
+  public componentDidMount() {
+    this.addMediaQueryListener();
+  }
+
+  public componentWillUnmount() {
+    this.removeMediaQueryListener();
+  }
+
+  private readonly minWidthBreakpointLgMediaQuery = window.matchMedia(
+    `(min-width: ${theme.breakpoints.lg})`,
+  );
+
+  private minWidthBreakpointLgMediaQueryMatches = this
+    .minWidthBreakpointLgMediaQuery.matches;
+
+  private addMediaQueryListener(): void {
+    this.minWidthBreakpointLgMediaQuery.addListener(
+      this.handleMinWidthBreakpointLgMediaQueryChange,
+    );
+  }
+
+  private removeMediaQueryListener(): void {
+    this.minWidthBreakpointLgMediaQuery.removeListener(
+      this.handleMinWidthBreakpointLgMediaQueryChange,
+    );
+  }
+
+  private readonly handleMinWidthBreakpointLgMediaQueryChange: MediaQueryListListener = event => {
+    if (event.matches) {
+      this.minWidthBreakpointLgMediaQueryMatches = true;
+      this.openNavBar();
+    } else {
+      this.minWidthBreakpointLgMediaQueryMatches = false;
+      this.closeNavBar();
+    }
+  };
+
+  private shouldShowBackdrop(): boolean {
+    return (
+      !this.minWidthBreakpointLgMediaQueryMatches &&
+      this.props.navBarState !== 'closed'
+    );
+  }
+
+  private openNavBar = () => this.props.setNavBarState('open');
+
+  private closeNavBar = () => this.props.setNavBarState('closed');
+
+  public render() {
+    return (
+      <>
+        <Backdrop
+          visible={this.shouldShowBackdrop()}
+          onClick={this.closeNavBar}
+        />
+        <Wrapper navBarState={this.props.navBarState}>
+          <WorkspacesBar />
+          <ChannelsBar />
+        </Wrapper>
+      </>
+    );
+  }
+}
 
 const NavBar: React.SFC = () => (
   <StoreConsumer>
-    {store => <BaseNavBar navBarState={store.state.navBarState} />}
+    {store => (
+      <BaseNavBar
+        navBarState={store.state.navBarState}
+        setNavBarState={store.actions.setNavBarState}
+      />
+    )}
   </StoreConsumer>
 );
 

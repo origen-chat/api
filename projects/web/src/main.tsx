@@ -11,7 +11,7 @@ import { initializeErrorTracking } from './errorTracking';
 import './globalStyles';
 import { register as registerServiceWorker } from './serviceWorkerRegistration';
 
-export default function startApplication(): void {
+export function startApplication(): void {
   initializeAnalytics();
   initializeErrorTracking();
 
@@ -21,10 +21,11 @@ export default function startApplication(): void {
 }
 
 function render(): void {
-  const rootElement = document.getElementById('root');
+  const rootElementId = 'root';
+  const rootElement = document.getElementById(rootElementId);
 
   if (!rootElement) {
-    throw new Error('#root element not found');
+    throw new Error(`#${rootElementId} element not found`);
   }
 
   const rootReactElement = <Root />;
