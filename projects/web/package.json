@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "1.0.176",
+  "version": "1.0.177",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -50,7 +50,7 @@
     "@types/enzyme": "3.1.14",
     "@types/enzyme-adapter-react-16": "1.0.3",
     "@types/graphql": "14.0.1",
-    "@types/jest": "23.3.2",
+    "@types/jest": "23.3.3",
     "@types/node": "10.11.3",
     "@types/react": "16.4.14",
     "@types/react-dom": "16.0.8",
