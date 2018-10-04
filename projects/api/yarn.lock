@@ -1041,13 +1041,12 @@
   dependencies:
     "@types/node" "*"
 
-"@types/knex@0.14.25":
-  version "0.14.25"
-  resolved "https://registry.yarnpkg.com/@types/knex/-/knex-0.14.25.tgz#3388e506e3fe3829b79d100f5896cbb6fe2b4c4c"
-  integrity sha512-g0CF4bqSsbvC87GTNIQ59hxgH9Iz7PLfkrxfq6AU0mITVTwAfEwe9nnYFQxQZh5zI/9WEDWEvqotjjdFk2T5oQ==
+"@types/knex@0.14.26":
+  version "0.14.26"
+  resolved "https://registry.yarnpkg.com/@types/knex/-/knex-0.14.26.tgz#18c1b5d5a7e44bb0d394209f7e0e965b2987ce57"
+  integrity sha512-BhtEH5PbB2kxuAwZ1w+KDNyL5NZXjTfoT6JtwnD3P/l3bqJJISCOAfPeH8O2aY66auscNIaCvIij/eONvlM4Cw==
   dependencies:
     "@types/bluebird" "*"
-    "@types/events" "*"
     "@types/node" "*"
 
 "@types/lodash@^4.14.109":
