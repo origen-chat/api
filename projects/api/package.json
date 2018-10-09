@@ -1,6 +1,6 @@
 {
   "name": "loop_api",
-  "version": "1.0.78",
+  "version": "1.0.79",
   "private": true,
   "license": "MIT",
   "main": "dist/app.js",
@@ -43,7 +43,7 @@
     "@types/jest": "23.3.5",
     "@types/jsonwebtoken": "7.2.8",
     "@types/knex": "0.14.26",
-    "@types/node": "10.11.5",
+    "@types/node": "10.11.6",
     "@types/passport": "0.4.6",
     "@types/passport-google-oauth": "1.0.39",
     "@types/passport-jwt": "3.0.1",
