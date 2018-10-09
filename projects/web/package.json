@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "1.0.190",
+  "version": "1.0.191",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -61,7 +61,7 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "23.6.0",
     "babel-loader": "8.0.4",
-    "babel-plugin-dynamic-import-node": "2.1.0",
+    "babel-plugin-dynamic-import-node": "2.2.0",
     "babel-plugin-styled-components": "1.8.0",
     "clean-webpack-plugin": "0.1.19",
     "connect-history-api-fallback": "1.5.0",
