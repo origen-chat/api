@@ -979,10 +979,10 @@ damerau-levenshtein@^1.0.4:
   resolved "https://registry.yarnpkg.com/damerau-levenshtein/-/damerau-levenshtein-1.0.4.tgz#03191c432cb6eea168bb77f3a55ffdccb8978514"
   integrity sha1-AxkcQyy27qFou3fzpV/9zLiXhRQ=
 
-danger@4.3.8:
-  version "4.3.8"
-  resolved "https://registry.yarnpkg.com/danger/-/danger-4.3.8.tgz#c2cae8c81f84870e121fa062d00c56a0b84d3f0f"
-  integrity sha512-OQVDUYyWyzHNI1om3rE0n0CUFI4Ckok77UHMKJ2nHY11vZ8803BRj6LUwwqPNgjq3Sq2+KKVgvVqhoykN56S2Q==
+danger@4.4.6:
+  version "4.4.6"
+  resolved "https://registry.yarnpkg.com/danger/-/danger-4.4.6.tgz#319642e933d75bff83597ff4fbdb9eb0d8c33e95"
+  integrity sha512-sqHIPsXOnHmJa8HvVpssu6iFVtevLpcov6M52eaoAHLx4oaZTGlet+bz7wKe3Wz9oH4YJtv6w5SI21WDVrNGUg==
   dependencies:
     "@babel/polyfill" "^7.0.0"
     "@octokit/rest" "^15.12.1"
@@ -1003,7 +1003,6 @@ danger@4.3.8:
     memfs-or-file-map-to-github-branch "^1.1.0"
     node-cleanup "^2.1.2"
     node-fetch "^2.2.0"
-    override-require "^1.1.1"
     p-limit "^2.0.0"
     parse-diff "^0.5.1"
     parse-git-config "^2.0.3"
@@ -3380,11 +3379,6 @@ os-tmpdir@~1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/os-tmpdir/-/os-tmpdir-1.0.2.tgz#bbe67406c79aa85c5cfec766fe5734555dfa1274"
   integrity sha1-u+Z0BseaqFxc/sdm/lc0VV36EnQ=
-
-override-require@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/override-require/-/override-require-1.1.1.tgz#6ae22fadeb1f850ffb0cf4c20ff7b87e5eb650df"
-  integrity sha1-auIvresfhQ/7DPTCD/e4fl62UN8=
 
 p-finally@^1.0.0:
   version "1.0.0"
