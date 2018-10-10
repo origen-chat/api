@@ -1,6 +1,6 @@
 {
   "name": "loop_api",
-  "version": "1.0.79",
+  "version": "1.0.80",
   "private": true,
   "license": "MIT",
   "main": "dist/app.js",
@@ -55,7 +55,7 @@
     "nodemon": "1.18.4",
     "rimraf": "2.6.2",
     "ts-node": "7.0.1",
-    "typescript": "3.1.1"
+    "typescript": "3.1.2"
   },
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0"
