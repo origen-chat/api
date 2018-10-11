@@ -1,6 +1,6 @@
 {
   "name": "loop_api",
-  "version": "1.0.81",
+  "version": "1.0.82",
   "private": true,
   "license": "MIT",
   "main": "dist/app.js",
@@ -22,7 +22,7 @@
     "apollo-server-express": "2.1.0",
     "core-js": "2.5.7",
     "cors": "2.8.4",
-    "express": "4.16.3",
+    "express": "4.16.4",
     "graphql": "14.0.2",
     "jsonwebtoken": "8.3.0",
     "knex": "0.15.2",
