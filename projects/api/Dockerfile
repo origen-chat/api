@@ -8,7 +8,7 @@ RUN yarn build
 
 # ---
 
-FROM node:10.12.0-alpine@sha256:c8fd570bbd77f2ec988f3814627091bd06c66d5269597705bbe14f6f5e2f6290
+FROM node:10.12.0-alpine@sha256:1e3e3e7ffc965511c5d4f4e90ec5d9cabee95b5b1fbcd49eb6a2289f425cf183
 LABEL maintainer="strattadb@gmail.com"
 ENV NODE_ENV=${NODE_ENV:-production}
 WORKDIR /usr/src/app
