@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:10@sha256:aabdb1adfc81d76186e93563d5d786923477222dafdc5e0608d2637497eec8b3
+      - image: circleci/node:10@sha256:b914517ba21858da414fef36ee72d1fdcb805449e3709f7e99563e9f01090e8e
     working_directory: ~/repo
     steps:
       - checkout
