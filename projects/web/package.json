@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "1.0.208",
+  "version": "1.0.209",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -52,7 +52,7 @@
     "@types/graphql": "14.0.3",
     "@types/jest": "23.3.5",
     "@types/node": "10.12.0",
-    "@types/react": "16.4.16",
+    "@types/react": "16.4.17",
     "@types/react-dom": "16.0.9",
     "@types/react-helmet": "5.0.7",
     "@types/react-router-dom": "4.3.1",
