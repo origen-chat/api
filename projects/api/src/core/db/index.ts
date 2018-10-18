@@ -1,2 +1,2 @@
 export { default, knexConfigs } from './db';
-export { beginTransaction } from './transactions';
+export { beginTransaction, transact, TransactFunction } from './transactions';

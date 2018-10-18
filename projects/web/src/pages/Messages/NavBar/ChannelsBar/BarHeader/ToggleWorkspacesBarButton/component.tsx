@@ -7,18 +7,25 @@ import {
   Props as FontAwesomeIconProps,
 } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 
-import { StoreConsumer } from '../../../../../../components';
-import { NavBarState, SetNavBarState } from '../../../../../../store';
+import {
+  navBarActions,
+  navBarSelectors,
+  NavBarState,
+  ReduxState,
+} from '../../../../../../modules';
 import BarButton from '../BarButton';
 
-export type BaseToggleWorkspacesBarButtonProps = Readonly<{
-  navBarState: NavBarState;
-  setNavBarState: SetNavBarState;
-}>;
+export type ToggleWorkspacesBarButtonProps = StateProps &
+  DispatchProps &
+  OwnProps;
 
-export const BaseToggleWorkspacesBarButton: React.SFC<
-  BaseToggleWorkspacesBarButtonProps
+type OwnProps = Readonly<{}>;
+
+export const ToggleWorkspacesBarButton: React.SFC<
+  ToggleWorkspacesBarButtonProps
 > = props => {
   const handleClick = (): void => {
     if (props.navBarState === 'halfOpen') {
@@ -38,15 +45,27 @@ export const BaseToggleWorkspacesBarButton: React.SFC<
   );
 };
 
-export const ToggleWorkspacesBarButton: React.SFC = () => (
-  <StoreConsumer>
-    {store => (
-      <BaseToggleWorkspacesBarButton
-        navBarState={store.state.navBarState}
-        setNavBarState={store.actions.setNavBarState}
-      />
-    )}
-  </StoreConsumer>
-);
+const mapStateToProps = (state: ReduxState) => ({
+  navBarState: navBarSelectors.getNavBarState(state),
+});
 
-export default ToggleWorkspacesBarButton;
+type StateProps = ReturnType<typeof mapStateToProps>;
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  setNavBarState: (state: NavBarState) =>
+    dispatch(navBarActions.setState(state)),
+});
+
+type DispatchProps = ReturnType<typeof mapDispatchToProps>;
+
+export const EnhancedToggleWorkspacesBarButton = connect<
+  StateProps,
+  DispatchProps,
+  OwnProps,
+  ReduxState
+>(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ToggleWorkspacesBarButton);
+
+export default EnhancedToggleWorkspacesBarButton;

@@ -1,1 +1,1 @@
-export { createReduxStore } from './store';
+export { createReduxStore, ReduxStore, CreateReduxStoreArgs } from './store';

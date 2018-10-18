@@ -37,7 +37,7 @@ export async function startServer() {
     typeDefs: typeDefs as any,
     resolvers: resolvers as any,
     mocks: mockSchema ? mocks : false,
-    mockEntireSchema,
+    mockEntireSchema: false,
     context: makeContext,
     subscriptions: {
       onConnect: handleSubscriptionConnect,
@@ -51,7 +51,7 @@ export async function startServer() {
   const httpServer = createServer(expressApp);
   apolloServer.installSubscriptionHandlers(httpServer);
 
-  httpServer.listen(graphqlServerPort, graphqlServerHost, () => {
+  httpServer.listen(graphqlServerPort, graphqlServerHost as any, () => {
     logger.info(
       `🚀 server ready at http://${graphqlServerHost}:${graphqlServerPort}${
         apolloServer.graphqlPath

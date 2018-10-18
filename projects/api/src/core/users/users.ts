@@ -2,89 +2,51 @@ import db from '../db';
 import { DBOptions, Email, ID, Nullable } from '../types';
 import { usersTableName } from './constants';
 import { UniqueUsername, User } from './types';
-import { getUnusedUsernameIdentifier } from './usernames';
 
 export async function getUserById(id: ID): Promise<Nullable<User>> {
-  return getUserBy({ id });
+  const user = await getUserBy({ id });
+
+  return user;
 }
 
-export async function getUserByUniqueUsername({
-  username,
-  usernameIdentifier,
-}: UniqueUsername): Promise<Nullable<User>> {
-  return getUserBy({ username, usernameIdentifier });
+export async function getUserByUniqueUsername(
+  uniqueUsername: UniqueUsername,
+  opts: DBOptions = {},
+): Promise<Nullable<User>> {
+  const user = await getUserBy(uniqueUsername, opts);
+
+  return user;
 }
 
-export async function getUserByEmail(email: Email): Promise<Nullable<User>> {
-  return getUserBy({ email });
+export async function getUserByEmail(
+  email: Email,
+  opts: DBOptions = {},
+): Promise<Nullable<User>> {
+  const user = await getUserBy({ email }, opts);
+
+  return user;
 }
 
 export type GetUserByArgs =
-  | Readonly<{ id: ID }>
-  | UniqueUsername
-  | Readonly<{ email: Email }>;
+  | Pick<User, 'id'>
+  | Pick<User, 'email'>
+  | UniqueUsername;
 
-async function getUserBy(args: GetUserByArgs): Promise<Nullable<User>> {
-  const user: User | null = await db
+async function getUserBy(
+  args: GetUserByArgs,
+  opts: DBOptions = {},
+): Promise<Nullable<User>> {
+  const query = db
     .select('*')
     .from(usersTableName)
     .where(args)
     .first();
 
-  return user;
-}
-
-export type InsertUserArgs = Pick<User, 'username' | 'email'> &
-  Partial<Pick<User, 'firstName' | 'lastName'>>;
-
-export async function insertUser(
-  args: InsertUserArgs,
-  opts: DBOptions = {},
-): Promise<User> {
-  const usernameIdentifier = await getUnusedUsernameIdentifier(args.username);
-
-  const argsWithUsernameIdentifier: InsertUserArgs &
-    Pick<User, 'usernameIdentifier'> = { ...args, usernameIdentifier };
-
-  const query = db
-    .insert(argsWithUsernameIdentifier)
-    .into(usersTableName)
-    .returning('*');
-
   if (opts.transaction) {
     query.transacting(opts.transaction);
   }
 
-  const [user] = await query;
+  const user: Nullable<User> = await query;
 
   return user;
-}
-
-export type UpdateUserArgs = Partial<
-  Pick<User, 'username' | 'email' | 'unverifiedEmail'>
->;
-
-export async function updateUser(
-  user: User,
-  args: UpdateUserArgs,
-): Promise<User> {
-  const updatedUser: User = await db(usersTableName)
-    .update(args)
-    .where({ id: user.id })
-    .returning('*');
-
-  return updatedUser;
-}
-
-export async function verifyEmail(user: User): Promise<User> {
-  if (!user.unverifiedEmail) {
-    throw new Error("user doesn't have an unverified email to verify");
-  }
-
-  const data: UpdateUserArgs = {
-    email: user.unverifiedEmail,
-    unverifiedEmail: null,
-  };
-
-  return updateUser(user, data);
 }

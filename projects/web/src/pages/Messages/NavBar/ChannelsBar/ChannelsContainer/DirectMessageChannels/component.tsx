@@ -1,40 +1,42 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import styled from 'styled-components';
 
-import { StoreConsumer } from '../../../../../../components';
+import { modalStackActions, ReduxState } from '../../../../../../modules';
 import Heading from '../Heading';
 
 const Wrapper = styled.div``;
 
-export type BaseDirectMessagesChannelsProps = Readonly<{
-  openNewDirectMessagesChannelModel: () => void;
-}>;
+export type DirectMessagesChannelsProps = DispatchProps & OwnProps;
 
-export const BaseDirectMessagesChannels: React.SFC<
-  BaseDirectMessagesChannelsProps
+type OwnProps = Readonly<{}>;
+
+export const DirectMessagesChannels: React.SFC<
+  DirectMessagesChannelsProps
 > = props => (
   <Wrapper>
-    <Heading onClick={props.openNewDirectMessagesChannelModel}>
+    <Heading onClick={props.openNewDirectMessagesChannelModal}>
       Direct Messages
     </Heading>
   </Wrapper>
 );
 
-export const DirectMessagesChannels: React.SFC = () => (
-  <StoreConsumer>
-    {store => {
-      const newDirectMessagesChannelModel = null;
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  openNewDirectMessagesChannelModal: () =>
+    dispatch(modalStackActions.pushModal({ type: '' })),
+});
 
-      const openNewDirectMessagesChannelModel = () =>
-        store.actions.pushModal(newDirectMessagesChannelModel);
+type DispatchProps = ReturnType<typeof mapDispatchToProps>;
 
-      return (
-        <BaseDirectMessagesChannels
-          openNewDirectMessagesChannelModel={openNewDirectMessagesChannelModel}
-        />
-      );
-    }}
-  </StoreConsumer>
-);
+export const EnhancedDirectMessagesChannels = connect<
+  {},
+  DispatchProps,
+  OwnProps,
+  ReduxState
+>(
+  undefined,
+  mapDispatchToProps,
+)(DirectMessagesChannels);
 
-export default DirectMessagesChannels;
+export default EnhancedDirectMessagesChannels;

@@ -1,8 +1,8 @@
-import { State } from '../rootReducer';
-import { ModalStack } from './reducers';
+import { ReduxState } from '../rootReducer';
+import { ModalPropsStack } from './reducers';
 
-export function getModalStack(state: State): ModalStack {
-  const { modalStack } = state.modalStack;
+export function getModalPropsStack(state: ReduxState): ModalPropsStack {
+  const { modalPropsStack } = state.modalStack;
 
-  return modalStack;
+  return modalPropsStack;
 }

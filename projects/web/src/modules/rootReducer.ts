@@ -1,19 +1,28 @@
 import { combineReducers } from 'redux';
 
-import { ModalStackState, reducer as modalStackReducer } from './modalStack';
-import { reducer as toastQueueReducer, ToastQueueState } from './toastQueue';
+import {
+  actions as modalStackActions,
+  ModalStackReduxState,
+  reducer as modalStackReducer,
+} from './modalStack';
+import {
+  actions as navBarActions,
+  NavBarReduxState,
+  reducer as navBarReducer,
+} from './navBar';
 
-/**
- * The state of the Redux store.
- */
-export type State = Readonly<{
-  modalStack: ModalStackState;
-  toastQueue: ToastQueueState;
+export type ReduxState = Readonly<{
+  navBar: NavBarReduxState;
+  modalStack: ModalStackReduxState;
 }>;
 
-const rootReducer = combineReducers<State>({
+export type Actions =
+  | modalStackActions.ModalStackActions
+  | navBarActions.NavBarActions;
+
+const rootReducer = combineReducers<ReduxState, Actions>({
+  navBar: navBarReducer,
   modalStack: modalStackReducer,
-  toastQueue: toastQueueReducer,
 });
 
 export default rootReducer;

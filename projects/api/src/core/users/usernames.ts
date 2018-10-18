@@ -1,4 +1,5 @@
 import db from '../db';
+import { DBOptions } from '../types';
 import {
   maxUsernameCount,
   usernameIdentifierLength,
@@ -8,23 +9,33 @@ import { UsernameIdentifier } from './types';
 
 export async function getUnusedUsernameIdentifier(
   username: string,
+  opts: DBOptions = {},
 ): Promise<UsernameIdentifier> {
-  checkUsernameCount(username);
+  checkUsernameCount(username, opts);
 
-  const usernameIdentifier = await doGetUnusedUsernameIdentifier(username);
+  const usernameIdentifier = await doGetUnusedUsernameIdentifier(
+    username,
+    opts,
+  );
 
   return usernameIdentifier;
 }
 
-async function checkUsernameCount(username: string): Promise<void> {
-  const usernameCount = await getUsernameCount(username);
+async function checkUsernameCount(
+  username: string,
+  opts: DBOptions = {},
+): Promise<void> {
+  const usernameCount = await getUsernameCount(username, opts);
 
   if (usernameCount === maxUsernameCount) {
     throw new Error('too many users with the same username');
   }
 }
 
-async function getUsernameCount(username: string): Promise<number> {
+async function getUsernameCount(
+  username: string,
+  opts: DBOptions = {},
+): Promise<number> {
   const { count } = await db
     .from(usersTableName)
     .where({ username })
@@ -36,8 +47,9 @@ async function getUsernameCount(username: string): Promise<number> {
 
 async function doGetUnusedUsernameIdentifier(
   username: string,
+  opts: DBOptions = {},
 ): Promise<UsernameIdentifier> {
-  const query = `
+  const sqlQuery = `
     SELECT
       generate_series::varchar AS "unusedUsernameIdentifier"
     FROM generate_series(0, ?)
@@ -53,9 +65,15 @@ async function doGetUnusedUsernameIdentifier(
     LIMIT 1;
   `;
 
+  const query = db.raw(sqlQuery, [maxUsernameCount, username]);
+
+  if (opts.transaction) {
+    query.transacting(opts.transaction);
+  }
+
   const {
     rows: [{ unusedUsernameIdentifier }],
-  } = await db.raw(query, [maxUsernameCount, username]);
+  } = await query;
 
   const paddedUnusedUsernameIdentifier = padUsernameIdentifier(
     unusedUsernameIdentifier as string,

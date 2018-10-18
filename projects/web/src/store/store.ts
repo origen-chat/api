@@ -3,13 +3,15 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
 
 import { isDevelopmentEnvironment } from '../helpers';
-import { rootReducer, rootSaga } from '../modules';
+import { Actions, ReduxState, rootReducer, rootSaga } from '../modules';
+
+export type ReduxStore = Store<ReduxState, Actions>;
 
 export type CreateReduxStoreArgs = Readonly<{
   initialState?: any;
 }>;
 
-export function createReduxStore(args: CreateReduxStoreArgs = {}): Store {
+export function createReduxStore(args: CreateReduxStoreArgs = {}): ReduxStore {
   const [middleware, sagaMiddleware] = getMiddleware();
 
   const enhancer = composeWithDevTools(applyMiddleware(...middleware));
@@ -40,7 +42,9 @@ function getMiddleware(): [ReadonlyArray<Middleware>, SagaMiddleware<any>] {
 function getDevMiddleware(): ReadonlyArray<Middleware> {
   /* eslint-disable global-require */
   const { createLogger: createLoggerMiddleware } = require('redux-logger');
-  const createImmutableStateInvariantMiddleware = require('redux-immutable-state-invariant');
+  const {
+    default: createImmutableStateInvariantMiddleware,
+  } = require('redux-immutable-state-invariant');
   /* eslint-enable global-require */
 
   const immutableStateInvariantMiddleware = createImmutableStateInvariantMiddleware();
@@ -51,7 +55,7 @@ function getDevMiddleware(): ReadonlyArray<Middleware> {
   return middleware;
 }
 
-function hotReloadReducers(store: Store): void {
+function hotReloadReducers(store: ReduxStore): void {
   if (isDevelopmentEnvironment && (module as any).hot) {
     (module as any).hot.accept('../modules/rootReducer', () =>
       store.replaceReducer(rootReducer),

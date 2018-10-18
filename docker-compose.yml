@@ -4,7 +4,9 @@ services:
     image: jwilder/nginx-proxy:latest
     ports:
       - '80:80'
+      - '443:443'
     volumes:
+      - ./keys:/etc/nginx/certs:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
     depends_on:
       - api
@@ -24,12 +26,13 @@ services:
     environment:
       - VIRTUAL_HOST=api.dev.loop.com
       - VIRTUAL_PORT=4000
+      - CERT_NAME=shared
       - NODE_ENV=development
       - DB_HOST=postgres
       - DB_USER=postgres
       - DB_PASSWORD=postgres
       - DB_NAME=loop_dev
-      - WEB_ROOT_URL=http://dev.loop.com
+      - WEB_ROOT_URL=https://dev.loop.com
     env_file: .env
 
   web:
@@ -38,16 +41,16 @@ services:
       dockerfile: dev.dockerfile
     ports:
       - '3000:4000'
-      - '4001:4001'
     volumes:
       - ./projects/web:/usr/src/app
       - /usr/src/app/node_modules
     environment:
       - VIRTUAL_HOST=dev.loop.com
       - VIRTUAL_PORT=4000
+      - CERT_NAME=shared
       - NODE_ENV=development
-      - API_ENDPOINT=http://api.dev.loop.com
-      - GRAPHQL_WS_ENDPOINT=ws://api.dev.loop.com/graphql
+      - API_ENDPOINT=https://api.dev.loop.com
+      - GRAPHQL_WS_ENDPOINT=wss://api.dev.loop.com/graphql
     env_file: .env
 
   postgres:

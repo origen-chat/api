@@ -2,15 +2,16 @@
 node_modules
 
 # Artifacts
-projects/api/dist
-projects/web/dist
-projects/api/schema.json
+/projects/api/dist
+/projects/web/dist
+/projects/api/schema.json
 
 # Testing
 coverage
 
 # Misc
-k8s/**/charts
+/k8s/**/charts
+/keys
 .env
 *.pyc
 .DS_Store

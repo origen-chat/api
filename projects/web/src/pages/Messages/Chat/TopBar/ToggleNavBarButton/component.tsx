@@ -1,10 +1,16 @@
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import styled from 'styled-components';
 
-import { StoreConsumer } from '../../../../../components';
-import { NavBarState, SetNavBarState } from '../../../../../store';
+import {
+  navBarActions,
+  navBarSelectors,
+  NavBarState,
+  ReduxState,
+} from '../../../../../modules';
 
 const Wrapper = styled.div`
   @media (min-width: ${props => props.theme.breakpoints.lg}) {
@@ -18,13 +24,12 @@ const StyledButton = styled.button`
   color: white;
 `;
 
-export type BaseToggleNavBarButtonProps = Readonly<{
-  navBarState: NavBarState;
-  setNavBarState: SetNavBarState;
-}>;
+export type ToggleNavBarButtonProps = StateProps & DispatchProps & OwnProps;
 
-export class BaseToggleNavBarButton extends React.Component<
-  BaseToggleNavBarButtonProps
+export type OwnProps = Readonly<{}>;
+
+export class ToggleNavBarButton extends React.Component<
+  ToggleNavBarButtonProps
 > {
   private toggleNavBar = () => {
     const nextNavBarState = this.getNextNavBarState();
@@ -52,15 +57,27 @@ export class BaseToggleNavBarButton extends React.Component<
   }
 }
 
-export const ToggleNavBarButton: React.SFC = () => (
-  <StoreConsumer>
-    {store => (
-      <BaseToggleNavBarButton
-        navBarState={store.state.navBarState}
-        setNavBarState={store.actions.setNavBarState}
-      />
-    )}
-  </StoreConsumer>
-);
+const mapStateToProps = (state: ReduxState) => ({
+  navBarState: navBarSelectors.getNavBarState(state),
+});
 
-export default ToggleNavBarButton;
+type StateProps = ReturnType<typeof mapStateToProps>;
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  setNavBarState: (state: NavBarState) =>
+    dispatch(navBarActions.setState(state)),
+});
+
+type DispatchProps = ReturnType<typeof mapDispatchToProps>;
+
+export const EnhancedToggleNavBarButton = connect<
+  StateProps,
+  DispatchProps,
+  OwnProps,
+  ReduxState
+>(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ToggleNavBarButton);
+
+export default EnhancedToggleNavBarButton;

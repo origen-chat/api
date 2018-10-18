@@ -11,10 +11,10 @@ export async function getUserBySocialCredentialsOrRegisterUser(
   socialCredentials: SocialCredentials,
   userData: InsertUserArgs,
 ): Promise<User> {
-  const user = await getUserBySocialCredentials(socialCredentials);
+  let user = await getUserBySocialCredentials(socialCredentials);
 
   if (!user) {
-    return getUserByEmailOrRegisterUser(socialCredentials, userData);
+    user = await getUserByEmailOrRegisterUser(socialCredentials, userData);
   }
 
   return user;
@@ -26,10 +26,10 @@ async function getUserByEmailOrRegisterUser(
 ): Promise<User> {
   const { email } = userData;
 
-  const user = await getUserByEmail(email);
+  let user = await getUserByEmail(email);
 
   if (!user) {
-    return registerUser(socialCredentials, userData);
+    user = await registerUser(socialCredentials, userData);
   }
 
   return user;
@@ -52,6 +52,7 @@ async function insertUserAndLinkSocialCredentials(
   userData: InsertUserArgs,
 ): Promise<User> {
   const transaction = await beginTransaction();
+
   try {
     const opts: DBOptions = { transaction };
 

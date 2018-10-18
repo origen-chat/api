@@ -4,7 +4,8 @@ import * as selectors from './selectors';
 
 export {
   default as reducer,
-  ModalPropsStack,
-  ModalStackReduxState,
+  stateReducer,
+  NavBarReduxState,
+  NavBarState,
 } from './reducers';
 export { actionTypes, scope, actions, selectors };

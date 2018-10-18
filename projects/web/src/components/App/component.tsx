@@ -6,17 +6,17 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import { Cache } from '../../apolloClient';
+import { ReduxStore } from '../../store';
 import { Theme } from '../../theme';
 import PageView from '../PageView';
 import ErrorBoundary from './ErrorBoundary';
 import ModalStack from './ModalStack';
 import ProvidedIntlProvider from './ProvidedIntlProvider';
 import Routes from './Routes';
-import ToastQueue from './ToastQueue';
 
 export type AppProps = Readonly<{
   apolloClient: ApolloClient<Cache>;
-  reduxStore: Store;
+  reduxStore: ReduxStore;
   theme: Theme;
 }>;
 
@@ -34,7 +34,6 @@ export const App: React.SFC<AppProps> = ({
               <PageView />
               <Routes />
               <ModalStack />
-              <ToastQueue />
             </ErrorBoundary>
           </ReduxProvider>
         </ThemeProvider>

@@ -3,18 +3,21 @@ import { combineReducers, Reducer } from 'redux';
 import { PopModalAction, PushModalAction } from './actions';
 import actionTypes from './actionTypes';
 
-export type ModalStackState = Readonly<{
-  modalStack: ModalStack;
+export type ModalStackReduxState = Readonly<{
+  modalPropsStack: ModalPropsStack;
 }>;
 
-export type ModalStack = ReadonlyArray<{}>;
+export type ModalPropsStack = ReadonlyArray<{
+  type: string;
+  [name: string]: any;
+}>;
 
-const modalStackReducerInitialState: ModalStack = [];
+const modalPropsStackReducerInitialState: ModalPropsStack = [];
 
-export const modalStackReducer: Reducer<
-  ModalStackState['modalStack'],
+export const modalPropsStackReducer: Reducer<
+  ModalStackReduxState['modalPropsStack'],
   PushModalAction | PopModalAction
-> = (state = modalStackReducerInitialState, action) => {
+> = (state = modalPropsStackReducerInitialState, action) => {
   if (action.type === actionTypes.PUSH_MODAL) {
     const newState = [(action as PushModalAction).payload, ...state];
 
@@ -32,8 +35,8 @@ export const modalStackReducer: Reducer<
   return state;
 };
 
-const reducer = combineReducers({
-  modalStack: modalStackReducer,
+const modalStackReducer = combineReducers({
+  modalPropsStack: modalPropsStackReducer,
 });
 
-export default reducer;
+export default modalStackReducer;

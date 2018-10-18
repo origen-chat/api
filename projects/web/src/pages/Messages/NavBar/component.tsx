@@ -1,15 +1,21 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import styled from 'styled-components';
 
-import { StoreConsumer } from '../../../components';
-import { NavBarState, SetNavBarState } from '../../../store';
+import {
+  navBarActions,
+  navBarSelectors,
+  NavBarState,
+  ReduxState,
+} from '../../../modules';
 import theme from '../../../theme';
 import Backdrop from './Backdrop';
 import ChannelsBar from './ChannelsBar';
 import WorkspacesBar from './WorkspacesBar';
 
 type GetNavBarXPositionArgs = Readonly<{
-  navBarState: NavBarState;
+  navBarState: WrapperProps['navBarState'];
   allowClosed?: boolean;
 }>;
 
@@ -28,7 +34,7 @@ function getNavBarXPosition({
   return '0';
 }
 
-type WrapperProps = Pick<BaseNavBarProps, 'navBarState'>;
+type WrapperProps = Pick<NavBarProps, 'navBarState'>;
 
 const Wrapper = styled.nav<WrapperProps>`
   --x-position: ${props =>
@@ -61,12 +67,11 @@ const Wrapper = styled.nav<WrapperProps>`
   }
 `;
 
-export type BaseNavBarProps = Readonly<{
-  navBarState: NavBarState;
-  setNavBarState: SetNavBarState;
-}>;
+export type NavBarProps = StateProps & DispatchProps & OwnProps;
 
-export class BaseNavBar extends React.PureComponent<BaseNavBarProps> {
+type OwnProps = Readonly<{}>;
+
+export class NavBar extends React.PureComponent<NavBarProps> {
   public componentDidMount() {
     this.addMediaQueryListener();
   }
@@ -131,15 +136,27 @@ export class BaseNavBar extends React.PureComponent<BaseNavBarProps> {
   }
 }
 
-const NavBar: React.SFC = () => (
-  <StoreConsumer>
-    {store => (
-      <BaseNavBar
-        navBarState={store.state.navBarState}
-        setNavBarState={store.actions.setNavBarState}
-      />
-    )}
-  </StoreConsumer>
-);
+const mapStateToProps = (state: ReduxState) => ({
+  navBarState: navBarSelectors.getNavBarState(state),
+});
 
-export default NavBar;
+type StateProps = ReturnType<typeof mapStateToProps>;
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  setNavBarState: (state: NavBarState) =>
+    dispatch(navBarActions.setState(state)),
+});
+
+type DispatchProps = ReturnType<typeof mapDispatchToProps>;
+
+export const EnhancedNavBar = connect<
+  StateProps,
+  DispatchProps,
+  OwnProps,
+  ReduxState
+>(
+  mapStateToProps,
+  mapDispatchToProps,
+)(NavBar);
+
+export default EnhancedNavBar;

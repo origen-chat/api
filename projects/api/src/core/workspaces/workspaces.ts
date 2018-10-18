@@ -31,41 +31,9 @@ export async function getWorkspaceByName(
   return workspace;
 }
 
-export type InsertWorkspaceArgs = Pick<Workspace, 'name' | 'displayName'> &
-  Partial<Pick<Workspace, 'description'>>;
-
-/**
- * Inserts a new workspace.
- */
-export async function insertWorkspace(
-  args: InsertWorkspaceArgs,
-): Promise<Workspace> {
-  const workspace: Workspace = await db
-    .insert(args)
-    .into(workspacesTableName)
-    .returning('*');
-
-  return workspace;
-}
-
 export type UpdateWorkspaceArgs = Partial<
   Pick<Workspace, 'name' | 'displayName' | 'description'>
 >;
-
-/**
- * Updates a workspace.
- */
-export async function updateWorkspace(
-  workspace: Workspace,
-  args: UpdateWorkspaceArgs,
-): Promise<Workspace> {
-  const updatedWorkspace: Workspace = await db(workspacesTableName)
-    .update(args)
-    .where({ id: workspace.id })
-    .returning('*');
-
-  return updatedWorkspace;
-}
 
 /**
  * Deletes a workspace.

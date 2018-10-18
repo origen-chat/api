@@ -1,18 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import { StoreConsumer } from '../../../components';
-import { NavBarState, StoreContextValue } from '../../../store';
+import { navBarSelectors, ReduxState } from '../../../modules';
 import TopBar from './TopBar';
 
-export type BaseChatProps = Readonly<{
-  navBarState: NavBarState;
-}>;
-
-type WrapperProps = Pick<BaseChatProps, 'navBarState'>;
+type WrapperProps = Pick<ChatProps, 'navBarState'>;
 
 type GetWrapperLeftMarginArgs = Readonly<{
-  navBarState: NavBarState;
+  navBarState: WrapperProps['navBarState'];
   allowXPosition0: boolean;
 }>;
 
@@ -49,25 +45,24 @@ const Wrapper = styled.section<WrapperProps>`
   }
 `;
 
-export const BaseChat: React.SFC<BaseChatProps> = props => (
+export type ChatProps = StateProps & OwnProps;
+
+export type OwnProps = Readonly<{}>;
+
+export const Chat: React.SFC<ChatProps> = props => (
   <Wrapper navBarState={props.navBarState}>
     <TopBar />
   </Wrapper>
 );
 
-export const Chat: React.SFC = () => (
-  <StoreConsumer>
-    {store => {
-      const baseChatProps = makeBaseChatProps(store);
+export type StateProps = ReturnType<typeof mapStateToProps>;
 
-      return <BaseChat {...baseChatProps} />;
-    }}
-  </StoreConsumer>
-);
+const mapStateToProps = (state: ReduxState) => ({
+  navBarState: navBarSelectors.getNavBarState(state),
+});
 
-function makeBaseChatProps(store: StoreContextValue): BaseChatProps {
-  const baseChatProps = { navBarState: store.state.navBarState };
-  return baseChatProps;
-}
+export const EnhancedChat = connect<StateProps, {}, OwnProps, ReduxState>(
+  mapStateToProps,
+)(Chat);
 
-export default Chat;
+export default EnhancedChat;
