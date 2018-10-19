@@ -1,5 +1,5 @@
-import 'core-js/fn/array/flat-map';
-import 'core-js/fn/array/flatten';
+import 'core-js/features/array/flat';
+import 'core-js/features/array/flat-map';
 
 import './config';
 import logger from './core/logger';
@@ -8,7 +8,7 @@ import { startServer } from './server/server';
 /**
  * Entry point of the application.
  */
-export async function start() {
+export async function startApplication() {
   handleUnhandledExceptions();
 
   await startServer();

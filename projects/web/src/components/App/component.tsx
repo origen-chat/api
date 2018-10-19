@@ -10,6 +10,7 @@ import { ReduxStore } from '../../store';
 import { Theme } from '../../theme';
 import PageView from '../PageView';
 import ErrorBoundary from './ErrorBoundary';
+import GlobalStyle from './GlobalStyle';
 import ModalStack from './ModalStack';
 import ProvidedIntlProvider from './ProvidedIntlProvider';
 import Routes from './Routes';
@@ -31,6 +32,7 @@ export const App: React.SFC<AppProps> = ({
         <ThemeProvider theme={theme}>
           <ReduxProvider store={reduxStore}>
             <ErrorBoundary>
+              <GlobalStyle />
               <PageView />
               <Routes />
               <ModalStack />

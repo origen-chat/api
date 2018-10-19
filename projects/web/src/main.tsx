@@ -8,7 +8,6 @@ import ReactDOM from 'react-dom';
 import { initializeAnalytics } from './analytics';
 import { Root } from './components';
 import { initializeErrorTracking } from './errorTracking';
-import './globalStyles';
 import { register as registerServiceWorker } from './serviceWorkerRegistration';
 
 export function startApplication(): void {
