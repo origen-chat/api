@@ -28,18 +28,18 @@ export const App: React.SFC<AppProps> = ({
 }) => (
   <Router>
     <ApolloProvider client={apolloClient}>
-      <ProvidedIntlProvider>
-        <ThemeProvider theme={theme}>
-          <ReduxProvider store={reduxStore}>
-            <ErrorBoundary>
-              <GlobalStyle />
-              <PageView />
-              <Routes />
-              <ModalStack />
-            </ErrorBoundary>
-          </ReduxProvider>
-        </ThemeProvider>
-      </ProvidedIntlProvider>
+      {/* <ProvidedIntlProvider> */}
+      <ThemeProvider theme={theme}>
+        <ReduxProvider store={reduxStore}>
+          <ErrorBoundary>
+            <GlobalStyle />
+            <PageView />
+            <Routes />
+            <ModalStack />
+          </ErrorBoundary>
+        </ReduxProvider>
+      </ThemeProvider>
+      {/* </ProvidedIntlProvider> */}
     </ApolloProvider>
   </Router>
 );

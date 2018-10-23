@@ -1,6 +1,13 @@
 import Knex from 'knex';
 
+import { constants, timestamps } from './helpers';
+
 const workspaceMembershipsTableName = 'workspaceMemberships';
+const usersTableName = 'users';
+const workspacesTableName = 'workspaces';
+
+const memberIdColumnName = 'memberId';
+const workspaceIdColumnName = 'workspaceId';
 
 export async function up(knex: Knex): Promise<void> {
   await createWorkspaceMembershipsTable(knex);
@@ -14,31 +21,24 @@ async function createWorkspaceMembershipsTable(knex: Knex): Promise<void> {
       .primary();
 
     table
-      .integer('memberId')
+      .integer(memberIdColumnName)
       .unsigned()
-      .notNullable();
+      .notNullable()
+      .references(`${usersTableName}.id`)
+      .onDelete(constants.onDelete.cascade);
 
     table
-      .foreign('memberId')
-      .references('users.id')
-      .onDelete('CASCADE');
-
-    table
-      .integer('workspaceId')
+      .integer(workspaceIdColumnName)
       .unsigned()
-      .notNullable();
-
-    table
-      .foreign('workspaceId')
-      .references('workspaces.id')
-      .onDelete('CASCADE');
+      .notNullable()
+      .references(`${workspacesTableName}.id`)
+      .onDelete(constants.onDelete.cascade);
 
     table.string('role', 32).notNullable();
 
-    table.unique(['memberId', 'workspaceId']);
+    table.unique([memberIdColumnName, workspaceIdColumnName]);
 
-    table.timestamp('insertedAt', true).defaultTo(knex.fn.now());
-    table.timestamp('updatedAt', true).defaultTo(knex.fn.now());
+    timestamps({ knex, table });
   });
 }
 

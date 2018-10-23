@@ -1,3 +1,5 @@
 import { db } from './src/core';
 
-export default db.knexConfigs;
+const { knexConfigs } = db;
+
+module.exports = knexConfigs;

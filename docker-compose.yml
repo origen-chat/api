@@ -5,6 +5,7 @@ services:
     ports:
       - '80:80'
       - '443:443'
+      - '4000:443'
     volumes:
       - ./keys:/etc/nginx/certs:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
@@ -17,7 +18,7 @@ services:
       context: ./projects/api
       dockerfile: dev.dockerfile
     ports:
-      - '4000:4000'
+      - '5000:4000'
     volumes:
       - ./projects/api:/usr/src/app
       - /usr/src/app/node_modules
@@ -54,7 +55,7 @@ services:
     env_file: .env
 
   postgres:
-    image: postgres:10.4
+    image: postgres:11.0
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:

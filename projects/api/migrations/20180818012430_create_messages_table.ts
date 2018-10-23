@@ -1,6 +1,12 @@
 import Knex from 'knex';
 
+import { constants, timestamps } from './helpers';
+
 const messagesTableName = 'messages';
+const channelsTableName = 'channels';
+const usersTableName = 'users';
+
+const channelIdColumnName = 'channelId';
 
 export async function up(knex: Knex): Promise<void> {
   await createMessagesTable(knex);
@@ -14,29 +20,28 @@ async function createMessagesTable(knex: Knex): Promise<void> {
       .primary();
 
     table
-      .integer('channelId')
+      .integer(channelIdColumnName)
       .unsigned()
-      .references('channels.id')
-      .onDelete('CASCADE')
+      .references(`${channelsTableName}.id`)
+      .onDelete(constants.onDelete.cascade)
       .notNullable();
 
     table
       .integer('senderId')
       .unsigned()
-      .references('users.id')
-      .onDelete('CASCADE')
+      .references(`${usersTableName}.id`)
+      .onDelete(constants.onDelete.cascade)
       .notNullable();
 
     table
       .integer('parentMessageId')
       .unsigned()
       .references(`${messagesTableName}.id`)
-      .onDelete('CASCADE');
+      .onDelete(constants.onDelete.cascade);
 
     table.jsonb('content').notNullable();
 
-    table.timestamp('insertedAt', true).defaultTo(knex.fn.now());
-    table.timestamp('updatedAt', true).defaultTo(knex.fn.now());
+    timestamps({ knex, table });
   });
 }
 

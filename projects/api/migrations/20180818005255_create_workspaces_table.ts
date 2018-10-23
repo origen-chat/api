@@ -1,5 +1,7 @@
 import Knex from 'knex';
 
+import { timestamps } from './helpers';
+
 const workspacesTableName = 'workspaces';
 
 export async function up(knex: Knex): Promise<void> {
@@ -22,8 +24,7 @@ async function createWorkspacesTable(knex: Knex): Promise<void> {
 
     table.string('description', 256);
 
-    table.timestamp('insertedAt', true).defaultTo(knex.fn.now());
-    table.timestamp('updatedAt', true).defaultTo(knex.fn.now());
+    timestamps({ knex, table });
   });
 }
 

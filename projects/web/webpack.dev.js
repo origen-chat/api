@@ -84,7 +84,7 @@ const webpackDevConfig = merge(webpackCommonConfig, {
   devServer: {
     open: true,
     host: '0.0.0.0',
-    allowedHosts: ['dev.loop.com'],
+    disableHostCheck: true,
     port: 4000,
     hot: true,
     contentBase: path.resolve(__dirname, 'public'),

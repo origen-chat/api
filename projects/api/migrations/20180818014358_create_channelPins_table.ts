@@ -1,6 +1,10 @@
 import Knex from 'knex';
 
+import { constants, timestamps } from './helpers';
+
 const channelPinsTableName = 'channelPins';
+const channelsTableName = 'channels';
+const messagesTableName = 'messages';
 
 export async function up(knex: Knex): Promise<void> {
   await createChannelPinsTable(knex);
@@ -16,19 +20,18 @@ async function createChannelPinsTable(knex: Knex): Promise<void> {
     table
       .integer('channelId')
       .unsigned()
-      .references('channels.id')
-      .onDelete('CASCADE')
+      .references(`${channelsTableName}.id`)
+      .onDelete(constants.onDelete.cascade)
       .notNullable();
 
     table
       .integer('messageId')
       .unsigned()
-      .references('messages.id')
-      .onDelete('CASCADE')
+      .references(`${messagesTableName}.id`)
+      .onDelete(constants.onDelete.cascade)
       .notNullable();
 
-    table.timestamp('insertedAt', true).defaultTo(knex.fn.now());
-    table.timestamp('updatedAt', true).defaultTo(knex.fn.now());
+    timestamps({ knex, table });
   });
 }
 

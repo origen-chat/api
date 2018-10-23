@@ -1,5 +1,7 @@
 import Knex from 'knex';
 
+import { timestamps } from './helpers';
+
 const usersTableName = 'users';
 
 export async function up(knex: Knex): Promise<void> {
@@ -26,10 +28,12 @@ async function createUsersTable(knex: Knex): Promise<void> {
     table.string('firstName', 64).nullable();
     table.string('lastName', 64).nullable();
 
+    table.string('bio', 512).nullable();
+    table.string('avatarUrl', 128).nullable();
+
     table.unique(['username', 'usernameIdentifier']);
 
-    table.timestamp('insertedAt', true).defaultTo(knex.fn.now());
-    table.timestamp('updatedAt', true).defaultTo(knex.fn.now());
+    timestamps({ knex, table });
   });
 }
 

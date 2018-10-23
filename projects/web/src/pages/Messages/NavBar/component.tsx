@@ -88,18 +88,22 @@ export class NavBar extends React.PureComponent<NavBarProps> {
     .minWidthBreakpointLgMediaQuery.matches;
 
   private addMediaQueryListener(): void {
-    this.minWidthBreakpointLgMediaQuery.addListener(
+    this.minWidthBreakpointLgMediaQuery.addEventListener(
+      'change',
       this.handleMinWidthBreakpointLgMediaQueryChange,
     );
   }
 
   private removeMediaQueryListener(): void {
-    this.minWidthBreakpointLgMediaQuery.removeListener(
+    this.minWidthBreakpointLgMediaQuery.removeEventListener(
+      'change',
       this.handleMinWidthBreakpointLgMediaQueryChange,
     );
   }
 
-  private readonly handleMinWidthBreakpointLgMediaQueryChange: MediaQueryListListener = event => {
+  private readonly handleMinWidthBreakpointLgMediaQueryChange = (
+    event: MediaQueryListEvent,
+  ) => {
     if (event.matches) {
       this.minWidthBreakpointLgMediaQueryMatches = true;
       this.openNavBar();

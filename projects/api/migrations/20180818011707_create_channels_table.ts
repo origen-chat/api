@@ -1,7 +1,15 @@
 import Knex from 'knex';
 
+import { constants, timestamps } from './helpers';
+
 const channelsTableName = 'channels';
+const workspacesTableName = 'workspaces';
+
 const nameColumnName = 'name';
+const workspaceIdColumnName = 'workspaceId';
+
+const namedChannelType = 'named';
+const directMessagesChannelType = 'directMessages';
 
 export async function up(knex: Knex): Promise<void> {
   await createChannelsTable(knex);
@@ -21,20 +29,18 @@ async function createChannelsTable(knex: Knex): Promise<void> {
     table.string('type', 32).notNullable();
 
     table
-      .integer('workspaceId')
+      .integer(workspaceIdColumnName)
       .unsigned()
-      .references('workspaces.id')
-      .onDelete('CASCADE')
+      .references(`${workspacesTableName}.id`)
+      .onDelete(constants.onDelete.cascade)
       .notNullable();
 
     table.string('topic', 128);
-
     table.string('purpose', 256);
 
-    table.unique(['workspaceId', 'name']);
+    table.unique([workspaceIdColumnName, nameColumnName]);
 
-    table.timestamp('insertedAt', true).defaultTo(knex.fn.now());
-    table.timestamp('updatedAt', true).defaultTo(knex.fn.now());
+    timestamps({ knex, table });
   });
 }
 
@@ -42,7 +48,7 @@ export async function createNameUniqueIndex(knex: Knex): Promise<void> {
   const uniqueIndexQuery = `
     CREATE UNIQUE INDEX channels_${nameColumnName}_index
     ON ${channelsTableName} (${nameColumnName})
-    WHERE type = 'named';
+    WHERE type = '${namedChannelType}';
   `;
 
   await knex.schema.raw(uniqueIndexQuery);
@@ -53,8 +59,8 @@ export async function addNonNullableNameConstraint(knex: Knex): Promise<void> {
     ALTER TABLE ${channelsTableName}
     ADD CONSTRAINT non_nullable_${nameColumnName}_on_named_channel
     CHECK (
-      (${nameColumnName} IS NOT NULL AND type = 'named') OR
-      (${nameColumnName} IS NULL AND type = 'directMessages')
+      (${nameColumnName} IS NOT NULL AND type = '${namedChannelType}') OR
+      (${nameColumnName} IS NULL AND type = '${directMessagesChannelType}')
     );
   `;
 

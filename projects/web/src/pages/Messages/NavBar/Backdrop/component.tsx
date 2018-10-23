@@ -26,7 +26,7 @@ export class Backdrop extends React.PureComponent<BackdropProps> {
     visible: false,
   };
 
-  private ref = React.createRef<HTMLElement>();
+  private ref = React.createRef<any>();
 
   private handleClick: React.EventHandler<React.SyntheticEvent> = event => {
     if (event.target !== this.ref.current) {
@@ -45,7 +45,7 @@ export class Backdrop extends React.PureComponent<BackdropProps> {
         mountOnEnter
         unmountOnExit
       >
-        {() => <Wrapper onClick={this.handleClick} innerRef={this.ref} />}
+        {() => <Wrapper onClick={this.handleClick} ref={this.ref} />}
       </CSSTransition>
     );
   }

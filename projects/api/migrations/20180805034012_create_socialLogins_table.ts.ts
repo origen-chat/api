@@ -1,6 +1,12 @@
 import Knex from 'knex';
 
+import { constants, timestamps } from './helpers';
+
 const socialLoginsTableName = 'socialLogins';
+const usersTableName = 'users';
+
+const providerUserIdColumnName = 'providerUserId';
+const providerColumnName = 'provider';
 
 export async function up(knex: Knex): Promise<void> {
   await createSocialLoginsTable(knex);
@@ -13,23 +19,19 @@ async function createSocialLoginsTable(knex: Knex): Promise<void> {
       .unsigned()
       .primary();
 
-    table.string('providerUserId', 128).notNullable();
-    table.string('provider', 16).notNullable();
+    table.string(providerUserIdColumnName, 128).notNullable();
+    table.string(providerColumnName, 16).notNullable();
 
     table
       .integer('userId')
       .unsigned()
-      .notNullable();
+      .notNullable()
+      .references(`${usersTableName}.id`)
+      .onDelete(constants.onDelete.cascade);
 
-    table
-      .foreign('userId')
-      .references('users.id')
-      .onDelete('CASCADE');
+    table.unique([providerUserIdColumnName, providerColumnName]);
 
-    table.unique(['providerUserId', 'provider']);
-
-    table.timestamp('insertedAt', true).defaultTo(knex.fn.now());
-    table.timestamp('updatedAt', true).defaultTo(knex.fn.now());
+    timestamps({ knex, table });
   });
 }
 

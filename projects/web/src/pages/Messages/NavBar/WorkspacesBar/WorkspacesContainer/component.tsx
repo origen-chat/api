@@ -74,7 +74,8 @@ export const BaseWorkapacesContainer: React.SFC<
       <Droppable droppableId="workspace-container">
         {provided => (
           <Wrapper
-            innerRef={provided.innerRef}
+            // @ts-ignore
+            ref={provided.innerRef}
             className={props.className}
             {...provided.droppableProps}
           >
