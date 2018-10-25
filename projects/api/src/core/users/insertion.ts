@@ -12,9 +12,9 @@ export type InsertUserArgs = Pick<User, 'username' | 'email'> &
  */
 export async function insertUser(
   args: InsertUserArgs,
-  opts: DBOptions = {},
+  options: DBOptions = {},
 ): Promise<User> {
-  const data = await processInsertUserData(args, opts);
+  const data = await processInsertUserData(args, options);
 
   const user = await doInsertUser(data);
 
@@ -23,11 +23,11 @@ export async function insertUser(
 
 async function processInsertUserData(
   args: InsertUserArgs,
-  opts: DBOptions = {},
+  options: DBOptions = {},
 ): Promise<DoInsertUserArgs> {
   const usernameIdentifier = await getUnusedUsernameIdentifier(
     args.username,
-    opts,
+    options,
   );
 
   const data: DoInsertUserArgs = {
@@ -46,15 +46,15 @@ export type DoInsertUserArgs = Pick<
 
 export async function doInsertUser(
   args: DoInsertUserArgs,
-  opts: DBOptions = {},
+  options: DBOptions = {},
 ): Promise<User> {
   const query = db
     .insert(args)
     .into(usersTableName)
     .returning('*');
 
-  if (opts.transaction) {
-    query.transacting(opts.transaction);
+  if (options.transaction) {
+    query.transacting(options.transaction);
   }
 
   const [user] = await query;

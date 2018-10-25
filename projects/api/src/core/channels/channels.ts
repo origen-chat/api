@@ -1,27 +1,16 @@
 import db from '../db';
-import { ID, Nullable } from '../types';
+import { DBOptions } from '../types';
 import { User } from '../users';
 import { getWorkspaceById, Workspace } from '../workspaces';
 import { channelsTableName } from './constants';
-import { Channel, NamedChannel } from './types';
-
-export async function getChannelById(id: ID): Promise<Nullable<Channel>> {
-  return getChannelBy({ id });
-}
-
-type GetChannelByArgs = Pick<Channel, 'id'>;
-
-async function getChannelBy(
-  args: GetChannelByArgs,
-): Promise<Nullable<Channel>> {
-  const channel: Nullable<Channel> = await db
-    .select('*')
-    .from(channelsTableName)
-    .where(args)
-    .first();
-
-  return channel;
-}
+import { getDirectMessagesChannelByMembers } from './get';
+import { insertChannel } from './insertion';
+import {
+  Channel,
+  ChannelType,
+  DirectMessagesChannel,
+  NamedChannel,
+} from './types';
 
 export async function getWorkspace(channel: Channel): Promise<Workspace> {
   const workspace = (await getWorkspaceById(channel.workspaceId))!;
@@ -29,19 +18,25 @@ export async function getWorkspace(channel: Channel): Promise<Workspace> {
   return workspace;
 }
 
-export type InsertChannelArgs = Pick<Channel, 'type' | 'workspaceId'> &
-  (
-    | (Pick<NamedChannel, 'name'> &
-        Partial<Pick<NamedChannel, 'topic' | 'purpose'>>)
-    | Readonly<{ members: ReadonlyArray<User> }>);
+export async function getOrInsertDirectMessagesChannel(
+  workspace: Workspace,
+  members: ReadonlyArray<User>,
+  options: DBOptions = {},
+): Promise<DirectMessagesChannel> {
+  const existingChannel = await getDirectMessagesChannelByMembers(
+    members,
+    options,
+  );
 
-export async function insertChannel(args: InsertChannelArgs): Promise<Channel> {
-  const channel: Channel = await db
-    .insert(args)
-    .into(channelsTableName)
-    .returning('*');
+  if (existingChannel) {
+    return existingChannel;
+  }
 
-  return channel;
+  const insertedChannel = await insertChannel({
+    workspace,
+    type: ChannelType.DirectMessages,
+    members,
+  });
 }
 
 export type UpdateChannelArgs = Partial<

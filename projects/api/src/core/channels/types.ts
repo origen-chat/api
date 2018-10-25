@@ -5,6 +5,7 @@ export type Channel = NamedChannel | DirectMessagesChannel;
 export type NamedChannel = Readonly<{
   name: string;
   type: ChannelType.Named;
+  privacy: ChannelPrivacy;
   topic: Nullable<string>;
   purpose: Nullable<string>;
 }> &
@@ -24,4 +25,9 @@ export type DirectMessagesChannel = Readonly<{
 export enum ChannelType {
   Named = 'named',
   DirectMessages = 'directMessages',
+}
+
+export enum ChannelPrivacy {
+  Public = 'public',
+  Private = 'private',
 }

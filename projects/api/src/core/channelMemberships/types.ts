@@ -1,16 +1,16 @@
 import { ID, Identifiable, Timestamps } from '../types';
 
-export type WorkspaceMembership = Readonly<{
+export type ChannelMembership = Readonly<{
   memberId: ID;
-  workspaceId: ID;
-
-  role: WorkspaceMembershipRole;
+  channelId: ID;
+  role: ChannelMembershipRole;
 }> &
   Identifiable &
   Timestamps;
 
-export enum WorkspaceMembershipRole {
+export enum ChannelMembershipRole {
   Owner = 'owner',
   Admin = 'admin',
   Member = 'member',
+  Guest = 'guest',
 }

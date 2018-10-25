@@ -13,9 +13,9 @@ export type UpdateWorkspaceArgs = Partial<
 export async function updateWorkspace(
   workspace: Workspace,
   args: UpdateWorkspaceArgs,
-  opts: DBOptions = {},
+  options: DBOptions = {},
 ): Promise<Workspace> {
-  const updatedWorkspace = await doUpdateWorkspace(workspace, args, opts);
+  const updatedWorkspace = await doUpdateWorkspace(workspace, args, options);
 
   return updatedWorkspace;
 }
@@ -27,15 +27,15 @@ export type DoUpdateWorkspaceArgs = Partial<
 export async function doUpdateWorkspace(
   workspace: Workspace,
   args: DoUpdateWorkspaceArgs,
-  opts: DBOptions = {},
+  options: DBOptions = {},
 ): Promise<Workspace> {
   const query = db(workspacesTableName)
     .update(args)
     .where({ id: workspace.id })
     .returning('*');
 
-  if (opts.transaction) {
-    query.transacting(opts.transaction);
+  if (options.transaction) {
+    query.transacting(options.transaction);
   }
 
   const [updatedWorkspace] = await query;

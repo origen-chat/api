@@ -12,6 +12,7 @@
     "predownload-graphql-schema": "rimraf schema.json",
     "migrate": "knex migrate:latest",
     "make-migration": "knex migrate:make",
+    "rollback-migration": "knex migrate:rollback",
     "test": "jest",
     "test:ci": "yarn test --coverage",
     "test:watch": "jest --onlyChanged --watch",

@@ -11,18 +11,18 @@ export async function getUserById(id: ID): Promise<Nullable<User>> {
 
 export async function getUserByUniqueUsername(
   uniqueUsername: UniqueUsername,
-  opts: DBOptions = {},
+  options: DBOptions = {},
 ): Promise<Nullable<User>> {
-  const user = await getUserBy(uniqueUsername, opts);
+  const user = await getUserBy(uniqueUsername, options);
 
   return user;
 }
 
 export async function getUserByEmail(
   email: Email,
-  opts: DBOptions = {},
+  options: DBOptions = {},
 ): Promise<Nullable<User>> {
-  const user = await getUserBy({ email }, opts);
+  const user = await getUserBy({ email }, options);
 
   return user;
 }
@@ -34,7 +34,7 @@ export type GetUserByArgs =
 
 async function getUserBy(
   args: GetUserByArgs,
-  opts: DBOptions = {},
+  options: DBOptions = {},
 ): Promise<Nullable<User>> {
   const query = db
     .select('*')
@@ -42,8 +42,8 @@ async function getUserBy(
     .where(args)
     .first();
 
-  if (opts.transaction) {
-    query.transacting(opts.transaction);
+  if (options.transaction) {
+    query.transacting(options.transaction);
   }
 
   const user: Nullable<User> = await query;

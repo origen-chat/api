@@ -7,6 +7,7 @@ const workspacesTableName = 'workspaces';
 
 const nameColumnName = 'name';
 const workspaceIdColumnName = 'workspaceId';
+const typeColumnName = 'type';
 
 const namedChannelType = 'named';
 const directMessagesChannelType = 'directMessages';
@@ -26,7 +27,9 @@ async function createChannelsTable(knex: Knex): Promise<void> {
 
     table.string(nameColumnName, 64);
 
-    table.string('type', 32).notNullable();
+    table.string(typeColumnName, 32).notNullable();
+
+    table.string('privacy', 32).notNullable();
 
     table
       .integer(workspaceIdColumnName)
@@ -46,9 +49,9 @@ async function createChannelsTable(knex: Knex): Promise<void> {
 
 export async function createNameUniqueIndex(knex: Knex): Promise<void> {
   const uniqueIndexQuery = `
-    CREATE UNIQUE INDEX channels_${nameColumnName}_index
-    ON ${channelsTableName} (${nameColumnName})
-    WHERE type = '${namedChannelType}';
+    CREATE UNIQUE INDEX ${channelsTableName}_${nameColumnName}_index
+    ON "${channelsTableName}" ("${nameColumnName}")
+    WHERE "${typeColumnName}" = '${namedChannelType}';
   `;
 
   await knex.schema.raw(uniqueIndexQuery);
@@ -56,11 +59,11 @@ export async function createNameUniqueIndex(knex: Knex): Promise<void> {
 
 export async function addNonNullableNameConstraint(knex: Knex): Promise<void> {
   const constraintQuery = `
-    ALTER TABLE ${channelsTableName}
+    ALTER TABLE "${channelsTableName}"
     ADD CONSTRAINT non_nullable_${nameColumnName}_on_named_channel
     CHECK (
-      (${nameColumnName} IS NOT NULL AND type = '${namedChannelType}') OR
-      (${nameColumnName} IS NULL AND type = '${directMessagesChannelType}')
+      ("${nameColumnName}" IS NOT NULL AND "${typeColumnName}" = '${namedChannelType}')
+      OR ("${nameColumnName}" IS NULL AND "${typeColumnName}" = '${directMessagesChannelType}')
     );
   `;
 

@@ -6,6 +6,9 @@ const channelPinsTableName = 'channelPins';
 const channelsTableName = 'channels';
 const messagesTableName = 'messages';
 
+const channelIdColumnName = 'channelId';
+const messageIdColumnName = 'messageId';
+
 export async function up(knex: Knex): Promise<void> {
   await createChannelPinsTable(knex);
 }
@@ -18,18 +21,20 @@ async function createChannelPinsTable(knex: Knex): Promise<void> {
       .primary();
 
     table
-      .integer('channelId')
+      .integer(channelIdColumnName)
       .unsigned()
       .references(`${channelsTableName}.id`)
       .onDelete(constants.onDelete.cascade)
       .notNullable();
 
     table
-      .integer('messageId')
+      .integer(messageIdColumnName)
       .unsigned()
       .references(`${messagesTableName}.id`)
       .onDelete(constants.onDelete.cascade)
       .notNullable();
+
+    table.unique([channelIdColumnName, messageIdColumnName]);
 
     timestamps({ knex, table });
   });

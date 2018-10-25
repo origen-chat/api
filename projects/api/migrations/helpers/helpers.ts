@@ -14,5 +14,8 @@ type TimestampArgs = Pick<TimestampsArgs, 'knex' | 'table'> &
   Readonly<{ columnName: string }>;
 
 function timestamp({ knex, table, columnName }: TimestampArgs): void {
-  table.timestamp(columnName, true).defaultTo(knex.fn.now());
+  table
+    .timestamp(columnName, true)
+    .notNullable()
+    .defaultTo(knex.fn.now());
 }

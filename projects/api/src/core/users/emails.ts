@@ -4,7 +4,7 @@ import { doUpdateUser, DoUpdateUserArgs } from './update';
 
 export async function verifyEmail(
   user: User,
-  opts: DBOptions = {},
+  options: DBOptions = {},
 ): Promise<User> {
   if (!user.unverifiedEmail) {
     throw new Error("user doesn't have an unverified email to verify");
@@ -15,7 +15,7 @@ export async function verifyEmail(
     unverifiedEmail: null,
   };
 
-  const updatedUser = await doUpdateUser(user, data, opts);
+  const updatedUser = await doUpdateUser(user, data, options);
 
   return updatedUser;
 }

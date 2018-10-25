@@ -14,7 +14,7 @@ export type InsertMessageArgs = Pick<
  */
 export async function insertUser(
   args: InsertMessageArgs,
-  opts: DBOptions = {},
+  options: DBOptions = {},
 ): Promise<Message> {
   const message = await doInsertMessage(args);
 
@@ -29,15 +29,15 @@ export type DoInsertMessageArgs = Pick<
 
 export async function doInsertMessage(
   args: DoInsertMessageArgs,
-  opts: DBOptions = {},
+  options: DBOptions = {},
 ): Promise<Message> {
   const query = db
     .insert(args)
     .into(messagesTableName)
     .returning('*');
 
-  if (opts.transaction) {
-    query.transacting(opts.transaction);
+  if (options.transaction) {
+    query.transacting(options.transaction);
   }
 
   const [message] = await query;

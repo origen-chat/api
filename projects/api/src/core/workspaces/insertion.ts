@@ -12,9 +12,9 @@ export type InsertWorkspaceArgs = Pick<Workspace, 'name' | 'displayName'> &
  */
 export async function insertWorkspace(
   args: InsertWorkspaceArgs,
-  opts: DBOptions = {},
+  options: DBOptions = {},
 ): Promise<Workspace> {
-  const workspace = await doInsertWorkspace(args, opts);
+  const workspace = await doInsertWorkspace(args, options);
 
   return workspace;
 }
@@ -24,15 +24,15 @@ export type DoInsertWorkspaceArgs = Pick<Workspace, 'name' | 'displayName'> &
 
 export async function doInsertWorkspace(
   args: DoInsertWorkspaceArgs,
-  opts: DBOptions = {},
+  options: DBOptions = {},
 ): Promise<Workspace> {
   const query = db
     .insert(args)
     .into(workspacesTableName)
     .returning('*');
 
-  if (opts.transaction) {
-    query.transacting(opts.transaction);
+  if (options.transaction) {
+    query.transacting(options.transaction);
   }
 
   const [workspace] = await query;

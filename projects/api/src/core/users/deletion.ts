@@ -8,24 +8,24 @@ import { User } from './types';
  */
 export async function deleteUser(
   user: User,
-  opts: DBOptions = {},
+  options: DBOptions = {},
 ): Promise<User> {
-  await doDeleteUser(user, opts);
+  await doDeleteUser(user, options);
 
   return user;
 }
 
 export async function doDeleteUser(
   user: User,
-  opts: DBOptions = {},
+  options: DBOptions = {},
 ): Promise<void> {
   const query = db
     .delete()
     .from(usersTableName)
     .where({ id: user.id });
 
-  if (opts.transaction) {
-    query.transacting(opts.transaction);
+  if (options.transaction) {
+    query.transacting(options.transaction);
   }
 
   await query;

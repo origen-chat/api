@@ -54,10 +54,10 @@ async function insertUserAndLinkSocialCredentials(
   const transaction = await beginTransaction();
 
   try {
-    const opts: DBOptions = { transaction };
+    const options: DBOptions = { transaction };
 
-    const user = await insertUser(userData, opts);
-    await linkSocialCredentialsToUser(user, socialCredentials, opts);
+    const user = await insertUser(userData, options);
+    await linkSocialCredentialsToUser(user, socialCredentials, options);
 
     await transaction.commit();
 

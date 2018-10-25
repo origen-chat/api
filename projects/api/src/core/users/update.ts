@@ -14,18 +14,18 @@ export type UpdateUserArgs = Partial<Pick<User, 'username' | 'email'>>;
 export async function updateUser(
   user: User,
   args: UpdateUserArgs,
-  opts: DBOptions = {},
+  options: DBOptions = {},
 ): Promise<User> {
-  const data = await processUpdateUserData(args, opts);
+  const data = await processUpdateUserData(args, options);
 
-  const updatedUser = await doUpdateUser(user, data, opts);
+  const updatedUser = await doUpdateUser(user, data, options);
 
   return updatedUser;
 }
 
 async function processUpdateUserData(
   args: UpdateUserArgs,
-  opts: DBOptions = {},
+  options: DBOptions = {},
 ): Promise<DoUpdateUserArgs> {
   const data: Mutable<DoUpdateUserArgs> = omit(['email'], args);
 
@@ -36,7 +36,7 @@ async function processUpdateUserData(
   if (args.username) {
     data.usernameIdentifier = await getUnusedUsernameIdentifier(
       args.username,
-      opts,
+      options,
     );
   }
 
@@ -50,15 +50,15 @@ export type DoUpdateUserArgs = Partial<
 export async function doUpdateUser(
   user: User,
   args: DoUpdateUserArgs,
-  opts: DBOptions = {},
+  options: DBOptions = {},
 ): Promise<User> {
   const query = db(usersTableName)
     .update(args)
     .where({ id: user.id })
     .returning('*');
 
-  if (opts.transaction) {
-    query.transacting(opts.transaction);
+  if (options.transaction) {
+    query.transacting(options.transaction);
   }
 
   const [updatedUser] = await query;

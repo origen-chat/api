@@ -9,13 +9,13 @@ import { UsernameIdentifier } from './types';
 
 export async function getUnusedUsernameIdentifier(
   username: string,
-  opts: DBOptions = {},
+  options: DBOptions = {},
 ): Promise<UsernameIdentifier> {
-  checkUsernameCount(username, opts);
+  checkUsernameCount(username, options);
 
   const usernameIdentifier = await doGetUnusedUsernameIdentifier(
     username,
-    opts,
+    options,
   );
 
   return usernameIdentifier;
@@ -23,9 +23,9 @@ export async function getUnusedUsernameIdentifier(
 
 async function checkUsernameCount(
   username: string,
-  opts: DBOptions = {},
+  options: DBOptions = {},
 ): Promise<void> {
-  const usernameCount = await getUsernameCount(username, opts);
+  const usernameCount = await getUsernameCount(username, options);
 
   if (usernameCount === maxUsernameCount) {
     throw new Error('too many users with the same username');
@@ -34,7 +34,7 @@ async function checkUsernameCount(
 
 async function getUsernameCount(
   username: string,
-  opts: DBOptions = {},
+  options: DBOptions = {},
 ): Promise<number> {
   const { count } = await db
     .from(usersTableName)
@@ -47,7 +47,7 @@ async function getUsernameCount(
 
 async function doGetUnusedUsernameIdentifier(
   username: string,
-  opts: DBOptions = {},
+  options: DBOptions = {},
 ): Promise<UsernameIdentifier> {
   const sqlQuery = `
     SELECT
@@ -67,8 +67,8 @@ async function doGetUnusedUsernameIdentifier(
 
   const query = db.raw(sqlQuery, [maxUsernameCount, username]);
 
-  if (opts.transaction) {
-    query.transacting(opts.transaction);
+  if (options.transaction) {
+    query.transacting(options.transaction);
   }
 
   const {

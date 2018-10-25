@@ -25,11 +25,11 @@ export async function getUserBySocialCredentials(
 export async function linkSocialCredentialsToUser(
   user: User,
   socialCredentials: SocialCredentials,
-  opts: DBOptions = {},
+  options: DBOptions = {},
 ): Promise<SocialLogin> {
   const args: InsertSocialLoginArgs = { userId: user.id, ...socialCredentials };
 
-  const socialLogin = await insertSocialLogin(args, opts);
+  const socialLogin = await insertSocialLogin(args, options);
 
   return socialLogin;
 }
@@ -41,15 +41,15 @@ type InsertSocialLoginArgs = Pick<
 
 async function insertSocialLogin(
   args: InsertSocialLoginArgs,
-  opts: DBOptions = {},
+  options: DBOptions = {},
 ): Promise<SocialLogin> {
   const query = db
     .insert(args)
     .into(socialLoginsTableName)
     .returning('*');
 
-  if (opts.transaction) {
-    query.transacting(opts.transaction);
+  if (options.transaction) {
+    query.transacting(options.transaction);
   }
 
   const [socialLogin] = await query;
