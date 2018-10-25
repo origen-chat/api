@@ -1,4 +1,4 @@
-import db from '../db';
+import db, { transact } from '../db';
 import { DBOptions } from '../types';
 import { User } from '../users';
 import { getWorkspaceById, Workspace } from '../workspaces';
@@ -23,20 +23,34 @@ export async function getOrInsertDirectMessagesChannel(
   members: ReadonlyArray<User>,
   options: DBOptions = {},
 ): Promise<DirectMessagesChannel> {
-  const existingChannel = await getDirectMessagesChannelByMembers(
-    members,
-    options,
+  const namedChannel = await transact(
+    async transaction => {
+      const optionsWithTransaction: DBOptions = { transaction };
+
+      const existingChannel = await getDirectMessagesChannelByMembers(
+        members,
+        optionsWithTransaction,
+      );
+
+      if (existingChannel) {
+        return existingChannel;
+      }
+
+      const insertedChannel = await insertChannel(
+        {
+          workspace,
+          type: ChannelType.DirectMessages,
+          members,
+        },
+        optionsWithTransaction,
+      );
+
+      return insertedChannel;
+    },
+    { transactionFromBefore: options.transaction },
   );
 
-  if (existingChannel) {
-    return existingChannel;
-  }
-
-  const insertedChannel = await insertChannel({
-    workspace,
-    type: ChannelType.DirectMessages,
-    members,
-  });
+  return namedChannel;
 }
 
 export type UpdateChannelArgs = Partial<

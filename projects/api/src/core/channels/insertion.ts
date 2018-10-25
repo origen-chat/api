@@ -21,15 +21,23 @@ export type InsertChannelArgs =
  * Inserts a channel.
  */
 export async function insertChannel(
+  args: InsertNamedChannelArgs,
+  options?: DBOptions,
+): Promise<NamedChannel>;
+export async function insertChannel(
+  args: InsertDirectMessagesChannelArgs,
+  options?: DBOptions,
+): Promise<DirectMessagesChannel>;
+export async function insertChannel(
   args: InsertChannelArgs,
   options: DBOptions = {},
 ): Promise<Channel> {
   let channel;
 
   if (args.type === ChannelType.Named) {
-    channel = await insertNamedChannel(args);
+    channel = await insertNamedChannel(args, options);
   } else {
-    channel = await insertDirectMessagesChannel(args);
+    channel = await insertDirectMessagesChannel(args, options);
   }
 
   return channel;
@@ -72,7 +80,7 @@ export async function insertNamedChannel(
 
 export type InsertDirectMessagesChannelArgs = Pick<
   DirectMessagesChannel,
-  'workspaceId' | 'type'
+  'type'
 > &
   Readonly<{ members: ReadonlyArray<User> }> &
   InsertChannelCommonArgs;
