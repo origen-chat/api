@@ -1178,10 +1178,10 @@
     "@types/glob" "*"
     "@types/node" "*"
 
-"@types/styled-components@4.0.2":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-4.0.2.tgz#4d60af452fd35e6be6bc7a46d1a317daaab613ea"
-  integrity sha512-LIm9OqdtG4WHDGkdPDOGpeIlIVYs2IBxXsW5xgt4tKwY/VGY40YvmlUq69GbHkvX+i35236GOcXh6DmYCFDrDg==
+"@types/styled-components@4.0.3":
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-4.0.3.tgz#8287e54e446302369eecc521243a2f32cf9122ee"
+  integrity sha512-LzntHlOKEOxUxMkVmQPNG88TsldeHO2NlwNkzHnw4wL8qhHQgd7u+u3yw84hZgoFh4ugsLCbFtjYcbP7v5WC5Q==
   dependencies:
     "@types/node" "*"
     "@types/react" "*"
