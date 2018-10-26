@@ -1,10 +1,22 @@
-export { Channel } from './types';
-export { getWorkspace } from './channels';
-export { getChannelById } from './get';
-export { insertChannel, InsertChannelArgs } from './insertion';
+export {
+  Channel,
+  NamedChannel,
+  DirectMessagesChannel,
+  ChannelPrivacy,
+  ChannelType,
+} from './types';
+export {
+  channelsTableName,
+  maxUsersInDirectMessagesChannel,
+} from './constants';
 export {
   isNamedChannel,
   isDirectMessagesChannel,
   isPublicChannel,
 } from './predicates';
+export { getChannelById } from './get';
+export { insertChannel, InsertChannelArgs } from './insertion';
+export { updateChannel, UpdateChannelArgs } from './update';
+export { deleteChannel } from './deletion';
+export { getWorkspace, getOrInsertDirectMessagesChannel } from './channels';
 export { canSeeChannel } from './policy';

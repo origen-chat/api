@@ -1,5 +1,5 @@
 import { channelMembershipsTableName } from '../channelMemberships';
-import db from '../db';
+import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions, ID, Nullable } from '../types';
 import { User } from '../users';
 import { channelsTableName } from './constants';
@@ -13,12 +13,17 @@ type GetChannelByArgs = Pick<Channel, 'id'>;
 
 async function getChannelBy(
   args: GetChannelByArgs,
+  options: DBOptions = {},
 ): Promise<Nullable<Channel>> {
-  const channel: Nullable<Channel> = await db
+  const query = db
     .select('*')
     .from(channelsTableName)
     .where(args)
     .first();
+
+  maybeAddTransactionToQuery(query, options);
+
+  const channel: Nullable<Channel> = await query;
 
   return channel;
 }
@@ -44,9 +49,7 @@ export async function getDirectMessagesChannelByMembers(
     .groupBy(`${channelsTableName}.id`)
     .first();
 
-  if (options.transaction) {
-    query.transacting(options.transaction);
-  }
+  maybeAddTransactionToQuery(query, options);
 
   const channel = await query;
 

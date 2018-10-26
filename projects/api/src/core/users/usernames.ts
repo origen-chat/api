@@ -1,4 +1,4 @@
-import db from '../db';
+import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions } from '../types';
 import {
   maxUsernameCount,
@@ -11,7 +11,7 @@ export async function getUnusedUsernameIdentifier(
   username: string,
   options: DBOptions = {},
 ): Promise<UsernameIdentifier> {
-  checkUsernameCount(username, options);
+  await checkUsernameCount(username, options);
 
   const usernameIdentifier = await doGetUnusedUsernameIdentifier(
     username,
@@ -56,8 +56,8 @@ async function doGetUnusedUsernameIdentifier(
     LEFT JOIN
       (
         SELECT *
-        FROM users
-        WHERE users."username" = ?
+        FROM "users"
+        WHERE "users"."username" = ?
       ) AS u
       ON u."usernameIdentifier"::int = generate_series
     WHERE u."usernameIdentifier" IS NULL
@@ -67,9 +67,7 @@ async function doGetUnusedUsernameIdentifier(
 
   const query = db.raw(sqlQuery, [maxUsernameCount, username]);
 
-  if (options.transaction) {
-    query.transacting(options.transaction);
-  }
+  maybeAddTransactionToQuery(query, options);
 
   const {
     rows: [{ unusedUsernameIdentifier }],
@@ -82,10 +80,11 @@ async function doGetUnusedUsernameIdentifier(
   return paddedUnusedUsernameIdentifier;
 }
 
-function padUsernameIdentifier(usernameIdentifier: number | string): string {
-  const paddedUnusedUsernameIdentifier = usernameIdentifier
-    .toString()
-    .padStart(usernameIdentifierLength, '0');
+function padUsernameIdentifier(usernameIdentifier: string): string {
+  const paddedUnusedUsernameIdentifier = usernameIdentifier.padStart(
+    usernameIdentifierLength,
+    '0',
+  );
 
   return paddedUnusedUsernameIdentifier;
 }

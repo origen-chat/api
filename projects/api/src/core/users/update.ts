@@ -1,6 +1,6 @@
 import { omit } from 'ramda';
 
-import db from '../db';
+import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions, Mutable } from '../types';
 import { usersTableName } from './constants';
 import { User } from './types';
@@ -57,9 +57,7 @@ export async function doUpdateUser(
     .where({ id: user.id })
     .returning('*');
 
-  if (options.transaction) {
-    query.transacting(options.transaction);
-  }
+  maybeAddTransactionToQuery(query, options);
 
   const [updatedUser] = await query;
 

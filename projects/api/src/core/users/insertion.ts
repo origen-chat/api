@@ -1,4 +1,4 @@
-import db from '../db';
+import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions } from '../types';
 import { usersTableName } from './constants';
 import { User } from './types';
@@ -53,9 +53,7 @@ export async function doInsertUser(
     .into(usersTableName)
     .returning('*');
 
-  if (options.transaction) {
-    query.transacting(options.transaction);
-  }
+  maybeAddTransactionToQuery(query, options);
 
   const [user] = await query;
 

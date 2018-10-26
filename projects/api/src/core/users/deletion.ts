@@ -1,4 +1,4 @@
-import db from '../db';
+import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions } from '../types';
 import { usersTableName } from './constants';
 import { User } from './types';
@@ -24,9 +24,7 @@ export async function doDeleteUser(
     .from(usersTableName)
     .where({ id: user.id });
 
-  if (options.transaction) {
-    query.transacting(options.transaction);
-  }
+  maybeAddTransactionToQuery(query, options);
 
   await query;
 }

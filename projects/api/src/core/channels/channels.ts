@@ -1,16 +1,15 @@
-import db, { transact } from '../db';
+import { transact } from '../db';
 import { DBOptions } from '../types';
 import { User } from '../users';
-import { getWorkspaceById, Workspace } from '../workspaces';
-import { channelsTableName } from './constants';
+import {
+  areWorkspaceMembers,
+  getWorkspaceById,
+  Workspace,
+} from '../workspaces';
+import { maxUsersInDirectMessagesChannel } from './constants';
 import { getDirectMessagesChannelByMembers } from './get';
 import { insertChannel } from './insertion';
-import {
-  Channel,
-  ChannelType,
-  DirectMessagesChannel,
-  NamedChannel,
-} from './types';
+import { Channel, ChannelType, DirectMessagesChannel } from './types';
 
 export async function getWorkspace(channel: Channel): Promise<Workspace> {
   const workspace = (await getWorkspaceById(channel.workspaceId))!;
@@ -23,7 +22,41 @@ export async function getOrInsertDirectMessagesChannel(
   members: ReadonlyArray<User>,
   options: DBOptions = {},
 ): Promise<DirectMessagesChannel> {
-  const namedChannel = await transact(
+  await validateGetOrInsertDirectMessagesChannelArgs(
+    workspace,
+    members,
+    options,
+  );
+
+  const directMessagesChannel = await doGetOrInsertDirectMessagesChannel(
+    workspace,
+    members,
+    options,
+  );
+
+  return directMessagesChannel;
+}
+
+async function validateGetOrInsertDirectMessagesChannelArgs(
+  workspace: Workspace,
+  members: ReadonlyArray<User>,
+  options: DBOptions,
+): Promise<void> {
+  if (members.length > maxUsersInDirectMessagesChannel) {
+    throw new Error('too many users for a direct messages channel');
+  }
+
+  if (!areWorkspaceMembers(workspace, members, options)) {
+    throw new Error('at least one user is not a workspace member');
+  }
+}
+
+async function doGetOrInsertDirectMessagesChannel(
+  workspace: Workspace,
+  members: ReadonlyArray<User>,
+  options: DBOptions = {},
+): Promise<DirectMessagesChannel> {
+  const directMessagesChannel = await transact(
     async transaction => {
       const optionsWithTransaction: DBOptions = { transaction };
 
@@ -50,30 +83,5 @@ export async function getOrInsertDirectMessagesChannel(
     { transactionFromBefore: options.transaction },
   );
 
-  return namedChannel;
-}
-
-export type UpdateChannelArgs = Partial<
-  Pick<NamedChannel, 'name' | 'topic' | 'purpose'>
->;
-
-export async function updateChannel(
-  channel: Channel,
-  args: UpdateChannelArgs,
-): Promise<Channel> {
-  const updatedChannel: Channel = await db(channelsTableName)
-    .update(args)
-    .where({ id: channel.id })
-    .returning('*');
-
-  return updatedChannel;
-}
-
-export async function deleteChannel(channel: Channel): Promise<Channel> {
-  await db
-    .delete()
-    .from(channelsTableName)
-    .where({ id: channel.id });
-
-  return channel;
+  return directMessagesChannel;
 }

@@ -1,5 +1,6 @@
-import { Transaction } from 'knex';
+import { QueryBuilder, Raw, Transaction } from 'knex';
 
+import { DBOptions } from '../types';
 import db from './db';
 
 export type TransactFunction<TReturn> = (
@@ -79,4 +80,22 @@ export async function rollbackTransaction(
   }
 
   await args.transaction.rollback();
+}
+
+export function maybeAddTransactionToQuery(
+  query: QueryBuilder,
+  options: DBOptions,
+): QueryBuilder;
+
+export function maybeAddTransactionToQuery(query: Raw, options: DBOptions): Raw;
+
+export function maybeAddTransactionToQuery(
+  query: QueryBuilder | Raw,
+  options: DBOptions,
+): QueryBuilder | Raw {
+  if (options.transaction) {
+    query.transacting(options.transaction);
+  }
+
+  return query;
 }

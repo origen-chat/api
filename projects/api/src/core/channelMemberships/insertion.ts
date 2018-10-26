@@ -1,5 +1,5 @@
 import { Channel } from '../channels';
-import db from '../db';
+import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions } from '../types';
 import { User } from '../users';
 import { channelMembershipsTableName } from './constants';
@@ -56,9 +56,7 @@ export async function doInsertChannelMembership(
     .into(channelMembershipsTableName)
     .returning('*');
 
-  if (options.transaction) {
-    query.transacting(options.transaction);
-  }
+  maybeAddTransactionToQuery(query, options);
 
   const [channelMembership] = await query;
 

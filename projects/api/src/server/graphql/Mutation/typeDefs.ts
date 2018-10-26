@@ -2,18 +2,19 @@ import { gql } from 'apollo-server-express';
 import { DocumentNode } from 'graphql';
 
 import { typeDefs as addBookmarkTypeDefs } from './addBookmark';
-import { typeDefs as addChannelTypeDefs } from './addChannel';
 import { typeDefs as addReactionTypeDefs } from './addReaction';
+import { typeDefs as createNamedChannelTypeDefs } from './createNamedChannel';
 import { typeDefs as createWorkspaceTypeDefs } from './createWorkspace';
 import { typeDefs as deleteChannelTypeDefs } from './deleteChannel';
 import { typeDefs as deleteMessageTypeDefs } from './deleteMessage';
 import { typeDefs as deleteWorkspaceTypeDefs } from './deleteWorkspace';
 import { typeDefs as editMessageTypeDefs } from './editMessage';
-import { typeDefs as joinChannelTypeDefs } from './joinChannel';
+import { typeDefs as joinNamedChannelTypeDefs } from './joinNamedChannel';
 import { typeDefs as leaveChannelTypeDefs } from './leaveChannel';
 import { typeDefs as pinMessageTypeDefs } from './pinMessage';
 import { typeDefs as removeBookmarkTypeDefs } from './removeBookmark';
 import { typeDefs as removeReactionTypeDefs } from './removeReaction';
+import { typeDefs as resumeDirectMessagesChannelTypeDefs } from './resumeDirectMessagesChannel';
 import { typeDefs as sendMessageTypeDefs } from './sendMessage';
 import { typeDefs as unpinMessageTypeDefs } from './unpinMessage';
 import { typeDefs as updateChannelTypeDefs } from './updateChannel';
@@ -26,11 +27,16 @@ export const Mutation = gql`
     updateWorkspace(input: UpdateWorkspaceInput): UpdateWorkspacePayload!
     deleteWorkspace(input: DeleteWorkspaceInput): DeleteWorkspacePayload!
 
-    addChannel(input: AddChannelInput): AddChannelPayload!
+    createNamedChannel(
+      input: CreateNamedChannelInput
+    ): CreateNamedChannelPayload!
+    resumeDirectMessagesChannel(
+      input: ResumeDirectMessagesChannelInput
+    ): ResumeDirectMessagesChannelPayload!
     updateChannel(input: UpdateChannelInput): UpdateChannelPayload!
     deleteChannel(input: DeleteChannelInput): DeleteChannelPayload!
 
-    joinChannel(input: JoinChannelInput): JoinChannelPayload!
+    joinNamedChannel(input: JoinNamedChannelInput): JoinNamedChannelPayload!
     leaveChannel(input: LeaveChannelInput): LeaveChannelPayload!
 
     sendMessage(input: SendMessageInput): SendMessagePayload!
@@ -56,10 +62,11 @@ const typeDefs: ReadonlyArray<DocumentNode> = [
   ...updateWorkspaceTypeDefs,
   ...deleteWorkspaceTypeDefs,
   ...updateViewerTypeDefs,
-  ...addChannelTypeDefs,
+  ...createNamedChannelTypeDefs,
+  ...resumeDirectMessagesChannelTypeDefs,
   ...updateChannelTypeDefs,
   ...deleteChannelTypeDefs,
-  ...joinChannelTypeDefs,
+  ...joinNamedChannelTypeDefs,
   ...leaveChannelTypeDefs,
   ...sendMessageTypeDefs,
   ...editMessageTypeDefs,

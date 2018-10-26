@@ -1,7 +1,7 @@
 import { pick } from 'ramda';
 
 import { addCreatorToChannel } from '../channelMemberships';
-import db, { transact } from '../db';
+import db, { maybeAddTransactionToQuery, transact } from '../db';
 import { DBOptions } from '../types';
 import { User } from '../users';
 import { Workspace } from '../workspaces';
@@ -24,10 +24,12 @@ export async function insertChannel(
   args: InsertNamedChannelArgs,
   options?: DBOptions,
 ): Promise<NamedChannel>;
+
 export async function insertChannel(
   args: InsertDirectMessagesChannelArgs,
   options?: DBOptions,
 ): Promise<DirectMessagesChannel>;
+
 export async function insertChannel(
   args: InsertChannelArgs,
   options: DBOptions = {},
@@ -116,9 +118,7 @@ export async function doInsertChannel(
     .into(channelsTableName)
     .returning('*');
 
-  if (options.transaction) {
-    query.transacting(options.transaction);
-  }
+  maybeAddTransactionToQuery(query, options);
 
   const [channel] = await query;
 
