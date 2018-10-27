@@ -52,7 +52,7 @@
     "@types/passport": "0.4.6",
     "@types/passport-google-oauth": "1.0.39",
     "@types/passport-jwt": "3.0.1",
-    "@types/ramda": "0.25.39",
+    "@types/ramda": "0.25.40",
     "apollo": "1.9.2",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "23.6.0",
