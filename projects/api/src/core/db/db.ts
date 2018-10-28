@@ -1,6 +1,7 @@
 import Knex, { Config as KnexConfig } from 'knex';
 
 import { env } from '../../config';
+import logger from '../logger';
 
 export type KnexEnvironment = 'production' | 'development' | 'test';
 
@@ -35,6 +36,8 @@ export const knexConfigs: KnexConfigs = {
 
 const knexConfig = knexConfigs[env.environment as KnexEnvironment];
 
-const db = Knex(knexConfig);
+export const db = Knex(knexConfig);
+
+logger.info('📚 database (PostgreSQL) connections initialized');
 
 export default db;

@@ -8,14 +8,17 @@ const workspacesTableName = 'workspaces';
 const nameColumnName = 'name';
 const workspaceIdColumnName = 'workspaceId';
 const typeColumnName = 'type';
+const isDefaultColumnName = 'isDefault';
 
 const namedChannelType = 'named';
 const directMessagesChannelType = 'directMessages';
 
 export async function up(knex: Knex): Promise<void> {
   await createChannelsTable(knex);
-  await createNameUniqueIndex(knex);
+  await createUniqueNameIndex(knex);
+  await createUniqueDefaultChannelIndex(knex);
   await addNonNullableNameConstraint(knex);
+  await addNonDefaultDirectMessagesChannelConstraint(knex);
 }
 
 async function createChannelsTable(knex: Knex): Promise<void> {
@@ -28,6 +31,11 @@ async function createChannelsTable(knex: Knex): Promise<void> {
     table.string(nameColumnName, 64);
 
     table.string(typeColumnName, 32).notNullable();
+
+    table
+      .boolean(isDefaultColumnName)
+      .notNullable()
+      .defaultTo(false);
 
     table.string('privacy', 32).notNullable();
 
@@ -47,7 +55,7 @@ async function createChannelsTable(knex: Knex): Promise<void> {
   });
 }
 
-export async function createNameUniqueIndex(knex: Knex): Promise<void> {
+export async function createUniqueNameIndex(knex: Knex): Promise<void> {
   const uniqueIndexQuery = `
     CREATE UNIQUE INDEX ${channelsTableName}_${nameColumnName}_index
     ON "${channelsTableName}" ("${nameColumnName}")
@@ -57,6 +65,18 @@ export async function createNameUniqueIndex(knex: Knex): Promise<void> {
   await knex.schema.raw(uniqueIndexQuery);
 }
 
+export async function createUniqueDefaultChannelIndex(
+  knex: Knex,
+): Promise<void> {
+  const uniqueDefaultChannelIndexQuery = `
+    CREATE UNIQUE INDEX ${channelsTableName}_default_channel_index
+    ON "${channelsTableName}" ("${workspaceIdColumnName}", "${isDefaultColumnName}")
+    WHERE "${isDefaultColumnName}" = TRUE;
+  `;
+
+  await knex.schema.raw(uniqueDefaultChannelIndexQuery);
+}
+
 export async function addNonNullableNameConstraint(knex: Knex): Promise<void> {
   const constraintQuery = `
     ALTER TABLE "${channelsTableName}"
@@ -64,6 +84,21 @@ export async function addNonNullableNameConstraint(knex: Knex): Promise<void> {
     CHECK (
       ("${nameColumnName}" IS NOT NULL AND "${typeColumnName}" = '${namedChannelType}')
       OR ("${nameColumnName}" IS NULL AND "${typeColumnName}" = '${directMessagesChannelType}')
+    );
+  `;
+
+  await knex.schema.raw(constraintQuery);
+}
+
+export async function addNonDefaultDirectMessagesChannelConstraint(
+  knex: Knex,
+): Promise<void> {
+  const constraintQuery = `
+    ALTER TABLE "${channelsTableName}"
+    ADD CONSTRAINT non_default_direct_messages_channel
+    CHECK (
+      ("${typeColumnName}" = '${directMessagesChannelType}' AND "${isDefaultColumnName}" = FALSE)
+      OR ("${typeColumnName}" <> '${directMessagesChannelType}')
     );
   `;
 

@@ -13,7 +13,7 @@ const resolveChannel: Resolver<
 > = async (workspace, args, context) => {
   const { id: channelGlobalId } = args;
 
-  const channelId = parseInt(channelGlobalId, 10);
+  const channelId = Number.parseInt(channelGlobalId, 10);
 
   if (!isViewerAuthenticated(context)) {
     throw new AuthenticationError('unauthenticated');

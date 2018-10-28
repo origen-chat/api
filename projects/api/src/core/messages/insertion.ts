@@ -1,4 +1,4 @@
-import db from '../db';
+import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions } from '../types';
 import { messagesTableName } from './constants';
 import { Message } from './types';
@@ -16,7 +16,7 @@ export async function insertUser(
   args: InsertMessageArgs,
   options: DBOptions = {},
 ): Promise<Message> {
-  const message = await doInsertMessage(args);
+  const message = await doInsertMessage(args, options);
 
   return message;
 }
@@ -36,9 +36,7 @@ export async function doInsertMessage(
     .into(messagesTableName)
     .returning('*');
 
-  if (options.transaction) {
-    query.transacting(options.transaction);
-  }
+  maybeAddTransactionToQuery(query, options);
 
   const [message] = await query;
 

@@ -42,7 +42,7 @@ async function getUsernameCount(
     .count()
     .first();
 
-  return parseInt(count, 10);
+  return Number.parseInt(count, 10);
 }
 
 async function doGetUnusedUsernameIdentifier(

@@ -1,4 +1,4 @@
-import { types, users } from '../../core';
+import * as core from '../../core';
 import { getUserFromJWT } from '../authentication';
 import { Context } from '../types';
 
@@ -7,6 +7,10 @@ export async function handleSubscriptionConnect(
 ): Promise<Context> {
   const viewer = await getViewerFromConnectionParams(connectionParams);
 
+  if (viewer) {
+    await core.presence.setUserConnectionStatusToOnline(viewer);
+  }
+
   const context: Context = { viewer };
 
   return context;
@@ -14,7 +18,7 @@ export async function handleSubscriptionConnect(
 
 async function getViewerFromConnectionParams(
   connectionParams: any,
-): Promise<types.Nullable<users.User>> {
+): Promise<core.types.Nullable<core.users.User>> {
   if (typeof connectionParams.authToken !== 'string') {
     return null;
   }
@@ -27,5 +31,16 @@ async function getViewerFromConnectionParams(
     return viewer;
   } catch {
     return null;
+  }
+}
+
+export async function handleSubscriptionDisconnect(
+  websocket: any,
+  connectionContext: any,
+): Promise<void> {
+  const context: Context = await connectionContext.initPromise;
+
+  if (context.viewer) {
+    await core.presence.deleteUserConnectionStatus(context.viewer);
   }
 }

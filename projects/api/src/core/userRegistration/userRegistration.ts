@@ -1,4 +1,4 @@
-import { beginTransaction } from '../db';
+import { transact } from '../db';
 import {
   getUserBySocialCredentials,
   linkSocialCredentialsToUser,
@@ -51,20 +51,14 @@ async function insertUserAndLinkSocialCredentials(
   socialCredentials: SocialCredentials,
   userData: InsertUserArgs,
 ): Promise<User> {
-  const transaction = await beginTransaction();
-
-  try {
+  const userWithLinkedSocialCredentials = await transact(async transaction => {
     const options: DBOptions = { transaction };
 
     const user = await insertUser(userData, options);
     await linkSocialCredentialsToUser(user, socialCredentials, options);
 
-    await transaction.commit();
-
     return user;
-  } catch (error) {
-    await transaction.rollback();
+  });
 
-    throw error;
-  }
+  return userWithLinkedSocialCredentials;
 }

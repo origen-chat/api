@@ -1,4 +1,4 @@
-export { ID, Timestamp, Timestamps, Identifiable, Email } from './fields';
+export { ID, Timestamp, Timestamps, Identifiable, Email, URL } from './fields';
 export { NonNegativeInteger, Integer, Float } from './numbers';
 export { Nullable, Undefinable, Mutable, Base64 } from './helpers';
 export {

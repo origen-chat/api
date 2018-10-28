@@ -15,7 +15,11 @@ export {
   isPublicChannel,
 } from './predicates';
 export { getChannelById } from './get';
-export { insertChannel, InsertChannelArgs } from './insertion';
+export {
+  insertChannel,
+  insertInitialDefaultChannel,
+  InsertChannelArgs,
+} from './insertion';
 export { updateChannel, UpdateChannelArgs } from './update';
 export { deleteChannel } from './deletion';
 export { getWorkspace, getOrInsertDirectMessagesChannel } from './channels';

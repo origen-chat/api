@@ -19,20 +19,29 @@ services:
       dockerfile: dev.dockerfile
     ports:
       - '5000:4000'
+      # Node inspector port.
+      - '9229:9229'
     volumes:
       - ./projects/api:/usr/src/app
       - /usr/src/app/node_modules
     depends_on:
       - postgres
+      - redis
     environment:
       - VIRTUAL_HOST=api.dev.loop.com
       - VIRTUAL_PORT=4000
+
       - CERT_NAME=shared
       - NODE_ENV=development
+
       - DB_HOST=postgres
       - DB_USER=postgres
       - DB_PASSWORD=postgres
       - DB_NAME=loop_dev
+
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+
       - WEB_ROOT_URL=https://dev.loop.com
     env_file: .env
 
@@ -48,14 +57,18 @@ services:
     environment:
       - VIRTUAL_HOST=dev.loop.com
       - VIRTUAL_PORT=4000
+
       - CERT_NAME=shared
       - NODE_ENV=development
+
       - API_ENDPOINT=https://api.dev.loop.com
       - GRAPHQL_WS_ENDPOINT=wss://api.dev.loop.com/graphql
     env_file: .env
 
   postgres:
     image: postgres:11.0
+    ports:
+      - '5432:5432'
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
@@ -63,5 +76,13 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=loop_dev
 
+  redis:
+    image: redis:5.0
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+
 volumes:
   postgres_data: null
+  redis_data: null

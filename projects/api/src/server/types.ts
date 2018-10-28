@@ -16,3 +16,7 @@ export type Context = Readonly<{
 }>;
 
 export type Info = GraphQLResolveInfo & { mergeInfo: MergeInfo };
+
+export type MutationInputArg<TInput extends {}> = Readonly<{
+  input: Readonly<TInput>;
+}>;

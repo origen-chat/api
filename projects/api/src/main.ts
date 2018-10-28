@@ -2,16 +2,17 @@ import 'core-js/features/array/flat';
 import 'core-js/features/array/flat-map';
 
 import './config';
-import logger from './core/logger';
-import { startServer } from './server/server';
+import * as core from './core';
+import * as server from './server';
 
 /**
  * Entry point of the application.
  */
 export async function startApplication() {
+  core.errorTracking.initializeErrorTracking();
   handleUnhandledExceptions();
 
-  await startServer();
+  await server.startServer();
 }
 
 function handleUnhandledExceptions() {
@@ -20,9 +21,9 @@ function handleUnhandledExceptions() {
 }
 
 function logErrorAndExit(error: Error) {
-  const exitCode = 1;
+  core.logger.error(error);
 
-  logger.error(error);
+  const exitCode = 1;
 
   // eslint-disable-next-line unicorn/no-process-exit
   process.exit(exitCode);

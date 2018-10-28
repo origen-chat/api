@@ -50,6 +50,16 @@ const env = makeEnv({
     required: true,
     envVarName: 'DB_NAME',
   },
+  redisHost: {
+    parser: parsers.string,
+    required: true,
+    envVarName: 'REDIS_HOST',
+  },
+  redisPort: {
+    parser: parsers.nonNegativeInteger,
+    required: true,
+    envVarName: 'REDIS_PORT',
+  },
   mockSchema: {
     parser: parsers.boolean,
     required: false,
@@ -81,6 +91,18 @@ const env = makeEnv({
     parser: parsers.string,
     required: true,
     envVarName: 'WEB_ROOT_URL',
+  },
+  enableErrorTracking: {
+    parser: parsers.boolean,
+    required: false,
+    defaultValue: false,
+    envVarName: 'ENABLE_ERROR_TRACKING',
+  },
+  sentryDsn: {
+    parser: parsers.string,
+    required: false,
+    defaultValue: '',
+    envVarName: 'SENTRY_DSN',
   },
 });
 

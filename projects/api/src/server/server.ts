@@ -1,4 +1,4 @@
-import { createServer } from 'http';
+import http from 'http';
 
 import {
   ApolloServer,
@@ -8,10 +8,11 @@ import cors from 'cors';
 import express from 'express';
 
 import { env } from '../config';
-import { logger } from '../core';
+import * as core from '../core';
 import { passport } from './authentication';
 import {
   handleSubscriptionConnect,
+  handleSubscriptionDisconnect,
   makeContext,
   mocks,
   resolvers,
@@ -41,6 +42,7 @@ export async function startServer() {
     context: makeContext,
     subscriptions: {
       onConnect: handleSubscriptionConnect,
+      onDisconnect: handleSubscriptionDisconnect as any,
     },
   };
 
@@ -48,12 +50,12 @@ export async function startServer() {
 
   apolloServer.applyMiddleware({ app: expressApp });
 
-  const httpServer = createServer(expressApp);
+  const httpServer = http.createServer(expressApp);
   apolloServer.installSubscriptionHandlers(httpServer);
 
   httpServer.listen(graphqlServerPort, graphqlServerHost as any, () => {
-    logger.info(
-      `🚀 server ready at http://${graphqlServerHost}:${graphqlServerPort}${
+    core.logger.info(
+      `🚀 API server ready at http://${graphqlServerHost}:${graphqlServerPort}${
         apolloServer.graphqlPath
       } and ws://${graphqlServerHost}:${graphqlServerPort}${
         apolloServer.subscriptionsPath

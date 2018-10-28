@@ -1,11 +1,8 @@
 import { transact } from '../db';
 import { DBOptions } from '../types';
 import { User } from '../users';
-import {
-  areWorkspaceMembers,
-  getWorkspaceById,
-  Workspace,
-} from '../workspaces';
+import { areWorkspaceMembers } from '../workspaceMemberships';
+import { getWorkspaceById, Workspace } from '../workspaces';
 import { maxUsersInDirectMessagesChannel } from './constants';
 import { getDirectMessagesChannelByMembers } from './get';
 import { insertChannel } from './insertion';
@@ -42,6 +39,10 @@ async function validateGetOrInsertDirectMessagesChannelArgs(
   members: ReadonlyArray<User>,
   options: DBOptions,
 ): Promise<void> {
+  if (members.length === 0) {
+    throw new Error('direct messages channel must have at least one member');
+  }
+
   if (members.length > maxUsersInDirectMessagesChannel) {
     throw new Error('too many users for a direct messages channel');
   }

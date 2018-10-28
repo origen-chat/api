@@ -1,5 +1,7 @@
-import { types } from '../../../core';
+import { helpers, types } from '../../../core';
+import { ValidationError } from '../errors';
 import { GlobalId, NodeType } from '../types';
+import { NodeInfo } from '../types/nodes';
 
 type Schema<TIDKeys extends string> = Readonly<
   Record<TIDKeys, NodeType | ReadonlyArray<NodeType>>
@@ -12,14 +14,14 @@ type Args<
 
 type ParsedIds<TIDKeys extends string> = Args<TIDKeys, number>;
 
-export function parseIds<TIDKeys extends string>(
+export function decodeIds<TIDKeys extends string>(
   schema: Schema<TIDKeys>,
   args: Args<TIDKeys>,
 ): ParsedIds<TIDKeys> {
   const argsWithParsedIds = Object.entries(args).reduce(
     (acc, [key, value]) => ({
       ...acc,
-      [key]: maybeParseId(schema, key, value),
+      [key]: maybeDecodeId(schema, key, value),
     }),
     {},
   ) as ParsedIds<TIDKeys>;
@@ -27,25 +29,49 @@ export function parseIds<TIDKeys extends string>(
   return argsWithParsedIds;
 }
 
-const globalIdSeparator = ':';
+export const globalIdSeparator = ':';
 
-function maybeParseId<TIDKeys extends string>(
+function maybeDecodeId<TIDKeys extends string>(
   schema: Schema<TIDKeys>,
   key: string,
   value: any,
 ): any {
   // @ts-ignore
   if (schema[key]) {
-    return parseId(value);
+    return decodeId(value);
   }
 
   return value;
 }
 
-export function parseId(globalId: GlobalId): types.ID {
-  const globalIdParts = globalId.split(globalIdSeparator);
+export function decodeId(globalId: GlobalId): NodeInfo {
+  const [type, idString] = helpers
+    .decodeBase64(globalId)
+    .split(globalIdSeparator);
 
-  const parsedId = parseInt(globalIdParts[1], 10);
+  if (!isNodeType(type)) {
+    throw new ValidationError('invalid id');
+  }
 
-  return parsedId;
+  const id = Number.parseInt(idString, 10);
+
+  const nodeInfo: NodeInfo = { type, id };
+
+  return nodeInfo;
+}
+
+export function isNodeType(nodeType: string): nodeType is NodeType {
+  const validNodeTypes = Object.values(NodeType);
+
+  if (!validNodeTypes.includes(nodeType)) {
+    return false;
+  }
+
+  return true;
+}
+
+export function encodeId({ type, id }: NodeInfo): GlobalId {
+  const globalId = helpers.encodeBase64(`${type}${globalIdSeparator}${id}`);
+
+  return globalId;
 }

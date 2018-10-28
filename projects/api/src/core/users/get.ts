@@ -48,3 +48,31 @@ async function getUserBy(
 
   return user;
 }
+
+export async function getUsersByIds(
+  ids: ReadonlyArray<ID>,
+  options: DBOptions = {},
+): Promise<ReadonlyArray<User>> {
+  const users = await getUsersBy({ ids }, options);
+
+  return users;
+}
+
+export type GetUsersByArgs = Readonly<{ ids: ReadonlyArray<ID> }>;
+
+async function getUsersBy(
+  args: GetUsersByArgs,
+  options: DBOptions = {},
+): Promise<ReadonlyArray<User>> {
+  const query = db.select('*').from(usersTableName);
+
+  if ((args as any).ids) {
+    query.whereIn('id', (args as any).ids);
+  }
+
+  maybeAddTransactionToQuery(query, options);
+
+  const users: ReadonlyArray<User> = await query;
+
+  return users;
+}

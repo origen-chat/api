@@ -1,24 +1,24 @@
-import { types, users } from '../../../../core';
+import * as core from '../../../../core';
 import { getViewerOrThrowIfUnauthenticated } from '../../../helpers';
 import { Resolver, Root } from '../../../types';
 import { validateNonNull } from '../../validations';
 
 export type ResolveUpdateViewerArgs = Readonly<{
   input: Readonly<{
-    username: types.Undefinable<types.Nullable<string>>;
+    username: core.types.Undefinable<core.types.Nullable<string>>;
   }>;
 }>;
 
 export const resolveUpdateViewer: Resolver<
   Root,
   ResolveUpdateViewerArgs,
-  users.User
+  core.users.User
 > = async (root, args, context) => {
   const viewer = getViewerOrThrowIfUnauthenticated(context);
 
   validateInputArguments(args.input);
 
-  const updatedViewer = await users.updateUser(viewer, args.input as any);
+  const updatedViewer = await core.users.updateUser(viewer, args.input as any);
 
   return updatedViewer;
 };

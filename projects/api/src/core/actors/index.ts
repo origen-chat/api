@@ -1,0 +1,1 @@
+export { Actor } from './types';

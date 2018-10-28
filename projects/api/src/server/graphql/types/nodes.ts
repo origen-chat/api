@@ -1,7 +1,16 @@
-import { channels, users, workspaces } from '../../../../core';
+import * as core from '../../../core';
 
-export type Node = users.User | channels.Channel | workspaces.Workspace;
+export type Node =
+  | core.users.User
+  | core.channels.Channel
+  | core.workspaces.Workspace;
 
-export type NodeType = 'user' | 'channel' | 'workspace';
+export enum NodeType {
+  User = 'user',
+  Channel = 'channel',
+  Workspace = 'workspace',
+}
 
-export type GlobalId = string;
+export type NodeInfo = Readonly<{ type: NodeType; id: core.types.ID }>;
+
+export type GlobalId = core.types.Base64;

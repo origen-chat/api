@@ -1,7 +1,9 @@
-import { ID, Identifiable, Timestamps } from '../types';
+import { ID, Timestamps } from '../types';
 
 export type UserWorkspaceSettings = Readonly<{
-  userId: ID;
+  workspaceMembershipId: ID;
+  configuration: UserWorkspaceSettingsConfiguration;
 }> &
-  Identifiable &
   Timestamps;
+
+export type UserWorkspaceSettingsConfiguration = object;

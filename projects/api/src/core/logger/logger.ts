@@ -1,10 +1,10 @@
 import { createLogger, format, transports } from 'winston';
 
-import { env } from '../config';
+import { env } from '../../config';
 
 export type LogLevel = 'info' | 'warn' | 'error';
 
-const logger = createLogger({
+export const logger = createLogger({
   level: env.logLevel,
   format: format.combine(format.colorize(), format.simple()),
   transports: [new transports.Console()],

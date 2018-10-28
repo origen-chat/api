@@ -1,13 +1,18 @@
 import { pick } from 'ramda';
 
-import { addCreatorToChannel } from '../channelMemberships';
+import {
+  addCreatorToNamedChannel,
+  ChannelMembershipRole,
+} from '../channelMemberships';
+import { addUsersToChannel } from '../channelMemberships/channelMemberships';
 import db, { maybeAddTransactionToQuery, transact } from '../db';
-import { DBOptions } from '../types';
+import { DBOptions, Mutable } from '../types';
 import { User } from '../users';
 import { Workspace } from '../workspaces';
-import { channelsTableName } from './constants';
+import { channelsTableName, initialDefaultChannelName } from './constants';
 import {
   Channel,
+  ChannelPrivacy,
   ChannelType,
   DirectMessagesChannel,
   NamedChannel,
@@ -45,7 +50,10 @@ export async function insertChannel(
   return channel;
 }
 
-export type InsertNamedChannelArgs = Pick<NamedChannel, 'name' | 'type'> &
+export type InsertNamedChannelArgs = Pick<
+  NamedChannel,
+  'name' | 'type' | 'privacy' | 'isDefault'
+> &
   Partial<Pick<NamedChannel, 'topic' | 'purpose'>> &
   Readonly<{ channelCreator: User }> &
   InsertChannelCommonArgs;
@@ -55,18 +63,18 @@ type InsertChannelCommonArgs = Readonly<{ workspace: Workspace }>;
 export async function insertNamedChannel(
   args: InsertNamedChannelArgs,
   options: DBOptions = {},
-): Promise<Channel> {
+): Promise<NamedChannel> {
   const namedChannel = await transact(
     async transaction => {
-      const doInsertChannelArgs = makeDoInsertChannelArgs(args);
       const optionsWithTransaction: DBOptions = { ...options, transaction };
+      const doInsertChannelArgs = makeDoInsertChannelArgs(args);
 
-      const channel = await doInsertChannel(
+      const channel = (await doInsertChannel(
         doInsertChannelArgs,
         optionsWithTransaction,
-      );
+      )) as NamedChannel;
 
-      await addCreatorToChannel(
+      await addCreatorToNamedChannel(
         channel,
         args.channelCreator,
         optionsWithTransaction,
@@ -91,22 +99,51 @@ export async function insertDirectMessagesChannel(
   args: InsertDirectMessagesChannelArgs,
   options: DBOptions = {},
 ): Promise<Channel> {
-  const doInsertChannelArgs = makeDoInsertChannelArgs(args);
-  const channel = await doInsertChannel(doInsertChannelArgs, options);
+  const insertedDirectMessagesChannel = await transact(
+    async transaction => {
+      const optionsWithTransaction: DBOptions = { transaction };
 
-  return channel;
+      const doInsertChannelArgs = makeDoInsertChannelArgs(args);
+
+      const channel = await doInsertChannel(
+        doInsertChannelArgs,
+        optionsWithTransaction,
+      );
+      await addUsersToChannel(
+        {
+          channel,
+          users: args.members,
+          role: ChannelMembershipRole.Member,
+        },
+        optionsWithTransaction,
+      );
+
+      return channel;
+    },
+    { transactionFromBefore: options.transaction },
+  );
+
+  return insertedDirectMessagesChannel;
 }
 
 function makeDoInsertChannelArgs(args: InsertChannelArgs): DoInsertChannelArgs {
-  const doInsertChannelArgs: DoInsertChannelArgs = {
-    ...pick(['type', 'name', 'topic', 'purpose'], args),
+  const doInsertChannelArgs: Mutable<Partial<DoInsertChannelArgs>> = {
+    ...pick(['type', 'name', 'topic', 'purpose', 'privacy', 'isDefault'], args),
     workspaceId: args.workspace.id,
   };
 
-  return doInsertChannelArgs;
+  if (args.type === ChannelType.DirectMessages) {
+    doInsertChannelArgs.privacy = ChannelPrivacy.Private;
+    doInsertChannelArgs.isDefault = false;
+  }
+
+  return doInsertChannelArgs as any;
 }
 
-export type DoInsertChannelArgs = Pick<Channel, 'type' | 'workspaceId'> &
+export type DoInsertChannelArgs = Pick<
+  Channel,
+  'type' | 'workspaceId' | 'privacy' | 'isDefault'
+> &
   Partial<Pick<NamedChannel, 'name' | 'topic' | 'purpose'>>;
 
 export async function doInsertChannel(
@@ -123,4 +160,26 @@ export async function doInsertChannel(
   const [channel] = await query;
 
   return channel;
+}
+
+/**
+ * Inserts the initial default channel in a workspace.
+ */
+export async function insertInitialDefaultChannel(
+  workspace: Workspace,
+  channelCreator: User,
+  options: DBOptions = {},
+): Promise<NamedChannel> {
+  const args: InsertChannelArgs = {
+    workspace,
+    type: ChannelType.Named,
+    name: initialDefaultChannelName,
+    channelCreator,
+    privacy: ChannelPrivacy.Public,
+    isDefault: true,
+  };
+
+  const initialDefaultChannel = await insertChannel(args, options);
+
+  return initialDefaultChannel;
 }

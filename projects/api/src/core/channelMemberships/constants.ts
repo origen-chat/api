@@ -1,1 +1,1 @@
-export const channelMembershipsTableName = 'channelsMemberships';
+export const channelMembershipsTableName = 'channelMemberships';

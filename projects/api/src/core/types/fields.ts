@@ -4,6 +4,8 @@ export type ID = PositiveInteger;
 
 export type Email = string;
 
+export type URL = string;
+
 export type Timestamp = NonNegativeInteger;
 
 export type Timestamps = Readonly<{

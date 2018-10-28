@@ -30,7 +30,7 @@ function parseLiteral(ast: ASTNode): types.NonNegativeInteger | undefined {
     return undefined;
   }
 
-  const parsedValue = parseInt(ast.value, 10);
+  const parsedValue = Number.parseInt(ast.value, 10);
 
   if (!isNonNegativeIntegerValid(parsedValue)) {
     return undefined;
