@@ -1,17 +1,17 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Name }}-web-service
+  name: {{ .Release.Name }}-{{ .Values.web.componentName }}-service
   labels:
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-    app: loop
-    component: web
+    app: {{ .Values.appName }}
+    component: {{ .Values.web.componentName }}
 spec:
   selector:
-    app: loop
-    component: web
+    app: {{ .Values.appName }}
+    component: {{ .Values.web.componentName }}
   ports:
     - port: 80
-      targetPort: 4000
+      targetPort: {{ .Values.web.serverPort }}

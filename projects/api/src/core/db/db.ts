@@ -1,6 +1,7 @@
 import Knex, { Config as KnexConfig } from 'knex';
 
 import { env } from '../../config';
+import { isTestEnvironment } from '../../helpers';
 import logger from '../logger';
 
 export type KnexEnvironment = 'production' | 'development' | 'test';
@@ -9,11 +10,13 @@ export type KnexConfigs = Readonly<{ [P in KnexEnvironment]: KnexConfig }>;
 
 const client = 'pg';
 
+const testDbName = 'loop_test';
+
 const connection: Knex.ConnectionConfig = {
   host: env.dbHost,
   user: env.dbUser,
   password: env.dbPassword,
-  database: env.dbName,
+  database: isTestEnvironment ? testDbName : env.dbName,
 };
 
 export const knexConfigs: KnexConfigs = {
@@ -34,7 +37,7 @@ export const knexConfigs: KnexConfigs = {
   },
 };
 
-const knexConfig = knexConfigs[env.environment as KnexEnvironment];
+export const knexConfig = knexConfigs[env.environment as KnexEnvironment];
 
 export const db = Knex(knexConfig);
 

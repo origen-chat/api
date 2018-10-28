@@ -1,8 +1,9 @@
 import { User } from '../users';
-import { getUserConnectionCount } from './get';
+import { UserConnectionStatus } from './constants';
+import { getUserConnectionStatus } from './get';
 
 export async function isUserConnected(user: User): Promise<boolean> {
-  const connectionCount = await getUserConnectionCount(user);
+  const connectionStatus = await getUserConnectionStatus(user);
 
-  return connectionCount > 0;
+  return connectionStatus === UserConnectionStatus.Online;
 }

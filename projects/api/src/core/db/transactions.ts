@@ -46,7 +46,9 @@ export async function beginTransaction(
   }
 
   const transactionPromise = new Promise<Transaction>(resolve =>
-    db.transaction(resolve),
+    db.transaction(transaction => {
+      resolve(transaction);
+    }),
   );
 
   return transactionPromise;

@@ -1,30 +1,37 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-web-deployment
+  name: {{ .Release.Name }}-{{ .Values.web.componentName }}-deployment
   labels:
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-    app: loop
-    component: web
+    app: {{ .Values.appName }}
+    component: {{ .Values.web.componentName }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.web.replicas }}
   selector:
     matchLabels:
-      app: loop
-      component: web
+      app: {{ .Values.appName }}
+      component: {{ .Values.web.componentName }}
   template:
     metadata:
       labels:
         heritage: {{ .Release.Service }}
         release: {{ .Release.Name }}
         chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-        app: loop
-        component: web
+        app: {{ .Values.appName }}
+        component: {{ .Values.web.componentName }}
     spec:
       containers:
-        - name: web
+        - name: {{ .Values.web.componentName }}
           image: looporg/web:latest
           ports:
-            - containerPort: 4000
+            - containerPort: {{ .Values.web.serverPort }}
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: {{ .Values.web.serverPort }}
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            failureThreshold: 3

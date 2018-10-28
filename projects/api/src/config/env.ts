@@ -6,6 +6,12 @@ const env = makeEnv({
     required: true,
     envVarName: 'NODE_ENV',
   },
+  debug: {
+    parser: parsers.boolean,
+    required: false,
+    defaultValue: false,
+    envVarName: 'DEBUG',
+  },
   logLevel: {
     parser: parsers.string,
     required: false,
@@ -21,7 +27,7 @@ const env = makeEnv({
   graphqlServerPort: {
     parser: parsers.port,
     required: false,
-    defaultValue: '4000',
+    defaultValue: 4000,
     envVarName: 'GRAPHQL_SERVER_PORT',
   },
   helmReleaseName: {
@@ -56,7 +62,7 @@ const env = makeEnv({
     envVarName: 'REDIS_HOST',
   },
   redisPort: {
-    parser: parsers.nonNegativeInteger,
+    parser: parsers.port,
     required: true,
     envVarName: 'REDIS_PORT',
   },
@@ -69,7 +75,7 @@ const env = makeEnv({
   mockEntireSchema: {
     parser: parsers.boolean,
     required: false,
-    defaultValue: process.env.NODE_ENV === 'development',
+    defaultValue: false,
     envVarName: 'MOCK_ENTIRE_SCHEMA',
   },
   googleClientId: {

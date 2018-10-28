@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-api-config
+  name: {{ .Release.Name }}-{{ .Values.api.componentName }}-config
   labels:
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-    app: loop
-    component: api
+    app: {{ .Values.appName }}
+    component: {{ .Values.api.componentName }}
 data:
   google-client-id: {{ .Values.googleClientId }}
   facebook-client-id: {{ .Values.facebookClientId }}

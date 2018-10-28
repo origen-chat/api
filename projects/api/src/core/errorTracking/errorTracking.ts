@@ -6,6 +6,7 @@ import logger from '../logger';
 export function initializeErrorTracking(): void {
   const sentryOptions: sentry.NodeOptions = {
     enabled: env.enableErrorTracking,
+    debug: env.debug,
     dsn: env.sentryDsn,
   };
 

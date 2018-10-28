@@ -9,22 +9,35 @@ import * as server from './server';
  * Entry point of the application.
  */
 export async function startApplication() {
-  core.errorTracking.initializeErrorTracking();
-  handleUnhandledExceptions();
+  await core.setup.setupCore();
+
+  handleProcessEvents();
+  Promise.reject(3);
 
   await server.startServer();
 }
 
+function handleProcessEvents(): void {
+  handleUnhandledExceptions();
+  handleExit();
+}
+
 function handleUnhandledExceptions() {
-  process.once('uncaughtException', logErrorAndExit);
-  process.once('unhandledRejection', logErrorAndExit);
+  process.on('uncaughtException', logErrorAndExit);
+  process.on('unhandledRejection', logErrorAndExit);
 }
 
 function logErrorAndExit(error: Error) {
   core.logger.error(error);
 
-  const exitCode = 1;
-
   // eslint-disable-next-line unicorn/no-process-exit
-  process.exit(exitCode);
+  process.exit(1);
+}
+
+function handleExit(): void {
+  process.on('exit', async () => {
+    await core.shutdown.shutdownCore();
+
+    core.logger.info('👋 goodbye!');
+  });
 }

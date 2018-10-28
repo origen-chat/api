@@ -53,7 +53,7 @@ export async function startServer() {
   const httpServer = http.createServer(expressApp);
   apolloServer.installSubscriptionHandlers(httpServer);
 
-  httpServer.listen(graphqlServerPort, graphqlServerHost as any, () => {
+  httpServer.listen(graphqlServerPort, graphqlServerHost, () => {
     core.logger.info(
       `🚀 API server ready at http://${graphqlServerHost}:${graphqlServerPort}${
         apolloServer.graphqlPath

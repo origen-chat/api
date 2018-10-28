@@ -1,7 +1,8 @@
-import { ID, Identifiable, Nullable, Timestamps } from '../types';
+import { ID, Identifiable, Timestamps } from '../types';
 
 export type Bookmark = Readonly<{
-  messageId: Nullable<ID>;
+  messageId: ID;
+  authorId: ID;
 }> &
   Identifiable &
   Timestamps;

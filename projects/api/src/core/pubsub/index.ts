@@ -1,1 +1,1 @@
-export { default, pubsub } from './pubsub';
+export { default, pubsub, closePubSub } from './pubsub';

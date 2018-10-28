@@ -36,11 +36,15 @@ async function getUsernameCount(
   username: string,
   options: DBOptions = {},
 ): Promise<number> {
-  const { count } = await db
+  const query = db
     .from(usersTableName)
     .where({ username })
     .count()
     .first();
+
+  maybeAddTransactionToQuery(query, options);
+
+  const { count } = await query;
 
   return Number.parseInt(count, 10);
 }

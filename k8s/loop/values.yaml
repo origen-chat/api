@@ -1,15 +1,36 @@
+appName: loop
+
 domainName: example.com
 
-googleClientId:
-  '509060080781-j83a38vh8nnfjb1j72c7u3oqin25ppsk.apps.googleusercontent.com'
+googleClientId: '509060080781-j83a38vh8nnfjb1j72c7u3oqin25ppsk.apps.googleusercontent.com'
 facebookClientId: ''
 githubClientId: ''
 
+api:
+  componentName: api
+  replicas: 1
+  serverPort: 4000
+  image:
+    repository: looporg/api
+    tag: latest
+
+web:
+  componentName: web
+  replicas: 1
+  serverPort: 4000
+  image:
+    repository: looporg/web
+    tag: latest
+
 postgresql:
-  imageTag: 10.5
+  imageTag: 11.0
   postgresDatabase: loop
   persistence:
     size: 2Gi
+
+redis:
+  image:
+    tag: 5.0.0
 
 nginx-ingress:
   image:

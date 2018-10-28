@@ -46,16 +46,8 @@ export async function setUserConnectionStatus(
 
 export async function setUserConnectionStatusToOffline(
   user: User,
-): Promise<NonNegativeInteger> {
-  const key = getUserConnectionStatusRedisKey(user);
-
-  const connectionCount = await redisClient.setex(
-    key,
-    userConnectionStatusExpirationInSeconds,
-    UserConnectionStatus.Online,
-  );
-
-  return connectionCount;
+): Promise<void> {
+  await deleteUserConnectionStatus(user);
 }
 
 export async function deleteUserConnectionStatus(user: User): Promise<void> {

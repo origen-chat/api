@@ -1,0 +1,24 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Attach to API",
+      "protocol": "inspector",
+      "restart": true,
+      "sourceMaps": true,
+      "processId": "${command:PickProcess}",
+      "stopOnEntry": false,
+      "smartStep": true,
+      "port": 9229,
+      "localRoot": "${workspaceFolder}",
+      "remoteRoot": "/usr/src/app",
+      "skipFiles": [
+        "${workspaceFolder}/node_modules/**/*.js",
+        "<node_internals>/**/*.js"
+      ],
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"]
+    }
+  ]
+}

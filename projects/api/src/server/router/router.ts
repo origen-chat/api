@@ -1,6 +1,9 @@
 import { Router } from 'express';
 
-import { oauth2CallbackController } from '../controllers';
+import {
+  livenessProbeController,
+  oauth2CallbackController,
+} from '../controllers';
 import { makeOauth2CallbackUrl, makeOauth2RequestUrl } from '../helpers';
 import { callPassportWithStrategyName } from '../middleware';
 
@@ -16,5 +19,7 @@ router.get(
   callPassportWithStrategyName({ session: false }),
   oauth2CallbackController,
 );
+
+router.get('/healthz', livenessProbeController);
 
 export default router;
