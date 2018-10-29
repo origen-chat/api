@@ -1,3 +1,4 @@
+import { ApolloError } from 'apollo-server-core';
 import * as core from '../../../../core';
 import { getViewerOrThrowIfUnauthenticated } from '../../../helpers';
 import { MutationInputArg, Resolver, Root } from '../../../types';

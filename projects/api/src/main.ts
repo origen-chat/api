@@ -12,26 +12,31 @@ export async function startApplication() {
   await core.setup.setupCore();
 
   handleProcessEvents();
-  Promise.reject(3);
 
   await server.startServer();
 }
 
 function handleProcessEvents(): void {
-  handleUnhandledExceptions();
+  handleUnhandledRejection();
+  handleUncaughtException();
+
   handleExit();
 }
 
-function handleUnhandledExceptions() {
-  process.on('uncaughtException', logErrorAndExit);
-  process.on('unhandledRejection', logErrorAndExit);
+function handleUnhandledRejection() {
+  process.on('unhandledRejection', unhandledRejection => {
+    core.logger.error(`☢  Unhandled rejection: ${unhandledRejection}`);
+
+    process.exit(1);
+  });
 }
 
-function logErrorAndExit(error: Error) {
-  core.logger.error(error);
+function handleUncaughtException() {
+  process.on('uncaughtException', uncaughtException => {
+    core.logger.error(`☢  Uncaught exception: ${uncaughtException}`);
 
-  // eslint-disable-next-line unicorn/no-process-exit
-  process.exit(1);
+    process.exit(1);
+  });
 }
 
 function handleExit(): void {

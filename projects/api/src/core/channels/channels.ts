@@ -1,4 +1,4 @@
-import { transact } from '../db';
+import { doInTransaction } from '../db';
 import { DBOptions } from '../types';
 import { User } from '../users';
 import { areWorkspaceMembers } from '../workspaceMemberships';
@@ -57,7 +57,7 @@ async function doGetOrInsertDirectMessagesChannel(
   members: ReadonlyArray<User>,
   options: DBOptions = {},
 ): Promise<DirectMessagesChannel> {
-  const directMessagesChannel = await transact(
+  const directMessagesChannel = await doInTransaction(
     async transaction => {
       const optionsWithTransaction: DBOptions = { transaction };
 

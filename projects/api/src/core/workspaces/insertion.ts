@@ -1,7 +1,7 @@
 import { pick } from 'ramda';
 
 import { insertInitialDefaultChannel } from '../channels';
-import db, { maybeAddTransactionToQuery, transact } from '../db';
+import db, { doInTransaction, maybeAddTransactionToQuery } from '../db';
 import { DBOptions } from '../types';
 import { User } from '../users';
 import { addOwnerToWorkspace } from '../workspaceMemberships';
@@ -19,7 +19,7 @@ export async function insertWorkspace(
   args: InsertWorkspaceArgs,
   options: DBOptions = {},
 ): Promise<Workspace> {
-  const insertedWorkspace = await transact(
+  const insertedWorkspace = await doInTransaction(
     async transaction => {
       const optionsWithTransaction: DBOptions = { transaction };
 

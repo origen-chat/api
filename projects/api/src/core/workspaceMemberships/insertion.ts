@@ -1,4 +1,4 @@
-import db, { maybeAddTransactionToQuery, transact } from '../db';
+import db, { doInTransaction, maybeAddTransactionToQuery } from '../db';
 import { DBOptions } from '../types';
 import { User } from '../users';
 import { insertUserWorkspaceSettings } from '../userWorkspaceSettings';
@@ -35,7 +35,7 @@ export async function insertWorkspaceMembership(
   args: InsertWorkspaceMembershipArgs,
   options: DBOptions = {},
 ): Promise<WorkspaceMembership> {
-  const insertedWorkspaceMembership = await transact(
+  const insertedWorkspaceMembership = await doInTransaction(
     async transaction => {
       const optionsWithTransaction: DBOptions = { transaction };
 

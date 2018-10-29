@@ -5,7 +5,7 @@ import {
   ChannelMembershipRole,
 } from '../channelMemberships';
 import { addUsersToChannel } from '../channelMemberships/channelMemberships';
-import db, { maybeAddTransactionToQuery, transact } from '../db';
+import db, { doInTransaction, maybeAddTransactionToQuery } from '../db';
 import { DBOptions, Mutable } from '../types';
 import { User } from '../users';
 import { Workspace } from '../workspaces';
@@ -64,7 +64,7 @@ export async function insertNamedChannel(
   args: InsertNamedChannelArgs,
   options: DBOptions = {},
 ): Promise<NamedChannel> {
-  const namedChannel = await transact(
+  const namedChannel = await doInTransaction(
     async transaction => {
       const optionsWithTransaction: DBOptions = { ...options, transaction };
       const doInsertChannelArgs = makeDoInsertChannelArgs(args);
@@ -99,7 +99,7 @@ export async function insertDirectMessagesChannel(
   args: InsertDirectMessagesChannelArgs,
   options: DBOptions = {},
 ): Promise<Channel> {
-  const insertedDirectMessagesChannel = await transact(
+  const insertedDirectMessagesChannel = await doInTransaction(
     async transaction => {
       const optionsWithTransaction: DBOptions = { transaction };
 
