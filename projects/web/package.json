@@ -67,7 +67,7 @@
     "@types/enzyme-adapter-react-16": "1.0.3",
     "@types/graphql": "14.0.3",
     "@types/jest": "23.3.8",
-    "@types/node": "10.12.0",
+    "@types/node": "10.12.1",
     "@types/ramda": "0.25.40",
     "@types/react": "16.4.18",
     "@types/react-beautiful-dnd": "7.1.2",
