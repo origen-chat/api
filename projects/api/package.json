@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@sentry/node": "4.2.3",
-    "@strattadb/environment": "5.0.0",
+    "@strattadb/environment": "5.1.0",
     "apollo-server-express": "2.1.0",
     "chalk": "2.4.1",
     "core-js": "3.0.0-beta.3",
