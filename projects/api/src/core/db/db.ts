@@ -6,7 +6,7 @@ import logger from '../logger';
 
 export type KnexEnvironment = 'production' | 'development' | 'test';
 
-export type KnexConfigs = Readonly<{ [P in KnexEnvironment]: KnexConfig }>;
+export type KnexConfigs = Record<KnexEnvironment, KnexConfig>;
 
 const client = 'pg';
 
@@ -37,7 +37,7 @@ export const knexConfigs: KnexConfigs = {
   },
 };
 
-export const knexConfig = knexConfigs[env.environment as KnexEnvironment];
+export const knexConfig = knexConfigs[env.environment];
 
 export const db = Knex(knexConfig);
 

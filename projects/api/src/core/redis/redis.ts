@@ -14,4 +14,8 @@ redisClient.on('ready', () => {
   logger.info('🎒 cache store (Redis) connection ready');
 });
 
+export function closeRedisConnection(): void {
+  redisClient.disconnect();
+}
+
 export default redisClient;

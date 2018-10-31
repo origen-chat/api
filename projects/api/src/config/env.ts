@@ -18,17 +18,17 @@ const env = makeEnv({
     defaultValue: 'info',
     envVarName: 'LOG_LEVEL',
   },
-  graphqlServerHost: {
+  serverHost: {
     parser: parsers.string,
     required: false,
     defaultValue: '0.0.0.0',
-    envVarName: 'GRAPHQL_SERVER_HOST',
+    envVarName: 'SERVER_HOST',
   },
-  graphqlServerPort: {
+  serverPort: {
     parser: parsers.port,
     required: false,
     defaultValue: 4000,
-    envVarName: 'GRAPHQL_SERVER_PORT',
+    envVarName: 'SERVER_PORT',
   },
   helmReleaseName: {
     parser: parsers.string,
