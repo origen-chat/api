@@ -10,9 +10,13 @@ import { handleSignals } from './signals';
 export async function startApplication(): Promise<void> {
   core.logger.info('👋 starting application...');
 
-  await core.core.startCore();
-  await server.startServer();
+  try {
+    await core.core.startCore();
+    await server.startServer();
 
-  handleProcessEvents();
-  handleSignals();
+    handleProcessEvents();
+    handleSignals();
+  } catch (error) {
+    core.logger.error(`😕 error thrown when starting: ${error}`);
+  }
 }

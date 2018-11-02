@@ -1,4 +1,4 @@
-import db from '../db';
+import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions, Nullable } from '../types';
 import { User, usersTableName } from '../users';
 import { socialLoginsTableName } from './constants';
@@ -6,11 +6,11 @@ import { SocialCredentials, SocialLogin } from './types';
 
 export async function getUserBySocialCredentials(
   socialCredentials: SocialCredentials,
+  options: DBOptions = {},
 ): Promise<Nullable<User>> {
-  const user: Nullable<User> = await db
-    .select('users.*')
+  const query = db
+    .select(`${usersTableName}.*`)
     .from(usersTableName)
-    .as('u')
     .innerJoin(
       socialLoginsTableName,
       `${socialLoginsTableName}.userId`,
@@ -18,6 +18,10 @@ export async function getUserBySocialCredentials(
     )
     .where(socialCredentials)
     .first();
+
+  maybeAddTransactionToQuery(query, options);
+
+  const user: Nullable<User> = await query;
 
   return user;
 }
@@ -48,9 +52,7 @@ async function insertSocialLogin(
     .into(socialLoginsTableName)
     .returning('*');
 
-  if (options.transaction) {
-    query.transacting(options.transaction);
-  }
+  maybeAddTransactionToQuery(query, options);
 
   const [socialLogin] = await query;
 

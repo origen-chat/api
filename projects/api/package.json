@@ -6,7 +6,7 @@
   "main": "dist/app.js",
   "scripts": {
     "start:dev": "NODE_ENV=development nodemon --inspect=0.0.0.0:9229 --exec babel-node --extensions \".ts,.tsx\" src/index.ts",
-    "build": "NODE_ENV=production babel --extensions \".ts,.tsx\" --out-dir dist src",
+    "build:prod": "NODE_ENV=production babel --extensions \".ts,.tsx\" --out-dir dist src",
     "download-graphql-schema": "apollo schema:download schema.json",
     "predownload-graphql-schema": "rimraf schema.json",
     "migrate": "knex migrate:latest",

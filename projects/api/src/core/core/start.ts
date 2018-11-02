@@ -1,6 +1,7 @@
 import db, { startDB } from '../db';
 import { initializeErrorTracking } from '../errorTracking';
 import logger from '../logger';
+import { startPubsub } from '../pubsub';
 import { redisClient, startRedis } from '../redis';
 
 // eslint-disable-next-line import/no-mutable-exports
@@ -14,6 +15,7 @@ export async function startCore(): Promise<void> {
 
   startRedis();
   startDB();
+  startPubsub();
 
   await Promise.all([waitForRedisToBeReady(), waitForDBToBeReady()]);
 

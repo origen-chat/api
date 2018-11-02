@@ -10,38 +10,71 @@ import { getUserByEmail, insertUser, InsertUserArgs, User } from '../users';
 export async function getUserBySocialCredentialsOrRegisterUser(
   socialCredentials: SocialCredentials,
   userData: InsertUserArgs,
+  options: DBOptions = {},
 ): Promise<User> {
-  let user = await getUserBySocialCredentials(socialCredentials);
+  const existingOrRegisteredUser = await doInTransaction(
+    async transaction => {
+      const optionsWithTransaction: DBOptions = { transaction };
 
-  if (!user) {
-    user = await getUserByEmailOrRegisterUser(socialCredentials, userData);
-  }
+      let user = await getUserBySocialCredentials(
+        socialCredentials,
+        optionsWithTransaction,
+      );
 
-  return user;
+      if (!user) {
+        user = await getUserByEmailOrRegisterUser(
+          socialCredentials,
+          userData,
+          optionsWithTransaction,
+        );
+      }
+
+      return user;
+    },
+    { transactionFromBefore: options.transaction },
+  );
+
+  return existingOrRegisteredUser;
 }
 
 async function getUserByEmailOrRegisterUser(
   socialCredentials: SocialCredentials,
   userData: InsertUserArgs,
+  options: DBOptions = {},
 ): Promise<User> {
   const { email } = userData;
 
-  let user = await getUserByEmail(email);
+  const existingOrRegisteredUser = await doInTransaction(
+    async transaction => {
+      const optionsWithTransaction: DBOptions = { transaction };
 
-  if (!user) {
-    user = await registerUser(socialCredentials, userData);
-  }
+      let user = await getUserByEmail(email, optionsWithTransaction);
 
-  return user;
+      if (!user) {
+        user = await registerUser(
+          socialCredentials,
+          userData,
+          optionsWithTransaction,
+        );
+      }
+
+      return user;
+    },
+    { transactionFromBefore: options.transaction },
+  );
+
+  return existingOrRegisteredUser;
 }
 
 async function registerUser(
   socialCredentials: SocialCredentials,
   userData: InsertUserArgs,
+  options: DBOptions = {},
 ): Promise<User> {
   const user = await insertUserAndLinkSocialCredentials(
     socialCredentials,
     userData,
+    options,
   );
 
   return user;
@@ -50,16 +83,22 @@ async function registerUser(
 async function insertUserAndLinkSocialCredentials(
   socialCredentials: SocialCredentials,
   userData: InsertUserArgs,
+  options: DBOptions = {},
 ): Promise<User> {
   const userWithLinkedSocialCredentials = await doInTransaction(
     async transaction => {
-      const options: DBOptions = { transaction };
+      const optionsWithTransaction: DBOptions = { transaction };
 
-      const user = await insertUser(userData, options);
-      await linkSocialCredentialsToUser(user, socialCredentials, options);
+      const user = await insertUser(userData, optionsWithTransaction);
+      await linkSocialCredentialsToUser(
+        user,
+        socialCredentials,
+        optionsWithTransaction,
+      );
 
       return user;
     },
+    { transactionFromBefore: options.transaction },
   );
 
   return userWithLinkedSocialCredentials;

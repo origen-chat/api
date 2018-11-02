@@ -20,9 +20,7 @@ export function startRedis(): void {
 
   logger.info('🎒 cache store (Redis) connection initialized');
 
-  redisClient.on('ready', () => {
-    logger.info('🎒 cache store (Redis) connection ready');
-  });
+  handleRedisEvents();
 }
 
 export function closeRedisConnection(): void {
@@ -31,4 +29,26 @@ export function closeRedisConnection(): void {
   }
 
   redisClient.disconnect();
+}
+
+function handleRedisEvents(): void {
+  redisClient.on('connect', () => {
+    logger.info('🎒 cache store (Redis) connection established');
+  });
+
+  redisClient.on('ready', () => {
+    logger.info('🎒 cache store (Redis) connection ready');
+  });
+
+  redisClient.on('close', () => {
+    logger.info('🎒 cache store (Redis) connection closed');
+  });
+
+  redisClient.on('reconnecting', () => {
+    logger.info('🎒 cache store (Redis) is reconnecting...');
+  });
+
+  redisClient.on('error', () => {
+    logger.error('🎒 cache store (Redis) could not connect');
+  });
 }
