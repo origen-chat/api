@@ -1,5 +1,9 @@
+import http from 'http';
+
 import { Handler } from 'express';
 
 export const livenessProbeController: Handler = (req, res) => {
-  res.status(200).end('OK');
+  const statusCode = 200;
+
+  res.status(statusCode).end(http.STATUS_CODES[statusCode]);
 };

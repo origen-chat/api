@@ -10,6 +10,8 @@ api:
   componentName: api
   replicas: 1
   serverPort: 4000
+  healthinessProbePath: /healthz
+  readinessProbePath: /ready
   image:
     repository: looporg/api
     tag: latest

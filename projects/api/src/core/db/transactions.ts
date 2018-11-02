@@ -1,7 +1,7 @@
 import { QueryBuilder, Raw, Transaction } from 'knex';
 
 import { DBOptions } from '../types';
-import db from './db';
+import { db } from './db';
 
 export type TransactionFunction<TReturn> = (
   transaction: Transaction,

@@ -5,7 +5,6 @@
   "license": "MIT",
   "main": "dist/app.js",
   "scripts": {
-    "start:prod": "NODE_ENV=production node dist/index.js",
     "start:dev": "NODE_ENV=development nodemon --inspect=0.0.0.0:9229 --exec babel-node --extensions \".ts,.tsx\" src/index.ts",
     "build": "NODE_ENV=production babel --extensions \".ts,.tsx\" --out-dir dist src",
     "download-graphql-schema": "apollo schema:download schema.json",
@@ -27,7 +26,6 @@
     "@strattadb/environment": "5.1.0",
     "apollo-server-express": "2.1.0",
     "chalk": "2.4.1",
-    "core-js": "3.0.0-beta.3",
     "cors": "2.8.4",
     "express": "4.16.4",
     "graphql": "14.0.2",

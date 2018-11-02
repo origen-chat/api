@@ -1,6 +1,7 @@
 import * as bookmarks from './bookmarks';
 import * as channelPins from './channelPins';
 import * as channels from './channels';
+import * as core from './core';
 import * as db from './db';
 import * as errorTracking from './errorTracking';
 import * as helpers from './helpers';
@@ -12,8 +13,6 @@ import * as presence from './presence';
 import pubsub from './pubsub';
 import * as reactions from './reactions';
 import * as redis from './redis';
-import * as setup from './setup';
-import * as shutdown from './shutdown';
 import * as socialLogins from './socialLogins';
 import * as types from './types';
 import * as userChannelSettings from './userChannelSettings';
@@ -48,6 +47,5 @@ export {
   db,
   redis,
   pubsub,
-  setup,
-  shutdown,
+  core,
 };

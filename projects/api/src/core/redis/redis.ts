@@ -8,14 +8,27 @@ export const redisClientOptions: RedisOptions = {
   port: env.redisPort,
 };
 
-export const redisClient = new Redis(redisClientOptions);
+// eslint-disable-next-line import/no-mutable-exports
+export let redisClient: Redis.Redis;
 
-redisClient.on('ready', () => {
-  logger.info('🎒 cache store (Redis) connection ready');
-});
+export function startRedis(): void {
+  if (redisClient) {
+    return;
+  }
 
-export function closeRedisConnection(): void {
-  redisClient.disconnect();
+  redisClient = new Redis(redisClientOptions);
+
+  logger.info('🎒 cache store (Redis) connection initialized');
+
+  redisClient.on('ready', () => {
+    logger.info('🎒 cache store (Redis) connection ready');
+  });
 }
 
-export default redisClient;
+export function closeRedisConnection(): void {
+  if (!redisClient) {
+    return;
+  }
+
+  redisClient.disconnect();
+}

@@ -1,6 +1,3 @@
-import 'core-js/features/array/flat';
-import 'core-js/features/array/flat-map';
-
 import '../config';
 import * as core from '../core';
 import * as server from '../server';
@@ -13,7 +10,7 @@ import { handleSignals } from './signals';
 export async function startApplication(): Promise<void> {
   core.logger.info('👋 starting application...');
 
-  await core.setup.setupCore();
+  await core.core.startCore();
   await server.startServer();
 
   handleProcessEvents();

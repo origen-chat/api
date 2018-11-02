@@ -3,6 +3,7 @@ import { Router } from 'express';
 import {
   livenessProbeController,
   oauth2CallbackController,
+  readinessProbeController,
 } from '../controllers';
 import { makeOauth2CallbackUrl, makeOauth2RequestUrl } from '../helpers';
 import { callPassportWithStrategyName } from '../middleware';
@@ -21,5 +22,7 @@ router.get(
 );
 
 router.get('/healthz', livenessProbeController);
+
+router.get('/ready', readinessProbeController);
 
 export default router;

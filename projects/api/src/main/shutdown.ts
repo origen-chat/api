@@ -9,8 +9,12 @@ export type ShutdownApplicationArgs = Readonly<{ exitCode?: number }>;
 export async function shutdownApplication({
   exitCode = 0,
 }: ShutdownApplicationArgs = {}): Promise<void> {
-  await server.shutdownServer();
-  await core.shutdown.shutdownCore();
+  try {
+    await server.shutdownServer();
+    await core.core.shutdownCore();
+  } catch (error) {
+    core.logger.error(`😕 error thrown when shutting down: ${error}`);
+  }
 
   core.logger.info('👋 goodbye!');
 

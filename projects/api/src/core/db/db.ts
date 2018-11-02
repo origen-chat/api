@@ -39,8 +39,21 @@ export const knexConfigs: KnexConfigs = {
 
 export const knexConfig = knexConfigs[env.environment];
 
-export const db = Knex(knexConfig);
+// eslint-disable-next-line import/no-mutable-exports
+export let db: Knex;
 
-logger.info('📚 database (PostgreSQL) connections initialized');
+/**
+ * Starts the connection pool of the database.
+ */
+export function startDB(): void {
+  db = Knex(knexConfig);
 
-export default db;
+  logger.info('📚 database (PostgreSQL) connections initialized');
+}
+
+/**
+ * Closes all connections to the database.
+ */
+export async function closeDatabaseConnections(): Promise<void> {
+  await db.destroy();
+}
