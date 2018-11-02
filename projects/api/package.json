@@ -52,7 +52,7 @@
     "@types/graphql": "14.0.3",
     "@types/ioredis": "4.0.3",
     "@types/jest": "23.3.9",
-    "@types/jsonwebtoken": "7.2.8",
+    "@types/jsonwebtoken": "8.3.0",
     "@types/knex": "0.14.26",
     "@types/node": "10.12.2",
     "@types/passport": "0.4.7",
