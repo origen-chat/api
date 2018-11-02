@@ -1337,10 +1337,10 @@ eslint-plugin-react@7.11.1:
     jsx-ast-utils "^2.0.1"
     prop-types "^15.6.2"
 
-eslint-plugin-typescript@0.12.0:
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-typescript/-/eslint-plugin-typescript-0.12.0.tgz#e23d58cb27fe28e89fc641a1f20e8d862cb99aef"
-  integrity sha512-2+DNE8nTvdNkhem/FBJXLPSeMDOZL68vHHNfTbM+PBc5iAuwBe8xLSQubwKxABqSZDwUHg+mwGmv5c2NlImi0Q==
+eslint-plugin-typescript@0.13.0:
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-typescript/-/eslint-plugin-typescript-0.13.0.tgz#07fa9a166dee1daff14716c70fb8fb7c6583d852"
+  integrity sha512-dN8EwZfkOobYJ6VCFJ0Kd39OLSectdJlkG5L+VmA2BtMunZALQus6XLx21Gkj6vmfmUDk6uEGCB7JCszhvZoTA==
   dependencies:
     requireindex "~1.1.0"
 
@@ -2656,10 +2656,10 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-lint-staged@8.0.3:
-  version "8.0.3"
-  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-8.0.3.tgz#977a43d66914e2242d3c3c0b41bc10737622c61a"
-  integrity sha512-G1Ija5l6mF/BRkHSs3oK1Adz/e17HP3iT9hFAf8IC+UJWDLe4Xc5FxYXgEWN1NOA6vbnekEhWC4FjqzJ2Ba2lA==
+lint-staged@8.0.4:
+  version "8.0.4"
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-8.0.4.tgz#d3c909fcf7897152cdce2d6e42500cd9b5b41a0d"
+  integrity sha512-Rs0VxXoyFqHMrPQgKAMy+O907+m5Po71UVPhBi7BUBwU7ZZ2aoc+mZmpOX3DVPCoTcy6+hqJa9yIZfacNpJHdg==
   dependencies:
     chalk "^2.3.1"
     commander "^2.14.1"
@@ -2683,7 +2683,7 @@ lint-staged@8.0.3:
     path-is-inside "^1.0.2"
     pify "^3.0.0"
     please-upgrade-node "^3.0.2"
-    staged-git-files "1.1.1"
+    staged-git-files "1.1.2"
     string-argv "^0.0.2"
     stringify-object "^3.2.2"
 
@@ -4293,10 +4293,10 @@ sshpk@^1.7.0:
     safer-buffer "^2.0.2"
     tweetnacl "~0.14.0"
 
-staged-git-files@1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/staged-git-files/-/staged-git-files-1.1.1.tgz#37c2218ef0d6d26178b1310719309a16a59f8f7b"
-  integrity sha512-H89UNKr1rQJvI1c/PIR3kiAMBV23yvR7LItZiV74HWZwzt7f3YHuujJ9nJZlt58WlFox7XQsOahexwk7nTe69A==
+staged-git-files@1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/staged-git-files/-/staged-git-files-1.1.2.tgz#4326d33886dc9ecfa29a6193bf511ba90a46454b"
+  integrity sha512-0Eyrk6uXW6tg9PYkhi/V/J4zHp33aNyi2hOCmhFLqLTIhbgqWn5jlSzI+IU0VqrZq6+DbHcabQl/WP6P3BG0QA==
 
 static-extend@^0.1.1:
   version "0.1.2"
@@ -4646,12 +4646,13 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript-eslint-parser@20.0.0:
-  version "20.0.0"
-  resolved "https://registry.yarnpkg.com/typescript-eslint-parser/-/typescript-eslint-parser-20.0.0.tgz#508678796bbcf60365ada28c38bd557e736bec01"
-  integrity sha512-HZEoGA+LnS3etUlVAPX6I8sZ7872Yb0vPvQv6QDCIE44KD3bFmvPEQ4LbiD+qGkcxh6segjVK0v3rxpb2R6oSA==
+typescript-eslint-parser@20.1.1:
+  version "20.1.1"
+  resolved "https://registry.yarnpkg.com/typescript-eslint-parser/-/typescript-eslint-parser-20.1.1.tgz#a09f3e2f1924dd9e0369835f496ccde31eedfb8b"
+  integrity sha512-IJhpqHK60Pz2J5pe8rJUQ10DcMcGwhQnvRFcPV79coEV3bpNfSiHkgpS+sf6zx2ANDWgBhmtZbK9ICOy+v3FKA==
   dependencies:
     eslint "4.19.1"
+    eslint-visitor-keys "^1.0.0"
     typescript-estree "2.1.0"
 
 typescript-eslint-parser@^16.0.0:
@@ -4670,10 +4671,10 @@ typescript-estree@2.1.0:
     lodash.unescape "4.0.1"
     semver "5.5.0"
 
-typescript@3.1.4:
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.1.4.tgz#c74ef7b3c2da65beff548b903022cb8c3cd997ed"
-  integrity sha512-JZHJtA6ZL15+Q3Dqkbh8iCUmvxD3iJ7ujXS+fVkKnwIVAdHc5BJTDNM0aTrnr2luKulFjU7W+SRhDZvi66Ru7Q==
+typescript@3.1.6:
+  version "3.1.6"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.1.6.tgz#b6543a83cfc8c2befb3f4c8fba6896f5b0c9be68"
+  integrity sha512-tDMYfVtvpb96msS1lDX9MEdHrW4yOuZ4Kdc4Him9oU796XldPYF/t2+uKoX0BBa0hXXwDlqYQbXY5Rzjzc5hBA==
 
 typescript@^2.5.1:
   version "2.9.2"

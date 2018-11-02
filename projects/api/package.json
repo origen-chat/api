@@ -54,11 +54,11 @@
     "@types/jest": "23.3.9",
     "@types/jsonwebtoken": "7.2.8",
     "@types/knex": "0.14.26",
-    "@types/node": "10.12.1",
-    "@types/passport": "0.4.6",
+    "@types/node": "10.12.2",
+    "@types/passport": "0.4.7",
     "@types/passport-google-oauth": "1.0.39",
     "@types/passport-jwt": "3.0.1",
-    "@types/ramda": "0.25.40",
+    "@types/ramda": "0.26.0",
     "apollo": "1.9.2",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "23.6.0",
@@ -67,7 +67,7 @@
     "nodemon": "1.18.5",
     "rimraf": "2.6.2",
     "ts-node": "7.0.1",
-    "typescript": "3.1.4"
+    "typescript": "3.1.6"
   },
   "engines": {
     "node": ">= 10.0.0"

@@ -1073,10 +1073,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.0.tgz#ea6dcbddbc5b584c83f06c60e82736d8fbb0c235"
   integrity sha512-3TUHC3jsBAB7qVRGxT6lWyYo2v96BMmD2PTcl47H25Lu7UXtFH/2qqmKiVrnel6Ne//0TFYf6uvNX+HW2FRkLQ==
 
-"@types/node@10.12.1":
-  version "10.12.1"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.1.tgz#da61b64a2930a80fa708e57c45cd5441eb379d5b"
-  integrity sha512-i1sl+WCX2OCHeUi9oi7PiCNUtYFrpWhpcx878vpeq/tlZTKzcFdHePlyFHVbWqeuKN0SRPl/9ZFDSTsfv9h7VQ==
+"@types/node@10.12.2":
+  version "10.12.2"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.2.tgz#d77f9faa027cadad9c912cd47f4f8b07b0fb0864"
+  integrity sha512-53ElVDSnZeFUUFIYzI8WLQ25IhWzb6vbddNp8UHlXQyU0ET2RhV5zg0NfubzU7iNMh5bBXb0htCzfvrSVNgzaQ==
 
 "@types/passport-google-oauth@1.0.39":
   version "1.0.39"
@@ -1103,10 +1103,17 @@
     "@types/express" "*"
     "@types/passport" "*"
 
-"@types/passport@*", "@types/passport@0.4.6":
+"@types/passport@*":
   version "0.4.6"
   resolved "https://registry.yarnpkg.com/@types/passport/-/passport-0.4.6.tgz#1c6a1a3fd105e9354816e179c5c9cd13852864d1"
   integrity sha512-P7TxrdpAze3nvHghYPeLlHkYcFDiIkRBbp7xYz2ehX9zmi1yr/qWQMTpXsMxN5w3ESJpMzn917inK4giASaDcQ==
+  dependencies:
+    "@types/express" "*"
+
+"@types/passport@0.4.7":
+  version "0.4.7"
+  resolved "https://registry.yarnpkg.com/@types/passport/-/passport-0.4.7.tgz#2b7f29bf61df91cf77023b3777e940b613d4b4d8"
+  integrity sha512-EePlxNYx5tf3n0yjdPXX0/zDOv0UCwjMyQo4UkWGlhHteNDItAj7TfDdLttSThVMKQz3uCW7lsGzMuml0f8g9Q==
   dependencies:
     "@types/express" "*"
 
@@ -1115,10 +1122,10 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.5.6.tgz#9c03d3fed70a8d517c191b7734da2879b50ca26c"
   integrity sha512-ZBFR7TROLVzCkswA3Fmqq+IIJt62/T7aY/Dmz+QkU7CaW2QFqAitCE8Ups7IzmGhcN1YWMBT4Qcoc07jU9hOJQ==
 
-"@types/ramda@0.25.40":
-  version "0.25.40"
-  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.25.40.tgz#ab4970054d255ed1762fce5ebdfc3168af53d1f5"
-  integrity sha512-2wJUkK/jY//CECZZrFb1LBreCkwuA9RY4P1GpGV35vLg/cJQUFs0dSUEvQANPjnoa4Kv8hsVFvM0v8xS5cPydg==
+"@types/ramda@0.26.0":
+  version "0.26.0"
+  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.26.0.tgz#ce45c2c61b3e510f907cc84941c8cdb99f089b6a"
+  integrity sha512-6FCz2E3SrkgbuV3piRNfjThSRyMbcIxHknnGYPfrg4k55PHnNRR80boVdl1AME/KfDW+FBVmKrKPyRbFo8HjaQ==
 
 "@types/range-parser@*":
   version "1.2.2"
@@ -7576,10 +7583,10 @@ type-is@^1.6.16, type-is@~1.6.16:
     media-typer "0.3.0"
     mime-types "~2.1.18"
 
-typescript@3.1.4:
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.1.4.tgz#c74ef7b3c2da65beff548b903022cb8c3cd997ed"
-  integrity sha512-JZHJtA6ZL15+Q3Dqkbh8iCUmvxD3iJ7ujXS+fVkKnwIVAdHc5BJTDNM0aTrnr2luKulFjU7W+SRhDZvi66Ru7Q==
+typescript@3.1.6:
+  version "3.1.6"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.1.6.tgz#b6543a83cfc8c2befb3f4c8fba6896f5b0c9be68"
+  integrity sha512-tDMYfVtvpb96msS1lDX9MEdHrW4yOuZ4Kdc4Him9oU796XldPYF/t2+uKoX0BBa0hXXwDlqYQbXY5Rzjzc5hBA==
 
 uglify-js@^3.1.4:
   version "3.4.9"
