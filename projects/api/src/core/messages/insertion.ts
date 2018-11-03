@@ -13,7 +13,7 @@ export type InsertMessageArgs = Pick<Message, 'content'> &
 /**
  * Inserts a message.
  */
-export async function insertUser(
+export async function insertMessage(
   args: InsertMessageArgs,
   options: DBOptions = {},
 ): Promise<Message> {

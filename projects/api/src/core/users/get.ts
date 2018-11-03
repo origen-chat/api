@@ -58,7 +58,9 @@ export async function getUsersByIds(
   return users;
 }
 
-export type GetUsersByArgs = Readonly<{ ids: ReadonlyArray<ID> }>;
+export type GetUsersByArgs = Readonly<
+  { ids: ReadonlyArray<ID> } | { emails: ReadonlyArray<Email> }
+>;
 
 async function getUsersBy(
   args: GetUsersByArgs,
@@ -68,6 +70,8 @@ async function getUsersBy(
 
   if ((args as any).ids) {
     query.whereIn('id', (args as any).ids);
+  } else if ((args as any).emails) {
+    query.whereIn('email', (args as any).emails);
   }
 
   maybeAddTransactionToQuery(query, options);

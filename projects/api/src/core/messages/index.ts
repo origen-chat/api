@@ -1,4 +1,5 @@
 export { Message } from './types';
 export { messagesTableName } from './constants';
+export { isMessage } from './predicates';
 export { getMessageById } from './get';
-export { insertUser, InsertMessageArgs } from './insertion';
+export { insertMessage, InsertMessageArgs } from './insertion';

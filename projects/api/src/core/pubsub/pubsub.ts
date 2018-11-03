@@ -11,7 +11,7 @@ export function startPubsub(): void {
     connection: redisClientOptions,
   });
 
-  logger.info('📡 pubsub (Redis) connection initialized');
+  logger.info('📡 pubsub (Redis) connections initialized');
 }
 
 export function closePubSub(): void {

@@ -15,7 +15,7 @@ export type ActionTypes<TActionTypeWithoutScope extends string> = Readonly<
   { [key in TActionTypeWithoutScope]: ActionType }
 >;
 
-export function makeActionTypes<TActionTypeWithoutScope extends ActionType>(
+export function makeActionTypes<TActionTypeWithoutScope extends string>(
   actionTypesWithoutScope: ReadonlyArray<TActionTypeWithoutScope>,
   scope: string,
 ): ActionTypes<TActionTypeWithoutScope> {

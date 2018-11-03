@@ -1,7 +1,12 @@
 import { User } from './types';
 
-export function isUser(object: any): object is User {
+export function isUser(value: any): value is User {
   return (
-    object.id && object.email && object.username && object.usernameIdentifier
+    typeof value === 'object' &&
+    value &&
+    value.id &&
+    value.email &&
+    value.username &&
+    value.usernameIdentifier
   );
 }

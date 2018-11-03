@@ -1,5 +1,5 @@
 import db, { maybeAddTransactionToQuery } from '../db';
-import { Message } from '../messages';
+import { Reactable } from '../reactables';
 import { Reaction } from '../reactions';
 import { DBOptions } from '../types';
 import { User } from '../users';
@@ -7,9 +7,10 @@ import { reactableReactionsTableName } from './constants';
 import { ReactableReaction } from './types';
 
 export type InsertReactableReactionArgs = Readonly<{
-  message: Message;
-}> &
-  Readonly<{ author: User; reaction: Reaction }>;
+  reactable: Reactable;
+  author: User;
+  reaction: Reaction;
+}>;
 
 /**
  * Inserts a reactable reaction.
@@ -33,7 +34,7 @@ function makeDoInsertReactableReactionArgs(
 ): DoInsertReactableReactionArgs {
   const doInsertReactableReactionArgs: DoInsertReactableReactionArgs = {
     reactionId: args.reaction.id,
-    messageId: args.message.id,
+    messageId: args.reactable.id,
     authorId: args.author.id,
   };
 
