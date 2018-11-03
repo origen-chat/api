@@ -1171,7 +1171,7 @@
     "@types/express-serve-static-core" "*"
     "@types/mime" "*"
 
-"@types/web-push@^3.3.0":
+"@types/web-push@3.3.0":
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/@types/web-push/-/web-push-3.3.0.tgz#459eb722c9585b84a149e7020606d4f65f64f0ca"
   integrity sha512-QHEQCPrVy1JZtZK0cA8DHT2MhuCJNyI3m+DzuOTSGa56VM6g2bjdD+hMp8A/2Ca9w0GfmdcStrLgfXAUKKlvJg==
@@ -7879,7 +7879,7 @@ watch@~0.18.0:
     exec-sh "^0.2.0"
     minimist "^1.2.0"
 
-web-push@^3.3.3:
+web-push@3.3.3:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/web-push/-/web-push-3.3.3.tgz#8dc7c578dd1243ceb5a8377389424e87ea9b15cc"
   integrity sha512-Om4CNZpyzHP3AtGZpbBavCO7I9oCS9CFY2VDfTj/cFx2gm+mAtyK2OlKd6qu9pwCdZTyYanUiyhT0JSrs0ypHQ==
