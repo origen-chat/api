@@ -24,33 +24,30 @@ export async function toggleReactableReaction(
 ): Promise<ReactableReaction> {
   await validateToggleReactableReactionArgs(args);
 
-  const toggledReactableReaction = await doInTransaction(
-    async transaction => {
-      const optionsWithTransaction: DBOptions = { transaction };
+  const toggledReactableReaction = await doInTransaction(async transaction => {
+    const optionsWithTransaction: DBOptions = { transaction };
 
-      const existingReactableReaction = await getReactableReactionByAuthorReactableAndReaction(
-        args,
+    const existingReactableReaction = await getReactableReactionByAuthorReactableAndReaction(
+      args,
+      optionsWithTransaction,
+    );
+
+    if (existingReactableReaction) {
+      const deletedReactableReaction = await deleteReactableReaction(
+        existingReactableReaction,
         optionsWithTransaction,
       );
 
-      if (existingReactableReaction) {
-        const deletedReactableReaction = await deleteReactableReaction(
-          existingReactableReaction,
-          optionsWithTransaction,
-        );
+      return deletedReactableReaction;
+    }
 
-        return deletedReactableReaction;
-      }
+    const insertedReactableReaction = await insertReactableReaction(
+      args,
+      optionsWithTransaction,
+    );
 
-      const insertedReactableReaction = await insertReactableReaction(
-        args,
-        optionsWithTransaction,
-      );
-
-      return insertedReactableReaction;
-    },
-    { transactionFromBefore: options.transaction },
-  );
+    return insertedReactableReaction;
+  }, options);
 
   publishReactableReactionToggled(args);
 

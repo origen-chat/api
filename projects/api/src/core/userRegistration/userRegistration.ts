@@ -12,27 +12,24 @@ export async function getUserBySocialCredentialsOrRegisterUser(
   userData: InsertUserArgs,
   options: DBOptions = {},
 ): Promise<User> {
-  const existingOrRegisteredUser = await doInTransaction(
-    async transaction => {
-      const optionsWithTransaction: DBOptions = { transaction };
+  const existingOrRegisteredUser = await doInTransaction(async transaction => {
+    const optionsWithTransaction: DBOptions = { transaction };
 
-      let user = await getUserBySocialCredentials(
+    let user = await getUserBySocialCredentials(
+      socialCredentials,
+      optionsWithTransaction,
+    );
+
+    if (!user) {
+      user = await getUserByEmailOrRegisterUser(
         socialCredentials,
+        userData,
         optionsWithTransaction,
       );
+    }
 
-      if (!user) {
-        user = await getUserByEmailOrRegisterUser(
-          socialCredentials,
-          userData,
-          optionsWithTransaction,
-        );
-      }
-
-      return user;
-    },
-    { transactionFromBefore: options.transaction },
-  );
+    return user;
+  }, options);
 
   return existingOrRegisteredUser;
 }
@@ -44,24 +41,21 @@ async function getUserByEmailOrRegisterUser(
 ): Promise<User> {
   const { email } = userData;
 
-  const existingOrRegisteredUser = await doInTransaction(
-    async transaction => {
-      const optionsWithTransaction: DBOptions = { transaction };
+  const existingOrRegisteredUser = await doInTransaction(async transaction => {
+    const optionsWithTransaction: DBOptions = { transaction };
 
-      let user = await getUserByEmail(email, optionsWithTransaction);
+    let user = await getUserByEmail(email, optionsWithTransaction);
 
-      if (!user) {
-        user = await registerUser(
-          socialCredentials,
-          userData,
-          optionsWithTransaction,
-        );
-      }
+    if (!user) {
+      user = await registerUser(
+        socialCredentials,
+        userData,
+        optionsWithTransaction,
+      );
+    }
 
-      return user;
-    },
-    { transactionFromBefore: options.transaction },
-  );
+    return user;
+  }, options);
 
   return existingOrRegisteredUser;
 }
@@ -98,7 +92,7 @@ async function insertUserAndLinkSocialCredentials(
 
       return user;
     },
-    { transactionFromBefore: options.transaction },
+    options,
   );
 
   return userWithLinkedSocialCredentials;

@@ -14,6 +14,7 @@ import { typeDefs as nonNegativeIntTypeDefs } from '../NonNegativeInt';
 import { typeDefs as pageInfoTypeDefs } from '../PageInfo';
 import { typeDefs as queryTypeDefs } from '../Query';
 import { typeDefs as reactableTypeDefs } from '../Reactable';
+import { typeDefs as reactableReactionTypeDefs } from '../ReactableReaction';
 import { typeDefs as reactionTypeDefs } from '../Reaction';
 import { typeDefs as subscriptionTypeDefs } from '../Subscription';
 import { typeDefs as userTypeDefs } from '../User';
@@ -37,6 +38,7 @@ const typeDefs: ReadonlyArray<DocumentNode> = [
   ...channelTypeTypeDefs,
   ...reactionTypeDefs,
   ...reactableTypeDefs,
+  ...reactableReactionTypeDefs,
   ...bookmarkTypeDefs,
   ...bookmarkableTypeDefs,
   ...userSettingsTypeDefs,

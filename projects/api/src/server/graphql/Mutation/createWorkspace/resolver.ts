@@ -1,8 +1,7 @@
-import { ApolloError } from 'apollo-server-core';
 import * as core from '../../../../core';
 import { getViewerOrThrowIfUnauthenticated } from '../../../helpers';
 import { MutationInputArg, Resolver, Root } from '../../../types';
-import AuthorizationError from '../../errors/AuthorizationError';
+import { AuthorizationError } from '../../errors';
 
 export type ResolveCreateWorkspaceArgs = MutationInputArg<{
   name: string;

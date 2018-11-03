@@ -19,32 +19,29 @@ export async function insertWorkspace(
   args: InsertWorkspaceArgs,
   options: DBOptions = {},
 ): Promise<Workspace> {
-  const insertedWorkspace = await doInTransaction(
-    async transaction => {
-      const optionsWithTransaction: DBOptions = { transaction };
+  const insertedWorkspace = await doInTransaction(async transaction => {
+    const optionsWithTransaction: DBOptions = { transaction };
 
-      const workspaceOwner = args.owner;
-      const doInsertWorkspaceArgs = makeDoInsertWorkspaceArgs(args);
+    const workspaceOwner = args.owner;
+    const doInsertWorkspaceArgs = makeDoInsertWorkspaceArgs(args);
 
-      const workspace = await doInsertWorkspace(
-        doInsertWorkspaceArgs,
-        optionsWithTransaction,
-      );
-      await addOwnerToWorkspace(
-        workspace,
-        workspaceOwner,
-        optionsWithTransaction,
-      );
-      await insertInitialDefaultChannel(
-        workspace,
-        workspaceOwner,
-        optionsWithTransaction,
-      );
+    const workspace = await doInsertWorkspace(
+      doInsertWorkspaceArgs,
+      optionsWithTransaction,
+    );
+    await addOwnerToWorkspace(
+      workspace,
+      workspaceOwner,
+      optionsWithTransaction,
+    );
+    await insertInitialDefaultChannel(
+      workspace,
+      workspaceOwner,
+      optionsWithTransaction,
+    );
 
-      return workspace;
-    },
-    { transactionFromBefore: options.transaction },
-  );
+    return workspace;
+  }, options);
 
   return insertedWorkspace;
 }

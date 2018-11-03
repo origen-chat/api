@@ -9,6 +9,7 @@ export enum NodeType {
   User = 'user',
   Channel = 'channel',
   Workspace = 'workspace',
+  Message = 'message',
 }
 
 export type NodeInfo = Readonly<{ type: NodeType; id: core.types.ID }>;

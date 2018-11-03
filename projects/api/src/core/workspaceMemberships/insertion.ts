@@ -54,7 +54,7 @@ export async function insertWorkspaceMembership(
 
       return workspaceMembership;
     },
-    { transactionFromBefore: options.transaction },
+    options,
   );
 
   return insertedWorkspaceMembership;

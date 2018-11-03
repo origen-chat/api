@@ -1,4 +1,4 @@
-import { ID, Identifiable, Timestamps } from '../types';
+import { ID, Identifiable, InsertedAtField } from '../types';
 
 export type ReactableReaction = Readonly<{
   messageId: ID;
@@ -9,4 +9,4 @@ export type ReactableReaction = Readonly<{
   authorId: ID;
 }> &
   Identifiable &
-  Timestamps;
+  InsertedAtField;

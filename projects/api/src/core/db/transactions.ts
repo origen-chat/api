@@ -7,24 +7,20 @@ export type TransactionFunction<TReturn> = (
   transaction: Transaction,
 ) => Promise<TReturn>;
 
-export type TransactOptions = TransactionFromBeforeArg;
+export type DoInTransactionOptions = DBOptions;
 
 export async function doInTransaction<TReturn>(
   transactFunction: TransactionFunction<TReturn>,
-  options: TransactOptions = {},
+  options: DoInTransactionOptions = {},
 ): Promise<TReturn> {
-  if (options.transactionFromBefore) {
-    return transactFunction(options.transactionFromBefore);
+  if (options.transaction) {
+    return transactFunction(options.transaction);
   }
 
   const value = await db.transaction(transactFunction);
 
   return value;
 }
-
-type TransactionFromBeforeArg = Readonly<{
-  transactionFromBefore?: Transaction;
-}>;
 
 export function maybeAddTransactionToQuery(
   query: QueryBuilder,

@@ -1,4 +1,5 @@
 import { gql } from 'apollo-server-express';
+import { DocumentNode } from 'graphql';
 
 export const RemoveReactionInput = gql`
   input RemoveReactionInput {
@@ -12,4 +13,9 @@ export const RemoveReactionPayload = gql`
   }
 `;
 
-export default [RemoveReactionInput, RemoveReactionPayload];
+const typeDefs: ReadonlyArray<DocumentNode> = [
+  RemoveReactionInput,
+  RemoveReactionPayload,
+];
+
+export default typeDefs;

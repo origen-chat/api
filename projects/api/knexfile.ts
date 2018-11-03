@@ -1,7 +1,7 @@
-import { db } from './src/core';
+import * as core from './src/core';
 
-db.startDB();
+core.db.startDB();
 
-const { knexConfigs } = db;
+const { knexConfigs } = core.db;
 
 module.exports = knexConfigs;

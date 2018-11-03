@@ -16,7 +16,7 @@ export async function insertUser(
 ): Promise<User> {
   const data = await processInsertUserData(args, options);
 
-  const user = await doInsertUser(data);
+  const user = await doInsertUser(data, options);
 
   return user;
 }

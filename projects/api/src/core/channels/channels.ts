@@ -57,32 +57,29 @@ async function doGetOrInsertDirectMessagesChannel(
   members: ReadonlyArray<User>,
   options: DBOptions = {},
 ): Promise<DirectMessagesChannel> {
-  const directMessagesChannel = await doInTransaction(
-    async transaction => {
-      const optionsWithTransaction: DBOptions = { transaction };
+  const directMessagesChannel = await doInTransaction(async transaction => {
+    const optionsWithTransaction: DBOptions = { transaction };
 
-      const existingChannel = await getDirectMessagesChannelByMembers(
+    const existingChannel = await getDirectMessagesChannelByMembers(
+      members,
+      optionsWithTransaction,
+    );
+
+    if (existingChannel) {
+      return existingChannel;
+    }
+
+    const insertedChannel = await insertChannel(
+      {
+        workspace,
+        type: ChannelType.DirectMessages,
         members,
-        optionsWithTransaction,
-      );
+      },
+      optionsWithTransaction,
+    );
 
-      if (existingChannel) {
-        return existingChannel;
-      }
-
-      const insertedChannel = await insertChannel(
-        {
-          workspace,
-          type: ChannelType.DirectMessages,
-          members,
-        },
-        optionsWithTransaction,
-      );
-
-      return insertedChannel;
-    },
-    { transactionFromBefore: options.transaction },
-  );
+    return insertedChannel;
+  }, options);
 
   return directMessagesChannel;
 }

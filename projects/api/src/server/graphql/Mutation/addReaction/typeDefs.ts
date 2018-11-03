@@ -2,7 +2,7 @@ import { gql } from 'apollo-server-express';
 
 export const AddReactionInput = gql`
   input AddReactionInput {
-    reactableId: ID!
+    name: String!
   }
 `;
 

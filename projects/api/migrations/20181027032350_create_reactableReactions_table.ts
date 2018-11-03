@@ -49,7 +49,7 @@ async function createReactableReactionsTable(knex: Knex): Promise<void> {
       authorIdColumnName,
     ]);
 
-    timestamps({ knex, table });
+    timestamps({ knex, table, updatedAt: false });
   });
 }
 

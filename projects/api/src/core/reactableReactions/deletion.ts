@@ -17,23 +17,20 @@ export async function removeReactableReaction(
   args: RemoveReactableReactionArgs,
   options: DBOptions = {},
 ): Promise<ReactableReaction> {
-  const removedReactableReaction = await doInTransaction(
-    async transaction => {
-      const optionsWithTransaction: DBOptions = { transaction };
+  const removedReactableReaction = await doInTransaction(async transaction => {
+    const optionsWithTransaction: DBOptions = { transaction };
 
-      const reactableReaction = await getReactableReactionByAuthorReactableAndReaction(
-        args,
-        optionsWithTransaction,
-      );
+    const reactableReaction = await getReactableReactionByAuthorReactableAndReaction(
+      args,
+      optionsWithTransaction,
+    );
 
-      if (!reactableReaction) {
-        throw new Error('reactable reaction not found');
-      }
+    if (!reactableReaction) {
+      throw new Error('reactable reaction not found');
+    }
 
-      return deleteReactableReaction(reactableReaction, options);
-    },
-    { transactionFromBefore: options.transaction },
-  );
+    return deleteReactableReaction(reactableReaction, options);
+  }, options);
 
   return removedReactableReaction;
 }

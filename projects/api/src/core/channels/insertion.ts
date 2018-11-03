@@ -64,26 +64,23 @@ export async function insertNamedChannel(
   args: InsertNamedChannelArgs,
   options: DBOptions = {},
 ): Promise<NamedChannel> {
-  const namedChannel = await doInTransaction(
-    async transaction => {
-      const optionsWithTransaction: DBOptions = { ...options, transaction };
-      const doInsertChannelArgs = makeDoInsertChannelArgs(args);
+  const namedChannel = await doInTransaction(async transaction => {
+    const optionsWithTransaction: DBOptions = { ...options, transaction };
+    const doInsertChannelArgs = makeDoInsertChannelArgs(args);
 
-      const channel = (await doInsertChannel(
-        doInsertChannelArgs,
-        optionsWithTransaction,
-      )) as NamedChannel;
+    const channel = (await doInsertChannel(
+      doInsertChannelArgs,
+      optionsWithTransaction,
+    )) as NamedChannel;
 
-      await addCreatorToNamedChannel(
-        channel,
-        args.channelCreator,
-        optionsWithTransaction,
-      );
+    await addCreatorToNamedChannel(
+      channel,
+      args.channelCreator,
+      optionsWithTransaction,
+    );
 
-      return channel;
-    },
-    { transactionFromBefore: options.transaction },
-  );
+    return channel;
+  }, options);
 
   return namedChannel;
 }
@@ -120,7 +117,7 @@ export async function insertDirectMessagesChannel(
 
       return channel;
     },
-    { transactionFromBefore: options.transaction },
+    options,
   );
 
   return insertedDirectMessagesChannel;
