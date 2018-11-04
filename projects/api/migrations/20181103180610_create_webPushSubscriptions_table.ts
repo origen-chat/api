@@ -5,9 +5,6 @@ import { constants, timestamps } from './helpers';
 const webPushSubscriptionsTableName = 'webPushSubscriptions';
 const usersTableName = 'users';
 
-const userIdColumnName = 'userId';
-const endpointColumnName = 'endpoint';
-
 export async function up(knex: Knex): Promise<void> {
   await createWebPushSubscriptionsTable(knex);
 }
@@ -15,18 +12,24 @@ export async function up(knex: Knex): Promise<void> {
 async function createWebPushSubscriptionsTable(knex: Knex): Promise<void> {
   await knex.schema.createTable(webPushSubscriptionsTableName, table => {
     table
-      .integer(userIdColumnName)
+      .increments('id')
+      .unsigned()
+      .primary();
+
+    table
+      .integer('userId')
       .unsigned()
       .references(`${usersTableName}.id`)
       .onDelete(constants.onDelete.cascade)
       .notNullable();
 
-    table.string(endpointColumnName).notNullable();
+    table
+      .string('endpoint')
+      .notNullable()
+      .unique();
 
     table.string('auth').notNullable();
     table.string('p256dh').notNullable();
-
-    table.primary([userIdColumnName, endpointColumnName]);
 
     timestamps({ knex, table, updatedAt: false });
   });

@@ -4,7 +4,7 @@ import { Handler } from 'express';
 
 import * as core from '../../core';
 
-export const readinessProbeController: Handler = (req, res) => {
+export const readinessProbeController: Handler = (request, response) => {
   let statusCode: 200 | 503;
 
   if (core.core.isCoreReady()) {
@@ -13,5 +13,5 @@ export const readinessProbeController: Handler = (req, res) => {
     statusCode = 503;
   }
 
-  res.status(statusCode).end(http.STATUS_CODES[statusCode]);
+  response.status(statusCode).end(http.STATUS_CODES[statusCode]);
 };

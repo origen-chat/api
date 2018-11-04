@@ -1,5 +1,6 @@
 import http from 'http';
 
+import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
 
@@ -9,9 +10,11 @@ import graphqlServer from './graphqlServer';
 
 const expressApp = express();
 
-expressApp.use(cors());
-expressApp.use(passport.initialize());
-expressApp.use(router);
+expressApp
+  .use(cors())
+  .use(bodyParser.json())
+  .use(passport.initialize())
+  .use(router);
 
 graphqlServer.applyMiddleware({ app: expressApp });
 
@@ -24,11 +27,9 @@ export async function closeHttpServer(): Promise<void> {
     httpServer.close((error: Error) => {
       if (error) {
         reject(error);
-
-        return;
+      } else {
+        resolve();
       }
-
-      resolve();
     });
   });
 }

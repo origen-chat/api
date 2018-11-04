@@ -2,6 +2,7 @@ import * as core from '../../../../core';
 import { getViewerOrThrowIfUnauthenticated } from '../../../helpers';
 import { MutationInputArg, Resolver, Root } from '../../../types';
 import { AuthorizationError } from '../../errors';
+import { validateCreateWorkspaceArgs } from './validation';
 
 export type ResolveCreateWorkspaceArgs = MutationInputArg<{
   name: string;
@@ -15,6 +16,8 @@ export const resolveCreateWorkspace: Resolver<
   core.workspaces.Workspace
 > = async (root, args, context) => {
   const viewer = getViewerOrThrowIfUnauthenticated(context);
+
+  validateCreateWorkspaceArgs(args);
 
   if (!core.workspaces.canCreateWorkspaces(viewer)) {
     throw new AuthorizationError("viewer can't create workspaces");

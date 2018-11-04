@@ -24,7 +24,9 @@
   "dependencies": {
     "@sentry/node": "4.2.4",
     "@strattadb/environment": "5.1.0",
+    "ajv": "^6.5.4",
     "apollo-server-express": "2.1.0",
+    "body-parser": "^1.18.3",
     "chalk": "2.4.1",
     "cors": "2.8.4",
     "express": "4.16.4",
@@ -53,6 +55,7 @@
     "@types/graphql": "14.0.3",
     "@types/ioredis": "4.0.3",
     "@types/jest": "23.3.9",
+    "@types/json-schema": "^7.0.1",
     "@types/jsonwebtoken": "8.3.0",
     "@types/knex": "0.14.26",
     "@types/node": "10.12.2",

@@ -1,7 +1,7 @@
 import { groupBy } from 'ramda';
 
 import db, { maybeAddTransactionToQuery } from '../db';
-import { DBOptions, ID } from '../types';
+import { DBOptions, ID, Nullable } from '../types';
 import { webPushSubscriptionsTableName } from './constants';
 import { formatRawWebPushSubscription } from './helpers';
 import { WebPushSubscription } from './types';
@@ -23,9 +23,9 @@ export async function getWebPushSubscriptionsByUserIds<TUserID extends ID>(
   return webPushSubscriptionsByUserIds;
 }
 
-export type GetWebPushSubscriptionsByArgs = Readonly<{
-  userIds: ReadonlyArray<ID>;
-}>;
+export type GetWebPushSubscriptionsByArgs = Readonly<
+  { userIds: ReadonlyArray<ID> } | { endpoints: ReadonlyArray<string> }
+>;
 
 export async function getWebPushSubscriptionsBy(
   args: GetWebPushSubscriptionsByArgs,
@@ -33,7 +33,11 @@ export async function getWebPushSubscriptionsBy(
 ): Promise<ReadonlyArray<WebPushSubscription>> {
   const query = db.select('*').from(webPushSubscriptionsTableName);
 
-  query.whereIn('userId', args.userIds as any);
+  if ((args as any).userIds) {
+    query.whereIn('userId', (args as any).userIds);
+  } else if ((args as any).endpoints) {
+    query.whereIn('endpoint', (args as any).endpoints);
+  }
 
   maybeAddTransactionToQuery(query, options);
 
@@ -58,4 +62,20 @@ export async function getWebPushSubscriptionsByUserId<TUserID extends ID>(
   const webPushSubscriptions = webPushSubscriptionsByUserIds[userId];
 
   return webPushSubscriptions;
+}
+
+export async function getWebPushSubscriptionByEndpoint(
+  endpoint: string,
+  options: DBOptions = {},
+): Promise<Nullable<WebPushSubscription>> {
+  const [webPushSubscription] = await getWebPushSubscriptionsBy(
+    { endpoints: [endpoint] },
+    options,
+  );
+
+  if (!webPushSubscription) {
+    return null;
+  }
+
+  return webPushSubscription;
 }

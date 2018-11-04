@@ -20,6 +20,7 @@ import * as userNotifications from './userNotifications';
 import * as userRegistration from './userRegistration';
 import * as users from './users';
 import * as userWorkspaceSettings from './userWorkspaceSettings';
+import * as webPushSubscriptions from './webPushSubscriptions';
 import * as workspaceMemberships from './workspaceMemberships';
 import * as workspaces from './workspaces';
 
@@ -40,6 +41,7 @@ export {
   userNotifications,
   payments,
   presence,
+  webPushSubscriptions,
   types,
   helpers,
   errorTracking,

@@ -6,11 +6,15 @@ import { googleStrategy, passport } from '../authentication';
 export function callPassportWithStrategyName(
   passportOptions: AuthenticateOptions,
 ): Handler {
-  const handler: Handler = (req, res, next) => {
-    const { provider } = req.params;
+  const handler: Handler = (request, response, next) => {
+    const { provider } = request.params;
     const strategyName = getPassportStrategyName(provider);
 
-    return passport.authenticate(strategyName, passportOptions)(req, res, next);
+    return passport.authenticate(strategyName, passportOptions)(
+      request,
+      response,
+      next,
+    );
   };
 
   return handler;
