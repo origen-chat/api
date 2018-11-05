@@ -5,7 +5,7 @@
   "license": "MIT",
   "main": "dist/app.js",
   "scripts": {
-    "start:dev": "NODE_ENV=development nodemon --inspect=0.0.0.0:9229 --exec babel-node --extensions \".ts,.tsx\" src/index.ts",
+    "start:dev": "NODE_ENV=development nodemon --inspect=0.0.0.0:9229 --nolazy --config nodemon.json src/index.ts",
     "build:prod": "NODE_ENV=production babel --extensions \".ts,.tsx\" --out-dir dist src",
     "download-graphql-schema": "apollo schema:download schema.json",
     "predownload-graphql-schema": "rimraf schema.json",
@@ -41,6 +41,8 @@
     "passport-jwt": "4.0.0",
     "pg": "7.6.0",
     "ramda": "0.25.0",
+    "stripe": "^6.13.0",
+    "uuid": "^3.3.2",
     "web-push": "3.3.3",
     "winston": "3.1.0"
   },
@@ -63,6 +65,8 @@
     "@types/passport-google-oauth": "1.0.39",
     "@types/passport-jwt": "3.0.1",
     "@types/ramda": "0.26.0",
+    "@types/stripe": "^6.0.3",
+    "@types/uuid": "^3.4.4",
     "@types/web-push": "3.3.0",
     "apollo": "1.9.2",
     "babel-core": "7.0.0-bridge.0",

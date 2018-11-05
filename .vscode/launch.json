@@ -11,14 +11,15 @@
       "processId": "${command:PickProcess}",
       "stopOnEntry": false,
       "smartStep": true,
+      "address": "localhost",
       "port": 9229,
-      "localRoot": "${workspaceFolder}",
+      "localRoot": "${workspaceFolder}/projects/api",
       "remoteRoot": "/usr/src/app",
+      "timeout": 5000,
       "skipFiles": [
-        "${workspaceFolder}/node_modules/**/*.js",
+        "usr/src/app/node_modules/**/*.js",
         "<node_internals>/**/*.js"
-      ],
-      "outFiles": ["${workspaceFolder}/dist/**/*.js"]
+      ]
     }
   ]
 }

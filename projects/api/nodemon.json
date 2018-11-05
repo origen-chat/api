@@ -1,0 +1,7 @@
+{
+  "exec": "babel-node --extensions \".ts\"",
+  "watch": "src",
+  "legacy-watch": true,
+  "ext": "ts,js",
+  "delay": "1000"
+}

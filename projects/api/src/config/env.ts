@@ -78,6 +78,16 @@ const env = makeEnv({
     defaultValue: false,
     envVarName: 'MOCK_ENTIRE_SCHEMA',
   },
+  stripePublishableKey: {
+    parser: parsers.string,
+    required: true,
+    envVarName: 'STRIPE_PUBLISHABLE_KEY',
+  },
+  stripeSecretKey: {
+    parser: parsers.string,
+    required: true,
+    envVarName: 'STRIPE_SECRET_KEY',
+  },
   googleClientId: {
     parser: parsers.string,
     required: true,

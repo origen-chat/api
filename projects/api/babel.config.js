@@ -1,13 +1,3 @@
-const getIgnoreOption = babelEnv => {
-  const baseIgnorePaths = ['node_modules'];
-
-  if (babelEnv === 'production') {
-    return [...baseIgnorePaths, '**/*.spec.ts', '**/*.test.ts', '**/*.d.ts'];
-  }
-
-  return baseIgnorePaths;
-};
-
 module.exports = api => {
   const babelEnv = api.env();
 
@@ -33,11 +23,24 @@ module.exports = api => {
     '@babel/plugin-proposal-optional-catch-binding',
   ];
 
-  const ignore = getIgnoreOption(babelEnv);
+  const ignore = getIgnoredPaths(babelEnv);
+
+  const sourceMaps = babelEnv === 'production' ? true : 'inline';
 
   return {
     presets,
     plugins,
     ignore,
+    sourceMaps,
   };
 };
+
+function getIgnoredPaths(babelEnv) {
+  const baseIgnorePaths = ['node_modules'];
+
+  if (babelEnv === 'production') {
+    return [...baseIgnorePaths, '**/*.spec.ts', '**/*.test.ts', '**/*.d.ts'];
+  }
+
+  return baseIgnorePaths;
+}
