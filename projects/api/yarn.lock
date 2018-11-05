@@ -1052,10 +1052,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/knex@0.14.26":
-  version "0.14.26"
-  resolved "https://registry.yarnpkg.com/@types/knex/-/knex-0.14.26.tgz#18c1b5d5a7e44bb0d394209f7e0e965b2987ce57"
-  integrity sha512-BhtEH5PbB2kxuAwZ1w+KDNyL5NZXjTfoT6JtwnD3P/l3bqJJISCOAfPeH8O2aY66auscNIaCvIij/eONvlM4Cw==
+"@types/knex@0.15.0":
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/@types/knex/-/knex-0.15.0.tgz#8ac618cf6bed9a59191133eff3caadf53b008c27"
+  integrity sha512-9oGBHZh5SHkMHKhWaGlO/S5PnRNVsldeLf4+RLEKooQ/W5NIppVE2B6ArZddWVkHLDZdF1su0wOkkW87J/X9ZA==
   dependencies:
     "@types/bluebird" "*"
     "@types/node" "*"
