@@ -22,7 +22,7 @@
     "clean": "rimraf dist"
   },
   "dependencies": {
-    "@sentry/node": "4.2.4",
+    "@sentry/node": "4.3.0",
     "@strattadb/environment": "5.1.0",
     "ajv": "6.5.5",
     "apollo-server-express": "2.1.0",
