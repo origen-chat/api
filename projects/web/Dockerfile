@@ -8,6 +8,6 @@ RUN yarn build
 
 # ---
 
-FROM nginx:1.15.5-alpine
+FROM nginx:1.15.6-alpine
 COPY --from=builder /usr/src/app/dist/ /usr/share/nginx/html/
 COPY nginx/nginx.conf /etc/nginx/sites-available/loop.conf
