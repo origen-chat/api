@@ -1779,58 +1779,58 @@ apollo-client@2.4.5:
   optionalDependencies:
     "@types/async" "2.0.50"
 
-apollo-codegen-core@0.29.3:
-  version "0.29.3"
-  resolved "https://registry.yarnpkg.com/apollo-codegen-core/-/apollo-codegen-core-0.29.3.tgz#0d9ece0ec1e316269c58b909e99c22f94693a261"
-  integrity sha512-vlWGiLpfF0F+qNi5qkWftYHV//N4EBcboE/g1n2V4aIIzGeIna8MjyEmgacgVWcIE4lmA26NGiL1/IGPecHTnw==
+apollo-codegen-core@0.29.6:
+  version "0.29.6"
+  resolved "https://registry.yarnpkg.com/apollo-codegen-core/-/apollo-codegen-core-0.29.6.tgz#c7072702fe59fa673cf282da9fe7cae3ac8da90b"
+  integrity sha512-oW7qs/EAcsoak0mAH1kS4dDqgPHil3SjyFyyOBBCtE7ihzFt1X11vm/osBLYhJpiOUhkgKjM4mvFwiSxrtHw8g==
   dependencies:
     "@babel/generator" "7.1.3"
     "@babel/parser" "^7.1.3"
     "@babel/types" "7.1.3"
     apollo-env "0.2.0"
-    apollo-language-server "1.0.3"
+    apollo-language-server "1.0.6"
     ast-types "^0.11.6"
     common-tags "^1.5.1"
     recast "^0.15.3"
 
-apollo-codegen-flow@0.29.3:
-  version "0.29.3"
-  resolved "https://registry.yarnpkg.com/apollo-codegen-flow/-/apollo-codegen-flow-0.29.3.tgz#bd948769140b98ff5d7fa96e6f34f69305b30083"
-  integrity sha512-DOQoNS1vQBOPpR5r566UEZ811yDALnCo3bbyiJqNkRGUTqwXTe534PDKbchC6yzmTZHSNjQQUl+/SD/8lBg5GQ==
+apollo-codegen-flow@0.29.6:
+  version "0.29.6"
+  resolved "https://registry.yarnpkg.com/apollo-codegen-flow/-/apollo-codegen-flow-0.29.6.tgz#25b06798b454470bf5ef52ca709068a404e334a4"
+  integrity sha512-dy79fgnZIyhEsgbzYDobhgtIvN3p+tyGV83a6IH3OcHzVG6mG2dZgZ7uTd0w7egd13l25Q4IyFUAN15jK6xc/A==
   dependencies:
     "@babel/types" "7.1.3"
-    apollo-codegen-core "0.29.3"
+    apollo-codegen-core "0.29.6"
     apollo-env "0.2.0"
     change-case "^3.0.1"
     inflected "^2.0.3"
 
-apollo-codegen-scala@0.29.3:
-  version "0.29.3"
-  resolved "https://registry.yarnpkg.com/apollo-codegen-scala/-/apollo-codegen-scala-0.29.3.tgz#e3eec8c0d334fcc0acdc49418df3aea05d0c08b6"
-  integrity sha512-pThruXYxcH8mr6Hkx9ZHjazq+nr4QPBVVpl9TJYsqt4V2VCd8hMRvjiqemoQKApiidqxuF4uT8NGRyMbtIc3Ig==
+apollo-codegen-scala@0.29.6:
+  version "0.29.6"
+  resolved "https://registry.yarnpkg.com/apollo-codegen-scala/-/apollo-codegen-scala-0.29.6.tgz#be0e369ac1daf9e126119119aa68de7b96cb214c"
+  integrity sha512-sBJ30Tbb8hNDQ3pkyUjcUlrJEYgvoBlkGqF3g+b9EZAIf2XHBpG7QhArn/LpB3oTwo0Pc6nHfRN9QeZtbmdDiA==
   dependencies:
-    apollo-codegen-core "0.29.3"
+    apollo-codegen-core "0.29.6"
     apollo-env "0.2.0"
     change-case "^3.0.1"
     inflected "^2.0.3"
 
-apollo-codegen-swift@0.29.3:
-  version "0.29.3"
-  resolved "https://registry.yarnpkg.com/apollo-codegen-swift/-/apollo-codegen-swift-0.29.3.tgz#648dd7963ff7d5497ec4e45f506181bcc0ca97c8"
-  integrity sha512-6QT1tzR6bA+Yveh9JjAQhHJSu7HBootkhKSdOA6tyjm2Cr9JjIpgLkH9ZjeSjT7zOgRiaDBtpf2XsyqVolbW5w==
+apollo-codegen-swift@0.29.6:
+  version "0.29.6"
+  resolved "https://registry.yarnpkg.com/apollo-codegen-swift/-/apollo-codegen-swift-0.29.6.tgz#9db36fbe44cd8dd2f7028b1b959201f60060f614"
+  integrity sha512-0b7+psPwxp/LLcYFiywVv9hBhttMkYWUO7r9rnTfgPhI2isUCenVgtlX23XkpTL66f5eyOzdmQO+WBMq8Vm0Mw==
   dependencies:
-    apollo-codegen-core "0.29.3"
+    apollo-codegen-core "0.29.6"
     apollo-env "0.2.0"
     change-case "^3.0.1"
     inflected "^2.0.3"
 
-apollo-codegen-typescript@0.29.3:
-  version "0.29.3"
-  resolved "https://registry.yarnpkg.com/apollo-codegen-typescript/-/apollo-codegen-typescript-0.29.3.tgz#cf0a04dd3b0abe021582506ea5d0fcb97f5294a9"
-  integrity sha512-zBWIeWciCoCLi2WuIwlBdVIV7fEJ+51XbPpGWXzv5E4DqfigpS2S7WE2Baih6QgkKOMA3GT19pvwmDPZ86nF6g==
+apollo-codegen-typescript@0.29.6:
+  version "0.29.6"
+  resolved "https://registry.yarnpkg.com/apollo-codegen-typescript/-/apollo-codegen-typescript-0.29.6.tgz#aea8cdc210f53c9244a5a0917ac0d9ceed9c5edc"
+  integrity sha512-XifFarcKOOvo/eujl5scvAeME8/GgrQ7upOJ/Y87Ht0XRTGKSCsRbqM+i7DENqkbP4dcjAMHbL75fBcdlNUVbQ==
   dependencies:
     "@babel/types" "7.1.3"
-    apollo-codegen-core "0.29.3"
+    apollo-codegen-core "0.29.6"
     apollo-env "0.2.0"
     change-case "^3.0.1"
     inflected "^2.0.3"
@@ -1869,10 +1869,10 @@ apollo-env@0.2.0:
     core-js "^3.0.0-beta.3"
     node-fetch "^2.2.0"
 
-apollo-language-server@1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/apollo-language-server/-/apollo-language-server-1.0.3.tgz#bbc1fedfa5b7af0eaab66d8c43f010d22c4ef23f"
-  integrity sha512-Ce95F4ihbOjOJjkcH8M+wi5BPsuTqSW1A+XdHfO74hdbI3uE+G+6G2FKo/IcQtZXFB1+mQFyaLjK+99D7JyooQ==
+apollo-language-server@1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/apollo-language-server/-/apollo-language-server-1.0.6.tgz#66923ed77c2d49d4516e410c5fb0ce1089366e35"
+  integrity sha512-DMcyAUZnCmLtQPVvDiSdJ/ItWSjVgGMuFr41XlnsngrZu+4PdplGPovGokjuGo4xuHxuTF7H/oGovVOKolJeCw==
   dependencies:
     "@apollographql/apollo-tools" "0.2.1"
     "@apollographql/graphql-language-service-interface" "^2.0.2"
@@ -1996,10 +1996,10 @@ apollo-utilities@^1.0.0:
     fast-json-stable-stringify "^2.0.0"
     fclone "^1.0.11"
 
-apollo@2.0.5:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/apollo/-/apollo-2.0.5.tgz#652907e05fb905d3e5ef0f340cb74a5300ab1302"
-  integrity sha512-uOG42U+rWg94jAB5o1CsHGas3YCgVzeUm25pRpXc9Lvzw4J+HLz3QHq54rR7zTdD7e5Jq4n2orUkdVJrNtTftA==
+apollo@2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/apollo/-/apollo-2.0.8.tgz#faeb330a026991211745ff21be6eb86054b72e3a"
+  integrity sha512-ARIYXoIE/+9bi4VWAqIUIvXxglgF3b9TiKNZ7rjcOgHAvyyX/G2lB5sYcP3X7OGvdsncYAKTWnvn++8S+G1DVg==
   dependencies:
     "@apollographql/apollo-tools" "0.2.1"
     "@oclif/command" "^1.4.21"
@@ -2009,14 +2009,14 @@ apollo@2.0.5:
     "@oclif/plugin-not-found" "^1.0.9"
     "@oclif/plugin-plugins" "^1.7.2"
     "@oclif/plugin-warn-if-update-available" "^1.3.9"
-    apollo-codegen-core "0.29.3"
-    apollo-codegen-flow "0.29.3"
-    apollo-codegen-scala "0.29.3"
-    apollo-codegen-swift "0.29.3"
-    apollo-codegen-typescript "0.29.3"
+    apollo-codegen-core "0.29.6"
+    apollo-codegen-flow "0.29.6"
+    apollo-codegen-scala "0.29.6"
+    apollo-codegen-swift "0.29.6"
+    apollo-codegen-typescript "0.29.6"
     apollo-engine-reporting "0.0.2"
     apollo-env "0.2.0"
-    apollo-language-server "1.0.3"
+    apollo-language-server "1.0.6"
     chalk "^2.4.1"
     cli-ux "^4.3.0"
     env-ci "^2.1.0"
