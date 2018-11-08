@@ -46,7 +46,15 @@ export async function createCustomer(
     stripeCustomerId: stripeCustomer.id,
   };
 
-  const insertedCustomer = await insertCustomer(insertCustomerArgs, options);
+  let insertedCustomer: Customer;
+
+  try {
+    insertedCustomer = await insertCustomer(insertCustomerArgs, options);
+  } catch (error) {
+    await stripe.customers.del(stripeCustomer.id);
+
+    throw error;
+  }
 
   return insertedCustomer;
 }

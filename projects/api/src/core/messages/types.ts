@@ -1,5 +1,7 @@
+import { Bot } from '../bots';
 import { RichText } from '../richText';
 import { ID, Identifiable, Nullable, Timestamps } from '../types';
+import { User } from '../users';
 
 export type Message = UserMessage | BotMessage;
 
@@ -29,3 +31,5 @@ export type BotMessage = Readonly<{
   botSenderId: ID;
 }> &
   MessageSharedData;
+
+export type MessageSender = User | Bot;

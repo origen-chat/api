@@ -1,14 +1,17 @@
 import { Bot } from '../bots';
 import { Channel } from '../channels';
 import db, { maybeAddTransactionToQuery } from '../db';
-import { DBOptions, Nullable } from '../types';
-import { User } from '../users';
+import { DBOptions, Mutable, Nullable } from '../types';
+import { isUser } from '../users';
 import { messagesTableName } from './constants';
-import { BotMessage, Message, UserMessage } from './types';
+import { Message, MessageSender } from './types';
 
 export type InsertMessageArgs = Pick<Message, 'content'> &
-  (Readonly<{ userSender: User } | { botSender: Bot }>) &
-  Readonly<{ channel: Channel; parentMessage?: Nullable<Message> }>;
+  Readonly<{
+    channel: Channel;
+    sender: MessageSender;
+    parentMessage?: Nullable<Message>;
+  }>;
 
 /**
  * Inserts a message.
@@ -25,19 +28,25 @@ export async function insertMessage(
 }
 
 function makeDoInsertMessageArgs(args: InsertMessageArgs): DoInsertMessageArgs {
-  const doInsertMessageArgs: DoInsertMessageArgs = {
+  const doInsertMessageArgs: Mutable<Partial<DoInsertMessageArgs>> = {
     channelId: args.channel.id,
-    userSenderId: (args as any).userSender || null,
-    botSenderId: (args as any).botSender || null,
     content: args.content,
     parentMessageId: args.parentMessage ? args.parentMessage.id : null,
   };
 
-  return doInsertMessageArgs;
+  if (isUser(args.sender)) {
+    doInsertMessageArgs.userSenderId = args.sender.id;
+  } else {
+    doInsertMessageArgs.botSenderId = args.sender.id;
+  }
+
+  return doInsertMessageArgs as DoInsertMessageArgs;
 }
 
-export type DoInsertMessageArgs = Pick<Message, 'channelId' | 'content'> &
-  (Pick<UserMessage, 'userSenderId'> | Pick<BotMessage, 'botSenderId'>) &
+export type DoInsertMessageArgs = Pick<
+  Message,
+  'channelId' | 'content' | 'userSenderId' | 'botSenderId'
+> &
   Partial<Pick<Message, 'parentMessageId'>>;
 
 export async function doInsertMessage(
