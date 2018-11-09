@@ -2,6 +2,7 @@ import { Request } from 'express';
 
 import * as core from '../../core';
 import { getUserFromAuthorizationHeader } from '../authentication';
+import { makeLoaders } from '../loaders';
 import { Context } from '../types';
 
 export type MakeContextArgs = Readonly<{
@@ -21,8 +22,9 @@ async function makeContextFromHttpRequest(request: Request): Promise<Context> {
   const authorizationHeader = request.headers.authorization;
 
   const viewer = await getUserFromAuthorizationHeader(authorizationHeader);
+  const loaders = makeLoaders();
 
-  const context: Context = { viewer };
+  const context: Context = { viewer, loaders };
 
   return context;
 }

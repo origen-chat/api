@@ -1,6 +1,8 @@
 import { MergeInfo } from 'apollo-server-express';
 import { GraphQLResolveInfo } from 'graphql';
+
 import { types, users } from '../core';
+import { Loaders } from './loaders';
 
 export type Resolver<TParent = Root, TArgs = {}, TReturn = any> = (
   parentOrRoot: TParent,
@@ -13,6 +15,7 @@ export type Root = null;
 
 export type Context = Readonly<{
   viewer: types.Nullable<users.User>;
+  loaders: Loaders;
 }>;
 
 export type Info = GraphQLResolveInfo & { mergeInfo: MergeInfo };

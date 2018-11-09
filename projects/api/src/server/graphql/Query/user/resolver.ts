@@ -10,19 +10,21 @@ export const resolveUser: Resolver<
   Root,
   ResolveUserArgs,
   core.users.User
-> = async (root, args) => {
+> = async (root, args, context) => {
   const { id: userId, username, usernameIdentifier, email } = args;
 
-  let user: core.types.Nullable<core.users.User> = null;
+  let user: core.types.Nullable<core.users.User>;
 
   if (userId) {
-    user = await core.users.getUserById(userId);
+    user = await context.loaders.userByIdLoader.load(userId);
   } else if (username && usernameIdentifier) {
     user = await core.users.getUserByUniqueUsername({
       username,
       usernameIdentifier,
     });
   } else if (email) {
+    user = await core.users.getUserByEmail(email);
+  } else {
     throw new UserInputError(
       'must provide user id, username and username identifier, or email',
     );
