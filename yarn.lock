@@ -561,7 +561,7 @@ babel-code-frame@^6.22.0:
     esutils "^2.0.2"
     js-tokens "^3.0.2"
 
-babel-eslint@^10.0.1:
+babel-eslint@10.0.1:
   version "10.0.1"
   resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-10.0.1.tgz#919681dc099614cd7d31d45c8908695092a1faed"
   integrity sha512-z7OT1iNV+TjOwHNLLyJk+HN+YVWX+CLE6fPD2SymJZOZQBs+QIexFjhm4keGTm8MW9xr4EC9Q0PbaLB24V5GoQ==
@@ -1391,7 +1391,7 @@ eslint-plugin-es@^1.3.1:
     eslint-utils "^1.3.0"
     regexpp "^2.0.1"
 
-eslint-plugin-eslint-comments@^3.0.1:
+eslint-plugin-eslint-comments@3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-eslint-comments/-/eslint-plugin-eslint-comments-3.0.1.tgz#baafb713584c0de7ee588710720e580bcc28cfbb"
   integrity sha512-7zU6gCulKVmfG3AZdnvDxzfHaGdvkA8tsLiKbneeI/TlVaulJsRzOyMCctH9QTobKVJ6LIsiJbrkSKkgcFLHxw==
@@ -1399,7 +1399,7 @@ eslint-plugin-eslint-comments@^3.0.1:
     escape-string-regexp "^1.0.5"
     ignore "^3.3.8"
 
-eslint-plugin-fp@^2.3.0:
+eslint-plugin-fp@2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-fp/-/eslint-plugin-fp-2.3.0.tgz#376d2a108710e981980bdc3875e3b9920da0489c"
   integrity sha1-N20qEIcQ6YGYC9w4deO5kg2gSJw=
@@ -1409,7 +1409,7 @@ eslint-plugin-fp@^2.3.0:
     lodash "^4.13.1"
     req-all "^0.1.0"
 
-eslint-plugin-graphql@^2.1.1:
+eslint-plugin-graphql@2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-graphql/-/eslint-plugin-graphql-2.1.1.tgz#dae5d597080075320ea8e98795056309ffe73a18"
   integrity sha512-JT2paUyu3e9ZDnroSshwUMc6pKcnkfXTsZInX1+/rPotvqOLVLtdrx/cmfb7PTJwjiEAshwcpm3/XPdTpsKJPw==
@@ -1452,7 +1452,7 @@ eslint-plugin-jsx-a11y@6.1.2:
     has "^1.0.3"
     jsx-ast-utils "^2.0.1"
 
-eslint-plugin-node@^8.0.0:
+eslint-plugin-node@8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-node/-/eslint-plugin-node-8.0.0.tgz#fb9e8911f4543514f154bb6a5924b599aa645568"
   integrity sha512-Y+ln8iQ52scz9+rSPnSWRaAxeWaoJZ4wIveDR0vLHkuSZGe44Vk1J4HX7WvEP5Cm+iXPE8ixo7OM7gAO3/OKpQ==
@@ -1471,12 +1471,12 @@ eslint-plugin-prettier@3.0.0:
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
-eslint-plugin-promise@^4.0.1:
+eslint-plugin-promise@4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-promise/-/eslint-plugin-promise-4.0.1.tgz#2d074b653f35a23d1ba89d8e976a985117d1c6a2"
   integrity sha512-Si16O0+Hqz1gDHsys6RtFRrW7cCTB6P7p3OJmKp3Y3dxpQE2qwOA7d3xnV+0mBmrPoi0RBnxlCKvqu70te6wjg==
 
-eslint-plugin-ramda@^2.5.1:
+eslint-plugin-ramda@2.5.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-ramda/-/eslint-plugin-ramda-2.5.1.tgz#36c2592300c383471aaac1ba26e9fca6f37a11b2"
   integrity sha512-1Uuyl5hMiyBNsn1F0Px0q8hGX95HC6CAzaEBeKngwixXwsbw+j98U7fatxDME8lUKyLPXuO5Ulon2QOcwVDrxw==
@@ -2129,7 +2129,7 @@ graphql-request@^1.5.0:
   dependencies:
     cross-fetch "2.2.2"
 
-graphql@^14.0.2:
+graphql@14.0.2:
   version "14.0.2"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-14.0.2.tgz#7dded337a4c3fd2d075692323384034b357f5650"
   integrity sha512-gUC4YYsaiSJT1h40krG3J+USGlwhzNTXSb4IOZljn9ag5Tj+RkoXrWp+Kh7WyE3t1NCfab5kzCuxBIvOMERMXw==
