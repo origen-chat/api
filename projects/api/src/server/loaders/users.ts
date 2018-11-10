@@ -12,5 +12,31 @@ export function makeUserByIdLoader(): DataLoader<
     keyName: 'id',
   });
 
-  return loader as any;
+  return loader;
+}
+
+export function makeUserByEmailLoader(): DataLoader<
+  core.types.Email,
+  core.types.Nullable<core.users.User>
+> {
+  const loader = makeLoader({
+    originalBatchLoadFunction: core.users.getUsersByEmails,
+    keyName: 'email',
+  });
+
+  return loader;
+}
+
+export function makeUserByUniqueUsernameLoader(): DataLoader<
+  core.users.UniqueUsername,
+  core.types.Nullable<core.users.User>
+> {
+  const loader = makeLoader({
+    originalBatchLoadFunction: core.users.getUsersByUniqueUsernames,
+    normalizeFunction: key => value =>
+      value.username === key.username &&
+      value.usernameIdentifier === key.usernameIdentifier,
+  });
+
+  return loader;
 }

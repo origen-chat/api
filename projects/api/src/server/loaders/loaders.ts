@@ -1,10 +1,20 @@
-import { makeUserByIdLoader } from './users';
+import { makeChannelByIdLoader } from './channels';
+import { makeMessageByIdLoader } from './messages';
+import {
+  makeUserByEmailLoader,
+  makeUserByIdLoader,
+  makeUserByUniqueUsernameLoader,
+} from './users';
 import { makeWorkspaceByIdLoader } from './workspaces';
 
 export function makeLoaders() {
   const loaders = {
-    userByIdLoader: makeUserByIdLoader(),
-    workspacesByIdLoader: makeWorkspaceByIdLoader(),
+    userById: makeUserByIdLoader(),
+    userByEmail: makeUserByEmailLoader(),
+    userByUniqueUsername: makeUserByUniqueUsernameLoader(),
+    workspaceById: makeWorkspaceByIdLoader(),
+    channelById: makeChannelByIdLoader(),
+    messageById: makeMessageByIdLoader(),
   };
 
   return loaders;

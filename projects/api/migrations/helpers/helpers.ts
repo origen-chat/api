@@ -27,7 +27,7 @@ type TimestampArgs = Pick<TimestampsArgs, 'knex' | 'table'> &
 
 function timestamp({ knex, table, columnName }: TimestampArgs): void {
   table
-    .timestamp(columnName, true)
+    .timestamp(columnName, false)
     .notNullable()
     .defaultTo(knex.fn.now());
 }

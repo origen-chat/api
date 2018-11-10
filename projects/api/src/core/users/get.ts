@@ -59,7 +59,9 @@ export async function getUsersByIds(
 }
 
 export type GetUsersByArgs = Readonly<
-  { ids: ReadonlyArray<ID> } | { emails: ReadonlyArray<Email> }
+  | { ids: ReadonlyArray<ID> }
+  | { emails: ReadonlyArray<Email> }
+  | { uniqueUsernames: ReadonlyArray<UniqueUsername> }
 >;
 
 async function getUsersBy(
@@ -72,11 +74,38 @@ async function getUsersBy(
     query.whereIn('id', (args as any).ids);
   } else if ((args as any).emails) {
     query.whereIn('email', (args as any).emails);
+  } else if ((args as any).uniqueUsernames) {
+    const uniqueUsernameValues = (args as any).uniqueUsernames.map(
+      (uniqueUsername: UniqueUsername) => [
+        uniqueUsername.username,
+        uniqueUsername.usernameIdentifier,
+      ],
+    );
+
+    query.whereIn(['username', 'usernameIdentifier'], uniqueUsernameValues);
   }
 
   maybeAddTransactionToQuery(query, options);
 
   const users: ReadonlyArray<User> = await query;
+
+  return users;
+}
+
+export async function getUsersByEmails(
+  emails: ReadonlyArray<Email>,
+  options: DBOptions = {},
+): Promise<ReadonlyArray<User>> {
+  const users = await getUsersBy({ emails }, options);
+
+  return users;
+}
+
+export async function getUsersByUniqueUsernames(
+  uniqueUsernames: ReadonlyArray<UniqueUsername>,
+  options: DBOptions = {},
+): Promise<ReadonlyArray<User>> {
+  const users = await getUsersBy({ uniqueUsernames }, options);
 
   return users;
 }

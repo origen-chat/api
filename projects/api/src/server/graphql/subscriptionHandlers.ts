@@ -1,5 +1,6 @@
 import * as core from '../../core';
 import { getUserFromJWT } from '../authentication';
+import { makeLoaders } from '../loaders';
 import { Context } from '../types';
 
 export async function handleSubscriptionConnect(
@@ -11,7 +12,9 @@ export async function handleSubscriptionConnect(
     await core.presence.setUserConnectionStatusToOnline(viewer);
   }
 
-  const context: Context = { viewer };
+  const loaders = makeLoaders();
+
+  const context: Context = { viewer, loaders };
 
   return context;
 }
@@ -25,13 +28,15 @@ async function getViewerFromConnectionParams(
 
   const token: string = connectionParams.authToken;
 
-  try {
-    const viewer = await getUserFromJWT(token);
+  let viewer: core.types.Nullable<core.users.User> = null;
 
-    return viewer;
+  try {
+    viewer = await getUserFromJWT(token);
   } catch {
-    return null;
+    viewer = null;
   }
+
+  return viewer;
 }
 
 export async function handleSubscriptionDisconnect(

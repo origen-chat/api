@@ -14,7 +14,11 @@ export {
   isDirectMessagesChannel,
   isPublicChannel,
 } from './predicates';
-export { getChannelById } from './get';
+export {
+  getChannelById,
+  getDirectMessagesChannelByMembers,
+  getChannelsByIds,
+} from './get';
 export {
   insertChannel,
   insertInitialDefaultChannel,

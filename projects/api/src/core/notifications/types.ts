@@ -1,21 +1,26 @@
 import { ID, Identifiable, Timestamps } from '../types';
 
-export type Notification = Identifiable & NotificationData & Timestamps;
+export type Notification = NewMessageNotification | NewReactionNotification;
 
-type NotificationData =
-  | NewMessageNotificationData
-  | NewReactionNotificationData;
-
-type NewMessageNotificationData = Readonly<{
-  action: 'new_message';
+export type NewMessageNotification = Readonly<{
+  action: NotificationAction.NewMessage;
   data: Readonly<{
     messageId: ID;
   }>;
-}>;
+}> &
+  NotificationSharedData;
 
-type NewReactionNotificationData = Readonly<{
-  action: 'new_reaction';
+type NotificationSharedData = Identifiable & Timestamps;
+
+export type NewReactionNotification = Readonly<{
+  action: NotificationAction.NewReaction;
   data: Readonly<{
     reactionId: ID;
   }>;
-}>;
+}> &
+  NotificationSharedData;
+
+export enum NotificationAction {
+  NewMessage = 'newMessage',
+  NewReaction = 'newReaction',
+}

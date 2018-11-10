@@ -2,11 +2,14 @@ import { channelMembershipsTableName } from '../channelMemberships';
 import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions, ID, Nullable } from '../types';
 import { User } from '../users';
+import { Workspace } from '../workspaces';
 import { channelsTableName } from './constants';
 import { Channel, ChannelType, DirectMessagesChannel } from './types';
 
 export async function getChannelById(id: ID): Promise<Nullable<Channel>> {
-  return getChannelBy({ id });
+  const channel = await getChannelBy({ id });
+
+  return channel;
 }
 
 type GetChannelByArgs = Pick<Channel, 'id'>;
@@ -28,11 +31,16 @@ async function getChannelBy(
   return channel;
 }
 
+export type GetDirectMessagesChannelByMembersArgs = Readonly<{
+  members: ReadonlyArray<User>;
+  workspace: Workspace;
+}>;
+
 export async function getDirectMessagesChannelByMembers(
-  members: ReadonlyArray<User>,
+  args: GetDirectMessagesChannelByMembersArgs,
   options: DBOptions = {},
 ): Promise<DirectMessagesChannel> {
-  const memberIds = members.map(member => member.id);
+  const memberIds = args.members.map(member => member.id);
 
   const query = db
     .select(`${channelsTableName}.*`)
@@ -44,6 +52,7 @@ export async function getDirectMessagesChannelByMembers(
     )
     .where({
       [`${channelsTableName}.type`]: ChannelType.DirectMessages,
+      workspaceId: args.workspace.id,
     })
     .whereIn('memberId', memberIds)
     .groupBy(`${channelsTableName}.id`)
@@ -54,4 +63,32 @@ export async function getDirectMessagesChannelByMembers(
   const channel = await query;
 
   return channel;
+}
+
+export async function getChannelsByIds(
+  ids: ReadonlyArray<ID>,
+  options: DBOptions = {},
+): Promise<ReadonlyArray<Channel>> {
+  const channels = await getChannelsBy({ ids }, options);
+
+  return channels;
+}
+
+type GetChannelsByArgs = Readonly<{ ids: ReadonlyArray<ID> }>;
+
+async function getChannelsBy(
+  args: GetChannelsByArgs,
+  options: DBOptions = {},
+): Promise<ReadonlyArray<Channel>> {
+  const query = db.select('*').from(channelsTableName);
+
+  if ((args as any).ids) {
+    query.whereIn('id', (args as any).ids);
+  }
+
+  maybeAddTransactionToQuery(query, options);
+
+  const channels: ReadonlyArray<Channel> = await query;
+
+  return channels;
 }

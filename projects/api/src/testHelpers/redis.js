@@ -1,4 +1,4 @@
-const core = require('../core');
+const core = require('../core/index.ts');
 
 async function cleanCache() {
   await core.redis.redisClient.flushall();

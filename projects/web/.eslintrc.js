@@ -1,11 +1,12 @@
 module.exports = {
-  root: true,
-
-  parser: 'babel-eslint',
+  root: false,
 
   parserOptions: {
     ecmaVersion: 2019,
     sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
 
   plugins: [
@@ -26,6 +27,9 @@ module.exports = {
 
   env: {
     es6: true,
+    browser: true,
+    serviceworker: true,
+    jest: true,
   },
 
   extends: [
@@ -70,6 +74,8 @@ module.exports = {
     'fp/no-let': 'off',
     'fp/no-unused-expression': 'off',
     'fp/no-rest-parameters': 'off',
+    'fp/no-this': 'off',
+    'fp/no-class': 'off',
   },
 
   settings: {
@@ -87,9 +93,9 @@ module.exports = {
 
       rules: {
         'no-undef': 'off',
-        'no-unused-vars': 'off',
         'no-restricted-globals': 'off',
         'no-shadow': 'off',
+        camelcase: 'off',
         'prefer-destructuring': 'off',
         'no-multi-str': 'off',
 

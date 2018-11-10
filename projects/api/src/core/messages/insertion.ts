@@ -1,4 +1,3 @@
-import { Bot } from '../bots';
 import { Channel } from '../channels';
 import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions, Mutable, Nullable } from '../types';

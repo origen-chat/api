@@ -2,17 +2,11 @@ import { doInTransaction } from '../db';
 import { DBOptions } from '../types';
 import { User } from '../users';
 import { areWorkspaceMembers } from '../workspaceMemberships';
-import { getWorkspaceById, Workspace } from '../workspaces';
+import { Workspace } from '../workspaces';
 import { maxUsersInDirectMessagesChannel } from './constants';
 import { getDirectMessagesChannelByMembers } from './get';
 import { insertChannel } from './insertion';
-import { Channel, ChannelType, DirectMessagesChannel } from './types';
-
-export async function getWorkspace(channel: Channel): Promise<Workspace> {
-  const workspace = (await getWorkspaceById(channel.workspaceId))!;
-
-  return workspace;
-}
+import { ChannelType, DirectMessagesChannel } from './types';
 
 export async function getOrInsertDirectMessagesChannel(
   workspace: Workspace,
@@ -61,7 +55,7 @@ async function doGetOrInsertDirectMessagesChannel(
     const optionsWithTransaction: DBOptions = { transaction };
 
     const existingChannel = await getDirectMessagesChannelByMembers(
-      members,
+      { workspace, members },
       optionsWithTransaction,
     );
 

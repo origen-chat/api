@@ -5,6 +5,8 @@ export {
   getUserByEmail,
   getUserByUniqueUsername,
   getUsersByIds,
+  getUsersByEmails,
+  getUsersByUniqueUsernames,
 } from './get';
 export { isUser } from './predicates';
 export { insertUser, InsertUserArgs } from './insertion';

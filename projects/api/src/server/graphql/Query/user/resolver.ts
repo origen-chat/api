@@ -13,10 +13,10 @@ export const resolveUser: Resolver<
 > = async (root, args, context) => {
   const { id: userId, username, usernameIdentifier, email } = args;
 
-  let user: core.types.Nullable<core.users.User>;
+  let user: core.types.Nullable<core.users.User> = null;
 
   if (userId) {
-    user = await context.loaders.userByIdLoader.load(userId);
+    user = await context.loaders.userById.load(userId);
   } else if (username && usernameIdentifier) {
     user = await core.users.getUserByUniqueUsername({
       username,

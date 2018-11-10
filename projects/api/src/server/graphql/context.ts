@@ -1,5 +1,6 @@
 import { Request } from 'express';
 
+import { inspect } from 'util';
 import * as core from '../../core';
 import { getUserFromAuthorizationHeader } from '../authentication';
 import { makeLoaders } from '../loaders';
@@ -31,10 +32,6 @@ async function makeContextFromHttpRequest(request: Request): Promise<Context> {
 
 async function makeContextFromWebSocketConnection(connection: any) {
   const context: Context = connection.context;
-
-  if (context.viewer) {
-    await core.presence.setUserConnectionStatusToOnline(context.viewer);
-  }
 
   return context;
 }
