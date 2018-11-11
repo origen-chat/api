@@ -28,7 +28,7 @@ async function createChannelsTable(knex: Knex): Promise<void> {
       .unsigned()
       .primary();
 
-    table.string(nameColumnName, 64);
+    table.string(nameColumnName, 64).nullable();
 
     table.string(typeColumnName, 32).notNullable();
 
@@ -42,12 +42,13 @@ async function createChannelsTable(knex: Knex): Promise<void> {
     table
       .integer(workspaceIdColumnName)
       .unsigned()
-      .references(`${workspacesTableName}.id`)
+      .references('id')
+      .inTable(workspacesTableName)
       .onDelete(constants.onDelete.cascade)
       .notNullable();
 
-    table.string('topic', 128);
-    table.string('purpose', 256);
+    table.string('topic', 128).nullable();
+    table.string('purpose', 256).nullable();
 
     table.unique([workspaceIdColumnName, nameColumnName]);
 

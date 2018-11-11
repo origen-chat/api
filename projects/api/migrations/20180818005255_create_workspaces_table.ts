@@ -22,7 +22,7 @@ async function createWorkspacesTable(knex: Knex): Promise<void> {
 
     table.string('displayName', 64).notNullable();
 
-    table.string('description', 256);
+    table.string('description', 256).nullable();
 
     timestamps({ knex, table });
   });

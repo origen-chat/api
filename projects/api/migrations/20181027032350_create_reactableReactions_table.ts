@@ -26,20 +26,24 @@ async function createReactableReactionsTable(knex: Knex): Promise<void> {
     table
       .integer(reactionIdColumnName)
       .unsigned()
-      .references(`${reactionsTableName}.id`)
+      .references('id')
+      .inTable(reactionsTableName)
       .onDelete(constants.onDelete.cascade)
       .notNullable();
 
     table
       .integer(messageIdColumnName)
       .unsigned()
-      .references(`${messagesTableName}.id`)
-      .onDelete(constants.onDelete.cascade);
+      .references('id')
+      .inTable(messagesTableName)
+      .onDelete(constants.onDelete.cascade)
+      .nullable();
 
     table
       .integer(authorIdColumnName)
       .unsigned()
-      .references(`${usersTableName}.id`)
+      .references('id')
+      .inTable(usersTableName)
       .onDelete(constants.onDelete.cascade)
       .notNullable();
 

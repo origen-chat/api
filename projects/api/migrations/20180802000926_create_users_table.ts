@@ -4,6 +4,9 @@ import { timestamps } from './helpers';
 
 const usersTableName = 'users';
 
+const usernameColumnName = 'username';
+const usernameIdentifierColumnName = 'usernameIdentifier';
+
 export async function up(knex: Knex): Promise<void> {
   await createUsersTable(knex);
 }
@@ -15,8 +18,8 @@ async function createUsersTable(knex: Knex): Promise<void> {
       .unsigned()
       .primary();
 
-    table.string('username', 64).notNullable();
-    table.string('usernameIdentifier', 8).notNullable();
+    table.string(usernameColumnName, 64).notNullable();
+    table.string(usernameIdentifierColumnName, 8).notNullable();
 
     table
       .string('email', 256)
@@ -31,7 +34,7 @@ async function createUsersTable(knex: Knex): Promise<void> {
     table.string('bio', 512).nullable();
     table.string('avatarUrl', 128).nullable();
 
-    table.unique(['username', 'usernameIdentifier']);
+    table.unique([usernameColumnName, usernameIdentifierColumnName]);
 
     timestamps({ knex, table });
   });

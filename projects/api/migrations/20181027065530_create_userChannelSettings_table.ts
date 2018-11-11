@@ -16,7 +16,8 @@ async function createUserChannelSettingsTable(knex: Knex): Promise<void> {
     table
       .integer(channelMembershipIdColumnName)
       .unsigned()
-      .references(`${channelMembershipsTableName}.id`)
+      .references('id')
+      .inTable(channelMembershipsTableName)
       .onDelete(constants.onDelete.cascade)
       .primary()
       .notNullable();

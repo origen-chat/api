@@ -23,14 +23,16 @@ async function createChannelPinsTable(knex: Knex): Promise<void> {
     table
       .integer(channelIdColumnName)
       .unsigned()
-      .references(`${channelsTableName}.id`)
+      .references('id')
+      .inTable(channelsTableName)
       .onDelete(constants.onDelete.cascade)
       .notNullable();
 
     table
       .integer(messageIdColumnName)
       .unsigned()
-      .references(`${messagesTableName}.id`)
+      .references('id')
+      .inTable(messagesTableName)
       .onDelete(constants.onDelete.cascade)
       .notNullable();
 

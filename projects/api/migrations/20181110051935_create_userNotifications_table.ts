@@ -23,14 +23,16 @@ async function createUserNotificationsTable(knex: Knex): Promise<void> {
     table
       .integer(notificationIdColumnName)
       .unsigned()
-      .references(`${notificationsTableName}.id`)
+      .references('id')
+      .inTable(notificationsTableName)
       .onDelete(constants.onDelete.cascade)
       .notNullable();
 
     table
       .integer(userIdColumnName)
       .unsigned()
-      .references(`${usersTableName}.id`)
+      .references('id')
+      .inTable(usersTableName)
       .onDelete(constants.onDelete.cascade)
       .notNullable();
 

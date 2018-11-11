@@ -24,13 +24,16 @@ async function createBookmarksTable(knex: Knex): Promise<void> {
     table
       .integer(messageIdColumnName)
       .unsigned()
-      .references(`${messagesTableName}.id`)
-      .onDelete(constants.onDelete.cascade);
+      .references('id')
+      .inTable(messagesTableName)
+      .onDelete(constants.onDelete.cascade)
+      .nullable();
 
     table
       .integer(authorIdColumnName)
       .unsigned()
-      .references(`${usersTableName}.id`)
+      .references('id')
+      .inTable(usersTableName)
       .onDelete(constants.onDelete.cascade)
       .notNullable();
 

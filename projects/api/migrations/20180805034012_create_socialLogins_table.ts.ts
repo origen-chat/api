@@ -26,7 +26,8 @@ async function createSocialLoginsTable(knex: Knex): Promise<void> {
       .integer('userId')
       .unsigned()
       .notNullable()
-      .references(`${usersTableName}.id`)
+      .references('id')
+      .inTable(usersTableName)
       .onDelete(constants.onDelete.cascade);
 
     table.unique([providerUserIdColumnName, providerColumnName]);

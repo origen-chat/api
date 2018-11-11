@@ -22,20 +22,22 @@ async function createReactionsTable(knex: Knex): Promise<void> {
       .unsigned()
       .primary();
 
-    table.string(nameColumnName, 64);
+    table.string(nameColumnName, 64).nullable();
 
     table
       .boolean(isCustomColumnName)
       .notNullable()
       .defaultTo(false);
 
-    table.string(imageUrlColumnName, 256);
+    table.string(imageUrlColumnName, 256).nullable();
 
     table
       .integer(workspaceIdColumnName)
       .unsigned()
-      .references(`${workspacesTableName}.id`)
-      .onDelete(constants.onDelete.cascade);
+      .references('id')
+      .inTable(workspacesTableName)
+      .onDelete(constants.onDelete.cascade)
+      .nullable();
 
     table.unique([workspaceIdColumnName, nameColumnName]);
 

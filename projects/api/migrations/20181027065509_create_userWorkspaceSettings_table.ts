@@ -16,7 +16,8 @@ async function createUserWorkspaceSettingsTable(knex: Knex): Promise<void> {
     table
       .integer(workspaceMembershipIdColumnName)
       .unsigned()
-      .references(`${workspaceMembershipsTableName}.id`)
+      .references('id')
+      .inTable(workspaceMembershipsTableName)
       .onDelete(constants.onDelete.cascade)
       .primary()
       .notNullable();

@@ -28,14 +28,16 @@ async function createWorkspaceMembershipsTable(knex: Knex): Promise<void> {
       .integer(memberIdColumnName)
       .unsigned()
       .notNullable()
-      .references(`${usersTableName}.id`)
+      .references('id')
+      .inTable(usersTableName)
       .onDelete(constants.onDelete.cascade);
 
     table
       .integer(workspaceIdColumnName)
       .unsigned()
       .notNullable()
-      .references(`${workspacesTableName}.id`)
+      .references('id')
+      .inTable(workspacesTableName)
       .onDelete(constants.onDelete.cascade);
 
     table.string(roleColumnName, 32).notNullable();

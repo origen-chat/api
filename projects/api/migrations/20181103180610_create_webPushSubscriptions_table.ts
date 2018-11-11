@@ -19,7 +19,8 @@ async function createWebPushSubscriptionsTable(knex: Knex): Promise<void> {
     table
       .integer('userId')
       .unsigned()
-      .references(`${usersTableName}.id`)
+      .references('id')
+      .inTable(usersTableName)
       .onDelete(constants.onDelete.cascade)
       .notNullable();
 

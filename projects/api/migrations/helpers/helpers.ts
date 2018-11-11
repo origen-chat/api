@@ -1,11 +1,10 @@
 import Knex, { CreateTableBuilder } from 'knex';
 
-export type TimestampsArgs = Readonly<{
-  knex: Knex;
-  table: CreateTableBuilder;
-  insertedAt?: boolean;
-  updatedAt?: boolean;
-}>;
+export type TimestampsArgs = Pick<TimestampArgs, 'knex' | 'table'> &
+  Readonly<{
+    insertedAt?: boolean;
+    updatedAt?: boolean;
+  }>;
 
 export function timestamps({
   knex,
@@ -18,16 +17,23 @@ export function timestamps({
   }
 
   if (updatedAt) {
-    timestamp({ knex, table, columnName: 'updatedAt' });
+    timestamp({ knex, table, columnName: 'updatedAt', nullable: true });
   }
 }
 
-type TimestampArgs = Pick<TimestampsArgs, 'knex' | 'table'> &
-  Readonly<{ columnName: string }>;
+type TimestampArgs = Readonly<{
+  knex: Knex;
+  table: CreateTableBuilder;
+  columnName: string;
+  nullable?: boolean;
+}>;
 
-function timestamp({ knex, table, columnName }: TimestampArgs): void {
-  table
-    .timestamp(columnName, false)
-    .notNullable()
-    .defaultTo(knex.fn.now());
+function timestamp({ knex, table, columnName, nullable }: TimestampArgs): void {
+  const column = table.timestamp(columnName, false);
+
+  if (!nullable) {
+    column.notNullable().defaultTo(knex.fn.now());
+  } else {
+    column.nullable();
+  }
 }

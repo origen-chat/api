@@ -27,14 +27,16 @@ async function createChannelMembershipsTable(knex: Knex): Promise<void> {
     table
       .integer(channelIdColumnName)
       .unsigned()
-      .references(`${channelsTableName}.id`)
+      .references('id')
+      .inTable(channelsTableName)
       .onDelete(constants.onDelete.cascade)
       .notNullable();
 
     table
       .integer(memberIdColumnName)
       .unsigned()
-      .references(`${usersTableName}.id`)
+      .references('id')
+      .inTable(usersTableName)
       .onDelete(constants.onDelete.cascade)
       .notNullable();
 
