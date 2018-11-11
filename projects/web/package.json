@@ -36,7 +36,7 @@
     "raven-js": "3.27.0",
     "react": "16.6.1",
     "react-apollo": "2.2.4",
-    "react-beautiful-dnd": "9.0.2",
+    "react-beautiful-dnd": "10.0.0",
     "react-dom": "16.6.1",
     "react-ga": "2.5.3",
     "react-helmet": "5.2.0",
