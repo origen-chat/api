@@ -1046,10 +1046,10 @@ damerau-levenshtein@^1.0.4:
   resolved "https://registry.yarnpkg.com/damerau-levenshtein/-/damerau-levenshtein-1.0.4.tgz#03191c432cb6eea168bb77f3a55ffdccb8978514"
   integrity sha1-AxkcQyy27qFou3fzpV/9zLiXhRQ=
 
-danger@6.0.6:
-  version "6.0.6"
-  resolved "https://registry.yarnpkg.com/danger/-/danger-6.0.6.tgz#bf3cc3ba26ca06db5602626890b25f7bf2eff158"
-  integrity sha512-+YD6MpraVY5+Y6N7lrIMV5p++t8U8xjaJZnCmxH72ODRpRM1NyJ8WE9LcqgK9WNjAT4zD1kxG0pqOJ+gQ56mUw==
+danger@6.0.7:
+  version "6.0.7"
+  resolved "https://registry.yarnpkg.com/danger/-/danger-6.0.7.tgz#ba6b25182d285a628d18b5ac0f15de6dc484241d"
+  integrity sha512-OSZv2CVmJNLZ2wyL85KDqfzOtY1uZ0SkskFkjVNcIyHC8bMNDVjX6LO59320HqpjnnFSRmR6wR6innBI24uUhg==
   dependencies:
     "@babel/polyfill" "^7.0.0"
     "@octokit/rest" "^15.12.1"
@@ -1360,10 +1360,10 @@ eslint-config-airbnb@17.1.0:
     object.assign "^4.1.0"
     object.entries "^1.0.4"
 
-eslint-config-prettier@3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-3.1.0.tgz#2c26d2cdcfa3a05f0642cd7e6e4ef3316cdabfa2"
-  integrity sha512-QYGfmzuc4q4J6XIhlp8vRKdI/fI0tQfQPy1dME3UOLprE+v4ssH/3W9LM2Q7h5qBcy5m0ehCrBDU2YF8q6OY8w==
+eslint-config-prettier@3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-3.2.0.tgz#5540c46af6be4701353d86a31b3fb77d03e0168e"
+  integrity sha512-frKzRAxsstRRtPBxErg1eiUb0X03BIYJhnZy9Ced8Dsivu9zKhqNURvlrFg/oHP68PVin6o3F/9JyQcxsL/9gw==
   dependencies:
     get-stdin "^6.0.0"
 
@@ -3900,10 +3900,10 @@ prettier-linter-helpers@^1.0.0:
   dependencies:
     fast-diff "^1.1.2"
 
-prettier@1.15.1:
-  version "1.15.1"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.15.1.tgz#06c67106afb1b40e74b002353b2079cc7e0e67bf"
-  integrity sha512-4rgV2hyc/5Pk0XHH4VjJWHRgVjgRbpMfLQjREAhHBtyW1UvTFkjJEsueGYNYYZd9mn97K+1qv0EBwm11zoaSgA==
+prettier@1.15.2:
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.15.2.tgz#d31abe22afa4351efa14c7f8b94b58bb7452205e"
+  integrity sha512-YgPLFFA0CdKL4Eg2IHtUSjzj/BWgszDHiNQAe0VAIBse34148whfdzLagRL+QiKS+YfK5ftB6X4v/MBw8yCoug==
 
 prettier@^1.7.0:
   version "1.14.3"
