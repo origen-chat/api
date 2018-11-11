@@ -1,37 +1,30 @@
-import Redis, { RedisOptions } from 'ioredis';
+import BluebirdPromise from 'bluebird';
+import Redis from 'ioredis';
 
-import { env } from '../../config';
 import logger from '../logger';
+import { createRedisClient, waitForRedisClientToBeReady } from './helpers';
 
-export const redisClientOptions: RedisOptions = {
-  host: env.redisHost,
-  port: env.redisPort,
-};
+// @ts-ignore
+Redis.Promise = BluebirdPromise;
 
 // eslint-disable-next-line import/no-mutable-exports
 export let redisClient: Redis.Redis;
 
-export function startRedis(): void {
+export async function startRedis(): Promise<void> {
   if (redisClient) {
     return;
   }
 
-  redisClient = new Redis(redisClientOptions);
+  redisClient = createRedisClient();
 
   logger.info('🎒 cache store (Redis) connection initialized');
 
-  handleRedisEvents();
+  handleRedisClientEvents();
+
+  await waitForRedisClientToBeReady(redisClient);
 }
 
-export function closeRedisConnection(): void {
-  if (!redisClient) {
-    return;
-  }
-
-  redisClient.disconnect();
-}
-
-function handleRedisEvents(): void {
+function handleRedisClientEvents(): void {
   redisClient.on('connect', () => {
     logger.info('🎒 cache store (Redis) connection established');
   });
@@ -51,4 +44,12 @@ function handleRedisEvents(): void {
   redisClient.on('error', () => {
     logger.error('🎒 cache store (Redis) could not connect');
   });
+}
+
+export function closeRedisConnection(): void {
+  if (!redisClient) {
+    return;
+  }
+
+  redisClient.disconnect();
 }

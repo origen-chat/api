@@ -1,8 +1,4 @@
 export { keyNamespaceSeparator, RedisExpiryMode } from './constants';
 export { makeRedisKey } from './keys';
-export {
-  redisClient,
-  startRedis,
-  redisClientOptions,
-  closeRedisConnection,
-} from './redis';
+export { createRedisClient, waitForRedisClientToBeReady } from './helpers';
+export { redisClient, startRedis, closeRedisConnection } from './redis';

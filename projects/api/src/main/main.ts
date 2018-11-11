@@ -8,7 +8,8 @@ import { handleSignals } from './signals';
  * Entry point of the application.
  */
 export async function startApplication(): Promise<void> {
-  core.logger.info('👋 starting application...');
+  core.logger.info('👋 hello!');
+  core.logger.info('🚀 starting application...');
 
   try {
     await core.core.startCore();

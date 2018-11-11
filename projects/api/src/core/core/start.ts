@@ -1,8 +1,9 @@
-import db, { startDB } from '../db';
+import { startBackgroundWorkers } from '../backgroundWorkers';
+import { startDB } from '../db';
 import { initializeErrorTracking } from '../errorTracking';
-import logger from '../logger';
+import { startJobQueues } from '../jobQueues';
 import { startPubsub } from '../pubsub';
-import { redisClient, startRedis } from '../redis';
+import { startRedis } from '../redis';
 
 // eslint-disable-next-line import/no-mutable-exports
 export let isStarted = false;
@@ -13,25 +14,10 @@ export let isStarted = false;
 export async function startCore(): Promise<void> {
   initializeErrorTracking();
 
-  startRedis();
-  startDB();
-  startPubsub();
+  await Promise.all([startRedis(), startDB(), startPubsub()]);
 
-  await Promise.all([waitForRedisToBeReady(), waitForDBToBeReady()]);
+  startJobQueues();
+  startBackgroundWorkers();
 
   isStarted = true;
-}
-
-export async function waitForRedisToBeReady(): Promise<void> {
-  return new Promise<void>(resolve => {
-    redisClient.once('ready', () => {
-      resolve();
-    });
-  });
-}
-
-export async function waitForDBToBeReady(): Promise<void> {
-  await db.select(db.raw('1'));
-
-  logger.info('📚 database (PostgreSQL) ready');
 }

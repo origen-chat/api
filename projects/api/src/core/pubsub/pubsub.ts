@@ -1,17 +1,21 @@
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 
-import logger from '../logger';
-import { redisClientOptions } from '../redis';
+import {
+  publisher,
+  startSubscriberAndPublisherRedisClients,
+  subscriber,
+} from './redis';
 
 // eslint-disable-next-line import/no-mutable-exports
 export let pubsub: RedisPubSub;
 
-export function startPubsub(): void {
-  pubsub = new RedisPubSub({
-    connection: redisClientOptions,
-  });
+export async function startPubsub(): Promise<void> {
+  await startSubscriberAndPublisherRedisClients();
 
-  logger.info('📡 pubsub (Redis) connections initialized');
+  pubsub = new RedisPubSub({
+    subscriber,
+    publisher,
+  });
 }
 
 export function closePubSub(): void {

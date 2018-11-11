@@ -45,10 +45,14 @@ export let db: Knex;
 /**
  * Starts the connection pool of the database.
  */
-export function startDB(): void {
+export async function startDB(): Promise<void> {
   db = Knex(knexConfig);
 
   logger.info('📚 database (PostgreSQL) connections initialized');
+
+  await db.select(db.raw('1'));
+
+  logger.info('📚 database (PostgreSQL) ready');
 }
 
 /**

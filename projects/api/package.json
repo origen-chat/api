@@ -26,7 +26,9 @@
     "@strattadb/environment": "5.1.0",
     "ajv": "6.5.5",
     "apollo-server-express": "2.2.0",
+    "bluebird": "^3.5.3",
     "body-parser": "1.18.3",
+    "bull": "^3.4.8",
     "chalk": "2.4.1",
     "cors": "2.8.5",
     "dataloader": "1.4.0",
@@ -56,6 +58,8 @@
     "@babel/preset-env": "7.1.5",
     "@babel/preset-typescript": "7.1.0",
     "@babel/register": "7.0.0",
+    "@types/bluebird": "^3.5.24",
+    "@types/bull": "^3.4.0",
     "@types/graphql": "14.0.3",
     "@types/ioredis": "4.0.4",
     "@types/jest": "23.3.9",
@@ -81,6 +85,6 @@
     "typescript": "3.1.6"
   },
   "engines": {
-    "node": ">= 10.0.0"
+    "node": ">= 10.6.0"
   }
 }
