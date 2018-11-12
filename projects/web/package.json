@@ -50,7 +50,7 @@
     "redux-immutable-state-invariant": "2.1.0",
     "redux-logger": "3.0.6",
     "redux-saga": "0.16.2",
-    "styled-components": "4.0.3",
+    "styled-components": "4.1.0",
     "subscriptions-transport-ws": "0.9.15",
     "uuid": "3.3.2"
   },
