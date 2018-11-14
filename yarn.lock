@@ -1046,10 +1046,10 @@ damerau-levenshtein@^1.0.4:
   resolved "https://registry.yarnpkg.com/damerau-levenshtein/-/damerau-levenshtein-1.0.4.tgz#03191c432cb6eea168bb77f3a55ffdccb8978514"
   integrity sha1-AxkcQyy27qFou3fzpV/9zLiXhRQ=
 
-danger@6.1.2:
-  version "6.1.2"
-  resolved "https://registry.yarnpkg.com/danger/-/danger-6.1.2.tgz#d55f41ee3e6168aa1b801cf687ddc3c63688685c"
-  integrity sha512-Xo/Ida8Hw5+XnbC6OmDsAG56ed2zWOsToy/emUNT8ygD7juounz0kBEizRu6geztMRWpUXzL7IB9LLeIsz6cPQ==
+danger@6.1.3:
+  version "6.1.3"
+  resolved "https://registry.yarnpkg.com/danger/-/danger-6.1.3.tgz#f0a3ff41b25992eb3d750d118b0592226f3a6f7a"
+  integrity sha512-6gUfdvCp2tj4Z7lJqdhBjR2NK/2Qt5e6jxE8mw68XNmo9BU/gr1KT6MUB5/GW7duB4WLrSNURtyxhiFvjjXRrA==
   dependencies:
     "@babel/polyfill" "^7.0.0"
     "@octokit/rest" "^15.12.1"
