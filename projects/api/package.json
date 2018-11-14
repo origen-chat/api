@@ -38,7 +38,7 @@
     "graphql-redis-subscriptions": "2.0.0",
     "graphql-subscriptions": "1.0.0",
     "ioredis": "4.2.0",
-    "jsonwebtoken": "8.3.0",
+    "jsonwebtoken": "8.4.0",
     "knex": "0.15.2",
     "passport": "0.4.0",
     "passport-google-oauth20": "1.0.0",
