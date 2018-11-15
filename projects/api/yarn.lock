@@ -1092,10 +1092,10 @@
     "@types/connect" "*"
     "@types/node" "*"
 
-"@types/bull@3.4.0":
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/@types/bull/-/bull-3.4.0.tgz#18ffefefa4dd1cfbdbdc8ca7df56c934459f6b9d"
-  integrity sha512-NVD2X+cUu1qNv6blsOfCr2fVsD3+O13U19dFuy9Du7PWfn1/gjFZEDk220uBuRSH5JyaP4nV6S8BLjsT5/bXUg==
+"@types/bull@3.4.1":
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/@types/bull/-/bull-3.4.1.tgz#2db080e61a2b0778e12a79cfd3e77e539d810137"
+  integrity sha512-sf/aUGdxzSob/Tb10APnvVeL55CMy9Bhbp4waTDlEKE9mx8TjXiLfqAS96TXK+A4ljLRvJ30EBRGYdOCKPdGPQ==
   dependencies:
     "@types/bluebird" "*"
     "@types/ioredis" "*"
@@ -2286,10 +2286,10 @@ builtin-modules@^1.0.0:
   resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-1.1.1.tgz#270f076c5a72c02f5b65a47df94c5fe3a278892f"
   integrity sha1-Jw8HbFpywC9bZaR9+Uxf46J4iS8=
 
-bull@3.5.1:
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/bull/-/bull-3.5.1.tgz#b936a1306cb7e9dc1ac9c23a0dcaf41a1370effc"
-  integrity sha512-stbptND5+uRmzd6gIUJlC93fikXKyrJl53HGxzyqD0ahCMeyFRlaD5kN1i+PqfZSkcHKx/kK3HOJ8knum/Yi7A==
+bull@3.5.2:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/bull/-/bull-3.5.2.tgz#9c85f205b17686efab2ee28aaa4388887360de32"
+  integrity sha512-tuL4Uj0kUeaQ7Cow3POkca20fk+VSsR8AiTFeNkyMmuicBnE1ZMwvF1NRDY7vIH43pD9PiMCSEP4Li/934Pw1w==
   dependencies:
     bluebird "^3.5.3"
     cron-parser "^2.5.0"
