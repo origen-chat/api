@@ -1180,10 +1180,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/knex@0.15.0":
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/@types/knex/-/knex-0.15.0.tgz#8ac618cf6bed9a59191133eff3caadf53b008c27"
-  integrity sha512-9oGBHZh5SHkMHKhWaGlO/S5PnRNVsldeLf4+RLEKooQ/W5NIppVE2B6ArZddWVkHLDZdF1su0wOkkW87J/X9ZA==
+"@types/knex@0.15.1":
+  version "0.15.1"
+  resolved "https://registry.yarnpkg.com/@types/knex/-/knex-0.15.1.tgz#349a1c25d481b338549df2cf4fce685676092523"
+  integrity sha512-eMXYxl8Jhg5tBYLtSGTF4acCGHeKO+0HYDocAM5jpYBsKC8w0HwQPF8eqi8TAzex5I4JkVK27p/phvY0wg09aQ==
   dependencies:
     "@types/bluebird" "*"
     "@types/node" "*"
