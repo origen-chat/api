@@ -13,6 +13,7 @@ import * as presence from './presence';
 import pubsub from './pubsub';
 import * as reactions from './reactions';
 import * as redis from './redis';
+import * as richText from './richText';
 import * as socialLogins from './socialLogins';
 import * as types from './types';
 import * as userChannelSettings from './userChannelSettings';
@@ -42,6 +43,7 @@ export {
   payments,
   presence,
   webPushSubscriptions,
+  richText,
   types,
   helpers,
   errorTracking,

@@ -1,1 +1,6 @@
-export { encodeId, decodeId, decodeIds } from './globalIds';
+export {
+  withDecodedGlobalIds,
+  encodeId,
+  decodeId,
+  decodeIds,
+} from './globalIds';

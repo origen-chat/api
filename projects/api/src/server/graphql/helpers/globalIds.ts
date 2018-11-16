@@ -1,51 +1,90 @@
-import { helpers, types } from '../../../core';
+import * as core from '../../../core';
+import { Resolver } from '../../types';
 import { ValidationError } from '../errors';
 import { GlobalId, NodeType } from '../types';
 import { NodeInfo } from '../types/nodes';
 
-type Schema<TIDKeys extends string> = Readonly<
-  Record<TIDKeys, NodeType | ReadonlyArray<NodeType>>
->;
+interface Schema {
+  readonly [key: string]: SchemaEntry;
+}
 
-type Args<
-  TIDKeys extends string = never,
-  TIDTypes extends GlobalId | types.ID = GlobalId
-> = Readonly<{ [key in TIDKeys]: TIDTypes } & { [key: string]: any }>;
+type SchemaEntry = NodeType | ReadonlyArray<NodeType> | Schema;
 
-type ParsedIds<TIDKeys extends string> = Args<TIDKeys, number>;
+type Args = Readonly<Record<string, any>>;
 
-export function decodeIds<TIDKeys extends string>(
-  schema: Schema<TIDKeys>,
-  args: Args<TIDKeys>,
-): ParsedIds<TIDKeys> {
+export function withDecodedGlobalIds(
+  schema: Schema,
+  resolver: Resolver<any, any, any>,
+): Resolver<any, any, any> {
+  const enhancedResolver: Resolver<any, any, any> = async (
+    parentOrRoot,
+    args,
+    context,
+    info,
+  ) => {
+    const argsWithDecodedIds = decodeIds(schema, args);
+
+    const returnedValue = await resolver(
+      parentOrRoot,
+      argsWithDecodedIds,
+      context,
+      info,
+    );
+
+    return returnedValue;
+  };
+
+  return enhancedResolver;
+}
+
+export function decodeIds(schema: Schema, args: Args): Args {
   const argsWithParsedIds = Object.entries(args).reduce(
     (acc, [key, value]) => ({
       ...acc,
       [key]: maybeDecodeId(schema, key, value),
     }),
     {},
-  ) as ParsedIds<TIDKeys>;
+  );
 
   return argsWithParsedIds;
 }
 
 export const globalIdSeparator = ':';
 
-function maybeDecodeId<TIDKeys extends string>(
-  schema: Schema<TIDKeys>,
-  key: string,
-  value: any,
-): any {
-  // @ts-ignore
+function maybeDecodeId(schema: Schema, key: string, value: any): any {
   if (schema[key]) {
-    return decodeId(value);
+    const schemaEntry = schema[key];
+
+    if (isSchema(schemaEntry)) {
+      return decodeIds(schemaEntry as any, value);
+    }
+
+    const decodedId = decodeId(value);
+
+    if (Array.isArray(schemaEntry)) {
+      if (!schemaEntry.includes(decodedId.type)) {
+        throw new ValidationError('invalid id');
+      }
+
+      return decodedId;
+    }
+
+    return decodedId.id;
   }
 
   return value;
 }
 
+function isSchema(value: any): value is Schema {
+  if (typeof value === 'object' && !Array.isArray(value)) {
+    return true;
+  }
+
+  return false;
+}
+
 export function decodeId(globalId: GlobalId): NodeInfo {
-  const [type, idString] = helpers
+  const [type, idString] = core.helpers
     .decodeBase64(globalId)
     .split(globalIdSeparator);
 
@@ -71,7 +110,9 @@ export function isNodeType(nodeType: string): nodeType is NodeType {
 }
 
 export function encodeId({ type, id }: NodeInfo): GlobalId {
-  const globalId = helpers.encodeBase64(`${type}${globalIdSeparator}${id}`);
+  const globalId = core.helpers.encodeBase64(
+    `${type}${globalIdSeparator}${id}`,
+  );
 
   return globalId;
 }

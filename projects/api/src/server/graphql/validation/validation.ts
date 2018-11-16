@@ -15,4 +15,6 @@ export function validateArgs(args: unknown, schema: JSONSchema6): void {
   }
 }
 
-function formatErrors(errors: ReadonlyArray<ErrorObject>): any {}
+function formatErrors(errors: ReadonlyArray<ErrorObject>): any {
+  return errors;
+}

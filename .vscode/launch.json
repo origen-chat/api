@@ -13,9 +13,13 @@
       "smartStep": true,
       "address": "localhost",
       "port": 9229,
-      "localRoot": "${workspaceFolder}/projects/api",
-      "remoteRoot": "/usr/src/app",
+      "localRoot": "${workspaceFolder}/projects/api/",
+      "remoteRoot": "/usr/src/app/",
       "timeout": 5000,
+      "showAsyncStacks": true,
+      "sourceMapPathOverrides": {
+        "/usr/src/app/*": "${workspaceFolder}/projects/api/*"
+      },
       "skipFiles": [
         "usr/src/app/node_modules/**/*.js",
         "<node_internals>/**/*.js"

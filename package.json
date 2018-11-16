@@ -7,6 +7,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "start:dev": "docker-compose up -d",
     "lint": "eslint \"projects/**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint --fix \"projects/**/*.{js,jsx,ts,tsx}\""
   },
