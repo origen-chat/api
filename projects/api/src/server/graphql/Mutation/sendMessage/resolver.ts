@@ -1,11 +1,7 @@
 import * as core from '../../../../core';
 import { getViewerOrThrowIfUnauthenticated } from '../../../helpers';
 import { MutationInputArg, Resolver, Root } from '../../../types';
-import {
-  AuthorizationError,
-  NotFoundError,
-  UserInputError,
-} from '../../errors';
+import { NotFoundError } from '../../errors';
 import { withDecodedGlobalIds } from '../../helpers';
 import { NodeType } from '../../types';
 import { validateSendMessageArgs } from './validation';

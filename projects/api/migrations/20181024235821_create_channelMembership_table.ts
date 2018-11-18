@@ -51,7 +51,7 @@ async function createChannelMembershipsTable(knex: Knex): Promise<void> {
 async function createUniqueOwnerIndex(knex: Knex): Promise<void> {
   const uniqueIndexQuery = `
     CREATE UNIQUE INDEX ${channelMembershipsTableName}_${roleColumnName}_index
-    ON "${channelMembershipsTableName}" ("${roleColumnName}")
+    ON "${channelMembershipsTableName}" ("${channelIdColumnName}", "${roleColumnName}")
     WHERE "${roleColumnName}" = '${ownerRole}';
   `;
 

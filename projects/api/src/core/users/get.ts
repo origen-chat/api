@@ -3,26 +3,11 @@ import { DBOptions, Email, ID, Nullable } from '../types';
 import { usersTableName } from './constants';
 import { UniqueUsername, User } from './types';
 
-export async function getUserById(id: ID): Promise<Nullable<User>> {
-  const user = await getUserBy({ id });
-
-  return user;
-}
-
-export async function getUserByUniqueUsername(
-  uniqueUsername: UniqueUsername,
+export async function getUserById(
+  id: ID,
   options: DBOptions = {},
 ): Promise<Nullable<User>> {
-  const user = await getUserBy(uniqueUsername, options);
-
-  return user;
-}
-
-export async function getUserByEmail(
-  email: Email,
-  options: DBOptions = {},
-): Promise<Nullable<User>> {
-  const user = await getUserBy({ email }, options);
+  const user = await getUserBy({ id }, options);
 
   return user;
 }
@@ -45,6 +30,24 @@ async function getUserBy(
   maybeAddTransactionToQuery(query, options);
 
   const user: Nullable<User> = await query;
+
+  return user;
+}
+
+export async function getUserByUniqueUsername(
+  uniqueUsername: UniqueUsername,
+  options: DBOptions = {},
+): Promise<Nullable<User>> {
+  const user = await getUserBy(uniqueUsername, options);
+
+  return user;
+}
+
+export async function getUserByEmail(
+  email: Email,
+  options: DBOptions = {},
+): Promise<Nullable<User>> {
+  const user = await getUserBy({ email }, options);
 
   return user;
 }

@@ -27,7 +27,7 @@ const schema: JSONSchema6 = {
           type: ['number', 'null'],
         },
         [inputKeys.content]: {
-          type: 'string',
+          type: 'object',
         },
       },
     },

@@ -6,7 +6,7 @@ import { typeDefs as channelsTypeDefs } from './channels';
 import { typeDefs as workspacesTypeDefs } from './workspaces';
 
 export const User = gql`
-  type User implements Node {
+  type User implements Node & Actor {
     id: ID!
 
     username: String!

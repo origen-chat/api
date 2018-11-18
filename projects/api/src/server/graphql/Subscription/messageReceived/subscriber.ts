@@ -16,15 +16,15 @@ const filter: Resolver<MessageReceivedPayload, MessageReceivedArgs> = async (
     return false;
   }
 
-  if (
-    !(await core.channelMemberships.isChannelMember(
-      payload.channel,
-      // eslint-disable-next-line typescript/no-non-null-assertion
-      context.viewer!,
-    ))
-  ) {
-    return false;
-  }
+  // if (
+  //   !(await core.channelMemberships.isChannelMember(
+  //     payload.channel,
+  //     // eslint-disable-next-line typescript/no-non-null-assertion
+  //     context.viewer!,
+  //   ))
+  // ) {
+  //   return false;
+  // }
 
   return true;
 };
@@ -35,15 +35,8 @@ const globalIdsArgsSchema = {
 
 const enhancedFilter = withDecodedGlobalIds(globalIdsArgsSchema, filter);
 
-const subscriber: Resolver<Root, MessageReceivedArgs> = (
-  root,
-  args,
-  context,
-) => {
-  const viewer = getViewerOrThrowIfUnauthenticated(context);
-
-  return core.pubsub.asyncIterator(core.messages.triggerNames.MESSAGE_SENT);
-};
+const subscriber: Resolver<Root, MessageReceivedArgs> = (root, args, context) =>
+  core.pubsub.asyncIterator(core.messages.triggerNames.MESSAGE_SENT);
 
 const enhancedSubscriber = withDecodedGlobalIds(
   globalIdsArgsSchema,

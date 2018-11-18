@@ -1,5 +1,10 @@
+import { resolver as actorResolver } from '../Actor';
+import { resolver as appResolver } from '../App';
 import { resolver as bookmarkableResolver } from '../Bookmarkable';
+import { resolver as botResolver } from '../Bot';
 import { resolver as channelResolver } from '../Channel';
+import { resolver as channelPrivacyResolver } from '../ChannelPrivacy';
+import { resolver as channelTypeResolver } from '../ChannelType';
 import { resolver as cursorResolver } from '../Cursor';
 import { resolver as dateResolver } from '../Date';
 import { resolver as dateTimeResolver } from '../DateTime';
@@ -21,6 +26,7 @@ const resolvers = {
   Mutation: mutationResolver,
   Subscription: subscriptionResolver,
   Node: nodeResolver,
+  Actor: actorResolver,
   User: userResolver,
   Email: emailResolver,
   Cursor: cursorResolver,
@@ -29,8 +35,12 @@ const resolvers = {
   Date: dateResolver,
   Time: timeResolver,
   NonNegativeInt: nonNegativeIntResolver,
+  App: appResolver,
+  Bot: botResolver,
   Workspace: workspaceResolver,
   Channel: channelResolver,
+  ChannelType: channelTypeResolver,
+  ChannelPrivacy: channelPrivacyResolver,
   Message: messageResolver,
   Reactable: reactableResolver,
   Bookmarkable: bookmarkableResolver,

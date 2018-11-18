@@ -7,8 +7,10 @@ const Message = gql`
   type Message implements Node & Reactable & Bookmarkable {
     id: ID!
 
-    sender: User!
+    sender: Actor!
     channel: Channel!
+
+    content: JSON!
 
     reactions(
       first: NonNegativeInt

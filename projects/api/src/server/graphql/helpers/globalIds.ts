@@ -16,28 +16,28 @@ export function withDecodedGlobalIds(
   schema: Schema,
   resolver: Resolver<any, any, any>,
 ): Resolver<any, any, any> {
-  const enhancedResolver: Resolver<any, any, any> = async (
+  const enhancedResolver: Resolver<any, any, any> = (
     parentOrRoot,
     args,
     context,
     info,
   ) => {
-    const argsWithDecodedIds = decodeIds(schema, args);
+    const argsWithDecodedIds = decodeIdsInArgs(schema, args);
 
-    const returnedValue = await resolver(
+    const resolvedValue = resolver(
       parentOrRoot,
       argsWithDecodedIds,
       context,
       info,
     );
 
-    return returnedValue;
+    return resolvedValue;
   };
 
   return enhancedResolver;
 }
 
-export function decodeIds(schema: Schema, args: Args): Args {
+export function decodeIdsInArgs(schema: Schema, args: Args): Args {
   const argsWithParsedIds = Object.entries(args).reduce(
     (acc, [key, value]) => ({
       ...acc,
@@ -60,20 +60,34 @@ function maybeDecodeId(schema: Schema, key: string, value: any): any {
     const schemaEntry = schema[key];
 
     if (isSchema(schemaEntry)) {
-      return decodeIds(schemaEntry as any, value);
+      return decodeIdsInArgs(schemaEntry as any, value);
     }
 
-    const decodedId = decodeId(value);
+    let decodedIds;
+
+    if (Array.isArray(value)) {
+      decodedIds = value.map(globalId => decodeId(globalId));
+    } else {
+      decodedIds = [decodeId(value)];
+    }
 
     if (Array.isArray(schemaEntry)) {
-      if (!schemaEntry.includes(decodedId.type)) {
+      if (decodedIds.some(decodedId => !schemaEntry.includes(decodedId.type))) {
         throw new ValidationError('invalid id');
       }
 
-      return decodedId;
+      if (Array.isArray(value)) {
+        return decodedIds;
+      }
+
+      return decodedIds[0];
     }
 
-    return decodedId.id;
+    if (Array.isArray(value)) {
+      return decodedIds.map(decodedId => decodedId.id);
+    }
+
+    return decodedIds[0].id;
   }
 
   return value;

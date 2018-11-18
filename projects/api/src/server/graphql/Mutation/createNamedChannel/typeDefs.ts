@@ -4,6 +4,7 @@ export const CreateNamedChannelInput = gql`
   input CreateNamedChannelInput {
     name: String!
     workspaceId: ID!
+    privacy: ChannelPrivacy!
   }
 `;
 

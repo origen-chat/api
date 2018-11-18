@@ -1,4 +1,4 @@
-import { Message } from './types';
+import { BotMessage, Message, UserMessage } from './types';
 
 export function isMessage(value: any): value is Message {
   return (
@@ -10,4 +10,12 @@ export function isMessage(value: any): value is Message {
     (value.userSenderId || value.botSenderId) &&
     value.content
   );
+}
+
+export function isMessageSentByUser(message: Message): message is UserMessage {
+  return !!message.userSenderId;
+}
+
+export function isMessageSentByBot(message: Message): message is BotMessage {
+  return !!message.botSenderId;
 }

@@ -1,3 +1,4 @@
+import { makeBotByIdLoader } from './bots';
 import { makeChannelByIdLoader } from './channels';
 import { makeMessageByIdLoader } from './messages';
 import {
@@ -15,6 +16,7 @@ export function makeLoaders() {
     userById: makeUserByIdLoader(),
     userByEmail: makeUserByEmailLoader(),
     userByUniqueUsername: makeUserByUniqueUsernameLoader(),
+    botById: makeBotByIdLoader(),
     workspaceById: makeWorkspaceByIdLoader(),
     workspaceByName: makeWorkspaceByNameLoader(),
     channelById: makeChannelByIdLoader(),

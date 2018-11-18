@@ -2,5 +2,5 @@ export {
   withDecodedGlobalIds,
   encodeId,
   decodeId,
-  decodeIds,
+  decodeIdsInArgs,
 } from './globalIds';

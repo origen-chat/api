@@ -12,6 +12,8 @@ const Channel = gql`
     type: ChannelType!
     workspace: Workspace!
 
+    privacy: ChannelPrivacy!
+
     topic: String
     purpose: String
 

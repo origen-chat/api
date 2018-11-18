@@ -1,4 +1,7 @@
+import * as actors from './actors';
+import * as apps from './apps';
 import * as bookmarks from './bookmarks';
+import * as bots from './bots';
 import * as channelMemberships from './channelMemberships';
 import * as channelPins from './channelPins';
 import * as channels from './channels';
@@ -44,6 +47,9 @@ export {
   userNotifications,
   payments,
   presence,
+  apps,
+  bots,
+  actors,
   webPushSubscriptions,
   richText,
   types,

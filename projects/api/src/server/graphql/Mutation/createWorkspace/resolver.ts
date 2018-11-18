@@ -7,13 +7,13 @@ import { validateCreateWorkspaceArgs } from './validation';
 export type ResolveCreateWorkspaceArgs = MutationInputArg<{
   name: string;
   displayName: string;
-  description: core.types.Undefinable<core.types.Nullable<string>>;
+  description: string | null | undefined;
 }>;
 
 export const resolveCreateWorkspace: Resolver<
   Root,
   ResolveCreateWorkspaceArgs,
-  core.workspaces.Workspace
+  Readonly<{ workspace: core.workspaces.Workspace }>
 > = async (root, args, context) => {
   const viewer = getViewerOrThrowIfUnauthenticated(context);
 
@@ -32,7 +32,9 @@ export const resolveCreateWorkspace: Resolver<
 
   const workspace = await core.workspaces.insertWorkspace(insertWorkspaceArgs);
 
-  return workspace;
+  const payload = { workspace };
+
+  return payload;
 };
 
 export default resolveCreateWorkspace;

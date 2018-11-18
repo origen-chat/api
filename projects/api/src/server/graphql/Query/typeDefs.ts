@@ -15,6 +15,10 @@ const Query = gql`
 
     channel(id: ID!): Channel!
 
+    app(id: ID!): App!
+
+    bot(id: ID!): Bot!
+
     viewer: User!
   }
 `;

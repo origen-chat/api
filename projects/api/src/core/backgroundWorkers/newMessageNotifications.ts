@@ -10,6 +10,7 @@ export const processNewMessageNotificationsJob: JobProcessor<
   ProcessNewMessageNotificationsJobData
 > = async job => {
   // TODO:
+  console.log('new message!!', job.data);
 };
 
 export function startListeningOnNewMessageNotificationsQueue(): void {

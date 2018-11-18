@@ -62,7 +62,7 @@ async function createWorkspaceMembershipsTable(knex: Knex): Promise<void> {
 async function createUniqueOwnerIndex(knex: Knex): Promise<void> {
   const uniqueIndexQuery = `
     CREATE UNIQUE INDEX ${workspaceMembershipsTableName}_${roleColumnName}_index
-    ON "${workspaceMembershipsTableName}" ("${roleColumnName}")
+    ON "${workspaceMembershipsTableName}" ("${workspaceIdColumnName}", "${roleColumnName}")
     WHERE "${roleColumnName}" = '${ownerRole}';
   `;
 
