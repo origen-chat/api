@@ -14,3 +14,15 @@ export function makeWorkspaceByIdLoader(): DataLoader<
 
   return loader;
 }
+
+export function makeWorkspaceByNameLoader(): DataLoader<
+  string,
+  core.types.Nullable<core.workspaces.Workspace>
+> {
+  const loader = makeLoader({
+    originalBatchLoadFunction: core.workspaces.getWorkspacesByNames,
+    keyName: 'name',
+  });
+
+  return loader;
+}

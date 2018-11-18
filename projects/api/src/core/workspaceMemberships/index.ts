@@ -1,4 +1,8 @@
-export { WorkspaceMembership, WorkspaceMembershipRole } from './types';
+export {
+  WorkspaceMembership,
+  WorkspaceMembershipRole,
+  WorkspaceMember,
+} from './types';
 export { workspaceMembershipsTableName } from './constants';
 export { areWorkspaceMembers } from './predicates';
 export {

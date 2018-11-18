@@ -15,7 +15,7 @@
       "port": 9229,
       "localRoot": "${workspaceFolder}/projects/api/",
       "remoteRoot": "/usr/src/app/",
-      "timeout": 5000,
+      "timeout": 10000,
       "showAsyncStacks": true,
       "sourceMapPathOverrides": {
         "/usr/src/app/*": "${workspaceFolder}/projects/api/*"

@@ -5,11 +5,15 @@ import { constants, timestamps } from './helpers';
 const messagesTableName = 'messages';
 const channelsTableName = 'channels';
 const usersTableName = 'users';
+const botsTableName = 'bots';
 
 const channelIdColumnName = 'channelId';
+const userSenderIdColumnName = 'userSenderId';
+const botSenderIdColumnName = 'botSenderId';
 
 export async function up(knex: Knex): Promise<void> {
   await createMessagesTable(knex);
+  await addOnlyOneNonNullSenderConstraint(knex);
 }
 
 async function createMessagesTable(knex: Knex): Promise<void> {
@@ -28,12 +32,18 @@ async function createMessagesTable(knex: Knex): Promise<void> {
       .notNullable();
 
     table
-      .integer('senderId')
+      .integer(userSenderIdColumnName)
       .unsigned()
       .references('id')
       .inTable(usersTableName)
-      .onDelete(constants.onDelete.cascade)
-      .notNullable();
+      .onDelete(constants.onDelete.cascade);
+
+    table
+      .integer(botSenderIdColumnName)
+      .unsigned()
+      .references('id')
+      .inTable(botsTableName)
+      .onDelete(constants.onDelete.cascade);
 
     table
       .integer('parentMessageId')
@@ -47,6 +57,21 @@ async function createMessagesTable(knex: Knex): Promise<void> {
 
     timestamps({ knex, table });
   });
+}
+
+async function addOnlyOneNonNullSenderConstraint(knex: Knex): Promise<void> {
+  const constraintQuery = `
+    ALTER TABLE "${messagesTableName}"
+    ADD CONSTRAINT only_one_non_null_sender
+    CHECK (
+      (
+        ("${userSenderIdColumnName}" IS NOT NULL)::integer
+        + ("${botSenderIdColumnName}" IS NOT NULL)::integer
+      ) = 1
+    );
+  `;
+
+  await knex.schema.raw(constraintQuery);
 }
 
 export async function down(knex: Knex): Promise<void> {

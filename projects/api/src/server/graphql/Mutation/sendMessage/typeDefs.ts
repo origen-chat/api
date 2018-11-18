@@ -4,7 +4,7 @@ export const SendMessageInput = gql`
   input SendMessageInput {
     channelId: ID!
     parentMessageId: ID
-    content: String!
+    content: JSON!
   }
 `;
 

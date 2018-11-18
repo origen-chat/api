@@ -1,8 +1,14 @@
-import { channels } from '../../../../core';
+import * as core from '../../../../core';
 import { Resolver } from '../../../types';
 
-const resolveWorkspace: Resolver<channels.Channel> = async channel => {
-  const workspace = await channels.getWorkspace(channel);
+const resolveWorkspace: Resolver<core.channels.Channel> = async (
+  channel,
+  args,
+  context,
+) => {
+  const workspace = await context.loaders.workspaceById.load(
+    channel.workspaceId,
+  );
 
   return workspace;
 };

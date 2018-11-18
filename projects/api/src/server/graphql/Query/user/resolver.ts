@@ -2,6 +2,8 @@ import { UserInputError } from 'apollo-server-core';
 import * as core from '../../../../core';
 import { Resolver, Root } from '../../../types';
 import { NotFoundError } from '../../errors';
+import { withDecodedGlobalIds } from '../../helpers';
+import { NodeType } from '../../types';
 
 export type ResolveUserArgs = Partial<core.users.UniqueUsername> &
   Partial<Readonly<{ id: core.types.ID; email: core.types.Email }>>;
@@ -18,12 +20,12 @@ export const resolveUser: Resolver<
   if (userId) {
     user = await context.loaders.userById.load(userId);
   } else if (username && usernameIdentifier) {
-    user = await core.users.getUserByUniqueUsername({
+    user = await context.loaders.userByUniqueUsername.load({
       username,
       usernameIdentifier,
     });
   } else if (email) {
-    user = await core.users.getUserByEmail(email);
+    user = await context.loaders.userByEmail.load(email);
   } else {
     throw new UserInputError(
       'must provide user id, username and username identifier, or email',
@@ -37,4 +39,11 @@ export const resolveUser: Resolver<
   return user;
 };
 
-export default resolveUser;
+const enhancedResolver = withDecodedGlobalIds(
+  {
+    id: NodeType.User,
+  },
+  resolveUser,
+);
+
+export default enhancedResolver;

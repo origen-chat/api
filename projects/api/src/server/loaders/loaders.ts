@@ -5,7 +5,10 @@ import {
   makeUserByIdLoader,
   makeUserByUniqueUsernameLoader,
 } from './users';
-import { makeWorkspaceByIdLoader } from './workspaces';
+import {
+  makeWorkspaceByIdLoader,
+  makeWorkspaceByNameLoader,
+} from './workspaces';
 
 export function makeLoaders() {
   const loaders = {
@@ -13,6 +16,7 @@ export function makeLoaders() {
     userByEmail: makeUserByEmailLoader(),
     userByUniqueUsername: makeUserByUniqueUsernameLoader(),
     workspaceById: makeWorkspaceByIdLoader(),
+    workspaceByName: makeWorkspaceByNameLoader(),
     channelById: makeChannelByIdLoader(),
     messageById: makeMessageByIdLoader(),
   };

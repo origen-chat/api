@@ -1,3 +1,3 @@
 export const jwtIssuer = 'loop';
 
-export const defaultJWTExpiresIn = '3 days';
+export const defaultJWTExpiresIn = '30 days';

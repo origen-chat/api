@@ -13,13 +13,13 @@ import { validateSendMessageArgs } from './validation';
 export type ResolveSendMessageArgs = MutationInputArg<{
   channelId: core.types.ID;
   parentMessageId: core.types.Nullable<core.types.ID>;
-  content: string;
+  content: object;
 }>;
 
 export const resolveSendMessage: Resolver<
   Root,
   ResolveSendMessageArgs,
-  core.messages.Message
+  Readonly<{ message: core.messages.Message }>
 > = async (root, args, context) => {
   const viewer = getViewerOrThrowIfUnauthenticated(context);
 
@@ -43,30 +43,28 @@ export const resolveSendMessage: Resolver<
     }
   }
 
-  let content: core.richText.RichText;
+  const content = args.input.content;
 
-  try {
-    content = JSON.parse(args.input.content);
-  } catch {
-    throw new UserInputError({});
-  }
+  core.richText.validateRichText(content);
 
-  const insertWorkspaceArgs: core.messages.SendMessageArgs = {
+  const sendMessageArgs: core.messages.SendMessageArgs = {
     sender: viewer,
     channel,
     parentMessage,
-    content,
+    content: content as any,
   };
 
-  const message = await core.messages.sendMessage(insertWorkspaceArgs);
+  const message = await core.messages.sendMessage(sendMessageArgs);
 
-  return message;
+  const payload = { message };
+
+  return payload;
 };
 
 const enhancedResolver = withDecodedGlobalIds(
   {
     input: {
-      channelId: [NodeType.Channel],
+      channelId: NodeType.Channel,
     },
   },
   resolveSendMessage,

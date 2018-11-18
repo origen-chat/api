@@ -1,4 +1,5 @@
 import * as bookmarks from './bookmarks';
+import * as channelMemberships from './channelMemberships';
 import * as channelPins from './channelPins';
 import * as channels from './channels';
 import * as core from './core';
@@ -36,6 +37,7 @@ export {
   messages,
   reactions,
   bookmarks,
+  channelMemberships,
   userChannelSettings,
   userWorkspaceSettings,
   notifications,

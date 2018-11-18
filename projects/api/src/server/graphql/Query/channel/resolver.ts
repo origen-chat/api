@@ -16,10 +16,10 @@ export const resolveChannel: Resolver<
 
   const { id: channelId } = args;
 
-  const channel = await channels.getChannelById(channelId);
+  const channel = await context.loaders.channelById.load(channelId);
 
   if (!channel) {
-    throw new NotFoundError('channel not found');
+    throw new NotFoundError({ entity: 'channel' });
   }
 
   if (!channels.canSeeChannel(viewer, channel)) {

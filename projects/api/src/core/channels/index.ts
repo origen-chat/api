@@ -26,5 +26,5 @@ export {
 } from './insertion';
 export { updateChannel, UpdateChannelArgs } from './update';
 export { deleteChannel } from './deletion';
-export { getWorkspace, getOrInsertDirectMessagesChannel } from './channels';
+export { getOrInsertDirectMessagesChannel } from './channels';
 export { canSeeChannel } from './policy';

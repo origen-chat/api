@@ -5,7 +5,10 @@ import { typeDefs as bookmarkableTypeDefs } from '../Bookmarkable';
 import { typeDefs as channelTypeDefs } from '../Channel';
 import { typeDefs as channelTypeTypeDefs } from '../ChannelType';
 import { typeDefs as cursorTypeDefs } from '../Cursor';
+import { typeDefs as dateTypeDefs } from '../Date';
+import { typeDefs as dateTimeTypeDefs } from '../DateTime';
 import { typeDefs as emailTypeDefs } from '../Email';
+import { typeDefs as jsonTypeDefs } from '../JSON';
 import { typeDefs as localeTypeDefs } from '../Locale';
 import { typeDefs as messageTypeDefs } from '../Message';
 import { typeDefs as mutationTypeDefs } from '../Mutation';
@@ -17,6 +20,7 @@ import { typeDefs as reactableTypeDefs } from '../Reactable';
 import { typeDefs as reactableReactionTypeDefs } from '../ReactableReaction';
 import { typeDefs as reactionTypeDefs } from '../Reaction';
 import { typeDefs as subscriptionTypeDefs } from '../Subscription';
+import { typeDefs as timeTypeDefs } from '../Time';
 import { typeDefs as userTypeDefs } from '../User';
 import { typeDefs as userSettingsTypeDefs } from '../UserSettings';
 import { typeDefs as workspaceTypeDefs } from '../Workspace';
@@ -30,6 +34,10 @@ const typeDefs: ReadonlyArray<DocumentNode> = [
   ...localeTypeDefs,
   ...emailTypeDefs,
   ...cursorTypeDefs,
+  ...jsonTypeDefs,
+  ...dateTimeTypeDefs,
+  ...dateTypeDefs,
+  ...timeTypeDefs,
   ...nonNegativeIntTypeDefs,
   ...userTypeDefs,
   ...workspaceTypeDefs,

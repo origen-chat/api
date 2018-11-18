@@ -1,6 +1,3 @@
-import { MergeInfo } from 'apollo-server-express';
-import { GraphQLResolveInfo } from 'graphql';
-
 import { types, users } from '../core';
 import { Loaders } from './loaders';
 
@@ -18,7 +15,7 @@ export type Context = Readonly<{
   loaders: Loaders;
 }>;
 
-export type Info = GraphQLResolveInfo & { mergeInfo: MergeInfo };
+export type Info = any;
 
 export type MutationInputArg<TInput extends {}> = Readonly<{
   input: Readonly<TInput>;

@@ -3,6 +3,8 @@ import { UserInputError } from 'apollo-server-express';
 import * as core from '../../../../core';
 import { Resolver, Root } from '../../../types';
 import { NotFoundError } from '../../errors';
+import { withDecodedGlobalIds } from '../../helpers';
+import { NodeType } from '../../types';
 
 type ResolveChannelArgs = Partial<
   Readonly<{
@@ -21,9 +23,9 @@ export const resolveWorkspace: Resolver<
   let workspace: core.types.Nullable<core.workspaces.Workspace>;
 
   if (workspaceId) {
-    workspace = await context.loaders.workspacesByIdLoader.load(workspaceId);
+    workspace = await context.loaders.workspaceById.load(workspaceId);
   } else if (workspaceName) {
-    workspace = await core.workspaces.getWorkspaceByName(workspaceName);
+    workspace = await context.loaders.workspaceByName.load(workspaceName);
   } else {
     throw new UserInputError('must provide workspace id or name');
   }
@@ -35,4 +37,11 @@ export const resolveWorkspace: Resolver<
   return workspace;
 };
 
-export default resolveWorkspace;
+const enhancedResolver = withDecodedGlobalIds(
+  {
+    id: NodeType.Workspace,
+  },
+  resolveWorkspace,
+);
+
+export default enhancedResolver;

@@ -4,6 +4,7 @@ export {
   getWorkspaceById,
   getWorkspaceByName,
   getWorkspacesByIds,
+  getWorkspacesByNames,
 } from './get';
 export { insertWorkspace, InsertWorkspaceArgs } from './insertion';
 export { updateWorkspace, UpdateWorkspaceArgs } from './update';

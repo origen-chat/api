@@ -13,7 +13,7 @@ const authorIdColumnName = 'authorId';
 
 export async function up(knex: Knex): Promise<void> {
   await createReactableReactionsTable(knex);
-  await addOnlyOneNonNullReactable(knex);
+  await addOnlyOneNonNullReactableContraint(knex);
 }
 
 async function createReactableReactionsTable(knex: Knex): Promise<void> {
@@ -57,7 +57,9 @@ async function createReactableReactionsTable(knex: Knex): Promise<void> {
   });
 }
 
-export async function addOnlyOneNonNullReactable(knex: Knex): Promise<void> {
+export async function addOnlyOneNonNullReactableContraint(
+  knex: Knex,
+): Promise<void> {
   const constraintQuery = `
     ALTER TABLE "${reactableReactionsTableName}"
     ADD CONSTRAINT only_one_non_null_reactable

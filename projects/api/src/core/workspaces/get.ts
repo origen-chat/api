@@ -49,7 +49,9 @@ export async function getWorkspacesByIds(
   return workspaces;
 }
 
-export type GetWorkspacesByArgs = Readonly<{ ids: ReadonlyArray<ID> }>;
+export type GetWorkspacesByArgs = Readonly<
+  { ids: ReadonlyArray<ID> } | { names: ReadonlyArray<string> }
+>;
 
 async function getWorkspacesBy(
   args: GetWorkspacesByArgs,
@@ -59,11 +61,22 @@ async function getWorkspacesBy(
 
   if ((args as any).ids) {
     query.whereIn('id', (args as any).ids);
+  } else if ((args as any).names) {
+    query.whereIn('name', (args as any).names);
   }
 
   maybeAddTransactionToQuery(query, options);
 
   const workspaces: ReadonlyArray<Workspace> = await query;
+
+  return workspaces;
+}
+
+export async function getWorkspacesByNames(
+  names: ReadonlyArray<string>,
+  options: DBOptions = {},
+): Promise<ReadonlyArray<Workspace>> {
+  const workspaces = await getWorkspacesBy({ names }, options);
 
   return workspaces;
 }

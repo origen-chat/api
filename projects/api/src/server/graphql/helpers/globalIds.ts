@@ -52,6 +52,10 @@ export function decodeIds(schema: Schema, args: Args): Args {
 export const globalIdSeparator = ':';
 
 function maybeDecodeId(schema: Schema, key: string, value: any): any {
+  if (value === null || value === undefined) {
+    return value;
+  }
+
   if (schema[key]) {
     const schemaEntry = schema[key];
 

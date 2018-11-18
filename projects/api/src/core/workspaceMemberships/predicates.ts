@@ -5,7 +5,7 @@ import { getWorkspaceMembershipsByWorkspaceAndUsers } from './get';
 
 /**
  * Returns `true` if all the users are members of the workspace.
- * `false` otherwise;
+ * `false` otherwise.
  */
 export async function areWorkspaceMembers(
   workspace: Workspace,

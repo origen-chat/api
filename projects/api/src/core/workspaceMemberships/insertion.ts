@@ -1,10 +1,14 @@
 import db, { doInTransaction, maybeAddTransactionToQuery } from '../db';
-import { DBOptions } from '../types';
-import { User } from '../users';
+import { DBOptions, Mutable } from '../types';
+import { isUser, User } from '../users';
 import { insertUserWorkspaceSettings } from '../userWorkspaceSettings';
 import { Workspace } from '../workspaces';
 import { workspaceMembershipsTableName } from './constants';
-import { WorkspaceMembership, WorkspaceMembershipRole } from './types';
+import {
+  WorkspaceMember,
+  WorkspaceMembership,
+  WorkspaceMembershipRole,
+} from './types';
 
 export async function insertWorkspaceOwnerMembership(
   workspace: Workspace,
@@ -13,7 +17,7 @@ export async function insertWorkspaceOwnerMembership(
 ): Promise<WorkspaceMembership> {
   const args: InsertWorkspaceMembershipArgs = {
     workspace,
-    user: owner,
+    member: owner,
     role: WorkspaceMembershipRole.Owner,
   };
 
@@ -26,7 +30,7 @@ export async function insertWorkspaceOwnerMembership(
 }
 
 export type InsertWorkspaceMembershipArgs = Pick<WorkspaceMembership, 'role'> &
-  Readonly<{ workspace: Workspace; user: User }>;
+  Readonly<{ workspace: Workspace; member: WorkspaceMember }>;
 
 /**
  * Inserts a workspace membership.
@@ -47,10 +51,13 @@ export async function insertWorkspaceMembership(
         doInsertWorkspaceMembershipArgs,
         optionsWithTransaction,
       );
-      await insertUserWorkspaceSettings(
-        { workspaceMembership },
-        optionsWithTransaction,
-      );
+
+      if (isUser(args.member)) {
+        await insertUserWorkspaceSettings(
+          { workspaceMembership },
+          optionsWithTransaction,
+        );
+      }
 
       return workspaceMembership;
     },
@@ -63,18 +70,25 @@ export async function insertWorkspaceMembership(
 function makeDoInsertWorkspaceMembershipArgs(
   args: InsertWorkspaceMembershipArgs,
 ): DoInsertWorkspaceMembershipArgs {
-  const doInsertWorkspaceMembershipArgs: DoInsertWorkspaceMembershipArgs = {
+  const doInsertWorkspaceMembershipArgs: Mutable<
+    Partial<DoInsertWorkspaceMembershipArgs>
+  > = {
     workspaceId: args.workspace.id,
-    memberId: args.user.id,
     role: args.role,
   };
 
-  return doInsertWorkspaceMembershipArgs;
+  if (isUser(args.member)) {
+    doInsertWorkspaceMembershipArgs.userMemberId = args.member.id;
+  } else {
+    doInsertWorkspaceMembershipArgs.botMemberId = args.member.id;
+  }
+
+  return doInsertWorkspaceMembershipArgs as DoInsertWorkspaceMembershipArgs;
 }
 
 export type DoInsertWorkspaceMembershipArgs = Pick<
   WorkspaceMembership,
-  'workspaceId' | 'memberId' | 'role'
+  'workspaceId' | 'userMemberId' | 'botMemberId' | 'role'
 >;
 
 export async function doInsertWorkspaceMembership(

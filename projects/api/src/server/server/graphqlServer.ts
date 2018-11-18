@@ -18,7 +18,8 @@ const { mockSchema, mockEntireSchema } = env;
 const apolloServerConfig: ApolloServerConfig = {
   typeDefs: typeDefs as any,
   resolvers: resolvers as any,
-  mocks: mockSchema ? mocks : false,
+  mocks: false,
+  // mocks: mockSchema ? mocks : false,
   mockEntireSchema,
   context: makeContext,
   subscriptions: {
