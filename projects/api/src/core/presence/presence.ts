@@ -5,7 +5,7 @@ import {
   UserConnectionStatus,
   userConnectionStatusExpirationInSeconds,
 } from './constants';
-import { getUserConnectionStatusRedisKey } from './keys';
+import { makeUserConnectionStatusRedisKey } from './keys';
 import { publishUserConnectionStatusChanged } from './publishers';
 
 export async function setUserConnectionStatusToOnline(
@@ -31,7 +31,7 @@ export type SetUserConnectionStatusArgs = Readonly<
 export async function setUserConnectionStatus(
   args: SetUserConnectionStatusArgs,
 ): Promise<void> {
-  const key = getUserConnectionStatusRedisKey(args.user);
+  const key = makeUserConnectionStatusRedisKey(args.user);
 
   if (args.shouldExpire) {
     await redisClient.set(
@@ -55,7 +55,7 @@ export async function setUserConnectionStatusToOffline(
 }
 
 export async function deleteUserConnectionStatus(user: User): Promise<void> {
-  const key = getUserConnectionStatusRedisKey(user);
+  const key = makeUserConnectionStatusRedisKey(user);
 
   await redisClient.del(key);
 }

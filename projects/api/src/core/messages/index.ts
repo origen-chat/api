@@ -1,5 +1,6 @@
 export { Message } from './types';
-export { messagesTableName, triggerNames } from './constants';
+export { messagesTableName, pubsubKeys } from './constants';
+export { canEditMessage, CanEditMessageArgs } from './policy';
 export {
   isMessage,
   isMessageSentByUser,
@@ -7,4 +8,9 @@ export {
 } from './predicates';
 export { getMessageById, getMessagesByIds } from './get';
 export { insertMessage, InsertMessageArgs } from './insertion';
-export { sendMessage, SendMessageArgs } from './messages';
+export {
+  sendMessage,
+  SendMessageArgs,
+  editMessage,
+  EditMessageArgs,
+} from './messages';

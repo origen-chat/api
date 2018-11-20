@@ -1,4 +1,4 @@
-import { makeTriggerNames } from '../pubsub';
+import { makePubsubKeys } from '../pubsub';
 
 export const userConnectionStatusRedisKeyNamespace = 'userConnectionStatus';
 
@@ -14,7 +14,7 @@ export enum UserConnectionStatus {
 
 const moduleNamespace = 'presence';
 
-export const triggerNames = makeTriggerNames(
+export const pubsubKeys = makePubsubKeys(
   ['USER_CONNECTION_STATUS_CHANGED', 'USER_TYPING'],
   moduleNamespace,
 );

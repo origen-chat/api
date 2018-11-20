@@ -2,7 +2,7 @@ import pubsub from '../pubsub';
 import { Reactable } from '../reactables';
 import { Reaction } from '../reactions';
 import { User } from '../users';
-import { triggerNames } from './constants';
+import { pubsubKeys } from './constants';
 
 export type PublishReactableReactionToggledArgs = Readonly<{
   author: User;
@@ -13,5 +13,5 @@ export type PublishReactableReactionToggledArgs = Readonly<{
 export function publishReactableReactionToggled(
   args: PublishReactableReactionToggledArgs,
 ): void {
-  pubsub.publish(triggerNames.REACTABLE_REACTED, args);
+  pubsub.publish(pubsubKeys.REACTABLE_REACTED, args);
 }

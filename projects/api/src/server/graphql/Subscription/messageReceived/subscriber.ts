@@ -36,7 +36,7 @@ const globalIdsArgsSchema = {
 const enhancedFilter = withDecodedGlobalIds(globalIdsArgsSchema, filter);
 
 const subscriber: Resolver<Root, MessageReceivedArgs> = (root, args, context) =>
-  core.pubsub.asyncIterator(core.messages.triggerNames.MESSAGE_SENT);
+  core.pubsub.asyncIterator(core.messages.pubsubKeys.MESSAGE_SENT);
 
 const enhancedSubscriber = withDecodedGlobalIds(
   globalIdsArgsSchema,

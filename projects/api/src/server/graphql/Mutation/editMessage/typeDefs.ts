@@ -3,6 +3,7 @@ import { gql } from 'apollo-server-express';
 export const EditMessageInput = gql`
   input EditMessageInput {
     messageId: ID!
+    content: JSON
   }
 `;
 

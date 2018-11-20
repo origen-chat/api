@@ -1,14 +1,14 @@
 import * as core from '../../../../core';
 import { getViewerOrThrowIfUnauthenticated } from '../../../helpers';
 import { MutationInputArg, Resolver, Root } from '../../../types';
-import { NotFoundError } from '../../errors';
+import { NotFoundableEntity, NotFoundError } from '../../errors';
 import { withDecodedGlobalIds } from '../../helpers';
 import { NodeType } from '../../types';
 import { validateSendMessageArgs } from './validation';
 
 export type ResolveSendMessageArgs = MutationInputArg<{
   channelId: core.types.ID;
-  parentMessageId: core.types.Nullable<core.types.ID>;
+  parentMessageId: core.types.ID | null;
   content: object;
 }>;
 
@@ -24,7 +24,7 @@ export const resolveSendMessage: Resolver<
   const channel = await context.loaders.channelById.load(args.input.channelId);
 
   if (!channel) {
-    throw new NotFoundError({ entity: 'channel' });
+    throw new NotFoundError({ entity: NotFoundableEntity.Channel });
   }
 
   let parentMessage: core.types.Nullable<core.messages.Message> = null;
@@ -35,7 +35,7 @@ export const resolveSendMessage: Resolver<
     );
 
     if (!parentMessage) {
-      throw new NotFoundError({ entity: 'message' });
+      throw new NotFoundError({ entity: NotFoundableEntity.Message });
     }
   }
 

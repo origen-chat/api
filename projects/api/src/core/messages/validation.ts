@@ -1,7 +1,7 @@
 import { isChannelMember } from '../channelMemberships/predicates';
 import { Channel } from '../channels';
 import { DBOptions } from '../types';
-import { SendMessageArgs } from './messages';
+import { EditMessageArgs, SendMessageArgs } from './messages';
 import { Message, MessageSender } from './types';
 
 export async function validateSendMessageArgs(
@@ -45,3 +45,8 @@ function validateParentMessage(args: ValidateParentMessageArgs): void {
     throw new Error('parent message does not belong to same channel');
   }
 }
+
+export async function validateEditMessageArgs(
+  args: EditMessageArgs,
+  options: DBOptions = {},
+): Promise<void> {}

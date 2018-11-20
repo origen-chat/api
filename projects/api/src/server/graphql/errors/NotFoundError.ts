@@ -2,7 +2,14 @@ import { ApolloError } from 'apollo-server-express';
 
 export type NotFoundErrorConstructorArgs =
   | string
-  | Readonly<{ entity: string }>;
+  | Readonly<{ entity: NotFoundableEntity }>;
+
+export enum NotFoundableEntity {
+  User = 'user',
+  Workspace = 'workspace',
+  Channel = 'channel',
+  Message = 'message',
+}
 
 // eslint-disable-next-line fp/no-class
 export default class NotFoundError extends ApolloError {

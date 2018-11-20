@@ -6,3 +6,9 @@ export async function enqueueNewMessageNotificationsJob(
 ): Promise<void> {
   await jobQueues.newMessageNotifications.add({ message });
 }
+
+export async function enqueueEditedMessageNotificationsJob(
+  message: Message,
+): Promise<void> {
+  await jobQueues.editedMessageNotifications.add({ message });
+}
