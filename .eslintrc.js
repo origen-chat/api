@@ -15,6 +15,7 @@ module.exports = {
     'jest',
     'react',
     'import',
+    'security',
     'jsx-a11y',
     'typescript',
     'ramda',

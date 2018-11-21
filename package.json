@@ -7,7 +7,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start:dev": "docker-compose up -d",
+    "start:dev": "docker-compose up --detach",
+    "stop:dev": "docker-compose stop",
     "logs:dev": "docker-compose logs --follow --tail=10",
     "lint": "eslint \"projects/**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint --fix \"projects/**/*.{js,jsx,ts,tsx}\""
@@ -34,6 +35,7 @@
     "eslint-plugin-promise": "4.0.1",
     "eslint-plugin-ramda": "2.5.1",
     "eslint-plugin-react": "7.11.1",
+    "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-typescript": "0.13.0",
     "eslint-plugin-unicorn": "6.0.1",
     "graphql": "14.0.2",
