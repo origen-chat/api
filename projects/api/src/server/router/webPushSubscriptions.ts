@@ -4,4 +4,4 @@ import { storeWebPushSubscriptionController } from '../controllers';
 
 export const router = Router();
 
-router.post('/subscriptions', storeWebPushSubscriptionController);
+router.post('/web-push-subscriptions', storeWebPushSubscriptionController);
