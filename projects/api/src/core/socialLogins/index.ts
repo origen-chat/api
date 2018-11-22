@@ -4,8 +4,9 @@ export {
   Provider,
   ProviderUserId,
 } from './types';
+export { providers, socialLoginsTableName } from './constants';
+export { isSocialLogin } from './predicates';
 export {
   getUserBySocialCredentials,
   linkSocialCredentialsToUser,
 } from './socialLogins';
-export { providers, socialLoginsTableName } from './constants';

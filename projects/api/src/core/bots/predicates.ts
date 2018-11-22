@@ -1,5 +1,12 @@
 import { Bot } from './types';
 
-export function isBot(object: any): object is Bot {
-  return object.appId && object.name && object.displayName;
+export function isBot(value: any): value is Bot {
+  return (
+    typeof value === 'object' &&
+    value &&
+    value.id &&
+    value.appId &&
+    value.name &&
+    value.displayName
+  );
 }

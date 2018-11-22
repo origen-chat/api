@@ -5,6 +5,7 @@ import { constants, timestamps } from './helpers';
 const channelPinsTableName = 'channelPins';
 const channelsTableName = 'channels';
 const messagesTableName = 'messages';
+const usersTableName = 'users';
 
 const channelIdColumnName = 'channelId';
 const messageIdColumnName = 'messageId';
@@ -36,9 +37,17 @@ async function createChannelPinsTable(knex: Knex): Promise<void> {
       .onDelete(constants.onDelete.cascade)
       .notNullable();
 
+    table
+      .integer('authorId')
+      .unsigned()
+      .references('id')
+      .inTable(usersTableName)
+      .onDelete(constants.onDelete.setNull)
+      .nullable();
+
     table.unique([channelIdColumnName, messageIdColumnName]);
 
-    timestamps({ knex, table });
+    timestamps({ knex, table, updatedAt: false });
   });
 }
 

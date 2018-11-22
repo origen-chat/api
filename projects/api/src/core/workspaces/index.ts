@@ -1,5 +1,6 @@
 export { Workspace } from './types';
 export { workspacesTableName } from './constants';
+export { isWorkspace } from './predicates';
 export {
   getWorkspaceById,
   getWorkspaceByName,

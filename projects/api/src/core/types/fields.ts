@@ -11,11 +11,11 @@ export type Timestamp = NonNegativeInteger;
 export type Timestamps = InsertedAtField & UpdatedAtField;
 
 export type InsertedAtField = Readonly<{
-  insertedAt: Timestamp;
+  insertedAt: Date;
 }>;
 
 export type UpdatedAtField = Readonly<{
-  updatedAt: Timestamp;
+  updatedAt: Date;
 }>;
 
 export type Identifiable<TID = PositiveInteger> = Readonly<{

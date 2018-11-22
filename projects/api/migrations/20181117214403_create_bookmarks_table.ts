@@ -39,7 +39,7 @@ async function createBookmarksTable(knex: Knex): Promise<void> {
 
     table.unique([messageIdColumnName, authorIdColumnName]);
 
-    timestamps({ knex, table });
+    timestamps({ knex, table, updatedAt: false });
   });
 }
 

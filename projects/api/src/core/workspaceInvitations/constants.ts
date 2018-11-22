@@ -1,0 +1,1 @@
+export const workspaceInvitationsTableName = 'workspaceInvitations';

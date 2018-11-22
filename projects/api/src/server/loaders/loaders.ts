@@ -1,4 +1,6 @@
+import { makeBookmarkByIdLoader } from './bookmarks';
 import { makeBotByIdLoader } from './bots';
+import { makeChannelPinByIdLoader } from './channelPins';
 import { makeChannelByIdLoader } from './channels';
 import { makeMessageByIdLoader } from './messages';
 import {
@@ -21,6 +23,8 @@ export function makeLoaders() {
     workspaceByName: makeWorkspaceByNameLoader(),
     channelById: makeChannelByIdLoader(),
     messageById: makeMessageByIdLoader(),
+    bookmarkById: makeBookmarkByIdLoader(),
+    channelPinById: makeChannelPinByIdLoader(),
   };
 
   return loaders;
