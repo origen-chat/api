@@ -1,7 +1,7 @@
 import { doInTransaction } from '../db';
 import stripe from '../stripe';
 import { DBOptions } from '../types';
-import { getCustomerByUser } from './get';
+import { getCustomerByUserAndCurrency } from './get';
 import { insertCustomer, InsertCustomerArgs } from './insertion';
 import { Customer } from './types';
 
@@ -14,8 +14,9 @@ export async function getOrCreateCustomer(
   const customer = await doInTransaction(async transaction => {
     const optionsWithTransaction: DBOptions = { transaction };
 
-    const existingCustomer = await getCustomerByUser(
+    const existingCustomer = await getCustomerByUserAndCurrency(
       args.user,
+      args.currency,
       optionsWithTransaction,
     );
 
@@ -43,6 +44,7 @@ export async function createCustomer(
 
   const insertCustomerArgs: InsertCustomerArgs = {
     user: args.user,
+    currency: args.currency,
     stripeCustomerId: stripeCustomer.id,
   };
 

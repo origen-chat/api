@@ -1,21 +1,35 @@
 import db, { maybeAddTransactionToQuery } from '../db';
-import { Customer } from '../payments';
-import { DBOptions, Nullable } from '../types';
+import { DBOptions, ID, Nullable } from '../types';
 import { User } from '../users';
 import { customersTableName } from './constants';
+import { Customer } from './types';
 
-export async function getCustomerByUser(
+export async function getCustomerByUserAndCurrency(
   user: User,
+  currency: string,
   options: DBOptions = {},
 ): Promise<Nullable<Customer>> {
-  const customer = await getCustomerBy({ user }, options);
+  const customer = await getCustomerBy({ user, currency }, options);
 
   return customer;
 }
 
-type GetCustomerByArgs = Readonly<{
-  user: User;
-}>;
+export async function getCustomerById(
+  id: ID,
+  options: DBOptions = {},
+): Promise<Nullable<Customer>> {
+  const customer = await getCustomerBy({ id }, options);
+
+  return customer;
+}
+
+type GetCustomerByArgs =
+  | (Readonly<{
+      user: User;
+    }> &
+      Pick<Customer, 'currency'>)
+  | Pick<Customer, 'id'>
+  | Pick<Customer, 'stripeCustomerId'>;
 
 async function getCustomerBy(
   args: GetCustomerByArgs,
@@ -26,8 +40,19 @@ async function getCustomerBy(
     .from(customersTableName)
     .first();
 
-  if ((args as any).user) {
-    query.where({ userId: (args as any).user.id });
+  if ((args as any).user && (args as any).currency) {
+    query.where({
+      userId: (args as any).user.id,
+      currency: (args as any).currency,
+    });
+  } else if ((args as any).id) {
+    query.where({
+      id: (args as any).id,
+    });
+  } else if ((args as any).stripeCustomerId) {
+    query.where({
+      stripeCustomerId: (args as any).stripeCustomerId,
+    });
   }
 
   maybeAddTransactionToQuery(query, options);

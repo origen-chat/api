@@ -6,6 +6,7 @@ import { Customer } from './types';
 
 export type InsertCustomerArgs = Readonly<{
   user: User;
+  currency: string;
   stripeCustomerId: string;
 }>;
 
@@ -28,13 +29,17 @@ function makeDoInsertCustomerArgs(
 ): DoInsertCustomerArgs {
   const doInsertCustomerArgs: DoInsertCustomerArgs = {
     userId: args.user.id,
+    currency: args.currency,
     stripeCustomerId: args.stripeCustomerId,
   };
 
   return doInsertCustomerArgs;
 }
 
-type DoInsertCustomerArgs = Pick<Customer, 'userId' | 'stripeCustomerId'>;
+type DoInsertCustomerArgs = Pick<
+  Customer,
+  'userId' | 'currency' | 'stripeCustomerId'
+>;
 
 async function doInsertCustomer(
   args: DoInsertCustomerArgs,

@@ -6,6 +6,8 @@ const customersTableName = 'customers';
 const usersTableName = 'users';
 
 const stripeCustomerIdColumnName = 'stripeCustomerId';
+const userIdColumnName = 'userId';
+const currencyColumnName = 'currency';
 
 export async function up(knex: Knex): Promise<void> {
   await createCustomersTable(knex);
@@ -14,17 +16,26 @@ export async function up(knex: Knex): Promise<void> {
 async function createCustomersTable(knex: Knex): Promise<void> {
   await knex.schema.createTable(customersTableName, table => {
     table
-      .integer('userId')
+      .increments('id')
+      .unsigned()
+      .primary();
+
+    table
+      .integer(userIdColumnName)
       .unsigned()
       .references('id')
       .inTable(usersTableName)
       .onDelete(constants.onDelete.cascade)
-      .primary();
+      .notNullable();
+
+    table.string(currencyColumnName, 64).notNullable();
 
     table
       .string(stripeCustomerIdColumnName, 256)
       .unique()
       .notNullable();
+
+    table.unique([userIdColumnName, currencyColumnName]);
 
     timestamps({ knex, table });
   });
