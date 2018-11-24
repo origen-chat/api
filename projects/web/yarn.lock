@@ -1265,10 +1265,10 @@
     merge-deep "^3.0.2"
     svgo "^1.1.1"
 
-"@svgr/webpack@4.0.3":
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/@svgr/webpack/-/webpack-4.0.3.tgz#318907269dd93d4f911541236948e885df7f058d"
-  integrity sha512-UziJTvIYp/pznM6bjkeruXr2VgSZt6VuXQvSM2xCBXKu5Roh6+jVU/Ughnl3xO8RM6ZTNoNDthO2y/9+4OrIBQ==
+"@svgr/webpack@4.0.4":
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/@svgr/webpack/-/webpack-4.0.4.tgz#d77b04841b6e73277aec3b0cc7e0e4e95111fed9"
+  integrity sha512-Olez7r/PrW2VQtsnq+Xe1Ykm+mb2oqSne8HvIVgXB9sfR6jlk4DP0C3Y6HZe4JiF5qGcsJmPPH4AHNaxIoi76g==
   dependencies:
     "@babel/core" "^7.1.5"
     "@babel/plugin-transform-react-constant-elements" "^7.0.0"
@@ -8465,13 +8465,10 @@ react-dom@16.6.3:
     prop-types "^15.6.2"
     scheduler "^0.11.2"
 
-react-ga@2.5.3:
-  version "2.5.3"
-  resolved "https://registry.yarnpkg.com/react-ga/-/react-ga-2.5.3.tgz#0f447c73664c069a5fc341f6f431262e3d4c23c4"
-  integrity sha512-25wvPv1PVLDLhw1gEYP33h0V2sJHahKMfUCAxhq8JPYmNQwx1fcjJAkJk+WmSqGN93lHLhExDkxy3SQizQnx3A==
-  optionalDependencies:
-    prop-types "^15.6.0"
-    react "^15.6.2 || ^16.0"
+react-ga@2.5.4:
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/react-ga/-/react-ga-2.5.4.tgz#1c1bd0f8414286853b9b7938ce8874386cacac38"
+  integrity sha512-+ke4ecDaGoWuXFrnZFJzfgwPcjrkFRtu1rXveBrZtNCSRc++Xn2Jqzx09D2SbJXw2qAdPgQqc+BhR+unAnp81A==
 
 react-helmet@5.2.0:
   version "5.2.0"
@@ -8628,16 +8625,6 @@ react@16.6.3:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
     scheduler "^0.11.2"
-
-"react@^15.6.2 || ^16.0":
-  version "16.5.2"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.5.2.tgz#19f6b444ed139baa45609eee6dc3d318b3895d42"
-  integrity sha512-FDCSVd3DjVTmbEAjUNX6FgfAmQ+ypJfHUsqUJOYNCBUp1h8lqmtC+0mXJ+JjsWx4KAVTkk1vKd1hLQPvEviSuw==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    prop-types "^15.6.2"
-    schedule "^0.5.0"
 
 read-pkg-up@^1.0.1:
   version "1.0.1"
