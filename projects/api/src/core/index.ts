@@ -12,7 +12,6 @@ import * as helpers from './helpers';
 import logger from './logger';
 import * as messages from './messages';
 import * as notifications from './notifications';
-import * as payments from './payments';
 import * as presence from './presence';
 import pubsub from './pubsub';
 import * as reactions from './reactions';
@@ -47,7 +46,6 @@ export {
   userWorkspaceSettings,
   notifications,
   userNotifications,
-  payments,
   presence,
   apps,
   bots,
