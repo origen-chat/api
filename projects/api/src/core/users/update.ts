@@ -1,59 +1,84 @@
-import { omit } from 'ramda';
-
-import db, { maybeAddTransactionToQuery } from '../db';
+import db, { doInTransaction, maybeAddTransactionToQuery } from '../db';
 import { DBOptions, Mutable } from '../types';
+import { cacheUser } from './cache';
 import { usersTableName } from './constants';
 import { User } from './types';
 import { getUnusedUsernameIdentifier } from './usernames';
 
-export type UpdateUserArgs = Partial<Pick<User, 'username' | 'email'>>;
+export type UpdateUserArgs = DoUpdateUserInDBArgs;
 
-/**
- * Updates a user.
- */
 export async function updateUser(
   user: User,
   args: UpdateUserArgs,
   options: DBOptions = {},
 ): Promise<User> {
-  const data = await processUpdateUserData(args, options);
+  const updatedUser = await doInTransaction(async transaction => {
+    const optionsWithTransaction: DBOptions = { transaction };
 
-  const updatedUser = await doUpdateUser(user, data, options);
+    const updateUserInDBArgs: Mutable<UpdateUserInDBArgs> = {
+      ...args,
+    };
+
+    if (updateUserInDBArgs.username && !updateUserInDBArgs.usernameIdentifier) {
+      updateUserInDBArgs.usernameIdentifier = await getUnusedUsernameIdentifier(
+        updateUserInDBArgs.username,
+        options,
+      );
+    }
+
+    // eslint-disable-next-line no-underscore-dangle
+    const _updatedUser = await updateUserInDB(
+      user,
+      args,
+      optionsWithTransaction,
+    );
+
+    return _updatedUser;
+  }, options);
+
+  await cacheUser(updatedUser);
 
   return updatedUser;
 }
 
-async function processUpdateUserData(
-  args: UpdateUserArgs,
-  options: DBOptions = {},
-): Promise<DoUpdateUserArgs> {
-  const data: Mutable<DoUpdateUserArgs> = omit(['email'], args);
+export type UpdateUserInDBArgs = DoUpdateUserInDBArgs;
 
-  if (args.email) {
-    data.unverifiedEmail = args.email;
-  }
-
-  if (args.username) {
-    data.usernameIdentifier = await getUnusedUsernameIdentifier(
-      args.username,
-      options,
-    );
-  }
-
-  return data;
-}
-
-export type DoUpdateUserArgs = Partial<
-  Pick<User, 'username' | 'usernameIdentifier' | 'email' | 'unverifiedEmail'>
->;
-
-export async function doUpdateUser(
+export async function updateUserInDB(
   user: User,
-  args: DoUpdateUserArgs,
+  args: UpdateUserInDBArgs,
   options: DBOptions = {},
 ): Promise<User> {
+  const updatedUser = await doUpdateUserInDB(user, args, options);
+
+  return updatedUser;
+}
+
+export type DoUpdateUserInDBArgs = Partial<
+  Pick<
+    User,
+    | 'username'
+    | 'usernameIdentifier'
+    | 'email'
+    | 'unverifiedEmail'
+    | 'firstName'
+    | 'lastName'
+    | 'bio'
+    | 'avatarUrl'
+  >
+>;
+
+export async function doUpdateUserInDB(
+  user: User,
+  args: DoUpdateUserInDBArgs,
+  options: DBOptions = {},
+): Promise<User> {
+  const data = {
+    ...args,
+    updatedAt: new Date().toISOString(),
+  };
+
   const query = db(usersTableName)
-    .update(args)
+    .update(data)
     .where({ id: user.id })
     .returning('*');
 

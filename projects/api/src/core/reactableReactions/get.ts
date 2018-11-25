@@ -1,8 +1,7 @@
 import db, { maybeAddTransactionToQuery } from '../db';
-import { isMessage } from '../messages';
 import { Reactable } from '../reactables';
 import { Reaction } from '../reactions';
-import { DBOptions, ID, Nullable } from '../types';
+import { DBOptions, ID } from '../types';
 import { User } from '../users';
 import { reactableReactionsTableName } from './constants';
 import { ReactableReaction } from './types';
@@ -10,42 +9,49 @@ import { ReactableReaction } from './types';
 export async function getReactableReactionById(
   id: ID,
   options: DBOptions = {},
-): Promise<Nullable<ReactableReaction>> {
-  const reactableReaction = await getReactableReactionBy({ id }, options);
+): Promise<ReactableReaction | null> {
+  const reactableReaction = await getReactableReactionByFromDB({ id }, options);
 
   return reactableReaction;
 }
 
-export type GetReactableReactionByArgs =
-  | Readonly<{
+export type GetReactableReactionByFromDBArgs = Readonly<
+  | {
       id: ID;
-    }>
-  | GetReactableReactionByAuthorReactableAndReactionArgs;
+      authorId?: undefined;
+      messageId?: undefined;
+      reactionId?: undefined;
+    }
+  | {
+      authorId: ID;
+      messageId: ID;
+      reactionId: ID;
+      id?: undefined;
+    }
+>;
 
-export async function getReactableReactionBy(
-  args: GetReactableReactionByArgs,
+export async function getReactableReactionByFromDB(
+  args: GetReactableReactionByFromDBArgs,
   options: DBOptions = {},
-): Promise<Nullable<ReactableReaction>> {
+): Promise<ReactableReaction | null> {
   const query = db
     .select('*')
     .from(reactableReactionsTableName)
     .first();
 
-  if ((args as any).id) {
-    query.where({ id: (args as any).id });
-  } else if ((args as any).author) {
+  if (args.id) {
+    query.where({ id: args.id });
+  } else if (args.authorId) {
     query.where({
-      authorId: (args as any).author.id,
-      messageId: isMessage((args as any).message)
-        ? (args as any).message.id
-        : null,
-      reactionId: (args as any).reaction.id,
+      authorId: args.authorId,
+      messageId: args.messageId && args.messageId,
+      reactionId: args.reactionId,
     });
   }
 
   maybeAddTransactionToQuery(query, options);
 
-  const reactableReaction: Nullable<ReactableReaction> = await query;
+  const reactableReaction: ReactableReaction | null = await query;
 
   return reactableReaction;
 }
@@ -59,8 +65,17 @@ export type GetReactableReactionByAuthorReactableAndReactionArgs = Readonly<{
 export async function getReactableReactionByAuthorReactableAndReaction(
   args: GetReactableReactionByAuthorReactableAndReactionArgs,
   options: DBOptions = {},
-): Promise<Nullable<ReactableReaction>> {
-  const reactableReaction = await getReactableReactionBy(args, options);
+): Promise<ReactableReaction | null> {
+  const getReactableReactionByFromDBArgs: GetReactableReactionByFromDBArgs = {
+    authorId: args.author.id,
+    messageId: args.reactable.id,
+    reactionId: args.reaction.id,
+  };
+
+  const reactableReaction = await getReactableReactionByFromDB(
+    getReactableReactionByFromDBArgs,
+    options,
+  );
 
   return reactableReaction;
 }

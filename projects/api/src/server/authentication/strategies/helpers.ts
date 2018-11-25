@@ -15,7 +15,7 @@ export async function oauth2VerifyFunction(
     return done(error);
   }
 
-  let userData: users.InsertUserArgs;
+  let userData: users.CreateUserArgs;
   try {
     userData = getUserDataFromProfile(profile);
   } catch (error) {
@@ -54,7 +54,7 @@ function isValidProvider(value: string): value is socialLogins.Provider {
   return socialLogins.providers.includes(value as socialLogins.Provider);
 }
 
-function getUserDataFromProfile(profile: Profile): users.InsertUserArgs {
+function getUserDataFromProfile(profile: Profile): users.CreateUserArgs {
   if (!profile.emails || profile.emails.length === 0) {
     throw new Error('no provided email');
   }
@@ -62,7 +62,7 @@ function getUserDataFromProfile(profile: Profile): users.InsertUserArgs {
   const username = 'test';
   const email: types.Email = profile.emails[0].value;
 
-  const userData: users.InsertUserArgs = { username, email };
+  const userData: users.CreateUserArgs = { username, email };
 
   return userData;
 }

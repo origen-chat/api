@@ -3,19 +3,25 @@ import { DBOptions } from '../types';
 import { webPushSubscriptionsTableName } from './constants';
 import { WebPushSubscription } from './types';
 
-/**
- * Deletes a web push subscription.
- */
 export async function deleteWebPushSubscription(
   webPushSubscription: WebPushSubscription,
   options: DBOptions = {},
 ): Promise<WebPushSubscription> {
-  await doDeleteWebPushSubscription(webPushSubscription, options);
+  await deleteWebPushSubscriptionFromDB(webPushSubscription, options);
 
   return webPushSubscription;
 }
 
-export async function doDeleteWebPushSubscription(
+export async function deleteWebPushSubscriptionFromDB(
+  webPushSubscription: WebPushSubscription,
+  options: DBOptions = {},
+): Promise<WebPushSubscription> {
+  await doDeleteWebPushSubscriptionFromDB(webPushSubscription, options);
+
+  return webPushSubscription;
+}
+
+export async function doDeleteWebPushSubscriptionFromDB(
   webPushSubscription: WebPushSubscription,
   options: DBOptions = {},
 ): Promise<void> {

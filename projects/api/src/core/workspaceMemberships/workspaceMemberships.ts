@@ -1,7 +1,7 @@
 import { DBOptions } from '../types';
 import { User } from '../users';
 import { Workspace } from '../workspaces';
-import { insertWorkspaceOwnerMembership } from './insertion';
+import { createWorkspaceOwnerMembership } from './creation';
 import { WorkspaceMembership } from './types';
 
 export async function addOwnerToWorkspace(
@@ -9,7 +9,7 @@ export async function addOwnerToWorkspace(
   owner: User,
   options: DBOptions = {},
 ): Promise<WorkspaceMembership> {
-  const workspaceOwnerMembership = await insertWorkspaceOwnerMembership(
+  const workspaceOwnerMembership = await createWorkspaceOwnerMembership(
     workspace,
     owner,
     options,

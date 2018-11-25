@@ -1,7 +1,7 @@
 import { UserInputError } from 'apollo-server-core';
 import * as core from '../../../../core';
 import { Resolver, Root } from '../../../types';
-import { NotFoundError } from '../../errors';
+import { NotFoundableEntity, NotFoundError } from '../../errors';
 import { withDecodedGlobalIds } from '../../helpers';
 import { NodeType } from '../../types';
 
@@ -33,7 +33,7 @@ export const resolveUser: Resolver<
   }
 
   if (!user) {
-    throw new NotFoundError({ entity: 'user' });
+    throw new NotFoundError({ entity: NotFoundableEntity.User });
   }
 
   return user;

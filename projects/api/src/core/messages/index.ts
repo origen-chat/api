@@ -7,7 +7,7 @@ export {
   isMessageSentByBot,
 } from './predicates';
 export { getMessageById, getMessagesByIds } from './get';
-export { insertMessage, InsertMessageArgs } from './insertion';
+export { createMessage, CreateMessageArgs } from './creation';
 export {
   sendMessage,
   SendMessageArgs,

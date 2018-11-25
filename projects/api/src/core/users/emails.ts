@@ -1,6 +1,6 @@
 import { DBOptions } from '../types';
 import { User } from './types';
-import { doUpdateUser, DoUpdateUserArgs } from './update';
+import { updateUser, UpdateUserArgs } from './update';
 
 export async function verifyEmail(
   user: User,
@@ -10,12 +10,12 @@ export async function verifyEmail(
     throw new Error("user doesn't have an unverified email to verify");
   }
 
-  const data: DoUpdateUserArgs = {
+  const data: UpdateUserArgs = {
     email: user.unverifiedEmail,
     unverifiedEmail: null,
   };
 
-  const updatedUser = await doUpdateUser(user, data, options);
+  const updatedUser = await updateUser(user, data, options);
 
   return updatedUser;
 }

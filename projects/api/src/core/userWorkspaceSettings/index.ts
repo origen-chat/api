@@ -3,8 +3,8 @@ export {
   userWorkspaceSettingsTableName,
   defaultUserWorkspaceSettingsConfiguration,
 } from './constants';
-export { getUserWorkspaceSettingsById } from './get';
+export { getUserWorkspaceSettingsByWorkspaceMembershipId } from './get';
 export {
-  insertUserWorkspaceSettings,
-  InsertUserWorkspaceSettingsArgs,
-} from './insertion';
+  createUserWorkspaceSettings,
+  CreateUserWorkspaceSettingsArgs,
+} from './creation';

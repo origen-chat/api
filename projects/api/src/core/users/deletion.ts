@@ -3,19 +3,25 @@ import { DBOptions } from '../types';
 import { usersTableName } from './constants';
 import { User } from './types';
 
-/**
- * Deletes a user.
- */
 export async function deleteUser(
   user: User,
   options: DBOptions = {},
 ): Promise<User> {
-  await doDeleteUser(user, options);
+  await deleteUserFromDB(user, options);
 
   return user;
 }
 
-export async function doDeleteUser(
+export async function deleteUserFromDB(
+  user: User,
+  options: DBOptions = {},
+): Promise<User> {
+  await doDeleteUserFromDB(user, options);
+
+  return user;
+}
+
+export async function doDeleteUserFromDB(
   user: User,
   options: DBOptions = {},
 ): Promise<void> {

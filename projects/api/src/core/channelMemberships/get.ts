@@ -9,17 +9,17 @@ export async function getChannelMembershipById(
   id: ID,
   options: DBOptions = {},
 ): Promise<Nullable<ChannelMembership>> {
-  const channelMembership = await getChannelMembershipBy({ id }, options);
+  const channelMembership = await getChannelMembershipByFromDB({ id }, options);
 
   return channelMembership;
 }
 
-export type GetChannelMembershipByArgs =
+export type GetChannelMembershipByFromDBArgs =
   | Pick<ChannelMembership, 'id'>
   | Pick<ChannelMembership, 'channelId' | 'memberId'>;
 
-export async function getChannelMembershipBy(
-  args: GetChannelMembershipByArgs,
+export async function getChannelMembershipByFromDB(
+  args: GetChannelMembershipByFromDBArgs,
   options: DBOptions = {},
 ): Promise<Nullable<ChannelMembership>> {
   const query = db
@@ -40,12 +40,12 @@ export async function getChannelMembershipByChannelAndUser(
   user: User,
   options: DBOptions = {},
 ): Promise<Nullable<ChannelMembership>> {
-  const args: GetChannelMembershipByArgs = {
+  const args: GetChannelMembershipByFromDBArgs = {
     channelId: channel.id,
     memberId: user.id,
   };
 
-  const channelMembership = await getChannelMembershipBy(args, options);
+  const channelMembership = await getChannelMembershipByFromDB(args, options);
 
   return channelMembership;
 }

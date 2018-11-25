@@ -3,19 +3,25 @@ import { DBOptions } from '../types';
 import { channelsTableName } from './constants';
 import { Channel } from './types';
 
-/**
- * Deletes a channel.
- */
 export async function deleteChannel(
   channel: Channel,
   options: DBOptions = {},
 ): Promise<Channel> {
-  await doDeleteChannel(channel, options);
+  await deleteChannelFromDB(channel, options);
 
   return channel;
 }
 
-export async function doDeleteChannel(
+export async function deleteChannelFromDB(
+  channel: Channel,
+  options: DBOptions = {},
+): Promise<Channel> {
+  await doDeleteChannelFromDB(channel, options);
+
+  return channel;
+}
+
+export async function doDeleteChannelFromDB(
   channel: Channel,
   options: DBOptions = {},
 ): Promise<void> {

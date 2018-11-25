@@ -9,7 +9,7 @@ export {
   getUsersByUniqueUsernames,
 } from './get';
 export { isUser } from './predicates';
-export { insertUser, InsertUserArgs } from './insertion';
+export { createUser, CreateUserArgs } from './creation';
 export { updateUser, UpdateUserArgs } from './update';
 export { deleteUser } from './deletion';
 export { verifyEmail } from './emails';

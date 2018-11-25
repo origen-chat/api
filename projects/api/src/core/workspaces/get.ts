@@ -1,32 +1,51 @@
 import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions, ID, Nullable } from '../types';
+import { getCachedWorkspace, maybeCacheWorkspace } from './cache';
 import { workspacesTableName } from './constants';
 import { Workspace } from './types';
 
 export async function getWorkspaceById(
   id: ID,
   options: DBOptions = {},
-): Promise<Nullable<Workspace>> {
-  const workspace = await getWorkspaceBy({ id }, options);
+): Promise<Workspace | null> {
+  const cachedWorkspace = await getCachedWorkspace(id);
+
+  if (cachedWorkspace) {
+    return cachedWorkspace;
+  }
+
+  const workspace = await getWorkspaceByFromDB({ id }, options);
+
+  await maybeCacheWorkspace(workspace);
 
   return workspace;
 }
 
-type GetWorkspaceBy = Pick<Workspace, 'id'> | Pick<Workspace, 'name'>;
+type GetWorkspaceByFromDBArgs =
+  | Pick<Workspace, 'id'> &
+      Readonly<{
+        name?: undefined;
+      }>
+  | Pick<Workspace, 'name'> & Readonly<{ id?: undefined }>;
 
-async function getWorkspaceBy(
-  args: GetWorkspaceBy,
+async function getWorkspaceByFromDB(
+  args: GetWorkspaceByFromDBArgs,
   options: DBOptions = {},
-): Promise<Nullable<Workspace>> {
+): Promise<Workspace | null> {
   const query = db
     .select('*')
     .from(workspacesTableName)
-    .where(args)
     .first();
+
+  if (args.id) {
+    query.where({ id: args.id });
+  } else if (args.name) {
+    query.where({ name: args.name });
+  }
 
   maybeAddTransactionToQuery(query, options);
 
-  const workspace: Nullable<Workspace> = await query;
+  const workspace: Workspace | null = await query;
 
   return workspace;
 }
@@ -35,7 +54,9 @@ export async function getWorkspaceByName(
   name: string,
   options: DBOptions = {},
 ): Promise<Nullable<Workspace>> {
-  const workspace = await getWorkspaceBy({ name }, options);
+  const workspace = await getWorkspaceByFromDB({ name }, options);
+
+  await maybeCacheWorkspace(workspace);
 
   return workspace;
 }
@@ -44,25 +65,26 @@ export async function getWorkspacesByIds(
   ids: ReadonlyArray<ID>,
   options: DBOptions = {},
 ): Promise<ReadonlyArray<Workspace>> {
-  const workspaces = await getWorkspacesBy({ ids }, options);
+  const workspaces = await getWorkspacesByFromDB({ ids }, options);
 
   return workspaces;
 }
 
-export type GetWorkspacesByArgs = Readonly<
-  { ids: ReadonlyArray<ID> } | { names: ReadonlyArray<string> }
+export type GetWorkspacesByFromDBArgs = Readonly<
+  | { ids: ReadonlyArray<ID>; names?: undefined }
+  | { names: ReadonlyArray<string>; ids?: undefined }
 >;
 
-async function getWorkspacesBy(
-  args: GetWorkspacesByArgs,
+async function getWorkspacesByFromDB(
+  args: GetWorkspacesByFromDBArgs,
   options: DBOptions = {},
 ): Promise<ReadonlyArray<Workspace>> {
   const query = db.select('*').from(workspacesTableName);
 
-  if ((args as any).ids) {
-    query.whereIn('id', (args as any).ids);
-  } else if ((args as any).names) {
-    query.whereIn('name', (args as any).names);
+  if (args.ids) {
+    query.whereIn('id', args.ids as any);
+  } else if (args.names) {
+    query.whereIn('name', args.names as any);
   }
 
   maybeAddTransactionToQuery(query, options);
@@ -76,7 +98,7 @@ export async function getWorkspacesByNames(
   names: ReadonlyArray<string>,
   options: DBOptions = {},
 ): Promise<ReadonlyArray<Workspace>> {
-  const workspaces = await getWorkspacesBy({ names }, options);
+  const workspaces = await getWorkspacesByFromDB({ names }, options);
 
   return workspaces;
 }

@@ -10,7 +10,7 @@ export async function getWebPushSubscriptionsByUserIds<TUserID extends ID>(
   userIds: ReadonlyArray<TUserID>,
   options: DBOptions = {},
 ): Promise<Record<TUserID, ReadonlyArray<WebPushSubscription>>> {
-  const webPushSubscriptions = await getWebPushSubscriptionsBy(
+  const webPushSubscriptions = await getWebPushSubscriptionsByFromDB(
     { userIds },
     options,
   );
@@ -23,20 +23,21 @@ export async function getWebPushSubscriptionsByUserIds<TUserID extends ID>(
   return webPushSubscriptionsByUserIds;
 }
 
-export type GetWebPushSubscriptionsByArgs = Readonly<
-  { userIds: ReadonlyArray<ID> } | { endpoints: ReadonlyArray<string> }
+export type GetWebPushSubscriptionsByFromDBArgs = Readonly<
+  | { userIds: ReadonlyArray<ID>; endpoints?: undefined }
+  | { endpoints: ReadonlyArray<string>; userIds?: undefined }
 >;
 
-export async function getWebPushSubscriptionsBy(
-  args: GetWebPushSubscriptionsByArgs,
+export async function getWebPushSubscriptionsByFromDB(
+  args: GetWebPushSubscriptionsByFromDBArgs,
   options: DBOptions = {},
 ): Promise<ReadonlyArray<WebPushSubscription>> {
   const query = db.select('*').from(webPushSubscriptionsTableName);
 
-  if ((args as any).userIds) {
-    query.whereIn('userId', (args as any).userIds);
-  } else if ((args as any).endpoints) {
-    query.whereIn('endpoint', (args as any).endpoints);
+  if (args.userIds) {
+    query.whereIn('userId', args.userIds as any);
+  } else if (args.endpoints) {
+    query.whereIn('endpoint', args.endpoints as any);
   }
 
   maybeAddTransactionToQuery(query, options);
@@ -68,7 +69,7 @@ export async function getWebPushSubscriptionByEndpoint(
   endpoint: string,
   options: DBOptions = {},
 ): Promise<Nullable<WebPushSubscription>> {
-  const [webPushSubscription] = await getWebPushSubscriptionsBy(
+  const [webPushSubscription] = await getWebPushSubscriptionsByFromDB(
     { endpoints: [endpoint] },
     options,
   );

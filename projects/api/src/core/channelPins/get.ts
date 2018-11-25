@@ -7,15 +7,15 @@ export async function getChannelPinById(
   id: ChannelPin['id'],
   options: DBOptions = {},
 ): Promise<ChannelPin | null> {
-  const channelPin = await getChannelPinBy({ id }, options);
+  const channelPin = await getChannelPinByFromDB({ id }, options);
 
   return channelPin;
 }
 
-export type GetChannelPinByArgs = Pick<ChannelPin, 'id'>;
+export type GetChannelPinByFromDBArgs = Pick<ChannelPin, 'id'>;
 
-async function getChannelPinBy(
-  args: GetChannelPinByArgs,
+async function getChannelPinByFromDB(
+  args: GetChannelPinByFromDBArgs,
   options: DBOptions = {},
 ): Promise<ChannelPin | null> {
   const query = db
@@ -35,17 +35,17 @@ export async function getChannelPinsByIds(
   ids: ReadonlyArray<ChannelPin['id']>,
   options: DBOptions = {},
 ): Promise<ReadonlyArray<ChannelPin>> {
-  const channelPins = await getChannelPinsBy({ ids }, options);
+  const channelPins = await getChannelPinsByFromDB({ ids }, options);
 
   return channelPins;
 }
 
-export type GetChannelPinsByArgs = Readonly<{
+export type GetChannelPinsByFromDBArgs = Readonly<{
   ids: ReadonlyArray<ChannelPin['id']>;
 }>;
 
-async function getChannelPinsBy(
-  args: GetChannelPinsByArgs,
+async function getChannelPinsByFromDB(
+  args: GetChannelPinsByFromDBArgs,
   options: DBOptions = {},
 ): Promise<ReadonlyArray<ChannelPin>> {
   const query = db.select('*').from(channelPinsTableName);

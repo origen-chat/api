@@ -1,10 +1,10 @@
 export { Customer } from './types';
 export { customersTableName } from './constants';
 export { isCustomer } from './predicates';
-export { getCustomerByUserAndCurrency, getCustomerById } from './get';
 export {
-  getOrCreateCustomer,
-  GetOrCreateCustomerArgs,
-  createCustomer,
-  CreateCustomerArgs,
-} from './customers';
+  getCustomerByUser,
+  getCustomerById,
+  getCustomerByStripeCustomerId,
+} from './get';
+export { createCustomer, CreateCustomerArgs } from './creation';
+export { getOrCreateCustomer, GetOrCreateCustomerArgs } from './customers';

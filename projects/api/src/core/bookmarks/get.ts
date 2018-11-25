@@ -7,15 +7,15 @@ export async function getBookmarkById(
   id: Bookmark['id'],
   options: DBOptions = {},
 ): Promise<Bookmark | null> {
-  const bookmark = await getBookmarkBy({ id }, options);
+  const bookmark = await getBookmarkByFromDB({ id }, options);
 
   return bookmark;
 }
 
-export type GetBookmarkByArgs = Pick<Bookmark, 'id'>;
+export type GetBookmarkByFromDBArgs = Pick<Bookmark, 'id'>;
 
-async function getBookmarkBy(
-  args: GetBookmarkByArgs,
+async function getBookmarkByFromDB(
+  args: GetBookmarkByFromDBArgs,
   options: DBOptions = {},
 ): Promise<Bookmark | null> {
   const query = db
@@ -35,17 +35,17 @@ export async function getBookmarksByIds(
   ids: ReadonlyArray<Bookmark['id']>,
   options: DBOptions = {},
 ): Promise<ReadonlyArray<Bookmark>> {
-  const bookmarks = await getBookmarksBy({ ids }, options);
+  const bookmarks = await getBookmarksByFromDB({ ids }, options);
 
   return bookmarks;
 }
 
-export type GetBookmarksByArgs = Readonly<{
+export type GetBookmarksByFromDBArgs = Readonly<{
   ids: ReadonlyArray<Bookmark['id']>;
 }>;
 
-async function getBookmarksBy(
-  args: GetBookmarksByArgs,
+async function getBookmarksByFromDB(
+  args: GetBookmarksByFromDBArgs,
   options: DBOptions = {},
 ): Promise<ReadonlyArray<Bookmark>> {
   const query = db.select('*').from(bookmarksTableName);

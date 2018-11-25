@@ -10,6 +10,7 @@ export {
   maxUsersInDirectMessagesChannel,
 } from './constants';
 export {
+  isChannel,
   isNamedChannel,
   isDirectMessagesChannel,
   isPublicChannel,
@@ -20,11 +21,13 @@ export {
   getChannelsByIds,
 } from './get';
 export {
-  insertChannel,
-  insertInitialDefaultChannel,
-  InsertChannelArgs,
-} from './insertion';
-export { updateChannel, UpdateChannelArgs } from './update';
-export { deleteChannel } from './deletion';
-export { getOrInsertDirectMessagesChannel } from './channels';
+  createDirectMessagesChannel,
+  createNamedChannel,
+  createInitialDefaultChannel,
+  CreateDirectMessagesChannelArgs,
+  CreateNamedChannelArgs,
+} from './creation';
+export { updateChannel, UpdateChannelInDBArgs } from './update';
+export { deleteChannelFromDB } from './deletion';
+export { getOrCreateDirectMessagesChannel } from './channels';
 export { canSeeChannel } from './policy';

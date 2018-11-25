@@ -6,7 +6,6 @@ export {
 } from './types';
 export { providers, socialLoginsTableName } from './constants';
 export { isSocialLogin } from './predicates';
-export {
-  getUserBySocialCredentials,
-  linkSocialCredentialsToUser,
-} from './socialLogins';
+export { getUserBySocialCredentials } from './get';
+export { createSocialLogin, CreateSocialLoginArgs } from './creation';
+export { linkSocialCredentialsToUser } from './socialLogins';

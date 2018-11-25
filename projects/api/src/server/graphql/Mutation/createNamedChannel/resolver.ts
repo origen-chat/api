@@ -1,7 +1,7 @@
 import * as core from '../../../../core';
 import { getViewerOrThrowIfUnauthenticated } from '../../../helpers';
 import { MutationInputArg, Resolver, Root } from '../../../types';
-import { NotFoundError } from '../../errors';
+import { NotFoundableEntity, NotFoundError } from '../../errors';
 import { withDecodedGlobalIds } from '../../helpers';
 import { NodeType } from '../../types';
 import { validateCreateNamedChannelArgs } from './validation';
@@ -26,10 +26,10 @@ export const resolveCreateNamedChannel: Resolver<
   );
 
   if (!workspace) {
-    throw new NotFoundError({ entity: 'workspace' });
+    throw new NotFoundError({ entity: NotFoundableEntity.Workspace });
   }
 
-  const createNamedChannelArgs: core.channels.InsertChannelArgs = {
+  const createNamedChannelArgs: core.channels.InsertChannelIntoDBArgs = {
     type: core.channels.ChannelType.Named,
     name: args.input.name,
     privacy: args.input.privacy,
@@ -38,7 +38,9 @@ export const resolveCreateNamedChannel: Resolver<
     workspace,
   };
 
-  const channel = await core.channels.insertChannel(createNamedChannelArgs);
+  const channel = await core.channels.insertChannelIntoDB(
+    createNamedChannelArgs,
+  );
 
   const payload = { channel };
 

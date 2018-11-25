@@ -69,7 +69,7 @@ const env = makeEnv({
   mockSchema: {
     parser: parsers.boolean,
     required: false,
-    defaultValue: process.env.NODE_ENV === 'development',
+    defaultValue: false,
     envVarName: 'MOCK_SCHEMA',
   },
   mockEntireSchema: {

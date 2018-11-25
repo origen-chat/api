@@ -5,11 +5,11 @@ import {
   SocialCredentials,
 } from '../socialLogins';
 import { DBOptions } from '../types';
-import { getUserByEmail, insertUser, InsertUserArgs, User } from '../users';
+import { createUser, CreateUserArgs, getUserByEmail, User } from '../users';
 
 export async function getUserBySocialCredentialsOrRegisterUser(
   socialCredentials: SocialCredentials,
-  userData: InsertUserArgs,
+  userData: CreateUserArgs,
   options: DBOptions = {},
 ): Promise<User> {
   const existingOrRegisteredUser = await doInTransaction(async transaction => {
@@ -36,7 +36,7 @@ export async function getUserBySocialCredentialsOrRegisterUser(
 
 async function getUserByEmailOrRegisterUser(
   socialCredentials: SocialCredentials,
-  userData: InsertUserArgs,
+  userData: CreateUserArgs,
   options: DBOptions = {},
 ): Promise<User> {
   const { email } = userData;
@@ -62,7 +62,7 @@ async function getUserByEmailOrRegisterUser(
 
 async function registerUser(
   socialCredentials: SocialCredentials,
-  userData: InsertUserArgs,
+  userData: CreateUserArgs,
   options: DBOptions = {},
 ): Promise<User> {
   const user = await insertUserAndLinkSocialCredentials(
@@ -76,14 +76,15 @@ async function registerUser(
 
 async function insertUserAndLinkSocialCredentials(
   socialCredentials: SocialCredentials,
-  userData: InsertUserArgs,
+  userData: CreateUserArgs,
   options: DBOptions = {},
 ): Promise<User> {
   const userWithLinkedSocialCredentials = await doInTransaction(
     async transaction => {
       const optionsWithTransaction: DBOptions = { transaction };
 
-      const user = await insertUser(userData, optionsWithTransaction);
+      const user = await createUser(userData, optionsWithTransaction);
+
       await linkSocialCredentialsToUser(
         user,
         socialCredentials,

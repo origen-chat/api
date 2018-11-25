@@ -5,12 +5,14 @@ import { constants, timestamps } from './helpers';
 const customersTableName = 'customers';
 const usersTableName = 'users';
 
-const stripeCustomerIdColumnName = 'stripeCustomerId';
+const stripeCustomerDataColumnName = 'stripeCustomerId';
 const userIdColumnName = 'userId';
-const currencyColumnName = 'currency';
+
+const stripeCustomerIdFieldName = 'id';
 
 export async function up(knex: Knex): Promise<void> {
   await createCustomersTable(knex);
+  await createUniqueStripeCustomerIdIndex(knex);
 }
 
 async function createCustomersTable(knex: Knex): Promise<void> {
@@ -28,17 +30,20 @@ async function createCustomersTable(knex: Knex): Promise<void> {
       .onDelete(constants.onDelete.cascade)
       .notNullable();
 
-    table.string(currencyColumnName, 64).notNullable();
-
-    table
-      .string(stripeCustomerIdColumnName, 256)
-      .unique()
-      .notNullable();
-
-    table.unique([userIdColumnName, currencyColumnName]);
+    table.jsonb(stripeCustomerDataColumnName).notNullable();
 
     timestamps({ knex, table });
   });
+}
+
+async function createUniqueStripeCustomerIdIndex(knex: Knex): Promise<void> {
+  const uniqueIndexQuery = `
+    CREATE UNIQUE INDEX
+      ${customersTableName}_${stripeCustomerDataColumnName}_${stripeCustomerIdFieldName}_index
+    ON "${customersTableName}" ("${stripeCustomerDataColumnName}"->'${stripeCustomerIdFieldName}');
+  `;
+
+  await knex.schema.raw(uniqueIndexQuery);
 }
 
 export async function down(knex: Knex): Promise<void> {

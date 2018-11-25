@@ -3,7 +3,7 @@ import { ForbiddenError } from 'apollo-server-express';
 import { channels, types } from '../../../../core';
 import { getViewerOrThrowIfUnauthenticated } from '../../../helpers';
 import { Resolver, Root } from '../../../types';
-import { NotFoundError } from '../../errors';
+import { NotFoundableEntity, NotFoundError } from '../../errors';
 
 export type ResolveChannelArgs = Readonly<{ id: types.ID }>;
 
@@ -19,7 +19,7 @@ export const resolveChannel: Resolver<
   const channel = await context.loaders.channelById.load(channelId);
 
   if (!channel) {
-    throw new NotFoundError({ entity: 'channel' });
+    throw new NotFoundError({ entity: NotFoundableEntity.Channel });
   }
 
   if (!channels.canSeeChannel(viewer, channel)) {

@@ -46,7 +46,7 @@ async function getUsernameCount(
 
   const { count } = await query;
 
-  return Number.parseInt(count, 10);
+  return count;
 }
 
 async function doGetUnusedUsernameIdentifier(
@@ -78,7 +78,7 @@ async function doGetUnusedUsernameIdentifier(
   } = await query;
 
   const paddedUnusedUsernameIdentifier = padUsernameIdentifier(
-    unusedUsernameIdentifier as string,
+    unusedUsernameIdentifier,
   );
 
   return paddedUnusedUsernameIdentifier;

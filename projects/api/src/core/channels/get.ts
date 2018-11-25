@@ -1,32 +1,58 @@
 import { channelMembershipsTableName } from '../channelMemberships';
 import db, { maybeAddTransactionToQuery } from '../db';
-import { DBOptions, ID, Nullable } from '../types';
+import { DBOptions, ID } from '../types';
 import { User } from '../users';
 import { Workspace } from '../workspaces';
+import { maybeCacheChannel } from './cache';
 import { channelsTableName } from './constants';
 import { Channel, ChannelType, DirectMessagesChannel } from './types';
 
-export async function getChannelById(id: ID): Promise<Nullable<Channel>> {
-  const channel = await getChannelBy({ id });
+export async function getChannelById(id: ID): Promise<Channel | null> {
+  const channel = await getChannelByFromDB({ id });
+
+  await maybeCacheChannel(channel);
 
   return channel;
 }
 
-type GetChannelByArgs = Pick<Channel, 'id'>;
+type GetChannelByFromDBArgs =
+  | Pick<Channel, 'id'> &
+      Readonly<{ memberIds?: undefined; workspaceId?: undefined }>
+  | Readonly<{
+      memberIds: ReadonlyArray<ID>;
+      workspaceId: ID;
+      id?: undefined;
+    }>;
 
-async function getChannelBy(
-  args: GetChannelByArgs,
+async function getChannelByFromDB(
+  args: GetChannelByFromDBArgs,
   options: DBOptions = {},
-): Promise<Nullable<Channel>> {
+): Promise<Channel | null> {
   const query = db
-    .select('*')
+    .select(`${channelsTableName}.*`)
     .from(channelsTableName)
-    .where(args)
     .first();
+
+  if (args.id) {
+    query.where({ id: args.id });
+  } else if (args.memberIds) {
+    query
+      .innerJoin(
+        channelsTableName,
+        `${channelsTableName}.id`,
+        `${channelMembershipsTableName}.channelId`,
+      )
+      .where({
+        [`${channelsTableName}.type`]: ChannelType.DirectMessages,
+        workspaceId: args.workspaceId,
+      })
+      .whereIn('memberId', args.memberIds as any)
+      .groupBy(`${channelsTableName}.id`);
+  }
 
   maybeAddTransactionToQuery(query, options);
 
-  const channel: Nullable<Channel> = await query;
+  const channel: Channel | null = await query;
 
   return channel;
 }
@@ -39,28 +65,21 @@ export type GetDirectMessagesChannelByMembersArgs = Readonly<{
 export async function getDirectMessagesChannelByMembers(
   args: GetDirectMessagesChannelByMembersArgs,
   options: DBOptions = {},
-): Promise<DirectMessagesChannel> {
+): Promise<DirectMessagesChannel | null> {
   const memberIds = args.members.map(member => member.id);
+  const workspaceId = args.workspace.id;
 
-  const query = db
-    .select(`${channelsTableName}.*`)
-    .from(channelMembershipsTableName)
-    .innerJoin(
-      channelsTableName,
-      `${channelsTableName}.id`,
-      `${channelMembershipsTableName}.channelId`,
-    )
-    .where({
-      [`${channelsTableName}.type`]: ChannelType.DirectMessages,
-      workspaceId: args.workspace.id,
-    })
-    .whereIn('memberId', memberIds)
-    .groupBy(`${channelsTableName}.id`)
-    .first();
+  const channel = (await getChannelByFromDB(
+    {
+      memberIds,
+      workspaceId,
+    },
+    options,
+  )) as DirectMessagesChannel | null;
 
-  maybeAddTransactionToQuery(query, options);
-
-  const channel = await query;
+  if (channel) {
+    await maybeCacheChannel(channel);
+  }
 
   return channel;
 }
@@ -69,21 +88,21 @@ export async function getChannelsByIds(
   ids: ReadonlyArray<ID>,
   options: DBOptions = {},
 ): Promise<ReadonlyArray<Channel>> {
-  const channels = await getChannelsBy({ ids }, options);
+  const channels = await getChannelsByFromDB({ ids }, options);
 
   return channels;
 }
 
-type GetChannelsByArgs = Readonly<{ ids: ReadonlyArray<ID> }>;
+type GetChannelsByFromDBArgs = Readonly<{ ids: ReadonlyArray<ID> }>;
 
-async function getChannelsBy(
-  args: GetChannelsByArgs,
+async function getChannelsByFromDB(
+  args: GetChannelsByFromDBArgs,
   options: DBOptions = {},
 ): Promise<ReadonlyArray<Channel>> {
-  const query = db.select('*').from(channelsTableName);
+  const query = db.select(`${channelsTableName}.*`).from(channelsTableName);
 
-  if ((args as any).ids) {
-    query.whereIn('id', (args as any).ids);
+  if (args.ids) {
+    query.whereIn('id', args.ids as any);
   }
 
   maybeAddTransactionToQuery(query, options);

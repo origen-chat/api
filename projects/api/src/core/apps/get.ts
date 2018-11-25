@@ -7,15 +7,15 @@ export async function getAppById(
   id: App['id'],
   options: DBOptions = {},
 ): Promise<App | null> {
-  const app = await getAppBy({ id }, options);
+  const app = await getAppByFromDB({ id }, options);
 
   return app;
 }
 
-export type GetAppByArgs = Pick<App, 'id'>;
+export type GetAppByFromDBArgs = Pick<App, 'id'>;
 
-async function getAppBy(
-  args: GetAppByArgs,
+async function getAppByFromDB(
+  args: GetAppByFromDBArgs,
   options: DBOptions = {},
 ): Promise<App | null> {
   const query = db
@@ -35,15 +35,15 @@ export async function getAppsByIds(
   ids: ReadonlyArray<App['id']>,
   options: DBOptions = {},
 ): Promise<ReadonlyArray<App>> {
-  const apps = await getAppsBy({ ids }, options);
+  const apps = await getAppsByFromDB({ ids }, options);
 
   return apps;
 }
 
-export type GetAppsByArgs = Readonly<{ ids: ReadonlyArray<App['id']> }>;
+export type GetAppsByFromDBArgs = Readonly<{ ids: ReadonlyArray<App['id']> }>;
 
-async function getAppsBy(
-  args: GetAppsByArgs,
+async function getAppsByFromDB(
+  args: GetAppsByFromDBArgs,
   options: DBOptions = {},
 ): Promise<ReadonlyArray<App>> {
   const query = db.select('*').from(appsTableName);

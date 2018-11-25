@@ -1,37 +1,37 @@
 import db, { maybeAddTransactionToQuery } from '../db';
-import { DBOptions, ID, Nullable } from '../types';
+import { DBOptions, ID } from '../types';
 import { messagesTableName } from './constants';
 import { Message } from './types';
 
 export async function getMessageById(
   id: ID,
   options: DBOptions = {},
-): Promise<Nullable<Message>> {
-  const message = await getMessageBy({ id }, options);
+): Promise<Message | null> {
+  const message = await getMessageByFromDB({ id }, options);
 
   return message;
 }
 
-type GetMessageByArgs = Readonly<{
+type GetMessageByFromDBArgs = Readonly<{
   id: ID;
 }>;
 
-async function getMessageBy(
-  args: GetMessageByArgs,
+async function getMessageByFromDB(
+  args: GetMessageByFromDBArgs,
   options: DBOptions = {},
-): Promise<Nullable<Message>> {
+): Promise<Message | null> {
   const query = db
     .select('*')
     .from(messagesTableName)
     .first();
 
-  if ((args as any).id) {
-    query.where({ id: (args as any).id });
+  if (args.id) {
+    query.where({ id: args.id });
   }
 
   maybeAddTransactionToQuery(query, options);
 
-  const message: Nullable<Message> = await query;
+  const message: Message | null = await query;
 
   return message;
 }
@@ -40,23 +40,23 @@ export async function getMessagesByIds(
   ids: ReadonlyArray<ID>,
   options: DBOptions = {},
 ): Promise<ReadonlyArray<Message>> {
-  const messages = await getMessagesBy({ ids }, options);
+  const messages = await getMessagesByFromDB({ ids }, options);
 
   return messages;
 }
 
-type GetMessagesByArgs = Readonly<{
+type GetMessagesByFromDBArgs = Readonly<{
   ids: ReadonlyArray<ID>;
 }>;
 
-async function getMessagesBy(
-  args: GetMessagesByArgs,
+async function getMessagesByFromDB(
+  args: GetMessagesByFromDBArgs,
   options: DBOptions = {},
 ): Promise<ReadonlyArray<Message>> {
   const query = db.select('*').from(messagesTableName);
 
-  if ((args as any).id) {
-    query.whereIn('id', (args as any).ids);
+  if (args.ids) {
+    query.whereIn('id', args.ids as any);
   }
 
   maybeAddTransactionToQuery(query, options);

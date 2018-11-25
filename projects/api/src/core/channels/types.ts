@@ -1,4 +1,4 @@
-import { ID, Identifiable, Nullable, Timestamps } from '../types';
+import { ID, Identifiable, Timestamps } from '../types';
 
 export type Channel = NamedChannel | DirectMessagesChannel;
 
@@ -7,8 +7,8 @@ export type NamedChannel = Readonly<{
   type: ChannelType.Named;
   isDefault: boolean;
   privacy: ChannelPrivacy;
-  topic: Nullable<string>;
-  purpose: Nullable<string>;
+  topic: string | null;
+  purpose: string | null;
 }> &
   ChannelSharedData;
 
@@ -22,6 +22,9 @@ export type DirectMessagesChannel = Readonly<{
   type: ChannelType.DirectMessages;
   isDefault: false;
   privacy: ChannelPrivacy.Private;
+  name: null;
+  topic: null;
+  purpose: null;
 }> &
   ChannelSharedData;
 

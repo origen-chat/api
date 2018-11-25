@@ -7,14 +7,14 @@ export async function getBotById(
   id: Bot['id'],
   options: DBOptions = {},
 ): Promise<Bot | null> {
-  const bot = await getBotBy({ id }, options);
+  const bot = await getBotByFromDB({ id }, options);
 
   return bot;
 }
 
 export type GetBotByArgs = Pick<Bot, 'id'>;
 
-async function getBotBy(
+async function getBotByFromDB(
   args: GetBotByArgs,
   options: DBOptions = {},
 ): Promise<Bot | null> {

@@ -1,28 +1,47 @@
+import { Channel } from '../channels';
 import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions } from '../types';
 import { messagesTableName } from './constants';
+import { enqueueEditedMessageNotificationsJob } from './jobs';
+import { publishMessageEdited } from './publishers';
 import { Message } from './types';
+import { validateEditMessageArgs } from './validation';
 
-export type UpdateMessageArgs = Partial<Pick<Message, 'content'>>;
+export type UpdateMessageArgs = UpdateMessageInDBArgs &
+  Readonly<{ channel: Channel }>;
 
-/**
- * Updates a user.
- */
 export async function updateMessage(
   message: Message,
   args: UpdateMessageArgs,
   options: DBOptions = {},
 ): Promise<Message> {
-  const updatedMessage = await doUpdateMessage(message, args, options);
+  await validateEditMessageArgs(args, options);
+
+  const updatedMessage = await updateMessageInDB(message, args, options);
+
+  publishMessageEdited({ message: updatedMessage, channel: args.channel });
+  await enqueueEditedMessageNotificationsJob(updatedMessage);
 
   return updatedMessage;
 }
 
-export type DoUpdateMessageArgs = Partial<Pick<Message, 'content'>>;
+type UpdateMessageInDBArgs = Partial<Pick<Message, 'content'>>;
 
-export async function doUpdateMessage(
+async function updateMessageInDB(
   message: Message,
-  args: DoUpdateMessageArgs,
+  args: UpdateMessageInDBArgs,
+  options: DBOptions = {},
+): Promise<Message> {
+  const updatedMessage = await doUpdateMessageInDB(message, args, options);
+
+  return updatedMessage;
+}
+
+export type DoUpdateMessageInDBArgs = Partial<Pick<Message, 'content'>>;
+
+export async function doUpdateMessageInDB(
+  message: Message,
+  args: DoUpdateMessageInDBArgs,
   options: DBOptions = {},
 ): Promise<Message> {
   const data = {

@@ -1,32 +1,49 @@
-import db from '../db';
+import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions } from '../types';
+import { cacheWorkspace } from './cache';
 import { workspacesTableName } from './constants';
 import { Workspace } from './types';
 
-export type UpdateWorkspaceArgs = Partial<
-  Pick<Workspace, 'name' | 'displayName' | 'description'>
->;
+export type UpdateWorkspaceArgs = UpdateWorkspaceInDBArgs;
 
-/**
- * Updates a workspace.
- */
 export async function updateWorkspace(
   workspace: Workspace,
   args: UpdateWorkspaceArgs,
   options: DBOptions = {},
 ): Promise<Workspace> {
-  const updatedWorkspace = await doUpdateWorkspace(workspace, args, options);
+  const updatedWorkspace = await updateWorkspaceInDB(workspace, args, options);
+
+  await cacheWorkspace(updatedWorkspace);
 
   return updatedWorkspace;
 }
 
-export type DoUpdateWorkspaceArgs = Partial<
+export type UpdateWorkspaceInDBArgs = Pick<
+  DoUpdateWorkspaceInDBArgs,
+  'name' | 'displayName' | 'description'
+>;
+
+export async function updateWorkspaceInDB(
+  workspace: Workspace,
+  args: UpdateWorkspaceInDBArgs,
+  options: DBOptions = {},
+): Promise<Workspace> {
+  const updatedWorkspace = await doUpdateWorkspaceInDB(
+    workspace,
+    args,
+    options,
+  );
+
+  return updatedWorkspace;
+}
+
+export type DoUpdateWorkspaceInDBArgs = Partial<
   Pick<Workspace, 'name' | 'displayName' | 'description'>
 >;
 
-export async function doUpdateWorkspace(
+export async function doUpdateWorkspaceInDB(
   workspace: Workspace,
-  args: DoUpdateWorkspaceArgs,
+  args: DoUpdateWorkspaceInDBArgs,
   options: DBOptions = {},
 ): Promise<Workspace> {
   const query = db(workspacesTableName)
@@ -34,9 +51,7 @@ export async function doUpdateWorkspace(
     .where({ id: workspace.id })
     .returning('*');
 
-  if (options.transaction) {
-    query.transacting(options.transaction);
-  }
+  maybeAddTransactionToQuery(query, options);
 
   const [updatedWorkspace] = await query;
 

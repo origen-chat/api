@@ -46,6 +46,6 @@ export async function handleSubscriptionDisconnect(
   const context: Context = await connectionContext.initPromise;
 
   if (context.viewer) {
-    await core.presence.deleteUserConnectionStatus(context.viewer);
+    await core.presence.setUserConnectionStatusToOffline(context.viewer);
   }
 }

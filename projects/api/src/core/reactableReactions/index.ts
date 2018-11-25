@@ -1,9 +1,9 @@
 export { ReactableReaction } from './types';
 export { reactableReactionsTableName } from './constants';
 export {
-  insertReactableReaction,
-  InsertReactableReactionArgs,
-} from './insertion';
+  createReactableReaction,
+  CreateReactableReactionArgs,
+} from './creation';
 export {
   toggleReactableReaction,
   ToggleReactableReactionArgs,

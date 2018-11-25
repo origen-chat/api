@@ -1,53 +1,27 @@
-import db, { doInTransaction, maybeAddTransactionToQuery } from '../db';
-import { Reactable } from '../reactables';
-import { Reaction } from '../reactions';
+import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions } from '../types';
-import { User } from '../users';
 import { reactableReactionsTableName } from './constants';
-import { getReactableReactionByAuthorReactableAndReaction } from './get';
 import { ReactableReaction } from './types';
 
-export type RemoveReactableReactionArgs = Readonly<{
-  author: User;
-  reactable: Reactable;
-  reaction: Reaction;
-}>;
-
-export async function removeReactableReaction(
-  args: RemoveReactableReactionArgs,
-  options: DBOptions = {},
-): Promise<ReactableReaction> {
-  const removedReactableReaction = await doInTransaction(async transaction => {
-    const optionsWithTransaction: DBOptions = { transaction };
-
-    const reactableReaction = await getReactableReactionByAuthorReactableAndReaction(
-      args,
-      optionsWithTransaction,
-    );
-
-    if (!reactableReaction) {
-      throw new Error('reactable reaction not found');
-    }
-
-    return deleteReactableReaction(reactableReaction, options);
-  }, options);
-
-  return removedReactableReaction;
-}
-
-/**
- * Deletes a reactable reaction.
- */
 export async function deleteReactableReaction(
   reactableReaction: ReactableReaction,
   options: DBOptions = {},
 ): Promise<ReactableReaction> {
-  await doDeleteReactableReaction(reactableReaction, options);
+  await deleteReactableReactionFromDB(reactableReaction, options);
 
   return reactableReaction;
 }
 
-export async function doDeleteReactableReaction(
+async function deleteReactableReactionFromDB(
+  reactableReaction: ReactableReaction,
+  options: DBOptions = {},
+): Promise<ReactableReaction> {
+  await doDeleteReactableReactionFromDB(reactableReaction, options);
+
+  return reactableReaction;
+}
+
+async function doDeleteReactableReactionFromDB(
   reactableReaction: ReactableReaction,
   options: DBOptions = {},
 ): Promise<void> {

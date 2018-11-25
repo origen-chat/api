@@ -3,12 +3,12 @@ import * as webPush from 'web-push';
 
 import { DBOptions } from '../types';
 import { User } from '../users';
+import {
+  createWebPushSubscription,
+  CreateWebPushSubscriptionArgs,
+} from './creation';
 import { deleteWebPushSubscription } from './deletion';
 import { getWebPushSubscriptionByEndpoint } from './get';
-import {
-  insertWebPushSubscription,
-  InsertWebPushSubscriptionArgs,
-} from './insertion';
 import { WebPushSubscription } from './types';
 
 export type StoreWebPushSubscriptionIfItDoesntExistsArgs = Readonly<{
@@ -29,14 +29,14 @@ export async function storeWebPushSubscriptionIfNotStored(
     return existingWebPushSubscription;
   }
 
-  const insertWebPushSubscriptionArgs: InsertWebPushSubscriptionArgs = {
+  const createWebPushSubscriptionArgs: CreateWebPushSubscriptionArgs = {
     user: args.user,
     endpoint: args.pushSubscription.endpoint,
     keys: args.pushSubscription.keys,
   };
 
-  const insertedWebPushSubscription = await insertWebPushSubscription(
-    insertWebPushSubscriptionArgs,
+  const insertedWebPushSubscription = await createWebPushSubscription(
+    createWebPushSubscriptionArgs,
     options,
   );
 

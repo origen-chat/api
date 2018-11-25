@@ -6,6 +6,17 @@ import {
   NamedChannel,
 } from './types';
 
+export function isChannel(value: any): value is Channel {
+  return (
+    typeof value === 'object' &&
+    value &&
+    value.id &&
+    value.workspaceId &&
+    value.type &&
+    value.privacy
+  );
+}
+
 /**
  * Returns `true` if the channel is public. `false` otherwise.
  */
@@ -16,7 +27,7 @@ export function isPublicChannel(
     return false;
   }
 
-  if (channel.privacy === ChannelPrivacy.Private) {
+  if (channel.privacy !== ChannelPrivacy.Public) {
     return false;
   }
 

@@ -20,17 +20,17 @@ export const resolveCreateWorkspace: Resolver<
   validateCreateWorkspaceArgs(args);
 
   if (!core.workspaces.canCreateWorkspaces(viewer)) {
-    throw new AuthorizationError("viewer can't create workspaces");
+    throw new AuthorizationError();
   }
 
-  const insertWorkspaceArgs: core.workspaces.InsertWorkspaceArgs = {
+  const createWorkspaceArgs: core.workspaces.CreateWorkspaceArgs = {
     owner: viewer,
     name: args.input.name,
     displayName: args.input.displayName,
     description: args.input.description,
   };
 
-  const workspace = await core.workspaces.insertWorkspace(insertWorkspaceArgs);
+  const workspace = await core.workspaces.createWorkspace(createWorkspaceArgs);
 
   const payload = { workspace };
 

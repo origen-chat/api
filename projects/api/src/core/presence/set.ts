@@ -5,13 +5,14 @@ import {
   UserConnectionStatus,
   userConnectionStatusExpirationInSeconds,
 } from './constants';
+import { deleteUserConnectionStatusFromRedis } from './deletion';
 import { makeUserConnectionStatusRedisKey } from './keys';
 import { publishUserConnectionStatusChanged } from './publishers';
 
 export async function setUserConnectionStatusToOnline(
   user: User,
 ): Promise<void> {
-  await setUserConnectionStatus({
+  await setUserConnectionStatusInRedis({
     user,
     status: UserConnectionStatus.Online,
     shouldExpire: true,
@@ -19,7 +20,7 @@ export async function setUserConnectionStatusToOnline(
   });
 }
 
-export type SetUserConnectionStatusArgs = Readonly<
+export type SetUserConnectionStatusInRedisArgs = Readonly<
   {
     user: User;
     status: UserConnectionStatus;
@@ -28,8 +29,8 @@ export type SetUserConnectionStatusArgs = Readonly<
     | { shouldExpire: true; expiresInSeconds: NonNegativeInteger })
 >;
 
-export async function setUserConnectionStatus(
-  args: SetUserConnectionStatusArgs,
+export async function setUserConnectionStatusInRedis(
+  args: SetUserConnectionStatusInRedisArgs,
 ): Promise<void> {
   const key = makeUserConnectionStatusRedisKey(args.user);
 
@@ -50,12 +51,6 @@ export async function setUserConnectionStatus(
 export async function setUserConnectionStatusToOffline(
   user: User,
 ): Promise<void> {
-  await deleteUserConnectionStatus(user);
+  await deleteUserConnectionStatusFromRedis(user);
   publishUserConnectionStatusChanged(user, UserConnectionStatus.Offline);
-}
-
-export async function deleteUserConnectionStatus(user: User): Promise<void> {
-  const key = makeUserConnectionStatusRedisKey(user);
-
-  await redisClient.del(key);
 }

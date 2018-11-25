@@ -4,22 +4,22 @@ import { User } from '../users';
 import { areWorkspaceMembers } from '../workspaceMemberships';
 import { Workspace } from '../workspaces';
 import { maxUsersInDirectMessagesChannel } from './constants';
+import { createDirectMessagesChannel } from './creation';
 import { getDirectMessagesChannelByMembers } from './get';
-import { insertChannel } from './insertion';
-import { ChannelType, DirectMessagesChannel } from './types';
+import { DirectMessagesChannel } from './types';
 
-export async function getOrInsertDirectMessagesChannel(
+export async function getOrCreateDirectMessagesChannel(
   workspace: Workspace,
   members: ReadonlyArray<User>,
   options: DBOptions = {},
 ): Promise<DirectMessagesChannel> {
-  await validateGetOrInsertDirectMessagesChannelArgs(
+  await validateGetOrCreateDirectMessagesChannelArgs(
     workspace,
     members,
     options,
   );
 
-  const directMessagesChannel = await doGetOrInsertDirectMessagesChannel(
+  const directMessagesChannel = await doGetOrCreateDirectMessagesChannel(
     workspace,
     members,
     options,
@@ -28,7 +28,7 @@ export async function getOrInsertDirectMessagesChannel(
   return directMessagesChannel;
 }
 
-async function validateGetOrInsertDirectMessagesChannelArgs(
+async function validateGetOrCreateDirectMessagesChannelArgs(
   workspace: Workspace,
   members: ReadonlyArray<User>,
   options: DBOptions,
@@ -46,7 +46,7 @@ async function validateGetOrInsertDirectMessagesChannelArgs(
   }
 }
 
-async function doGetOrInsertDirectMessagesChannel(
+async function doGetOrCreateDirectMessagesChannel(
   workspace: Workspace,
   members: ReadonlyArray<User>,
   options: DBOptions = {},
@@ -63,10 +63,9 @@ async function doGetOrInsertDirectMessagesChannel(
       return existingChannel;
     }
 
-    const insertedChannel = await insertChannel(
+    const insertedChannel = await createDirectMessagesChannel(
       {
         workspace,
-        type: ChannelType.DirectMessages,
         members,
       },
       optionsWithTransaction,

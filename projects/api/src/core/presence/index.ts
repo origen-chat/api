@@ -6,7 +6,8 @@ export {
   publishUserConnectionStatusChanged,
   publishUserTyping,
 } from './publishers';
+export { deleteUserConnectionStatusFromRedis } from './deletion';
 export {
   setUserConnectionStatusToOnline,
-  deleteUserConnectionStatus,
-} from './presence';
+  setUserConnectionStatusToOffline,
+} from './set';

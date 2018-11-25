@@ -2,7 +2,7 @@ import { UserInputError } from 'apollo-server-express';
 
 import * as core from '../../../../core';
 import { Resolver, Root } from '../../../types';
-import { NotFoundError } from '../../errors';
+import { NotFoundableEntity, NotFoundError } from '../../errors';
 import { withDecodedGlobalIds } from '../../helpers';
 import { NodeType } from '../../types';
 
@@ -31,7 +31,7 @@ export const resolveWorkspace: Resolver<
   }
 
   if (!workspace) {
-    throw new NotFoundError({ entity: 'workspace' });
+    throw new NotFoundError({ entity: NotFoundableEntity.Workspace });
   }
 
   return workspace;

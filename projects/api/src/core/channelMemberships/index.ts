@@ -6,9 +6,9 @@ export {
   getChannelMembershipByChannelAndUser,
 } from './get';
 export {
-  insertChannelMembership,
-  InsertChannelMembershipArgs,
-  insertChannelMemberships,
-  InsertChannelMembershipsArgs,
-} from './insertion';
+  insertChannelMembershipIntoDB,
+  InsertChannelMembershipIntoDBArgs,
+  insertChannelMembershipsIntoDB,
+  InsertChannelMembershipsIntoDBArgs,
+} from './creation';
 export { addCreatorToNamedChannel } from './channelMemberships';

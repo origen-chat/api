@@ -1,26 +1,29 @@
 import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions, Email, ID, Nullable } from '../types';
+import { maybeCacheUser } from './cache';
 import { usersTableName } from './constants';
 import { UniqueUsername, User } from './types';
 
 export async function getUserById(
   id: ID,
   options: DBOptions = {},
-): Promise<Nullable<User>> {
-  const user = await getUserBy({ id }, options);
+): Promise<User | null> {
+  const user = await getUserByFromDB({ id }, options);
+
+  await maybeCacheUser(user);
 
   return user;
 }
 
-export type GetUserByArgs =
+export type GetUserByFromDBArgs =
   | Pick<User, 'id'>
   | Pick<User, 'email'>
   | UniqueUsername;
 
-async function getUserBy(
-  args: GetUserByArgs,
+async function getUserByFromDB(
+  args: GetUserByFromDBArgs,
   options: DBOptions = {},
-): Promise<Nullable<User>> {
+): Promise<User | null> {
   const query = db
     .select('*')
     .from(usersTableName)
@@ -29,7 +32,7 @@ async function getUserBy(
 
   maybeAddTransactionToQuery(query, options);
 
-  const user: Nullable<User> = await query;
+  const user: User | null = await query;
 
   return user;
 }
@@ -37,8 +40,10 @@ async function getUserBy(
 export async function getUserByUniqueUsername(
   uniqueUsername: UniqueUsername,
   options: DBOptions = {},
-): Promise<Nullable<User>> {
-  const user = await getUserBy(uniqueUsername, options);
+): Promise<User | null> {
+  const user = await getUserByFromDB(uniqueUsername, options);
+
+  await maybeCacheUser(user);
 
   return user;
 }
@@ -47,7 +52,9 @@ export async function getUserByEmail(
   email: Email,
   options: DBOptions = {},
 ): Promise<Nullable<User>> {
-  const user = await getUserBy({ email }, options);
+  const user = await getUserByFromDB({ email }, options);
+
+  await maybeCacheUser(user);
 
   return user;
 }
@@ -56,29 +63,37 @@ export async function getUsersByIds(
   ids: ReadonlyArray<ID>,
   options: DBOptions = {},
 ): Promise<ReadonlyArray<User>> {
-  const users = await getUsersBy({ ids }, options);
+  const users = await getUsersByFromDB({ ids }, options);
 
   return users;
 }
 
-export type GetUsersByArgs = Readonly<
-  | { ids: ReadonlyArray<ID> }
-  | { emails: ReadonlyArray<Email> }
-  | { uniqueUsernames: ReadonlyArray<UniqueUsername> }
+export type GetUsersByFromDBArgs = Readonly<
+  | { ids: ReadonlyArray<ID>; emails?: undefined; uniqueUsernames?: undefined }
+  | {
+      emails: ReadonlyArray<Email>;
+      ids?: undefined;
+      uniqueUsernames?: undefined;
+    }
+  | {
+      uniqueUsernames: ReadonlyArray<UniqueUsername>;
+      ids?: undefined;
+      emails?: undefined;
+    }
 >;
 
-async function getUsersBy(
-  args: GetUsersByArgs,
+async function getUsersByFromDB(
+  args: GetUsersByFromDBArgs,
   options: DBOptions = {},
 ): Promise<ReadonlyArray<User>> {
   const query = db.select('*').from(usersTableName);
 
-  if ((args as any).ids) {
-    query.whereIn('id', (args as any).ids);
-  } else if ((args as any).emails) {
-    query.whereIn('email', (args as any).emails);
-  } else if ((args as any).uniqueUsernames) {
-    const uniqueUsernameValues = (args as any).uniqueUsernames.map(
+  if (args.ids) {
+    query.whereIn('id', args.ids as any);
+  } else if (args.emails) {
+    query.whereIn('email', args.emails as any);
+  } else if (args.uniqueUsernames) {
+    const uniqueUsernameValues = args.uniqueUsernames.map(
       (uniqueUsername: UniqueUsername) => [
         uniqueUsername.username,
         uniqueUsername.usernameIdentifier,
@@ -99,7 +114,7 @@ export async function getUsersByEmails(
   emails: ReadonlyArray<Email>,
   options: DBOptions = {},
 ): Promise<ReadonlyArray<User>> {
-  const users = await getUsersBy({ emails }, options);
+  const users = await getUsersByFromDB({ emails }, options);
 
   return users;
 }
@@ -108,7 +123,7 @@ export async function getUsersByUniqueUsernames(
   uniqueUsernames: ReadonlyArray<UniqueUsername>,
   options: DBOptions = {},
 ): Promise<ReadonlyArray<User>> {
-  const users = await getUsersBy({ uniqueUsernames }, options);
+  const users = await getUsersByFromDB({ uniqueUsernames }, options);
 
   return users;
 }

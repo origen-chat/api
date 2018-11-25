@@ -10,7 +10,8 @@ export {
   getWorkspaceMembershipsByWorkspaceMembershipIds,
 } from './get';
 export {
-  insertWorkspaceMembership,
-  InsertWorkspaceMembershipArgs,
-} from './insertion';
+  createWorkspaceMembership,
+  createWorkspaceOwnerMembership,
+  CreateWorkspaceMembershipArgs,
+} from './creation';
 export { addOwnerToWorkspace } from './workspaceMemberships';

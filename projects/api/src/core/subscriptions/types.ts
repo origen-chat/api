@@ -1,11 +1,17 @@
-import { ID, Identifiable, Timestamps } from '../types';
+import Stripe from 'stripe';
+
+import { ID, Identifiable, Omit, Timestamps } from '../types';
 
 export type Subscription = Readonly<{
   customerId: ID;
-  stripePlanId: string;
+  planId: ID;
   workspaceId: ID;
-  stripeSubscriptionData: object;
-  stripeSubscriptionId: string;
+  stripeSubscriptionData: StripeSubscriptionData;
 }> &
   Identifiable &
   Timestamps;
+
+export type StripeSubscriptionData = Omit<
+  Stripe.subscriptions.ISubscription,
+  'object'
+>;

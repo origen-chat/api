@@ -12,7 +12,7 @@ export async function getWorkspaceMembershipsByWorkspaceAndUsers(
 ): Promise<ReadonlyArray<WorkspaceMembership>> {
   const userIds = users.map(user => user.id);
 
-  const workspaceMemberships = await getWorkspaceMembershipsBy(
+  const workspaceMemberships = await getWorkspaceMembershipsByFromDB(
     { workspaceId: workspace.id, userIds },
     options,
   );
@@ -21,10 +21,14 @@ export async function getWorkspaceMembershipsByWorkspaceAndUsers(
 }
 
 export type GetWorkspaceMembershipsByArgs =
-  | Readonly<{ workspaceId: ID; userIds: ReadonlyArray<ID> }>
-  | Readonly<{ ids: ReadonlyArray<ID> }>;
+  | Readonly<{ workspaceId: ID; userIds: ReadonlyArray<ID>; ids?: undefined }>
+  | Readonly<{
+      ids: ReadonlyArray<ID>;
+      workspaceId?: undefined;
+      userIds?: undefined;
+    }>;
 
-export async function getWorkspaceMembershipsBy(
+export async function getWorkspaceMembershipsByFromDB(
   args: GetWorkspaceMembershipsByArgs,
   options: DBOptions = {},
 ): Promise<ReadonlyArray<WorkspaceMembership>> {
@@ -32,12 +36,12 @@ export async function getWorkspaceMembershipsBy(
     .select(`${workspaceMembershipsTableName}.*`)
     .from(workspaceMembershipsTableName);
 
-  if ((args as any).ids) {
-    query.whereIn('id', (args as any).ids);
+  if (args.ids) {
+    query.whereIn('id', args.ids as any);
   } else {
     query
-      .where({ workspaceId: (args as any).workspaceId })
-      .whereIn('memberId', (args as any).userIds);
+      .where({ workspaceId: args.workspaceId })
+      .whereIn('memberId', args.userIds as any);
   }
 
   maybeAddTransactionToQuery(query, options);
@@ -51,7 +55,7 @@ export async function getWorkspaceMembershipsByWorkspaceMembershipIds(
   ids: ReadonlyArray<ID>,
   options: DBOptions = {},
 ): Promise<ReadonlyArray<WorkspaceMembership>> {
-  const workspaceMemberships = await getWorkspaceMembershipsBy(
+  const workspaceMemberships = await getWorkspaceMembershipsByFromDB(
     { ids },
     options,
   );

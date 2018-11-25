@@ -26,7 +26,7 @@ export const resolveResumeDirectMessagesChannel: Resolver<
   const memberIdsAndViewerId = [...args.input.memberIds, viewer.id];
   const members = await core.users.getUsersByIds(memberIdsAndViewerId);
 
-  const directMessagesChannel = await core.channels.getOrInsertDirectMessagesChannel(
+  const directMessagesChannel = await core.channels.getOrCreateDirectMessagesChannel(
     workspace,
     members,
   );
