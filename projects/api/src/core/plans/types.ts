@@ -3,7 +3,7 @@ import Stripe from 'stripe';
 import { Identifiable, Omit, Timestamps } from '../types';
 
 export type Plan = Readonly<{
-  description: string;
+  description: string | null;
   stripePlanData: StripePlanData;
 }> &
   Identifiable &

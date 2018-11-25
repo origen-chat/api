@@ -5,7 +5,7 @@ import { constants, timestamps } from './helpers';
 const customersTableName = 'customers';
 const usersTableName = 'users';
 
-const stripeCustomerDataColumnName = 'stripeCustomerId';
+const stripeCustomerDataColumnName = 'stripeCustomerData';
 const userIdColumnName = 'userId';
 
 const stripeCustomerIdFieldName = 'id';
