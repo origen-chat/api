@@ -1,4 +1,4 @@
-import db, { insertIntoDB, maybeAddTransactionToQuery } from '../db';
+import { insertIntoDB } from '../db';
 import { DBOptions } from '../types';
 import { User } from '../users';
 import { webPushSubscriptionsTableName } from './constants';

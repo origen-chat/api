@@ -1,5 +1,6 @@
 import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions } from '../types';
+import { getCachedBot, maybeCacheBot } from './cache';
 import { botsTableName } from './constants';
 import { Bot } from './types';
 
@@ -7,7 +8,15 @@ export async function getBotById(
   id: Bot['id'],
   options: DBOptions = {},
 ): Promise<Bot | null> {
+  const cachedBot = await getCachedBot(id);
+
+  if (cachedBot) {
+    return cachedBot;
+  }
+
   const bot = await getBotByFromDB({ id }, options);
+
+  await maybeCacheBot(bot);
 
   return bot;
 }

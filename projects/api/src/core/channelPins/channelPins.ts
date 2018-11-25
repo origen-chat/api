@@ -1,104 +1,55 @@
 import { Channel } from '../channels';
-import db from '../db';
-import { Message } from '../messages';
-import { ID, Nullable } from '../types';
-import { channelPinsTableName } from './constants';
+import { DBOptions } from '../types';
+import { createChannelPin, CreateChannelPinArgs } from './creation';
+import { deleteAllChannelPins, deleteChannelPin } from './deletion';
+import {
+  getChannelPinByChannelAndMessage,
+  GetChannelPinByChannelAndMessageArgs,
+} from './get';
 import { ChannelPin } from './types';
 
+export type PinMessageArgs = CreateChannelPinArgs;
+
 export async function pinMessage(
-  channel: Channel,
-  message: Message,
+  args: PinMessageArgs,
+  options: DBOptions = {},
 ): Promise<ChannelPin> {
-  return insertChannelPin({ channelId: channel.id, messageId: message.id });
-}
-
-type InsertChannelPinArgs = Pick<ChannelPin, 'channelId' | 'messageId'>;
-
-async function insertChannelPin(
-  args: InsertChannelPinArgs,
-): Promise<ChannelPin> {
-  const channelPin: ChannelPin = await db
-    .insert(args)
-    .into(channelPinsTableName)
-    .returning('*');
+  const channelPin = await createChannelPin(args, options);
 
   return channelPin;
 }
 
-export async function getChannelPinByChannelAndMessage(
-  channel: Channel,
-  message: Message,
-): Promise<Nullable<ChannelPin>> {
-  const channelPin = await getChannelPinBy({
-    channelId: channel.id,
-    messageId: message.id,
-  });
-
-  return channelPin;
-}
-
-export async function getChannelPinById(id: ID): Promise<Nullable<ChannelPin>> {
-  const channelPin = await getChannelPinBy({ id });
-
-  return channelPin;
-}
-
-type GetChannelPinByArgs =
-  | Pick<ChannelPin, 'id'>
-  | Pick<ChannelPin, 'channelId' | 'messageId'>;
-
-async function getChannelPinBy(
-  args: GetChannelPinByArgs,
-): Promise<Nullable<ChannelPin>> {
-  const channelPin: Nullable<ChannelPin> = await db
-    .select('*')
-    .from(channelPinsTableName)
-    .where(args)
-    .first();
-
-  return channelPin;
-}
+export type IsMessagePinnedArgs = GetChannelPinByChannelAndMessageArgs;
 
 export async function isMessagePinned(
-  channel: Channel,
-  message: Message,
+  args: IsMessagePinnedArgs,
+  options: DBOptions = {},
 ): Promise<boolean> {
-  const channelPin = await getChannelPinByChannelAndMessage(channel, message);
+  const channelPin = await getChannelPinByChannelAndMessage(args, options);
 
   return !!channelPin;
 }
 
+export type UnpinMessageArgs = GetChannelPinByChannelAndMessageArgs;
+
 export async function unpinMessage(
-  channel: Channel,
-  message: Message,
+  args: UnpinMessageArgs,
+  options: DBOptions = {},
 ): Promise<ChannelPin> {
-  const channelPin = await getChannelPinByChannelAndMessage(channel, message);
+  const channelPin = await getChannelPinByChannelAndMessage(args, options);
 
   if (!channelPin) {
     throw new Error('message is not pinned');
   }
 
-  return deleteChannelPin(channelPin);
+  return deleteChannelPin(channelPin, options);
 }
 
-export async function deleteChannelPin(
-  channelPin: ChannelPin,
-): Promise<ChannelPin> {
-  await db
-    .delete()
-    .from(channelPinsTableName)
-    .where({ id: channelPin.id });
+export async function unpinAllMessages(
+  channel: Channel,
+  options: DBOptions = {},
+): Promise<Channel> {
+  await deleteAllChannelPins(channel, options);
 
-  return channelPin;
-}
-
-export async function unpinAllMessages(channel: Channel): Promise<void> {
-  await deleteAllChannelPins(channel);
-}
-
-export async function deleteAllChannelPins(channel: Channel): Promise<void> {
-  await db
-    .delete()
-    .from(channelPinsTableName)
-    .where({ channelId: channel.id });
+  return channel;
 }

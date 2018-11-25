@@ -3,11 +3,17 @@ import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions, ID } from '../types';
 import { User } from '../users';
 import { Workspace } from '../workspaces';
-import { maybeCacheChannel } from './cache';
+import { getCachedChannel, maybeCacheChannel } from './cache';
 import { channelsTableName } from './constants';
 import { Channel, ChannelType, DirectMessagesChannel } from './types';
 
 export async function getChannelById(id: ID): Promise<Channel | null> {
+  const cachedChannel = await getCachedChannel(id);
+
+  if (cachedChannel) {
+    return cachedChannel;
+  }
+
   const channel = await getChannelByFromDB({ id });
 
   await maybeCacheChannel(channel);
@@ -77,9 +83,7 @@ export async function getDirectMessagesChannelByMembers(
     options,
   )) as DirectMessagesChannel | null;
 
-  if (channel) {
-    await maybeCacheChannel(channel);
-  }
+  await maybeCacheChannel(channel);
 
   return channel;
 }

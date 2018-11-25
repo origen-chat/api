@@ -39,6 +39,7 @@ export enum WorkspaceMembershipRole {
   Owner = 'owner',
   Admin = 'admin',
   Member = 'member',
+  Guest = 'guest',
 
   /**
    * Bots can only have this role in a workspace.

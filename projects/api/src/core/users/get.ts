@@ -1,6 +1,6 @@
 import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions, Email, ID, Nullable } from '../types';
-import { maybeCacheUser } from './cache';
+import { getCachedUser, maybeCacheUser } from './cache';
 import { usersTableName } from './constants';
 import { UniqueUsername, User } from './types';
 
@@ -8,6 +8,12 @@ export async function getUserById(
   id: ID,
   options: DBOptions = {},
 ): Promise<User | null> {
+  const cachedUser = await getCachedUser(id);
+
+  if (cachedUser) {
+    return cachedUser;
+  }
+
   const user = await getUserByFromDB({ id }, options);
 
   await maybeCacheUser(user);
