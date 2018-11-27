@@ -41,7 +41,7 @@
     "graphql-type-json": "0.2.1",
     "ioredis": "4.2.0",
     "jsonwebtoken": "8.4.0",
-    "knex": "0.15.2",
+    "knex": "0.16.0",
     "ms": "2.1.1",
     "passport": "0.4.0",
     "passport-google-oauth20": "1.0.0",
