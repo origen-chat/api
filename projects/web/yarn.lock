@@ -1318,10 +1318,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-intl@2.3.13":
-  version "2.3.13"
-  resolved "https://registry.yarnpkg.com/@types/react-intl/-/react-intl-2.3.13.tgz#79c775c4abbb451734c6f85b1ac69f20a60cd25c"
-  integrity sha512-yhMQl7CFKbeAnKuS47uxg3H2PauetwBoDlqfJkHJPm7pqtFIrp3xyvfd31vkNcrhJAgl36kBCwCzj6j/EuuTRA==
+"@types/react-intl@2.3.14":
+  version "2.3.14"
+  resolved "https://registry.yarnpkg.com/@types/react-intl/-/react-intl-2.3.14.tgz#dbb973c20908a8e7468974a329df35c256cb459d"
+  integrity sha512-NPj7mYJ6LjKZOxknobs9t3FKJto6btG9KSP9K7kSIzEhkWoA/2i+RAcHRqs3/6cMMflnt2FxajyIdmkl71B2VA==
 
 "@types/react-redux@6.0.10":
   version "6.0.10"
