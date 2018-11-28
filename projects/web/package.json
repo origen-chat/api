@@ -35,7 +35,7 @@
     "ramda": "0.26.1",
     "raven-js": "3.27.0",
     "react": "16.6.3",
-    "react-apollo": "2.3.1",
+    "react-apollo": "2.3.2",
     "react-beautiful-dnd": "10.0.2",
     "react-dom": "16.6.3",
     "react-ga": "2.5.6",
