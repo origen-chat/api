@@ -24,7 +24,7 @@
   "dependencies": {
     "@sentry/node": "4.4.0",
     "@strattadb/environment": "5.1.0",
-    "ajv": "6.5.5",
+    "ajv": "6.6.0",
     "apollo-server-express": "2.2.4",
     "bluebird": "3.5.3",
     "body-parser": "1.18.3",
