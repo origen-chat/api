@@ -1105,10 +1105,10 @@
     "@types/connect" "*"
     "@types/node" "*"
 
-"@types/bull@3.4.2":
-  version "3.4.2"
-  resolved "https://registry.yarnpkg.com/@types/bull/-/bull-3.4.2.tgz#f4f79db8c45648b7d8cbed8ab42c51cd43b637e8"
-  integrity sha512-buPbo1xpLJWSDVRGhuQGszuvhasdG5ZacG/lPO80AX1d7b+oYqc5T8lAKYYa5KevLwmfY1eo6Nz9733dezyloQ==
+"@types/bull@3.4.3":
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/@types/bull/-/bull-3.4.3.tgz#b51bafbefdfabe02f4a767e3491f1412231f7126"
+  integrity sha512-XajCWc8ZhpnZLleZuDJt1PCLSYu7zRCiBg1UbG3IQMFNHgXhkUbL7eqX5pRQba94aco1N4U+Rl2NAg7YrShsyA==
   dependencies:
     "@types/bluebird" "*"
     "@types/ioredis" "*"
