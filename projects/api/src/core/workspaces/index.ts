@@ -7,6 +7,10 @@ export {
   getWorkspacesByIds,
   getWorkspacesByNames,
 } from './get';
+export {
+  getWorkspaceConnection,
+  GetWorkspaceConnectionArgs,
+} from './connections';
 export { createWorkspace, CreateWorkspaceArgs } from './creation';
 export { updateWorkspace, UpdateWorkspaceArgs } from './update';
 export { deleteWorkspace } from './deletion';

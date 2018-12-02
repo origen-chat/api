@@ -1,9 +1,9 @@
-import { User } from '../users';
+import { Actor } from '../actors';
 import { isPublicChannel } from './predicates';
 import { Channel } from './types';
 
 export async function canSeeChannel(
-  user: User,
+  actor: Actor,
   channel: Channel,
 ): Promise<boolean> {
   if (isPublicChannel(channel)) {

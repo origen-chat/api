@@ -32,7 +32,8 @@ async function createUniqueStripePlanIdIndex(knex: Knex): Promise<void> {
   const uniqueIndexQuery = `
     CREATE UNIQUE INDEX
       ${plansTableName}_${stripePlanDataColumnName}_${stripePlanIdFieldName}_index
-    ON "${plansTableName}" ("${stripePlanDataColumnName}"->'${stripePlanIdFieldName}');
+    ON "${plansTableName}"
+      (("${stripePlanDataColumnName}"->'${stripePlanIdFieldName}'));
   `;
 
   await knex.schema.raw(uniqueIndexQuery);

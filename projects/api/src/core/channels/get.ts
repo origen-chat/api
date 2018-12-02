@@ -1,6 +1,6 @@
 import { channelMembershipsTableName } from '../channelMemberships';
 import db, { maybeAddTransactionToQuery } from '../db';
-import { DBOptions, ID } from '../types';
+import { ComparisonOperator, DBOptions, ID } from '../types';
 import { User } from '../users';
 import { Workspace } from '../workspaces';
 import { getCachedChannel, maybeCacheChannel } from './cache';
@@ -46,6 +46,7 @@ async function getChannelByFromDB(
       .innerJoin(
         channelsTableName,
         `${channelsTableName}.id`,
+        ComparisonOperator.Equal,
         `${channelMembershipsTableName}.channelId`,
       )
       .where({

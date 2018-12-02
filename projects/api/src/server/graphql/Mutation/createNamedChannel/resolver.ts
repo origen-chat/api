@@ -17,7 +17,9 @@ export const resolveCreateNamedChannel: Resolver<
   ResolveCreateNamedChannelArgs,
   Readonly<{ channel: core.channels.NamedChannel }>
 > = async (root, args, context) => {
-  const viewer = getViewerOrThrowIfUnauthenticated(context);
+  const viewer = getViewerOrThrowIfUnauthenticated(context, {
+    allowed: { user: true, bot: false },
+  });
 
   validateCreateNamedChannelArgs(args);
 
@@ -29,8 +31,7 @@ export const resolveCreateNamedChannel: Resolver<
     throw new NotFoundError({ entity: NotFoundableEntity.Workspace });
   }
 
-  const createNamedChannelArgs: core.channels.InsertChannelIntoDBArgs = {
-    type: core.channels.ChannelType.Named,
+  const createNamedChannelArgs: core.channels.CreateNamedChannelArgs = {
     name: args.input.name,
     privacy: args.input.privacy,
     isDefault: false,
@@ -38,7 +39,7 @@ export const resolveCreateNamedChannel: Resolver<
     workspace,
   };
 
-  const channel = await core.channels.insertChannelIntoDB(
+  const channel = await core.channels.createNamedChannel(
     createNamedChannelArgs,
   );
 

@@ -8,7 +8,7 @@ export type ResolveViewerArgs = Readonly<{}>;
 export const resolveViewer: Resolver<
   Root,
   ResolveViewerArgs,
-  core.users.User
+  core.actors.Actor
 > = (root, args, context) => {
   if (!isViewerAuthenticated(context)) {
     throw new AuthenticationError();

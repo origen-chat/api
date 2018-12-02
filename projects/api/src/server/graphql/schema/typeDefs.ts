@@ -28,6 +28,7 @@ import { typeDefs as timeTypeDefs } from '../Time';
 import { typeDefs as userTypeDefs } from '../User';
 import { typeDefs as userSettingsTypeDefs } from '../UserSettings';
 import { typeDefs as workspaceTypeDefs } from '../Workspace';
+import { typeDefs as workspaceMembershipRoleTypeDefs } from '../WorkspaceMembershipRole';
 
 const typeDefs: ReadonlyArray<DocumentNode> = [
   ...queryTypeDefs,
@@ -48,6 +49,7 @@ const typeDefs: ReadonlyArray<DocumentNode> = [
   ...appTypeDefs,
   ...botTypeDefs,
   ...workspaceTypeDefs,
+  ...workspaceMembershipRoleTypeDefs,
   ...channelTypeDefs,
   ...channelPrivacyTypeDefs,
   ...messageTypeDefs,

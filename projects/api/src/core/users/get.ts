@@ -92,7 +92,9 @@ async function getUsersByFromDB(
   args: GetUsersByFromDBArgs,
   options: DBOptions = {},
 ): Promise<ReadonlyArray<User>> {
-  const query = db.select('*').from(usersTableName);
+  const query = db
+    .select(`${usersTableName}.*`, `users.username`)
+    .from(usersTableName);
 
   if (args.ids) {
     query.whereIn('id', args.ids as any);

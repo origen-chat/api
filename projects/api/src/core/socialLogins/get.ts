@@ -1,5 +1,5 @@
 import db, { maybeAddTransactionToQuery } from '../db';
-import { DBOptions } from '../types';
+import { ComparisonOperator, DBOptions } from '../types';
 import { User, usersTableName } from '../users';
 import { socialLoginsTableName } from './constants';
 import { SocialCredentials } from './types';
@@ -14,6 +14,7 @@ export async function getUserBySocialCredentials(
     .innerJoin(
       socialLoginsTableName,
       `${socialLoginsTableName}.userId`,
+      ComparisonOperator.Equal,
       `${usersTableName}.id`,
     )
     .where(socialCredentials)

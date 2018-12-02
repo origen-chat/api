@@ -23,6 +23,8 @@ export const User = gql`
       after: Cursor
       last: NonNegativeInt
       before: Cursor
+
+      role: WorkspaceMembershipRole
     ): UserWorkspaceConnection!
 
     channels(
@@ -45,6 +47,8 @@ export const User = gql`
     ): UserBookmarkedBookmarkableConnection!
 
     settings: UserSettings!
+
+    isViewer: Boolean!
   }
 `;
 

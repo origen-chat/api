@@ -20,6 +20,7 @@ import { resolver as subscriptionResolver } from '../Subscription';
 import { resolver as timeResolver } from '../Time';
 import { resolver as userResolver } from '../User';
 import { resolver as workspaceResolver } from '../Workspace';
+import { resolver as workspaceMembershipRoleResolver } from '../WorkspaceMembershipRole';
 
 const resolvers = {
   Query: queryResolver,
@@ -38,6 +39,7 @@ const resolvers = {
   App: appResolver,
   Bot: botResolver,
   Workspace: workspaceResolver,
+  WorkspaceMembershipRole: workspaceMembershipRoleResolver,
   Channel: channelResolver,
   ChannelType: channelTypeResolver,
   ChannelPrivacy: channelPrivacyResolver,

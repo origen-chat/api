@@ -1,6 +1,6 @@
 import { ASTNode, GraphQLScalarType, Kind } from 'graphql';
 
-import { types } from '../../../core';
+import * as core from '../../../core';
 
 const cursorResolver = new GraphQLScalarType({
   name: 'Cursor',
@@ -9,7 +9,7 @@ const cursorResolver = new GraphQLScalarType({
   parseLiteral,
 });
 
-function serialize(cursor: types.Cursor): string {
+function serialize(cursor: core.types.Cursor): string {
   return cursor;
 }
 
@@ -18,7 +18,7 @@ function parseValue(value: unknown): string | undefined {
     return undefined;
   }
 
-  if (!isCursorValid(value)) {
+  if (!core.helpers.isCursor(value)) {
     return undefined;
   }
 
@@ -30,35 +30,11 @@ function parseLiteral(ast: ASTNode): string | undefined {
     return undefined;
   }
 
-  if (!isCursorValid(ast.value)) {
+  if (!core.helpers.isCursor(ast.value)) {
     return undefined;
   }
 
   return ast.value;
-}
-
-function isCursorValid(value: string): boolean {
-  let parsedValue: any;
-
-  try {
-    parsedValue = JSON.parse(value);
-  } catch {
-    return false;
-  }
-
-  if (typeof parsedValue !== 'object') {
-    return false;
-  }
-
-  if (!parsedValue || !parsedValue.order || !Array.isArray(parsedValue.order)) {
-    return false;
-  }
-
-  if (parsedValue.order.any((v: unknown) => typeof v !== 'string')) {
-    return false;
-  }
-
-  return true;
 }
 
 export default cursorResolver;

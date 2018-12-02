@@ -19,7 +19,7 @@ const Query = gql`
 
     bot(id: ID!): Bot!
 
-    viewer: User!
+    viewer: Actor!
   }
 `;
 

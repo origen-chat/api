@@ -1,5 +1,6 @@
 import { Request } from 'express';
 
+import * as core from '../../core';
 import { getUserFromAuthorizationHeader } from '../authentication';
 import { makeLoaders } from '../loaders';
 import { Context } from '../types';
@@ -10,11 +11,14 @@ export type MakeContextArgs = Readonly<{
 }>;
 
 export async function makeContext(args: MakeContextArgs): Promise<Context> {
+  let context: Context;
   if (args.req) {
-    return makeContextFromHttpRequest(args.req);
+    context = await makeContextFromHttpRequest(args.req);
+  } else {
+    context = await makeContextFromWebSocketConnection(args.connection);
   }
 
-  return makeContextFromWebSocketConnection(args.connection);
+  return context;
 }
 
 async function makeContextFromHttpRequest(request: Request): Promise<Context> {
@@ -28,8 +32,20 @@ async function makeContextFromHttpRequest(request: Request): Promise<Context> {
   return context;
 }
 
-async function makeContextFromWebSocketConnection(connection: any) {
+async function makeContextFromWebSocketConnection(
+  connection: any,
+): Promise<Context> {
   const context: Context = connection.context;
 
-  return context;
+  let viewer: core.actors.Actor | null = null;
+
+  if (context.userViewerId) {
+    viewer = await core.users.getUserById(context.userViewerId);
+  } else if (context.botViewerId) {
+    viewer = await core.bots.getBotById(context.botViewerId);
+  }
+
+  const contextWithViewer = { ...context, viewer };
+
+  return contextWithViewer;
 }

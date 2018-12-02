@@ -19,8 +19,8 @@ export type Connection<
   TExtraConnectionData;
 
 export type PageInfo = Readonly<{
-  startCursor: Cursor;
-  endCursor: Cursor;
+  startCursor: Cursor | null;
+  endCursor: Cursor | null;
   hasNextPage: boolean;
   hasPreviousPage: boolean;
 }>;

@@ -63,7 +63,8 @@ async function createUniqueStripeSubscriptionIdIndex(
   const uniqueIndexQuery = `
     CREATE UNIQUE INDEX
       ${subscriptionsTableName}_${stripeSubscriptionDataColumnName}_${stripeSubscriptionIdFieldName}_index
-    ON "${subscriptionsTableName}" ("${stripeSubscriptionDataColumnName}"->'${stripeSubscriptionIdFieldName}');
+    ON "${subscriptionsTableName}"
+      (("${stripeSubscriptionDataColumnName}"->'${stripeSubscriptionIdFieldName}'));
   `;
 
   await knex.schema.raw(uniqueIndexQuery);

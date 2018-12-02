@@ -18,6 +18,8 @@ const Workspace = gql`
       after: Cursor
       last: NonNegativeInt
       before: Cursor
+
+      type: ChannelType
     ): WorkspaceChannelConnection!
 
     defaultChannel: Channel!

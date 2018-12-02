@@ -14,7 +14,9 @@ export async function handleSubscriptionConnect(
 
   const loaders = makeLoaders();
 
-  const context: Context = { viewer, loaders };
+  const userViewerId = viewer && viewer.id;
+
+  const context: Context = { viewer: null, loaders, userViewerId };
 
   return context;
 }
@@ -28,7 +30,7 @@ async function getViewerFromConnectionParams(
 
   const token: string = connectionParams.authToken;
 
-  let viewer: core.types.Nullable<core.users.User> = null;
+  let viewer: core.users.User | null = null;
 
   try {
     viewer = await getUserFromJWT(token);
@@ -45,7 +47,15 @@ export async function handleSubscriptionDisconnect(
 ): Promise<void> {
   const context: Context = await connectionContext.initPromise;
 
-  if (context.viewer) {
-    await core.presence.setUserConnectionStatusToOffline(context.viewer);
+  const { userViewerId } = context;
+
+  if (!userViewerId) {
+    return;
+  }
+
+  const viewer = core.users.getUserById(userViewerId);
+
+  if (viewer && core.users.isUser(viewer)) {
+    await core.presence.setUserConnectionStatusToOffline(viewer);
   }
 }

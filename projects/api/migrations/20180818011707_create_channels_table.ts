@@ -59,7 +59,7 @@ async function createChannelsTable(knex: Knex): Promise<void> {
 export async function createUniqueNameIndex(knex: Knex): Promise<void> {
   const uniqueIndexQuery = `
     CREATE UNIQUE INDEX ${channelsTableName}_${nameColumnName}_index
-    ON "${channelsTableName}" ("${nameColumnName}")
+    ON "${channelsTableName}" ("${workspaceIdColumnName}", "${nameColumnName}")
     WHERE "${typeColumnName}" = '${namedChannelType}';
   `;
 

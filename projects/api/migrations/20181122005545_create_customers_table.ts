@@ -40,7 +40,8 @@ async function createUniqueStripeCustomerIdIndex(knex: Knex): Promise<void> {
   const uniqueIndexQuery = `
     CREATE UNIQUE INDEX
       ${customersTableName}_${stripeCustomerDataColumnName}_${stripeCustomerIdFieldName}_index
-    ON "${customersTableName}" ("${stripeCustomerDataColumnName}"->'${stripeCustomerIdFieldName}');
+    ON "${customersTableName}"
+      (("${stripeCustomerDataColumnName}"->'${stripeCustomerIdFieldName}'));
   `;
 
   await knex.schema.raw(uniqueIndexQuery);

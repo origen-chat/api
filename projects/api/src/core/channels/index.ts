@@ -20,6 +20,7 @@ export {
   getDirectMessagesChannelByMembers,
   getChannelsByIds,
 } from './get';
+export { getChannelConnection, GetChannelConnectionArgs } from './connections';
 export {
   createDirectMessagesChannel,
   createNamedChannel,
