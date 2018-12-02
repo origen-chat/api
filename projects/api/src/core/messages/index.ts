@@ -7,6 +7,7 @@ export {
   isMessageSentByBot,
 } from './predicates';
 export { getMessageById, getMessagesByIds } from './get';
+export { getMessageConnection, GetMessageConnectionArgs } from './connections';
 export { createMessage, CreateMessageArgs } from './creation';
 export {
   sendMessage,

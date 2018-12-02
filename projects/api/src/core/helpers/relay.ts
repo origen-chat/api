@@ -1,5 +1,5 @@
 import { QueryBuilder } from 'knex';
-import { dropLast } from 'ramda';
+import { drop, dropLast, reverse } from 'ramda';
 
 import { maybeAddTransactionToQuery } from '../db';
 import {
@@ -52,10 +52,17 @@ export async function makeConnectionFromQuery<TNode>(
     getTotalCount(originalQuery, options),
   ]);
 
-  const edges = makeEdges<TNode>(rows, args.orderBy, limit);
+  const sortedRows = sortRows(rows, args.paginationArgs);
+
+  const edges = makeEdges<TNode>(
+    sortedRows,
+    args.orderBy,
+    args.paginationArgs,
+    limit,
+  );
   const pageInfo = makePageInfo({
     paginationArgs: args.paginationArgs,
-    rows,
+    rows: sortedRows,
     edges,
     limit,
   });
@@ -224,14 +231,30 @@ function addOrderByClausesForPagination(
   return query;
 }
 
+function sortRows(
+  rows: ReadonlyArray<any>,
+  paginationArgs: PaginationArgs,
+): ReadonlyArray<any> {
+  let sortedRows: ReadonlyArray<any>;
+
+  if (isBackwardPaginationArgs(paginationArgs)) {
+    sortedRows = reverse(rows);
+  } else {
+    sortedRows = rows;
+  }
+
+  return sortedRows;
+}
+
 function makeEdges<TNode>(
-  rawRows: ReadonlyArray<TNode>,
+  rows: ReadonlyArray<TNode>,
   orderBy: OrderBy,
+  paginationArgs: PaginationArgs,
   limit: NonNegativeInteger,
 ): ReadonlyArray<Edge<TNode>> {
-  const rows = rawRows.length < limit ? rawRows : dropLast(1, rawRows);
+  const trimmedRows = trimRows(rows, paginationArgs, limit);
 
-  const edges: ReadonlyArray<Edge<TNode>> = rows.map(row => {
+  const edges: ReadonlyArray<Edge<TNode>> = trimmedRows.map(row => {
     const node: TNode = row;
     const cursor = makeCursor(node, orderBy);
 
@@ -244,6 +267,24 @@ function makeEdges<TNode>(
   });
 
   return edges;
+}
+
+function trimRows(
+  rows: ReadonlyArray<any>,
+  paginationArgs: PaginationArgs,
+  limit: NonNegativeInteger,
+): ReadonlyArray<any> {
+  let trimmedRows: ReadonlyArray<any>;
+
+  if (rows.length < limit) {
+    trimmedRows = rows;
+  } else if (isForwardPaginationArgs(paginationArgs)) {
+    trimmedRows = dropLast(1, rows);
+  } else {
+    trimmedRows = drop(1, rows);
+  }
+
+  return trimmedRows;
 }
 
 function makeCursor<TNode extends any>(node: TNode, orderBy: OrderBy): Cursor {
