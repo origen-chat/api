@@ -48,6 +48,6 @@
     "tslint-config-airbnb": "5.11.1",
     "tslint-config-prettier": "1.17.0",
     "typescript": "3.2.1",
-    "typescript-eslint-parser": "21.0.1"
+    "typescript-eslint-parser": "21.0.2"
   }
 }
