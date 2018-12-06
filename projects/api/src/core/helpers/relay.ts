@@ -1,5 +1,5 @@
 import { QueryBuilder } from 'knex';
-import { drop, dropLast, reverse } from 'ramda';
+import { drop, dropLast, omit, pick, reverse } from 'ramda';
 
 import { maybeAddTransactionToQuery } from '../db';
 import {
@@ -21,6 +21,7 @@ import { decodeCursor, encodeCursor } from './cursors';
 export type MakeConnectionFromQueryArgs = Readonly<{
   orderBy: OrderBy;
   paginationArgs: PaginationArgs;
+  edgeFields?: ReadonlyArray<string>;
 }>;
 
 export type OrderBy = ReadonlyArray<OrderByEntry>;
@@ -53,13 +54,15 @@ export async function makeConnectionFromQuery<TNode>(
   ]);
 
   const sortedRows = sortRows(rows, args.paginationArgs);
+  const edgeFields = args.edgeFields || [];
 
-  const edges = makeEdges<TNode>(
-    sortedRows,
-    args.orderBy,
-    args.paginationArgs,
+  const edges = makeEdges<TNode>({
+    rows: sortedRows,
+    orderBy: args.orderBy,
+    paginationArgs: args.paginationArgs,
     limit,
-  );
+    edgeFields,
+  });
   const pageInfo = makePageInfo({
     paginationArgs: args.paginationArgs,
     rows: sortedRows,
@@ -246,21 +249,26 @@ function sortRows(
   return sortedRows;
 }
 
-function makeEdges<TNode>(
-  rows: ReadonlyArray<TNode>,
-  orderBy: OrderBy,
-  paginationArgs: PaginationArgs,
-  limit: NonNegativeInteger,
-): ReadonlyArray<Edge<TNode>> {
-  const trimmedRows = trimRows(rows, paginationArgs, limit);
+type MakeEdgesArgs = Readonly<{
+  rows: ReadonlyArray<any>;
+  orderBy: OrderBy;
+  paginationArgs: PaginationArgs;
+  limit: NonNegativeInteger;
+  edgeFields: ReadonlyArray<string>;
+}>;
+
+function makeEdges<TNode>(args: MakeEdgesArgs): ReadonlyArray<Edge<TNode>> {
+  const trimmedRows = trimRows(args.rows, args.paginationArgs, args.limit);
 
   const edges: ReadonlyArray<Edge<TNode>> = trimmedRows.map(row => {
-    const node: TNode = row;
-    const cursor = makeCursor(node, orderBy);
+    const edgeData = pick(args.edgeFields, row);
+    const node = omit(args.edgeFields, row) as TNode;
+    const cursor = makeCursor(node, args.orderBy);
 
     const edge: Edge<TNode> = {
       cursor,
       node,
+      ...edgeData,
     };
 
     return edge;

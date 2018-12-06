@@ -1,7 +1,6 @@
 import { withFilter } from 'graphql-subscriptions';
 
 import * as core from '../../../../core';
-import { getViewerOrThrowIfUnauthenticated } from '../../../helpers';
 import { Resolver, Root } from '../../../types';
 import { withDecodedGlobalIds } from '../../helpers';
 import { NodeType } from '../../types';
@@ -15,16 +14,6 @@ const filter: Resolver<MessageReceivedPayload, MessageReceivedArgs> = async (
   if (payload.channel.workspaceId !== args.workspaceId) {
     return false;
   }
-
-  // if (
-  //   !(await core.channelMemberships.isChannelMember(
-  //     payload.channel,
-  //     // eslint-disable-next-line typescript/no-non-null-assertion
-  //     context.viewer!,
-  //   ))
-  // ) {
-  //   return false;
-  // }
 
   return true;
 };

@@ -39,7 +39,10 @@ export async function getWorkspaceConnection(
 
   if (args.member) {
     query = db
-      .select(`${workspacesTableName}.*`)
+      .select(
+        `${workspacesTableName}.*`,
+        `${workspaceMembershipsTableName}.role`,
+      )
       .from(workspacesTableName)
       .innerJoin(
         `${workspaceMembershipsTableName}`,
@@ -71,6 +74,7 @@ export async function getWorkspaceConnection(
         },
       ],
       paginationArgs: args.paginationArgs,
+      edgeFields: ['role'],
     };
   } else {
     query = db.select(`${workspacesTableName}.*`).from(workspacesTableName);

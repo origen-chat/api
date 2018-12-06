@@ -1,4 +1,10 @@
-export { User, UniqueUsername } from './types';
+export {
+  User,
+  UniqueUsername,
+  UserSettings,
+  Locale,
+  UsernameIdentifier,
+} from './types';
 export { usersTableName, maxUsernameCount } from './constants';
 export {
   getUserById,

@@ -1,7 +1,6 @@
-import { doInTransaction, insertIntoDB } from '../db';
+import { insertIntoDB } from '../db';
 import { DBOptions, Mutable } from '../types';
 import { isUser, User } from '../users';
-import { createUserWorkspaceSettings } from '../userWorkspaceSettings';
 import { Workspace } from '../workspaces';
 import { workspaceMembershipsTableName } from './constants';
 import {
@@ -35,28 +34,12 @@ export async function createWorkspaceMembership(
   args: CreateWorkspaceMembershipArgs,
   options: DBOptions = {},
 ): Promise<WorkspaceMembership> {
-  const createdWorkspaceMembership = await doInTransaction(
-    async transaction => {
-      const optionsWithTransaction: DBOptions = { transaction };
-
-      const workspaceMembership = await insertWorkspaceMembershipIntoDB(
-        args,
-        optionsWithTransaction,
-      );
-
-      if (isUser(args.member)) {
-        await createUserWorkspaceSettings(
-          { workspaceMembership },
-          optionsWithTransaction,
-        );
-      }
-
-      return workspaceMembership;
-    },
+  const workspaceMembership = await insertWorkspaceMembershipIntoDB(
+    args,
     options,
   );
 
-  return createdWorkspaceMembership;
+  return workspaceMembership;
 }
 
 export type InsertWorkspaceMembershipIntoDBArgs = Pick<

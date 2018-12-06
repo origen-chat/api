@@ -6,9 +6,7 @@ import { messagesTableName } from '../messages';
 import { reactableReactionsTableName } from '../reactableReactions';
 import { reactionsTableName } from '../reactions';
 import { socialLoginsTableName } from '../socialLogins';
-import { userChannelSettingsTableName } from '../userChannelSettings';
 import { usersTableName } from '../users';
-import { userWorkspaceSettingsTableName } from '../userWorkspaceSettings';
 import { workspaceMembershipsTableName } from '../workspaceMemberships';
 import { workspacesTableName } from '../workspaces';
 
@@ -22,8 +20,6 @@ export const tableNames = {
   reactableReactionsTableName,
   reactionsTableName,
   socialLoginsTableName,
-  userChannelSettingsTableName,
-  userWorkspaceSettingsTableName,
   workspaceMembershipsTableName,
   workspacesTableName,
 };

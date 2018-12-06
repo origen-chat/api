@@ -12,6 +12,7 @@ const UserWorkspaceEdge = gql`
   type UserWorkspaceEdge {
     cursor: Cursor!
     node: Workspace!
+    role: WorkspaceMembershipRole!
   }
 `;
 

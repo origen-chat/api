@@ -1,1 +1,1 @@
-export { UserSettings, Locale } from './types';
+export { defaultUserSettings } from './constants';
