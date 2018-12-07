@@ -82,7 +82,7 @@
     "@types/styled-components": "4.1.4",
     "@types/uuid": "3.4.4",
     "@types/webpack": "4.4.20",
-    "apollo": "2.1.7",
+    "apollo": "2.1.8",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "23.6.0",
     "babel-loader": "8.0.4",
