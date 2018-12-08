@@ -1,81 +1,68 @@
-import { Channel, DirectMessagesChannel } from '../channels';
-import db, { maybeAddTransactionToQuery } from '../db';
+import { Channel } from '../channels';
+import { doInTransaction, insertIntoDB } from '../db';
 import { DBOptions } from '../types';
+import { createManyUserChannelSettings } from '../userChannelSettings';
 import { User } from '../users';
 import { channelMembershipsTableName } from './constants';
 import { ChannelMembership, ChannelMembershipRole } from './types';
 
-export type InsertChannelMembershipIntoDBArgs = Readonly<{
+export type CreateChannelMembershipArgs = Readonly<{
   channel: Channel;
   user: User;
 }> &
   Pick<ChannelMembership, 'role'>;
 
-export async function insertChannelMembershipIntoDB(
-  args: InsertChannelMembershipIntoDBArgs,
+export async function createChannelMembership(
+  args: CreateChannelMembershipArgs,
   options: DBOptions = {},
 ): Promise<ChannelMembership> {
-  const doInsertChannelMembershipArgs: DoInsertChannelMembershipIntoDBArgs = makeDoInsertChannelMembershipIntoDBArgs(
-    args,
-  );
+  const createChannelMembershipsArgs: CreateChannelMembershipsArgs = {
+    channel: args.channel,
+    users: [args.user],
+    role: args.role,
+  };
 
-  const channelMembership = await doInsertChannelMembershipIntoDB(
-    doInsertChannelMembershipArgs,
+  const [channelMembership] = await createChannelMemberships(
+    createChannelMembershipsArgs,
     options,
   );
 
   return channelMembership;
 }
 
-function makeDoInsertChannelMembershipIntoDBArgs(
-  args: InsertChannelMembershipIntoDBArgs,
-): DoInsertChannelMembershipIntoDBArgs {
-  const doInsertChannelMembershipArgs = {
-    channelId: args.channel.id,
-    memberId: args.user.id,
-    role: args.role,
-  };
+export type CreateChannelMembershipsArgs = InsertChannelMembershipsIntoDBArgs;
 
-  return doInsertChannelMembershipArgs;
-}
-
-export type DoInsertChannelMembershipIntoDBArgs = Pick<
-  ChannelMembership,
-  'channelId' | 'memberId' | 'role'
->;
-
-export async function doInsertChannelMembershipIntoDB(
-  args: DoInsertChannelMembershipIntoDBArgs,
+export async function createChannelMemberships(
+  args: CreateChannelMembershipsArgs,
   options: DBOptions = {},
-): Promise<ChannelMembership> {
-  const query = db
-    .insert(args)
-    .into(channelMembershipsTableName)
-    .returning('*');
+): Promise<ReadonlyArray<ChannelMembership>> {
+  const channelMemberships = await doInTransaction(async transaction => {
+    const optionsWithTransaction: DBOptions = { ...options, transaction };
 
-  maybeAddTransactionToQuery(query, options);
+    const createdChannelMemberships = await insertChannelMembershipsIntoDB(
+      args,
+      optionsWithTransaction,
+    );
 
-  const [channelMembership] = await query;
+    await createManyUserChannelSettings(
+      { channelMemberships: createdChannelMemberships },
+      optionsWithTransaction,
+    );
 
-  return channelMembership;
+    return createdChannelMemberships;
+  }, options);
+
+  return channelMemberships;
 }
 
-export type InsertChannelMembershipsIntoDBArgs<
-  TChannel extends Channel = Channel,
-  TRole extends ChannelMembershipRole = ChannelMembershipRole.Member
-> = Readonly<{
-  channel: TChannel;
+type InsertChannelMembershipsIntoDBArgs = Readonly<{
+  channel: Channel;
   users: ReadonlyArray<User>;
-  role: TChannel extends DirectMessagesChannel
-    ? ChannelMembershipRole.Member
-    : TRole;
+  role: ChannelMembershipRole;
 }>;
 
-export async function insertChannelMembershipsIntoDB<
-  TChannel extends Channel,
-  TRole extends ChannelMembershipRole = ChannelMembershipRole.Member
->(
-  args: InsertChannelMembershipsIntoDBArgs<TChannel, TRole>,
+async function insertChannelMembershipsIntoDB(
+  args: InsertChannelMembershipsIntoDBArgs,
   options: DBOptions = {},
 ): Promise<ReadonlyArray<ChannelMembership>> {
   const doInsertChannelMembershipsArgs = makeDoInsertChannelMembershipsArgs(
@@ -90,11 +77,8 @@ export async function insertChannelMembershipsIntoDB<
   return channelMemberships;
 }
 
-function makeDoInsertChannelMembershipsArgs<
-  TChannel extends Channel,
-  TRole extends ChannelMembershipRole = ChannelMembershipRole.Member
->(
-  args: InsertChannelMembershipsIntoDBArgs<TChannel, TRole>,
+function makeDoInsertChannelMembershipsArgs(
+  args: InsertChannelMembershipsIntoDBArgs,
 ): DoInsertChannelMembershipsIntoDBArgs {
   const doInsertChannelMembershipsArgs: DoInsertChannelMembershipsIntoDBArgs = args.users.map(
     user => ({
@@ -107,22 +91,18 @@ function makeDoInsertChannelMembershipsArgs<
   return doInsertChannelMembershipsArgs;
 }
 
-export type DoInsertChannelMembershipsIntoDBArgs = ReadonlyArray<
-  DoInsertChannelMembershipIntoDBArgs
+type DoInsertChannelMembershipsIntoDBArgs = ReadonlyArray<
+  Pick<ChannelMembership, 'memberId' | 'channelId' | 'role'>
 >;
 
-export async function doInsertChannelMembershipsIntoDB(
+async function doInsertChannelMembershipsIntoDB(
   args: DoInsertChannelMembershipsIntoDBArgs,
   options: DBOptions = {},
 ): Promise<ReadonlyArray<ChannelMembership>> {
-  const query = db
-    .insert(args)
-    .into(channelMembershipsTableName)
-    .returning('*');
-
-  maybeAddTransactionToQuery(query, options);
-
-  const channelMemberships = await query;
+  const channelMemberships = await insertIntoDB(
+    { data: args, tableName: channelMembershipsTableName },
+    options,
+  );
 
   return channelMemberships;
 }

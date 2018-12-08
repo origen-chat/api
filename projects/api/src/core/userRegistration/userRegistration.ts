@@ -6,6 +6,7 @@ import {
 } from '../socialLogins';
 import { DBOptions } from '../types';
 import { createUser, CreateUserArgs, getUserByEmail, User } from '../users';
+import { enqueuePostUserRegistrationJob } from './jobs';
 
 export async function getUserBySocialCredentialsOrRegisterUser(
   socialCredentials: SocialCredentials,
@@ -13,7 +14,7 @@ export async function getUserBySocialCredentialsOrRegisterUser(
   options: DBOptions = {},
 ): Promise<User> {
   const existingOrRegisteredUser = await doInTransaction(async transaction => {
-    const optionsWithTransaction: DBOptions = { transaction };
+    const optionsWithTransaction: DBOptions = { ...options, transaction };
 
     let user = await getUserBySocialCredentials(
       socialCredentials,
@@ -27,6 +28,8 @@ export async function getUserBySocialCredentialsOrRegisterUser(
         optionsWithTransaction,
       );
     }
+
+    await enqueuePostUserRegistrationJob(user);
 
     return user;
   }, options);

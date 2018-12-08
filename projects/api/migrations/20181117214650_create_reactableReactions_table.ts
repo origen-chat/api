@@ -6,14 +6,17 @@ const reactableReactionsTableName = 'reactableReactions';
 const reactionsTableName = 'reactions';
 const messagesTableName = 'messages';
 const usersTableName = 'users';
+const botsTableName = 'bots';
 
 const reactionIdColumnName = 'reactionId';
 const messageIdColumnName = 'messageId';
-const authorIdColumnName = 'authorId';
+const userAuthorIdColumnName = 'userAuthorId';
+const botAuthorIdColumnName = 'botAuthorId';
 
 export async function up(knex: Knex): Promise<void> {
   await createReactableReactionsTable(knex);
   await addOnlyOneNonNullReactableContraint(knex);
+  await addOnlyOneNonNullAuthorContraint(knex);
 }
 
 async function createReactableReactionsTable(knex: Knex): Promise<void> {
@@ -45,12 +48,21 @@ async function createReactableReactionsTable(knex: Knex): Promise<void> {
       .references('id')
       .inTable(usersTableName)
       .onDelete(constants.onDelete.cascade)
-      .notNullable();
+      .nullable();
+
+    table
+      .integer(authorIdColumnName)
+      .unsigned()
+      .references('id')
+      .inTable(botsTableName)
+      .onDelete(constants.onDelete.cascade)
+      .nullable();
 
     table.unique([
       reactionIdColumnName,
       messageIdColumnName,
-      authorIdColumnName,
+      userAuthorIdColumnName,
+      botAuthorIdColumnName,
     ]);
 
     timestamps({ knex, table, updatedAt: false });
@@ -66,6 +78,23 @@ export async function addOnlyOneNonNullReactableContraint(
     CHECK (
       (
         ("${messageIdColumnName}" IS NOT NULL)::integer
+      ) = 1
+    );
+  `;
+
+  await knex.schema.raw(constraintQuery);
+}
+
+export async function addOnlyOneNonNullAuthorContraint(
+  knex: Knex,
+): Promise<void> {
+  const constraintQuery = `
+    ALTER TABLE "${reactableReactionsTableName}"
+    ADD CONSTRAINT only_one_non_null_author
+    CHECK (
+      (
+        ("${userAuthorIdColumnName}" IS NOT NULL)::integer +
+        ("${botAuthorIdColumnName}" IS NOT NULL)::integer
       ) = 1
     );
   `;

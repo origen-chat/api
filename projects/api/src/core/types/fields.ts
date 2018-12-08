@@ -6,6 +6,8 @@ export type Email = string;
 
 export type URL = string;
 
+export type Timezone = string;
+
 export type Timestamp = NonNegativeInteger;
 
 export type Timestamps = InsertedAtField & UpdatedAtField;
@@ -21,3 +23,7 @@ export type UpdatedAtField = Readonly<{
 export type Identifiable<TID = PositiveInteger> = Readonly<{
   id: ID<TID>;
 }>;
+
+export enum Locale {
+  En = 'en',
+}

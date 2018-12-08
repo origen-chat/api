@@ -9,16 +9,10 @@ export type User = Readonly<{
 
   firstName: string | null;
   lastName: string | null;
-
-  locale: Locale;
 }> &
   Identifiable &
   UniqueUsername &
   Timestamps;
-
-export enum Locale {
-  En = 'en',
-}
 
 export type UniqueUsername = Readonly<{
   username: string;

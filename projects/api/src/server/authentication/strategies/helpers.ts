@@ -1,30 +1,33 @@
 import { Profile } from 'passport-google-oauth20';
 
-import { socialLogins, types, userRegistration, users } from '../../../core';
+import * as core from '../../../core';
 
-export type DoneFunction = (error: Error | null, user?: users.User) => void;
+export type DoneFunction = (
+  error: Error | null,
+  user?: core.users.User,
+) => void;
 
 export async function oauth2VerifyFunction(
   profile: Profile,
   done: DoneFunction,
 ) {
-  let socialCredentials: socialLogins.SocialCredentials;
+  let socialCredentials: core.socialLogins.SocialCredentials;
   try {
     socialCredentials = getSocialCredentialsFromProfile(profile);
   } catch (error) {
     return done(error);
   }
 
-  let userData: users.CreateUserArgs;
+  let userData: core.users.CreateUserArgs;
   try {
     userData = getUserDataFromProfile(profile);
   } catch (error) {
     return done(error);
   }
 
-  let user: users.User;
+  let user: core.users.User;
   try {
-    user = await userRegistration.getUserBySocialCredentialsOrRegisterUser(
+    user = await core.userRegistration.getUserBySocialCredentialsOrRegisterUser(
       socialCredentials,
       userData,
     );
@@ -37,12 +40,12 @@ export async function oauth2VerifyFunction(
 
 function getSocialCredentialsFromProfile(
   profile: Profile,
-): socialLogins.SocialCredentials {
+): core.socialLogins.SocialCredentials {
   if (!isValidProvider(profile.provider)) {
     throw new Error('invalid provider');
   }
 
-  const socialCredentials: socialLogins.SocialCredentials = {
+  const socialCredentials: core.socialLogins.SocialCredentials = {
     provider: profile.provider,
     providerUserId: profile.id,
   };
@@ -50,19 +53,21 @@ function getSocialCredentialsFromProfile(
   return socialCredentials;
 }
 
-function isValidProvider(value: string): value is socialLogins.Provider {
-  return socialLogins.providers.includes(value as socialLogins.Provider);
+function isValidProvider(value: string): value is core.socialLogins.Provider {
+  return core.socialLogins.providers.includes(
+    value as core.socialLogins.Provider,
+  );
 }
 
-function getUserDataFromProfile(profile: Profile): users.CreateUserArgs {
+function getUserDataFromProfile(profile: Profile): core.users.CreateUserArgs {
   if (!profile.emails || profile.emails.length === 0) {
     throw new Error('no provided email');
   }
 
-  const username = 'test';
-  const email: types.Email = profile.emails[0].value;
+  const username = core.users.generateRandomUsername();
+  const email: core.types.Email = profile.emails[0].value;
 
-  const userData: users.CreateUserArgs = { username, email };
+  const userData: core.users.CreateUserArgs = { username, email };
 
   return userData;
 }

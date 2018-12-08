@@ -1,6 +1,7 @@
-import { insertIntoDB } from '../db';
+import { doInTransaction, insertIntoDB } from '../db';
 import { DBOptions, Mutable } from '../types';
 import { isUser, User } from '../users';
+import { createUserWorkspaceSettings } from '../userWorkspaceSettings/creation';
 import { Workspace } from '../workspaces';
 import { workspaceMembershipsTableName } from './constants';
 import {
@@ -20,7 +21,7 @@ export async function createWorkspaceOwnerMembership(
     role: WorkspaceMembershipRole.Owner,
   };
 
-  const workspaceOwnerMembership = await insertWorkspaceMembershipIntoDB(
+  const workspaceOwnerMembership = await createWorkspaceMembership(
     args,
     options,
   );
@@ -34,10 +35,23 @@ export async function createWorkspaceMembership(
   args: CreateWorkspaceMembershipArgs,
   options: DBOptions = {},
 ): Promise<WorkspaceMembership> {
-  const workspaceMembership = await insertWorkspaceMembershipIntoDB(
-    args,
-    options,
-  );
+  const workspaceMembership = await doInTransaction(async transaction => {
+    const optionsWithTransaction: DBOptions = { ...options, transaction };
+
+    const createdWorkspaceMembership = await insertWorkspaceMembershipIntoDB(
+      args,
+      optionsWithTransaction,
+    );
+
+    if (isUser(args.member)) {
+      await createUserWorkspaceSettings(
+        { workspaceMembership: createdWorkspaceMembership },
+        optionsWithTransaction,
+      );
+    }
+
+    return createdWorkspaceMembership;
+  }, options);
 
   return workspaceMembership;
 }

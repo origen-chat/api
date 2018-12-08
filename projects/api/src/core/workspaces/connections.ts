@@ -45,7 +45,7 @@ export async function getWorkspaceConnection(
       )
       .from(workspacesTableName)
       .innerJoin(
-        `${workspaceMembershipsTableName}`,
+        workspaceMembershipsTableName,
         `${workspaceMembershipsTableName}.workspaceId`,
         `${workspacesTableName}.id`,
       );

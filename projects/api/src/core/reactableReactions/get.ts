@@ -1,10 +1,11 @@
+import { isBot } from '../bots';
 import db, { maybeAddTransactionToQuery } from '../db';
 import { Reactable } from '../reactables';
 import { Reaction } from '../reactions';
 import { DBOptions, ID } from '../types';
-import { User } from '../users';
+import { isUser } from '../users';
 import { reactableReactionsTableName } from './constants';
-import { ReactableReaction } from './types';
+import { ReactableReaction, ReactableReactionAuthor } from './types';
 
 export async function getReactableReactionById(
   id: ID,
@@ -18,12 +19,14 @@ export async function getReactableReactionById(
 export type GetReactableReactionByFromDBArgs = Readonly<
   | {
       id: ID;
-      authorId?: undefined;
+      userAuthorId?: undefined;
+      botAuthorId?: undefined;
       messageId?: undefined;
       reactionId?: undefined;
     }
   | {
-      authorId: ID;
+      userAuthorId?: ID | null;
+      botAuthorId?: ID | null;
       messageId: ID;
       reactionId: ID;
       id?: undefined;
@@ -41,10 +44,11 @@ export async function getReactableReactionByFromDB(
 
   if (args.id) {
     query.where({ id: args.id });
-  } else if (args.authorId) {
+  } else if (args.reactionId) {
     query.where({
-      authorId: args.authorId,
-      messageId: args.messageId && args.messageId,
+      userAuthorId: args.userAuthorId ? args.userAuthorId : null,
+      botAuthorId: args.botAuthorId ? args.botAuthorId : null,
+      messageId: args.messageId ? args.messageId : null,
       reactionId: args.reactionId,
     });
   }
@@ -57,7 +61,7 @@ export async function getReactableReactionByFromDB(
 }
 
 export type GetReactableReactionByAuthorReactableAndReactionArgs = Readonly<{
-  author: User;
+  author: ReactableReactionAuthor;
   reactable: Reactable;
   reaction: Reaction;
 }>;
@@ -67,7 +71,8 @@ export async function getReactableReactionByAuthorReactableAndReaction(
   options: DBOptions = {},
 ): Promise<ReactableReaction | null> {
   const getReactableReactionByFromDBArgs: GetReactableReactionByFromDBArgs = {
-    authorId: args.author.id,
+    userAuthorId: isUser(args.author) ? args.author.id : null,
+    botAuthorId: isBot(args.author) ? args.author.id : null,
     messageId: args.reactable.id,
     reactionId: args.reaction.id,
   };

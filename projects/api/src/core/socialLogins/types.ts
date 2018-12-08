@@ -14,4 +14,7 @@ export type SocialCredentials = Readonly<{
 
 export type ProviderUserId = string;
 
-export type Provider = 'google' | 'github';
+export enum Provider {
+  Google = 'google',
+  GitHub = 'github',
+}

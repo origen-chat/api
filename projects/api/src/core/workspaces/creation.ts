@@ -15,7 +15,7 @@ export async function createWorkspace(
   options: DBOptions = {},
 ): Promise<Workspace> {
   const createdWorkspace = await doInTransaction(async transaction => {
-    const optionsWithTransaction: DBOptions = { transaction };
+    const optionsWithTransaction: DBOptions = { ...options, transaction };
 
     const workspaceOwner = args.owner;
 
@@ -26,6 +26,7 @@ export async function createWorkspace(
       workspaceOwner,
       optionsWithTransaction,
     );
+
     await createInitialDefaultChannel(
       workspace,
       workspaceOwner,

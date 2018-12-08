@@ -1,10 +1,11 @@
+import { isBot } from '../bots';
 import { insertIntoDB } from '../db';
 import { Reactable } from '../reactables';
 import { Reaction } from '../reactions';
 import { DBOptions } from '../types';
-import { User } from '../users';
+import { isUser, User } from '../users';
 import { reactableReactionsTableName } from './constants';
-import { ReactableReaction } from './types';
+import { ReactableReaction, ReactableReactionAuthor } from './types';
 
 export type CreateReactableReactionArgs = InsertReactableReactionIntoDBArgs;
 
@@ -19,7 +20,7 @@ export async function createReactableReaction(
 
 type InsertReactableReactionIntoDBArgs = Readonly<{
   reactable: Reactable;
-  author: User;
+  author: ReactableReactionAuthor;
   reaction: Reaction;
 }>;
 
@@ -45,7 +46,8 @@ function makeDoInsertReactableReactionIntoDBArgs(
   const doInsertReactableReactionArgs: DoInsertReactableReactionIntoDBArgs = {
     reactionId: args.reaction.id,
     messageId: args.reactable.id,
-    authorId: args.author.id,
+    userAuthorId: isUser(args.author) ? args.author.id : null,
+    botAuthorId: isBot(args.author) ? args.author.id : null,
   };
 
   return doInsertReactableReactionArgs;
@@ -53,7 +55,7 @@ function makeDoInsertReactableReactionIntoDBArgs(
 
 export type DoInsertReactableReactionIntoDBArgs = Pick<
   ReactableReaction,
-  'reactionId' | 'messageId' | 'authorId'
+  'reactionId' | 'messageId' | 'userAuthorId' | 'botAuthorId'
 >;
 
 export async function doInsertReactableReactionIntoDB(

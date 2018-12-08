@@ -1,5 +1,8 @@
-import { Locale, UserSettings } from '../users';
+import { Locale } from '../types';
+import { UserSettings } from './types';
 
-export const defaultUserSettings: UserSettings = {
+export const userSettingsTableName = 'userSettings';
+
+export const defaultUserSettings: Pick<UserSettings, 'locale'> = {
   locale: Locale.En,
 };

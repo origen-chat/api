@@ -2,9 +2,9 @@ import { Channel, NamedChannel } from '../channels';
 import { DBOptions } from '../types';
 import { User } from '../users';
 import {
-  insertChannelMembershipIntoDB,
-  InsertChannelMembershipIntoDBArgs,
-  insertChannelMembershipsIntoDB,
+  createChannelMembership,
+  CreateChannelMembershipArgs,
+  createChannelMemberships,
 } from './creation';
 import { ChannelMembership, ChannelMembershipRole } from './types';
 
@@ -28,13 +28,13 @@ export async function addCreatorToNamedChannel(
 export type AddUserToNamedChannelArgs = Readonly<{
   namedChannel: NamedChannel;
 }> &
-  Pick<InsertChannelMembershipIntoDBArgs, 'user' | 'role'>;
+  Pick<CreateChannelMembershipArgs, 'user' | 'role'>;
 
 export async function addUserToNamedChannel(
   args: AddUserToNamedChannelArgs,
   options: DBOptions = {},
 ): Promise<ChannelMembership> {
-  const channelMembership = await insertChannelMembershipIntoDB(
+  const channelMembership = await createChannelMembership(
     {
       channel: args.namedChannel,
       user: args.user,
@@ -56,10 +56,7 @@ export async function addUsersToChannel(
   args: AddUsersToChannelArgs,
   options: DBOptions = {},
 ): Promise<ReadonlyArray<ChannelMembership>> {
-  const channelMemberships = await insertChannelMembershipsIntoDB(
-    args,
-    options,
-  );
+  const channelMemberships = await createChannelMemberships(args, options);
 
   return channelMemberships;
 }

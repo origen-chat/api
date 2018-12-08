@@ -1,5 +1,6 @@
 import { doInTransaction, insertIntoDB } from '../db';
 import { DBOptions, Mutable } from '../types';
+import { createUserSettings } from '../userSettings';
 import { usersTableName } from './constants';
 import { User } from './types';
 import { getUnusedUsernameIdentifier } from './usernames';
@@ -15,7 +16,7 @@ export async function createUser(
   options: DBOptions = {},
 ): Promise<User> {
   const createdUser = await doInTransaction(async transaction => {
-    const optionsWithTransaction: DBOptions = { transaction };
+    const optionsWithTransaction: DBOptions = { ...options, transaction };
 
     const insertUserIntoDBArgs: Mutable<Partial<InsertUserIntoDBArgs>> = {
       ...args,
@@ -32,6 +33,8 @@ export async function createUser(
       insertUserIntoDBArgs as InsertUserIntoDBArgs,
       optionsWithTransaction,
     );
+
+    await createUserSettings({ user }, optionsWithTransaction);
 
     return user;
   }, options);
