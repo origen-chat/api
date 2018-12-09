@@ -9,6 +9,7 @@ import * as core from './core';
 import * as db from './db';
 import * as errorTracking from './errorTracking';
 import * as helpers from './helpers';
+import * as images from './images';
 import logger from './logger';
 import * as messages from './messages';
 import * as notifications from './notifications';
@@ -57,6 +58,7 @@ export {
   types,
   helpers,
   errorTracking,
+  images,
   logger,
   db,
   redis,

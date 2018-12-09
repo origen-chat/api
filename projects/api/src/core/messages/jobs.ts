@@ -1,14 +1,14 @@
 import { jobQueues } from '../jobQueues';
 import { Message } from './types';
 
-export async function enqueueNewMessageNotificationsJob(
+export async function enqueuePostCreateMessageJob(
   message: Message,
 ): Promise<void> {
-  await jobQueues.newMessageNotifications.add({ message });
+  await jobQueues.postCreateMessage.add({ message });
 }
 
-export async function enqueueEditedMessageNotificationsJob(
+export async function enqueuePostUpdateMessageJob(
   message: Message,
 ): Promise<void> {
-  await jobQueues.editedMessageNotifications.add({ message });
+  await jobQueues.postUpdateMessage.add({ message });
 }

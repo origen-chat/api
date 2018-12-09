@@ -120,6 +120,39 @@ const env = makeEnv({
     defaultValue: '',
     envVarName: 'SENTRY_DSN',
   },
+  mailgunApiKey: {
+    parser: parsers.string,
+    required: false,
+    defaultValue: '',
+    envVarName: 'MAILGUN_API_KEY',
+  },
+  mailgunDomain: {
+    parser: parsers.string,
+    required: false,
+    defaultValue: '',
+    envVarName: 'MAILGUN_DOMAIN',
+  },
+  enableEmail: {
+    parser: parsers.boolean,
+    required: false,
+    defaultValue: false,
+    envVarName: 'ENABLE_EMAIL',
+  },
+  gcpProjectId: {
+    parser: parsers.string,
+    required: true,
+    envVarName: 'GCP_PROJECT_ID',
+  },
+  gcpPrivateKeyPath: {
+    parser: parsers.string,
+    required: true,
+    envVarName: 'GCP_PRIVATE_KEY_PATH',
+  },
+  gcpStorageBucketName: {
+    parser: parsers.string,
+    required: true,
+    envVarName: 'GCP_STORAGE_BUCKET_NAME',
+  },
 });
 
 export default env;

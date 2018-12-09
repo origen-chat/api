@@ -29,7 +29,7 @@ export async function getMessageConnection(
   options: DBOptions = {},
 ): Promise<Connection<Message>> {
   let query: QueryBuilder;
-  let makeConnectionFromQueryArgs: MakeConnectionFromQueryArgs;
+  let makeConnectionFromQueryArgs: MakeConnectionFromQueryArgs<Message>;
 
   if (args.channel) {
     query = db

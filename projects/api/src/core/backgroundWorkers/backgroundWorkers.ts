@@ -1,12 +1,14 @@
 import logger from '../logger';
-import { startListeningOnEditedMessageNotificationsQueue } from './editedMessageNotifications';
-import { startListeningOnNewMessageNotificationsQueue } from './newMessageNotifications';
-import { startListeningOnPostUserRegistrationQueue } from './postUserRegistration';
+import { startListeningOnPostCreateMessageQueue } from './postCreateMessage';
+import { startListeningOnPostCreateWorkspaceInvitationQueue } from './postCreateWorkspaceInvitation';
+import { startListeningOnPostRegisterUserQueue } from './postRegisterUser';
+import { startListeningOnPostUpdateMessageQueue } from './postUpdateMessage';
 
 export function startBackgroundWorkers(): void {
-  startListeningOnPostUserRegistrationQueue();
-  startListeningOnNewMessageNotificationsQueue();
-  startListeningOnEditedMessageNotificationsQueue();
+  startListeningOnPostRegisterUserQueue();
+  startListeningOnPostCreateMessageQueue();
+  startListeningOnPostUpdateMessageQueue();
+  startListeningOnPostCreateWorkspaceInvitationQueue();
 
   logger.info('🐜 background workers ready');
 }

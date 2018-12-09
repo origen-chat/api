@@ -2,7 +2,7 @@ import { Channel } from '../channels';
 import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions } from '../types';
 import { messagesTableName } from './constants';
-import { enqueueEditedMessageNotificationsJob } from './jobs';
+import { enqueuePostUpdateMessageJob } from './jobs';
 import { publishMessageEdited } from './publishers';
 import { Message } from './types';
 import { validateEditMessageArgs } from './validation';
@@ -20,7 +20,7 @@ export async function updateMessage(
   const updatedMessage = await updateMessageInDB(message, args, options);
 
   publishMessageEdited({ message: updatedMessage, channel: args.channel });
-  await enqueueEditedMessageNotificationsJob(updatedMessage);
+  await enqueuePostUpdateMessageJob(updatedMessage);
 
   return updatedMessage;
 }

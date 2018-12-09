@@ -6,7 +6,7 @@ import {
 } from '../socialLogins';
 import { DBOptions } from '../types';
 import { createUser, CreateUserArgs, getUserByEmail, User } from '../users';
-import { enqueuePostUserRegistrationJob } from './jobs';
+import { enqueuePostRegisterUserJob } from './jobs';
 
 export async function getUserBySocialCredentialsOrRegisterUser(
   socialCredentials: SocialCredentials,
@@ -29,8 +29,6 @@ export async function getUserBySocialCredentialsOrRegisterUser(
       );
     }
 
-    await enqueuePostUserRegistrationJob(user);
-
     return user;
   }, options);
 
@@ -45,7 +43,7 @@ async function getUserByEmailOrRegisterUser(
   const { email } = userData;
 
   const existingOrRegisteredUser = await doInTransaction(async transaction => {
-    const optionsWithTransaction: DBOptions = { transaction };
+    const optionsWithTransaction: DBOptions = { ...options, transaction };
 
     let user = await getUserByEmail(email, optionsWithTransaction);
 
@@ -68,11 +66,19 @@ async function registerUser(
   userData: CreateUserArgs,
   options: DBOptions = {},
 ): Promise<User> {
-  const user = await insertUserAndLinkSocialCredentials(
-    socialCredentials,
-    userData,
-    options,
-  );
+  const user = await doInTransaction(async transaction => {
+    const optionsWithTransaction: DBOptions = { ...options, transaction };
+
+    const registeredUser = await insertUserAndLinkSocialCredentials(
+      socialCredentials,
+      userData,
+      optionsWithTransaction,
+    );
+
+    await enqueuePostRegisterUserJob(user);
+
+    return registeredUser;
+  }, options);
 
   return user;
 }

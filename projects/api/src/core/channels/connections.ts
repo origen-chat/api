@@ -30,7 +30,7 @@ export async function getChannelConnection(
   options: DBOptions = {},
 ): Promise<Connection<Channel>> {
   let query: QueryBuilder;
-  let makeConnectionFromQueryArgs: MakeConnectionFromQueryArgs;
+  let makeConnectionFromQueryArgs: MakeConnectionFromQueryArgs<Channel>;
 
   if (args.workspace) {
     query = db

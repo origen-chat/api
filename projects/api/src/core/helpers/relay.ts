@@ -18,10 +18,11 @@ import {
 } from '../types';
 import { decodeCursor, encodeCursor } from './cursors';
 
-export type MakeConnectionFromQueryArgs = Readonly<{
+export type MakeConnectionFromQueryArgs<TNode> = Readonly<{
   orderBy: OrderBy;
   paginationArgs: PaginationArgs;
   edgeFields?: ReadonlyArray<string>;
+  transformEdge?: TransformEdge<TNode>;
 }>;
 
 export type OrderBy = ReadonlyArray<OrderByEntry>;
@@ -31,9 +32,11 @@ export type OrderByEntry = Readonly<{
   direction: OrderByDirection;
 }>;
 
+export type TransformEdge<TNode> = (edge: Edge<TNode>) => Edge<TNode>;
+
 export async function makeConnectionFromQuery<TNode>(
   query: QueryBuilder,
-  args: MakeConnectionFromQueryArgs,
+  args: MakeConnectionFromQueryArgs<TNode>,
   options: DBOptions = {},
 ): Promise<Connection<TNode>> {
   const originalQuery = query.clone();
@@ -62,6 +65,7 @@ export async function makeConnectionFromQuery<TNode>(
     paginationArgs: args.paginationArgs,
     limit,
     edgeFields,
+    transformEdge: args.transformEdge,
   });
   const pageInfo = makePageInfo({
     paginationArgs: args.paginationArgs,
@@ -249,15 +253,18 @@ function sortRows(
   return sortedRows;
 }
 
-type MakeEdgesArgs = Readonly<{
+type MakeEdgesArgs<TNode> = Readonly<{
   rows: ReadonlyArray<any>;
   orderBy: OrderBy;
   paginationArgs: PaginationArgs;
   limit: NonNegativeInteger;
   edgeFields: ReadonlyArray<string>;
+  transformEdge?: TransformEdge<TNode>;
 }>;
 
-function makeEdges<TNode>(args: MakeEdgesArgs): ReadonlyArray<Edge<TNode>> {
+function makeEdges<TNode>(
+  args: MakeEdgesArgs<TNode>,
+): ReadonlyArray<Edge<TNode>> {
   const trimmedRows = trimRows(args.rows, args.paginationArgs, args.limit);
 
   const edges: ReadonlyArray<Edge<TNode>> = trimmedRows.map(row => {
@@ -265,11 +272,15 @@ function makeEdges<TNode>(args: MakeEdgesArgs): ReadonlyArray<Edge<TNode>> {
     const node = omit(args.edgeFields, row) as TNode;
     const cursor = makeCursor(node, args.orderBy);
 
-    const edge: Edge<TNode> = {
+    let edge: Edge<TNode> = {
       cursor,
       node,
       ...edgeData,
     };
+
+    if (args.transformEdge) {
+      edge = args.transformEdge(edge);
+    }
 
     return edge;
   });

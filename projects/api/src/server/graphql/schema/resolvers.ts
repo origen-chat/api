@@ -10,6 +10,7 @@ import { resolver as dateResolver } from '../Date';
 import { resolver as dateTimeResolver } from '../DateTime';
 import { resolver as emailResolver } from '../Email';
 import { resolver as jsonResolver } from '../JSON';
+import { resolver as localeResolver } from '../Locale';
 import { resolver as messageResolver } from '../Message';
 import { resolver as mutationResolver } from '../Mutation';
 import { resolver as nodeResolver } from '../Node';
@@ -36,6 +37,7 @@ const resolvers = {
   Date: dateResolver,
   Time: timeResolver,
   NonNegativeInt: nonNegativeIntResolver,
+  Locale: localeResolver,
   App: appResolver,
   Bot: botResolver,
   Workspace: workspaceResolver,

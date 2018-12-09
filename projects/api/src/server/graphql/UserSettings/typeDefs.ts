@@ -4,6 +4,7 @@ import { DocumentNode } from 'graphql';
 const UserSettings = gql`
   type UserSettings {
     locale: Locale!
+    timezone: String
   }
 `;
 

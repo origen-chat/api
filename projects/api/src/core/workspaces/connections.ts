@@ -35,7 +35,7 @@ export async function getWorkspaceConnection(
   options: DBOptions = {},
 ): Promise<Connection<Workspace>> {
   let query: QueryBuilder;
-  let makeConnectionFromQueryArgs: MakeConnectionFromQueryArgs;
+  let makeConnectionFromQueryArgs: MakeConnectionFromQueryArgs<Workspace>;
 
   if (args.member) {
     query = db

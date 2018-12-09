@@ -1,3 +1,5 @@
+import stream from 'stream';
+
 import { NonNegativeInteger, PositiveInteger } from './numbers';
 
 export type ID<TID = PositiveInteger> = TID;
@@ -5,6 +7,8 @@ export type ID<TID = PositiveInteger> = TID;
 export type Email = string;
 
 export type URL = string;
+
+export type HTML = string;
 
 export type Timezone = string;
 
@@ -27,3 +31,10 @@ export type Identifiable<TID = PositiveInteger> = Readonly<{
 export enum Locale {
   En = 'en',
 }
+
+export type FileUpload = Readonly<{
+  stream: stream.Readable;
+  filename: string;
+  mimetype: string;
+  encoding: string;
+}>;

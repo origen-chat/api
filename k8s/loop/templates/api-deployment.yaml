@@ -28,6 +28,12 @@ spec:
           image: {{ .Values.api.image.repository }}:{{ .Values.api.image.tag }}
           ports:
             - containerPort: {{ .Values.api.serverPort }}
+
+          volumeMounts:
+            - name: {{ .Values.api.componentName }}-secrets
+              mountPath: "/usr/src/app/dist/keys"
+              readOnly: true
+
           livenessProbe:
             httpGet:
               path: {{ .Values.api.healthinessProbePath }}
@@ -35,6 +41,7 @@ spec:
             initialDelaySeconds: 10
             periodSeconds: 10
             failureThreshold: 3
+
           readinessProbe:
             httpGet:
               path: {{ .Values.api.readinessProbePath }}
@@ -42,3 +49,8 @@ spec:
             initialDelaySeconds: 15
             periodSeconds: 10
             failureThreshold: 3
+
+      volumes:
+        - name: {{ .Values.api.componentName }}-secrets
+          secret:
+            secretName: {{ .Release.Name }}-{{ .Values.api.componentName }}-secrets

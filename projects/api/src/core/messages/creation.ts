@@ -3,7 +3,7 @@ import { insertIntoDB } from '../db';
 import { DBOptions, Mutable, Nullable } from '../types';
 import { isUser } from '../users';
 import { messagesTableName } from './constants';
-import { enqueueNewMessageNotificationsJob } from './jobs';
+import { enqueuePostCreateMessageJob } from './jobs';
 import { publishMessageSent } from './publishers';
 import { Message, MessageSender } from './types';
 import { validateSendMessageArgs } from './validation';
@@ -19,7 +19,7 @@ export async function createMessage(
   const message = await insertMessageIntoDB(args, options);
 
   publishMessageSent({ message, channel: args.channel });
-  await enqueueNewMessageNotificationsJob(message);
+  await enqueuePostCreateMessageJob(message);
 
   return message;
 }

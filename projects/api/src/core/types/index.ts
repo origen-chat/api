@@ -6,9 +6,11 @@ export {
   UpdatedAtField,
   Identifiable,
   Email,
+  HTML,
   URL,
   Locale,
   Timezone,
+  FileUpload,
 } from './fields';
 export { NonNegativeInteger, Integer, Float } from './numbers';
 export { Nullable, Undefinable, Mutable, Omit, Base64 } from './helpers';
