@@ -39,7 +39,7 @@
     "graphql-redis-subscriptions": "2.0.0",
     "graphql-subscriptions": "1.0.0",
     "graphql-type-json": "0.2.1",
-    "ioredis": "4.2.0",
+    "ioredis": "4.3.0",
     "jsonwebtoken": "8.4.0",
     "knex": "0.15.2",
     "ms": "2.1.1",
