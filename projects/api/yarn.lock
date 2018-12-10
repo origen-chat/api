@@ -5739,10 +5739,10 @@ kleur@^2.0.1:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-2.0.2.tgz#b704f4944d95e255d038f0cb05fb8a602c55a300"
   integrity sha512-77XF9iTllATmG9lSlIv0qdQ2BQ/h9t0bJllHlbvsQ0zUWfU7Yi0S8L5JXzPZgkefIiajLmBJJ4BsMJmqcf7oxQ==
 
-knex@0.16.1:
-  version "0.16.1"
-  resolved "https://registry.yarnpkg.com/knex/-/knex-0.16.1.tgz#4e49b40384f2e8711caf1e7b63c2a419ba96558a"
-  integrity sha512-EIEcVZJCmuiZaqGrlLmJ/iiMmzPjBw14xgwHKLZsMdYpV9zG/18qBmc++yaY69nd2ka4xkVT7HHs31jMxRpNGw==
+knex@0.16.2:
+  version "0.16.2"
+  resolved "https://registry.yarnpkg.com/knex/-/knex-0.16.2.tgz#3ddcd1a552dec586a85aec20056bc93963387370"
+  integrity sha512-ZNhwIV8LasmMlEOmZQVCVcGw6CGk2nynmO4uSBkzD0IZveGignUAMdEmrLbrGbK4DhrFRtDGKPCmGHdsKE0bQw==
   dependencies:
     "@babel/polyfill" "^7.0.0"
     bluebird "^3.5.3"
