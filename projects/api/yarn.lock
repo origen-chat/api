@@ -1166,10 +1166,10 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
   integrity sha512-ONhaKPIufzzrlNbqtWFFd+jlnemX6lJAgq9ZeiZtS7I1PIf/la7CW4m83rTXRnVnsMbW2k56pGYu7AUFJD9Pow==
 
-"@strattadb/environment@5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@strattadb/environment/-/environment-5.1.0.tgz#7c431e5794e09af11863cfaffd98fb40e03574be"
-  integrity sha512-xTOlxjCxThg3OLTYRzv8Cq233caNnxwpjA/9LVK6Klt3wG2MLh+lCWs5ucYiTaIRVqSQ7Z0oll2zpdaevo1qnA==
+"@strattadb/environment@5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@strattadb/environment/-/environment-5.2.0.tgz#aae2ed4330b24badb0ed74597fc5ee737f3d0f82"
+  integrity sha512-LCkCWPh8gfAsGelLWbD1yQczcQCGtitams2lFaB1fnjptOQWkUpC+6AcLeCeNYqA4KsRpxA87kXiPvl2Yg39MA==
   dependencies:
     validator "^10.7.1"
 
