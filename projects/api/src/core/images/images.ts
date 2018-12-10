@@ -10,7 +10,7 @@ export type UploadImagesArgs = Readonly<{
 export async function uploadImages(
   args: UploadImagesArgs,
 ): Promise<ReadonlyArray<URL>> {
-  const processedImages = await processImages({ images: args.images });
+  const processedImages = processImages({ images: args.images });
 
   const urls = await uploadFiles({
     files: processedImages,

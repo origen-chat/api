@@ -3,7 +3,7 @@ import {
   Config as ApolloServerConfig,
 } from 'apollo-server-express';
 
-import { env } from '../../config';
+import * as config from '../../config';
 import {
   handleSubscriptionConnect,
   handleSubscriptionDisconnect,
@@ -13,7 +13,7 @@ import {
   typeDefs,
 } from '../graphql';
 
-const { mockSchema, mockEntireSchema } = env;
+const { mockSchema, mockEntireSchema } = config.env;
 
 const apolloServerConfig: ApolloServerConfig = {
   typeDefs: typeDefs as any,
