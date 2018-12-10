@@ -20,7 +20,7 @@
     "@commitlint/travis-cli": "7.2.1",
     "babel-eslint": "10.0.1",
     "codecov": "3.1.0",
-    "danger": "6.1.11",
+    "danger": "6.1.12",
     "eslint": "5.10.0",
     "eslint-config-airbnb": "17.1.0",
     "eslint-config-prettier": "3.3.0",
