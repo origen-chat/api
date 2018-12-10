@@ -81,7 +81,7 @@
     "@types/redux-logger": "3.0.6",
     "@types/styled-components": "4.1.4",
     "@types/uuid": "3.4.4",
-    "@types/webpack": "4.4.20",
+    "@types/webpack": "4.4.21",
     "apollo": "2.1.8",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "23.6.0",
