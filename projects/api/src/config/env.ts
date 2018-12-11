@@ -106,6 +106,7 @@ const env = makeEnv({
   webRootUrl: {
     parser: parsers.string,
     required: true,
+    description: 'Root URL for the web app',
     envVarName: 'WEB_ROOT_URL',
   },
   enableErrorTracking: {
@@ -136,6 +137,7 @@ const env = makeEnv({
     parser: parsers.boolean,
     required: false,
     defaultValue: false,
+    description: 'Enable sending emails',
     envVarName: 'ENABLE_EMAIL',
   },
   gcpProjectId: {
@@ -146,12 +148,19 @@ const env = makeEnv({
   gcpPrivateKeyPath: {
     parser: parsers.string,
     required: true,
+    description: 'Absolute path to the GCP private key file',
     envVarName: 'GCP_PRIVATE_KEY_PATH',
   },
   gcpStorageBucketName: {
     parser: parsers.string,
     required: true,
     envVarName: 'GCP_STORAGE_BUCKET_NAME',
+  },
+  enableBackgroundWorkers: {
+    parser: parsers.boolean,
+    required: false,
+    defaultValue: true,
+    envVarName: 'ENABLE_BACKGROUND_WORKERS',
   },
 });
 

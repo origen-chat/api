@@ -1,6 +1,6 @@
 import { Bot } from '../bots';
 import { RichText } from '../richText';
-import { ID, Identifiable, Nullable, Timestamps } from '../types';
+import { ID, Identifiable, Nullable, Timestamps, URL } from '../types';
 import { User } from '../users';
 
 export type Message = UserMessage | BotMessage;
@@ -18,10 +18,15 @@ type MessageSharedData = Readonly<{
   channelId: ID;
 
   parentMessageId: Nullable<ID>;
-  content: RichText;
+  content: MessageContent;
 }> &
   Identifiable &
   Timestamps;
+
+export type MessageContent = Readonly<{
+  imageUrls: ReadonlyArray<URL>;
+  richText: RichText;
+}>;
 
 /**
  * Message sent by a bot.

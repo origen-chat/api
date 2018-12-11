@@ -15,6 +15,7 @@ import { typeDefs as emailTypeDefs } from '../Email';
 import { typeDefs as jsonTypeDefs } from '../JSON';
 import { typeDefs as localeTypeDefs } from '../Locale';
 import { typeDefs as messageTypeDefs } from '../Message';
+import { typeDefs as messageContentTypeDefs } from '../MessageContent';
 import { typeDefs as mutationTypeDefs } from '../Mutation';
 import { typeDefs as nodeTypeDefs } from '../Node';
 import { typeDefs as nonNegativeIntTypeDefs } from '../NonNegativeInt';
@@ -53,6 +54,7 @@ const typeDefs: ReadonlyArray<DocumentNode> = [
   ...channelTypeDefs,
   ...channelPrivacyTypeDefs,
   ...messageTypeDefs,
+  ...messageContentTypeDefs,
   ...channelTypeTypeDefs,
   ...reactionTypeDefs,
   ...reactableTypeDefs,

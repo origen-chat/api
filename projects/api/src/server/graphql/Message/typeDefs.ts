@@ -10,7 +10,7 @@ const Message = gql`
     sender: Actor!
     channel: Channel!
 
-    content: JSON!
+    content: MessageContent!
 
     reactions(
       first: NonNegativeInt
