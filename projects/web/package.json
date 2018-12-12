@@ -69,7 +69,7 @@
     "@types/jest": "23.3.10",
     "@types/node": "10.12.13",
     "@types/ramda": "0.26.0",
-    "@types/react": "16.7.14",
+    "@types/react": "16.7.15",
     "@types/react-beautiful-dnd": "7.1.2",
     "@types/react-dom": "16.0.11",
     "@types/react-helmet": "5.0.7",
