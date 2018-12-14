@@ -815,10 +815,10 @@
     lodash.get "^4"
     ts-node "^7"
 
-"@google-cloud/common@^0.26.0":
-  version "0.26.2"
-  resolved "https://registry.yarnpkg.com/@google-cloud/common/-/common-0.26.2.tgz#9c54e2471a84aa031e95a24824976e080f255645"
-  integrity sha512-xJ2M/q3MrUbnYZuFlpF01caAlEhAUoRn0NXp93Hn3pkFpfSOG8YfbKbpBAHvcKVbBOAKVIwPsleNtuyuabUwLQ==
+"@google-cloud/common@^0.27.0":
+  version "0.27.0"
+  resolved "https://registry.yarnpkg.com/@google-cloud/common/-/common-0.27.0.tgz#31dbd52d7472f2606df05b194887db2b595bdad5"
+  integrity sha512-lRA3RHjMNQODpobcHLK9qg4ebN+jjUl7y4ZbjHFM+FYzmZLJQL1LFCM0BJ1DAPyD14ScBZ8Zb2I48oOFVxfNvQ==
   dependencies:
     "@google-cloud/projectify" "^0.3.2"
     "@google-cloud/promisify" "^0.3.0"
@@ -831,7 +831,6 @@
     google-auth-library "^2.0.0"
     pify "^4.0.0"
     retry-request "^4.0.0"
-    through2 "^3.0.0"
 
 "@google-cloud/paginator@^0.1.0":
   version "0.1.2"
@@ -854,12 +853,12 @@
   resolved "https://registry.yarnpkg.com/@google-cloud/promisify/-/promisify-0.3.1.tgz#f641e6d944a8e0a05ee0cb1091dfa60089becdba"
   integrity sha512-QzB0/IMvB0eFxFK7Eqh+bfC8NLv3E9ScjWQrPOk6GgfNroxcVITdTlT8NRsRrcp5+QQJVPLkRqKG0PUdaWXmHw==
 
-"@google-cloud/storage@2.3.1":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@google-cloud/storage/-/storage-2.3.1.tgz#89db0e051a3d30cd2f0c627d0f13633f646ee392"
-  integrity sha512-AXfze/I1J6NNk9yuyuKgYL2E1qxS7nvDGFvwitUyAb0FgDEA5UpXiKbDWouu4mwqVMYWl7HXlQiLUSkYNXMB1w==
+"@google-cloud/storage@2.3.3":
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/@google-cloud/storage/-/storage-2.3.3.tgz#e4e68056f734361ede3bf81233de89f2d3751673"
+  integrity sha512-CW5LvzompZqkXTEWNsr4yke/XD2mYvZeoVahehwSkqp9BY/EPIKvHrlJpRn2pNiZHKH3QsXdNr2GJHVdw/NMPg==
   dependencies:
-    "@google-cloud/common" "^0.26.0"
+    "@google-cloud/common" "^0.27.0"
     "@google-cloud/paginator" "^0.1.0"
     "@google-cloud/promisify" "^0.3.0"
     arrify "^1.0.0"
@@ -876,7 +875,7 @@
     pumpify "^1.5.1"
     snakeize "^0.1.0"
     stream-events "^1.0.1"
-    teeny-request "^3.11.0"
+    teeny-request "^3.11.3"
     through2 "^3.0.0"
     xdg-basedir "^3.0.0"
 
@@ -8483,7 +8482,7 @@ tarn@^1.1.4:
   resolved "https://registry.yarnpkg.com/tarn/-/tarn-1.1.4.tgz#aeeb85964b1afa0bbf381359c1167df237c27b6a"
   integrity sha512-j4samMCQCP5+6Il9/cxCqBd3x4vvlLeVdoyGex0KixPKl4F8LpNbDSC6NDhjianZgUngElRr9UI1ryZqJDhwGg==
 
-teeny-request@^3.11.0:
+teeny-request@^3.11.3:
   version "3.11.3"
   resolved "https://registry.yarnpkg.com/teeny-request/-/teeny-request-3.11.3.tgz#335c629f7645e5d6599362df2f3230c4cbc23a55"
   integrity sha512-CKncqSF7sH6p4rzCgkb/z/Pcos5efl0DmolzvlqRQUNcpRIruOhY9+T1FsIlyEbfWd7MsFpodROOwHYh2BaXzw==
