@@ -61,6 +61,7 @@ const enhancedResolver = withDecodedGlobalIds(
   {
     input: {
       channelId: NodeType.Channel,
+      parentMessageId: NodeType.Message,
     },
   },
   resolveSendMessage,

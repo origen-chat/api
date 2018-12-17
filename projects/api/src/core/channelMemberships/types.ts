@@ -4,6 +4,7 @@ export type ChannelMembership = Readonly<{
   memberId: ID;
   channelId: ID;
   role: ChannelMembershipRole;
+  lastReadAt: Date;
 }> &
   Identifiable &
   Timestamps;

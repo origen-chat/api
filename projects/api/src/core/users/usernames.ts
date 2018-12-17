@@ -233,6 +233,10 @@ const animals = [
   'dolphin',
   'chowChow',
   'beetle',
+  'antelope',
+  'klipspringer',
+  'cygnini',
+  'penguin',
 ];
 
 export function generateRandomUsername(): string {

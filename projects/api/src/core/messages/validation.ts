@@ -1,3 +1,4 @@
+import { isBot } from '../bots';
 import { isChannelMember } from '../channelMemberships/predicates';
 import { Channel } from '../channels';
 import { DBOptions } from '../types';
@@ -8,6 +9,8 @@ export async function validateSendMessageArgs(
   args: SendMessageArgs,
   options: DBOptions = {},
 ): Promise<void> {
+  validateOnlyVisibleTo(args);
+
   await validateSenderCanSendMessage(
     { sender: args.sender, channel: args.channel },
     options,
@@ -21,8 +24,14 @@ export async function validateSendMessageArgs(
   }
 }
 
+function validateOnlyVisibleTo(args: SendMessageArgs): void {
+  if (args.onlyVisibleTo && (!args.sender || !isBot(args.sender))) {
+    throw new Error('users cannot send only visible to messages');
+  }
+}
+
 type ValidateSenderCanSendMessageArgs = Readonly<{
-  sender: MessageSender;
+  sender?: MessageSender | null;
   channel: Channel;
 }>;
 
@@ -30,7 +39,11 @@ async function validateSenderCanSendMessage(
   args: ValidateSenderCanSendMessageArgs,
   options: DBOptions = {},
 ): Promise<void> {
-  if (!(await isChannelMember(args.channel, args.sender))) {
+  if (!args.sender) {
+    return;
+  }
+
+  if (!(await isChannelMember(args.channel, args.sender, options))) {
     throw new Error('sender cannot send messages to this channel');
   }
 }

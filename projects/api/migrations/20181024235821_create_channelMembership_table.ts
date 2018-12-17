@@ -42,6 +42,11 @@ async function createChannelMembershipsTable(knex: Knex): Promise<void> {
 
     table.string(roleColumnName, 32).notNullable();
 
+    table
+      .timestamp('lastReadAt')
+      .notNullable()
+      .defaultTo(knex.fn.now());
+
     table.unique([channelIdColumnName, memberIdColumnName]);
 
     timestamps({ knex, table });

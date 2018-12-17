@@ -1,7 +1,8 @@
+import { isBot } from '../bots';
 import { Channel } from '../channels';
 import { insertIntoDB } from '../db';
-import { DBOptions, Mutable, Nullable } from '../types';
-import { isUser } from '../users';
+import { DBOptions, Mutable } from '../types';
+import { isUser, User } from '../users';
 import { messagesTableName } from './constants';
 import { enqueuePostCreateMessageJob } from './jobs';
 import { publishMessageSent } from './publishers';
@@ -27,8 +28,9 @@ export async function createMessage(
 type InsertMessageIntoDBArgs = Pick<Message, 'content'> &
   Readonly<{
     channel: Channel;
-    sender: MessageSender;
-    parentMessage?: Nullable<Message>;
+    sender?: MessageSender | null;
+    parentMessage?: Message | null;
+    onlyVisibleTo?: User | null;
   }>;
 
 async function insertMessageIntoDB(
@@ -56,7 +58,7 @@ function makeDoInsertMessageIntoDBArgs(
 
   if (isUser(args.sender)) {
     doInsertMessageArgs.userSenderId = args.sender.id;
-  } else {
+  } else if (isBot(args.sender)) {
     doInsertMessageArgs.botSenderId = args.sender.id;
   }
 
@@ -67,7 +69,7 @@ export type DoInsertMessageIntoDBArgs = Pick<
   Message,
   'channelId' | 'content' | 'userSenderId' | 'botSenderId'
 > &
-  Partial<Pick<Message, 'parentMessageId'>>;
+  Partial<Pick<Message, 'parentMessageId' | 'onlyVisibleTo'>>;
 
 export async function doInsertMessageIntoDB(
   args: DoInsertMessageIntoDBArgs,

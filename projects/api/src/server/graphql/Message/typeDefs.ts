@@ -7,10 +7,10 @@ const Message = gql`
   type Message implements Node & Reactable & Bookmarkable {
     id: ID!
 
-    sender: Actor!
+    sender: Actor
     channel: Channel!
 
-    content: MessageContent!
+    content: JSON!
 
     reactions(
       first: NonNegativeInt
@@ -27,6 +27,8 @@ const Message = gql`
       last: NonNegativeInt
       before: Cursor
     ): MessageResponseConnection!
+
+    isSystemMessage: Boolean!
 
     viewerCanBookmark: Boolean!
     viewerHasBookmarked: Boolean!

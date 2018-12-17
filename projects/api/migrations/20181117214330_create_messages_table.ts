@@ -10,10 +10,12 @@ const botsTableName = 'bots';
 const channelIdColumnName = 'channelId';
 const userSenderIdColumnName = 'userSenderId';
 const botSenderIdColumnName = 'botSenderId';
+const onlyVisibleToColumnName = 'onlyVisibleTo';
 
 export async function up(knex: Knex): Promise<void> {
   await createMessagesTable(knex);
-  await addOnlyOneNonNullSenderConstraint(knex);
+  await addAtMostOneNonNullSenderConstraint(knex);
+  await addOnlyVisibleToUsersConstraint(knex);
 }
 
 async function createMessagesTable(knex: Knex): Promise<void> {
@@ -53,21 +55,42 @@ async function createMessagesTable(knex: Knex): Promise<void> {
       .onDelete(constants.onDelete.cascade)
       .nullable();
 
+    table
+      .integer(onlyVisibleToColumnName)
+      .unsigned()
+      .references('id')
+      .inTable(usersTableName)
+      .onDelete(constants.onDelete.cascade)
+      .nullable();
+
     table.jsonb('content').notNullable();
 
     timestamps({ knex, table });
   });
 }
 
-async function addOnlyOneNonNullSenderConstraint(knex: Knex): Promise<void> {
+async function addAtMostOneNonNullSenderConstraint(knex: Knex): Promise<void> {
   const constraintQuery = `
     ALTER TABLE "${messagesTableName}"
-    ADD CONSTRAINT only_one_non_null_sender
+    ADD CONSTRAINT at_most_one_non_null_sender
     CHECK (
       (
-        ("${userSenderIdColumnName}" IS NOT NULL)::integer
-        + ("${botSenderIdColumnName}" IS NOT NULL)::integer
-      ) = 1
+        ("${userSenderIdColumnName}" IS NOT NULL)::integer +
+        ("${botSenderIdColumnName}" IS NOT NULL)::integer
+      ) <= 1
+    );
+  `;
+
+  await knex.schema.raw(constraintQuery);
+}
+
+async function addOnlyVisibleToUsersConstraint(knex: Knex): Promise<void> {
+  const constraintQuery = `
+    ALTER TABLE "${messagesTableName}"
+    ADD CONSTRAINT only_visible_to_users
+    CHECK (
+      ("${userSenderIdColumnName}" IS NOT NULL AND "${onlyVisibleToColumnName}" IS NULL) OR
+      "${userSenderIdColumnName}" IS NULL
     );
   `;
 

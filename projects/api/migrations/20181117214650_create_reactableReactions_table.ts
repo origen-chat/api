@@ -43,7 +43,7 @@ async function createReactableReactionsTable(knex: Knex): Promise<void> {
       .nullable();
 
     table
-      .integer(authorIdColumnName)
+      .integer(userAuthorIdColumnName)
       .unsigned()
       .references('id')
       .inTable(usersTableName)
@@ -51,7 +51,7 @@ async function createReactableReactionsTable(knex: Knex): Promise<void> {
       .nullable();
 
     table
-      .integer(authorIdColumnName)
+      .integer(botAuthorIdColumnName)
       .unsigned()
       .references('id')
       .inTable(botsTableName)

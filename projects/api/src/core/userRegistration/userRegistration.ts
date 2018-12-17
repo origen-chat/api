@@ -66,10 +66,10 @@ async function registerUser(
   userData: CreateUserArgs,
   options: DBOptions = {},
 ): Promise<User> {
-  const user = await doInTransaction(async transaction => {
+  const registeredUser = await doInTransaction(async transaction => {
     const optionsWithTransaction: DBOptions = { ...options, transaction };
 
-    const registeredUser = await insertUserAndLinkSocialCredentials(
+    const user = await insertUserAndLinkSocialCredentials(
       socialCredentials,
       userData,
       optionsWithTransaction,
@@ -77,10 +77,10 @@ async function registerUser(
 
     await enqueuePostRegisterUserJob(user);
 
-    return registeredUser;
+    return user;
   }, options);
 
-  return user;
+  return registeredUser;
 }
 
 async function insertUserAndLinkSocialCredentials(
@@ -90,7 +90,7 @@ async function insertUserAndLinkSocialCredentials(
 ): Promise<User> {
   const userWithLinkedSocialCredentials = await doInTransaction(
     async transaction => {
-      const optionsWithTransaction: DBOptions = { transaction };
+      const optionsWithTransaction: DBOptions = { ...options, transaction };
 
       const user = await createUser(userData, optionsWithTransaction);
 

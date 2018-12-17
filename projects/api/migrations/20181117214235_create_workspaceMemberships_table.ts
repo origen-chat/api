@@ -77,8 +77,8 @@ export async function addOnlyOneNonNullMemberConstraint(
     ADD CONSTRAINT only_one_non_null_member
     CHECK (
       (
-        ("${userMemberIdColumnName}" IS NOT NULL)::integer
-        + ("${botMemberIdColumnName}" IS NOT NULL)::integer
+        ("${userMemberIdColumnName}" IS NOT NULL)::integer +
+        ("${botMemberIdColumnName}" IS NOT NULL)::integer
       ) = 1
     );
   `;
