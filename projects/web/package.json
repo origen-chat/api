@@ -102,7 +102,7 @@
     "jest-styled-components": "6.3.1",
     "react-hot-loader": "4.6.2",
     "react-test-renderer": "16.6.3",
-    "thread-loader": "1.2.0",
+    "thread-loader": "2.0.0",
     "typescript": "3.2.2",
     "webpack": "4.27.1",
     "webpack-cli": "3.1.2",
