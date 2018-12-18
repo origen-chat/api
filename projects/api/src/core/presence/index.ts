@@ -4,10 +4,11 @@ export { isUserConnected } from './predicates';
 export { getUserConnectionStatus } from './get';
 export {
   publishUserConnectionStatusChanged,
-  publishUserTyping,
+  publishActorTyping,
 } from './publishers';
 export { deleteUserConnectionStatusFromRedis } from './deletion';
 export {
   setUserConnectionStatusToOnline,
   setUserConnectionStatusToOffline,
 } from './set';
+export { broadcastTyping, BroadcastTypingArgs } from './typingBroadcast';

@@ -3,4 +3,5 @@ export enum JobQueueName {
   PostCreateMessageQueue = 'postCreateMessage',
   PostUpdateMessageQueue = 'postUpdateMessage',
   PostCreateWorkspaceInvitationQueue = 'postCreateWorkspaceInvitation',
+  PostCreateNamedChannelQueue = 'postCreateNamedChannel',
 }

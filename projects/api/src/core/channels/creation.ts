@@ -10,6 +10,7 @@ import { DBOptions, Mutable } from '../types';
 import { User } from '../users';
 import { Workspace } from '../workspaces';
 import { channelsTableName, initialDefaultChannelName } from './constants';
+import { enqueuePostCreateNamedChannelJob } from './jobs';
 import {
   Channel,
   ChannelPrivacy,
@@ -54,6 +55,8 @@ export async function createNamedChannel(
       args.channelCreator,
       optionsWithTransaction,
     );
+
+    await enqueuePostCreateNamedChannelJob(insertedNamedChannel);
 
     return insertedNamedChannel;
   }, options);

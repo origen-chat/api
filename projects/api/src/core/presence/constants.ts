@@ -15,6 +15,6 @@ export enum UserConnectionStatus {
 const moduleNamespace = 'presence';
 
 export const pubsubKeys = makePubsubKeys(
-  ['USER_CONNECTION_STATUS_CHANGED', 'USER_TYPING'],
+  ['USER_CONNECTION_STATUS_CHANGED', 'ACTOR_TYPING'],
   moduleNamespace,
 );

@@ -1,3 +1,4 @@
+import { resolver as resolveBroadcastTyping } from './broadcastTyping';
 import { resolver as resolveCreateNamedChannel } from './createNamedChannel';
 import { resolver as resolveCreateWorkspace } from './createWorkspace';
 import { resolver as resolveEditMessage } from './editMessage';
@@ -12,6 +13,7 @@ const mutationResolver = {
   updateViewer: resolveUpdateViewer,
   resumeDirectMessagesChannel: resolveResumeDIrectMessagesChannel,
   createNamedChannel: resolveCreateNamedChannel,
+  broadcastTyping: resolveBroadcastTyping,
 };
 
 export default mutationResolver;

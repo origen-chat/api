@@ -1,10 +1,11 @@
+import { Actor } from '../actors';
 import { Channel } from '../channels';
 import pubsub from '../pubsub';
 import { User } from '../users';
 import { pubsubKeys, UserConnectionStatus } from './constants';
 
-export function publishUserTyping(user: User, channel: Channel): void {
-  pubsub.publish(pubsubKeys.USER_TYPING, { user, channel });
+export function publishActorTyping(actor: Actor, channel: Channel): void {
+  pubsub.publish(pubsubKeys.ACTOR_TYPING, { actor, channel });
 }
 
 export function publishUserConnectionStatusChanged(

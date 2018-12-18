@@ -32,3 +32,4 @@ export { updateChannel, UpdateChannelInDBArgs } from './update';
 export { deleteChannelFromDB } from './deletion';
 export { getOrCreateDirectMessagesChannel } from './channels';
 export { canSeeChannel } from './policy';
+export { broadcastTyping, BroadcastTypingArgs } from './typingBroadcast';

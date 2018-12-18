@@ -41,6 +41,10 @@ async function makeContextFromWebSocketConnection(
 
   if (context.userViewerId) {
     viewer = await core.users.getUserById(context.userViewerId);
+
+    if (viewer) {
+      await core.presence.setUserConnectionStatusToOnline(viewer);
+    }
   } else if (context.botViewerId) {
     viewer = await core.bots.getBotById(context.botViewerId);
   }
