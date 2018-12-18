@@ -1,4 +1,5 @@
 import { Actor } from '../actors';
+import { Channel } from '../channels';
 import { isUser } from '../users';
 import { Message } from './types';
 
@@ -15,4 +16,15 @@ export async function canEditMessage(
   }
 
   return false;
+}
+
+export type CanSendMessagesArgs = Readonly<{
+  actor: Actor;
+  channel: Channel;
+}>;
+
+export async function canSendMessages(
+  args: CanSendMessagesArgs,
+): Promise<boolean> {
+  return true;
 }

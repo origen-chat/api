@@ -8,8 +8,6 @@ const keys = {
 
 const inputKeys = {
   channelId: 'channelId',
-  parentMessageId: 'parentMessageId',
-  content: 'content',
 };
 
 const schema: JSONSchema6 = {
@@ -18,16 +16,10 @@ const schema: JSONSchema6 = {
   properties: {
     [keys.input]: {
       type: 'object',
-      required: [inputKeys.channelId, inputKeys.content],
+      required: [inputKeys.channelId],
       properties: {
         [inputKeys.channelId]: {
           type: 'number',
-        },
-        [inputKeys.parentMessageId]: {
-          type: ['number', 'null'],
-        },
-        [inputKeys.content]: {
-          type: 'object',
         },
       },
     },

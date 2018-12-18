@@ -1,6 +1,5 @@
 export { Message, UserMessage, BotMessage, SystemMessage } from './types';
 export { messagesTableName, pubsubKeys } from './constants';
-export { canEditMessage, CanEditMessageArgs } from './policy';
 export {
   isMessage,
   isMessageSentByUser,
@@ -23,3 +22,9 @@ export {
   PublishMessageEditedArgs,
   PublishMessageSentArgs,
 } from './publishers';
+export {
+  canEditMessage,
+  CanEditMessageArgs,
+  canSendMessages,
+  CanSendMessagesArgs,
+} from './policy';

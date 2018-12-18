@@ -1,7 +1,11 @@
 import * as core from '../../../../core';
 import { getViewerOrThrowIfUnauthenticated } from '../../../helpers';
 import { MutationInputArg, Resolver, Root } from '../../../types';
-import { NotFoundableEntity, NotFoundError } from '../../errors';
+import {
+  AuthorizationError,
+  NotFoundableEntity,
+  NotFoundError,
+} from '../../errors';
 import { withDecodedGlobalIds } from '../../helpers';
 import { NodeType } from '../../types';
 import { validateSendMessageArgs } from './validation';
@@ -25,6 +29,10 @@ export const resolveBroadcastTyping: Resolver<
     throw new NotFoundError({ entity: NotFoundableEntity.Channel });
   }
 
+  if (!(await core.messages.canSendMessages({ actor: viewer, channel }))) {
+    throw new AuthorizationError();
+  }
+
   await core.presence.broadcastTyping({ actor: viewer, channel });
 
   const payload = { channel };
@@ -36,7 +44,6 @@ const enhancedResolver = withDecodedGlobalIds(
   {
     input: {
       channelId: NodeType.Channel,
-      parentMessageId: NodeType.Message,
     },
   },
   resolveBroadcastTyping,
