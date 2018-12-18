@@ -3,6 +3,7 @@ import { DocumentNode } from 'graphql';
 
 import { typeDefs as addBookmarkTypeDefs } from './addBookmark';
 import { typeDefs as addReactionTypeDefs } from './addReaction';
+import { typeDefs as broadcastTypingTypeDefs } from './broadcastTyping';
 import { typeDefs as createNamedChannelTypeDefs } from './createNamedChannel';
 import { typeDefs as createWorkspaceTypeDefs } from './createWorkspace';
 import { typeDefs as deleteChannelTypeDefs } from './deleteChannel';
@@ -39,6 +40,8 @@ export const Mutation = gql`
 
     joinNamedChannel(input: JoinNamedChannelInput): JoinNamedChannelPayload!
     leaveChannel(input: LeaveChannelInput): LeaveChannelPayload!
+
+    broadcastTyping(input: BroadcastTypingInput): BroadcastTypingPayload!
 
     sendMessage(input: SendMessageInput): SendMessagePayload!
     editMessage(input: EditMessageInput): EditMessagePayload!
@@ -83,6 +86,7 @@ const typeDefs: ReadonlyArray<DocumentNode> = [
   ...removeBookmarkTypeDefs,
   ...pinMessageTypeDefs,
   ...unpinMessageTypeDefs,
+  ...broadcastTypingTypeDefs,
 ];
 
 export default typeDefs;
