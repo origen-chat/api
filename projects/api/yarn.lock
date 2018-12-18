@@ -1412,10 +1412,10 @@
   resolved "https://registry.yarnpkg.com/@types/stack-trace/-/stack-trace-0.0.29.tgz#eb7a7c60098edb35630ed900742a5ecb20cfcb4d"
   integrity sha512-TgfOX+mGY/NyNxJLIbDWrO9DjGoVSW9+aB8H2yy1fy32jsvxijhmyJI9fDFgvz3YP4lvJaq9DzdR/M1bOgVc9g==
 
-"@types/stripe@6.0.4":
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/@types/stripe/-/stripe-6.0.4.tgz#7afbf06415f594c8b314ff342ba2ad6a8fdb271f"
-  integrity sha512-iZckSARstWAfo3BBwQxx62BR/2PhA23kA94LRpZ3nsUytk6dedGuAC2XFFCKkRt2a+kRldzuuiCPcdlhA6n+vg==
+"@types/stripe@6.0.5":
+  version "6.0.5"
+  resolved "https://registry.yarnpkg.com/@types/stripe/-/stripe-6.0.5.tgz#4c57443f73c0abd9c7353807189aa9fb480a861d"
+  integrity sha512-rUpAS6fUyVUoKK5EGi1Ju/HsEvU+qEjA1+7ZN4f+KfZHYtrWP8a4j1d4zjn2lxIHB2z84xYtpZcqjAr2hOIWdQ==
   dependencies:
     "@types/node" "*"
 
