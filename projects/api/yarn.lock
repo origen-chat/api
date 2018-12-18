@@ -1328,10 +1328,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.0.tgz#ea6dcbddbc5b584c83f06c60e82736d8fbb0c235"
   integrity sha512-3TUHC3jsBAB7qVRGxT6lWyYo2v96BMmD2PTcl47H25Lu7UXtFH/2qqmKiVrnel6Ne//0TFYf6uvNX+HW2FRkLQ==
 
-"@types/node@10.12.15":
-  version "10.12.15"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.15.tgz#20e85651b62fd86656e57c9c9bc771ab1570bc59"
-  integrity sha512-9kROxduaN98QghwwHmxXO2Xz3MaWf+I1sLVAA6KJDF5xix+IyXVhds0MAfdNwtcpSrzhaTsNB0/jnL86fgUhqA==
+"@types/node@10.12.17":
+  version "10.12.17"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.17.tgz#7040565b2c93d59325a68fa69073e754a7eda93a"
+  integrity sha512-umSCRkjWH70uNzFiOof5yxCqrMXIBJ9UJJUzbEsmtWt8apURQh06pylGMqnhdjHGJSeoBrhzk+mibu6NgL1oBA==
 
 "@types/passport-google-oauth@1.0.39":
   version "1.0.39"
@@ -1412,10 +1412,10 @@
   resolved "https://registry.yarnpkg.com/@types/stack-trace/-/stack-trace-0.0.29.tgz#eb7a7c60098edb35630ed900742a5ecb20cfcb4d"
   integrity sha512-TgfOX+mGY/NyNxJLIbDWrO9DjGoVSW9+aB8H2yy1fy32jsvxijhmyJI9fDFgvz3YP4lvJaq9DzdR/M1bOgVc9g==
 
-"@types/stripe@6.0.4":
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/@types/stripe/-/stripe-6.0.4.tgz#7afbf06415f594c8b314ff342ba2ad6a8fdb271f"
-  integrity sha512-iZckSARstWAfo3BBwQxx62BR/2PhA23kA94LRpZ3nsUytk6dedGuAC2XFFCKkRt2a+kRldzuuiCPcdlhA6n+vg==
+"@types/stripe@6.0.5":
+  version "6.0.5"
+  resolved "https://registry.yarnpkg.com/@types/stripe/-/stripe-6.0.5.tgz#4c57443f73c0abd9c7353807189aa9fb480a861d"
+  integrity sha512-rUpAS6fUyVUoKK5EGi1Ju/HsEvU+qEjA1+7ZN4f+KfZHYtrWP8a4j1d4zjn2lxIHB2z84xYtpZcqjAr2hOIWdQ==
   dependencies:
     "@types/node" "*"
 
