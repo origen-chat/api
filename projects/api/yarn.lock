@@ -1160,7 +1160,7 @@
   resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.24.tgz#11f76812531c14f793b8ecbf1de96f672905de8a"
   integrity sha512-YeQoDpq4Lm8ppSBqAnAeF/xy1cYp/dMTif2JFcvmAbETMRlvKHT2iLcWu+WyYiJO3b3Ivokwo7EQca/xfLVJmg==
 
-"@types/bluebird@3.5.25":
+"@types/bluebird@3.5.25", "@types/bluebird@^3.5.25":
   version "3.5.25"
   resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.25.tgz#59188b871208092e37767e4b3d80c3b3eaae43bd"
   integrity sha512-yfhIBix+AIFTmYGtkC0Bi+XGjSkOINykqKvO/Wqdz/DuXlAKK7HmhLAXdPIGsV4xzKcL3ev/zYc4yLNo+OvGaw==
@@ -5744,12 +5744,13 @@ kleur@^2.0.1:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-2.0.2.tgz#b704f4944d95e255d038f0cb05fb8a602c55a300"
   integrity sha512-77XF9iTllATmG9lSlIv0qdQ2BQ/h9t0bJllHlbvsQ0zUWfU7Yi0S8L5JXzPZgkefIiajLmBJJ4BsMJmqcf7oxQ==
 
-knex@0.16.2:
-  version "0.16.2"
-  resolved "https://registry.yarnpkg.com/knex/-/knex-0.16.2.tgz#3ddcd1a552dec586a85aec20056bc93963387370"
-  integrity sha512-ZNhwIV8LasmMlEOmZQVCVcGw6CGk2nynmO4uSBkzD0IZveGignUAMdEmrLbrGbK4DhrFRtDGKPCmGHdsKE0bQw==
+knex@0.16.3:
+  version "0.16.3"
+  resolved "https://registry.yarnpkg.com/knex/-/knex-0.16.3.tgz#ca9effd4973655f42b42132b9019b0bc6bd20644"
+  integrity sha512-jGTOBW8b7exaBPfCKJSlv5q320IvWw9hEdtnURtbb0k3HusfZrR4UYiEewem8Nl7VqJILoCj99SjCK3W54UNPg==
   dependencies:
     "@babel/polyfill" "^7.0.0"
+    "@types/bluebird" "^3.5.25"
     bluebird "^3.5.3"
     chalk "2.4.1"
     commander "^2.19.0"
