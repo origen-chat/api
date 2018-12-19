@@ -42,7 +42,7 @@
     "graphql-type-json": "0.2.1",
     "ioredis": "4.3.0",
     "jsonwebtoken": "8.4.0",
-    "knex": "0.16.2",
+    "knex": "0.16.3",
     "mailgun-js": "0.22.0",
     "ms": "2.1.1",
     "passport": "0.4.0",
