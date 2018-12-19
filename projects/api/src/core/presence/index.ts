@@ -1,4 +1,4 @@
-export { userConnectionStatusRedisKeyNamespace } from './constants';
+export { userConnectionStatusRedisKeyNamespace, pubsubKeys } from './constants';
 export { makeUserConnectionStatusRedisKey } from './keys';
 export { isUserConnected } from './predicates';
 export { getUserConnectionStatus } from './get';

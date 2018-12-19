@@ -1,0 +1,1 @@
+export { actorTyping } from './actorTyping';
