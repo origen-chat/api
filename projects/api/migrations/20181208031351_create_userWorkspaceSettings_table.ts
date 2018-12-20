@@ -4,6 +4,7 @@ import { constants, timestamps } from './helpers';
 
 const userWorkspaceSettingsTableName = 'userWorkspaceSettings';
 const workspaceMembershipsTableName = 'workspaceMemberships';
+
 const workspaceMembershipIdColumnName = 'workspaceMembershipId';
 
 export async function up(knex: Knex): Promise<void> {

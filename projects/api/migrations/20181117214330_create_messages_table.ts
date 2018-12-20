@@ -38,14 +38,16 @@ async function createMessagesTable(knex: Knex): Promise<void> {
       .unsigned()
       .references('id')
       .inTable(usersTableName)
-      .onDelete(constants.onDelete.cascade);
+      .onDelete(constants.onDelete.cascade)
+      .nullable();
 
     table
       .integer(botSenderIdColumnName)
       .unsigned()
       .references('id')
       .inTable(botsTableName)
-      .onDelete(constants.onDelete.cascade);
+      .onDelete(constants.onDelete.cascade)
+      .nullable();
 
     table
       .integer('parentMessageId')
