@@ -1,4 +1,4 @@
-FROM node:11.4.0-alpine AS builder
+FROM node:11.5.0-alpine AS builder
 
 ENV NODE_ENV=${NODE_ENV:-production}
 
@@ -14,7 +14,7 @@ RUN yarn build:prod
 
 # ---
 
-FROM node:11.4.0-alpine
+FROM node:11.5.0-alpine
 
 LABEL maintainer="strattadb@gmail.com"
 
