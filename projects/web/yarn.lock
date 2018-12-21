@@ -10274,10 +10274,10 @@ test-exclude@^4.2.1:
     read-pkg-up "^1.0.1"
     require-main-filename "^1.0.1"
 
-thread-loader@2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/thread-loader/-/thread-loader-2.0.2.tgz#d756b6accfcf9ec55a24daef58dacbd674a3581b"
-  integrity sha512-AK2MyeiPOwVHB3duKMMIE0IwlvcRMFa73Vs7+9dGcZ/0uhtRAmnCnMNHTMLcUQqAPYEImoENqodJDIJpCUsGGw==
+thread-loader@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/thread-loader/-/thread-loader-2.1.0.tgz#7f9aeeaeddf69c5cbc50f9b91672c9a08d3d4ada"
+  integrity sha512-mrznY9FhHqRouv3U6gEMmDJByoZlF3R9O1i6ihciu5/AtCNcJyomAFnNytGKF6iL4fhpsfin50f6WCRB5LRJSg==
   dependencies:
     async "^2.6.1"
     loader-runner "^2.3.1"
