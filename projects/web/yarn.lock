@@ -2653,7 +2653,7 @@ async@^1.5.2:
   resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
   integrity sha1-7GphrlZIDAw8skHJVhjiCJL5Zyo=
 
-async@^2.1.4, async@^2.5.0, async@^2.6.1:
+async@^2.1.4, async@^2.5.0:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/async/-/async-2.6.1.tgz#b245a23ca71930044ec53fa46aa00a3e87c6a610"
   integrity sha512-fNEiL2+AZt6AlAw/29Cr0UDe4sRAHCpEHh54WMz+Bb7QfNcFw4h3loofyJpLeQs4Yx7yuqu/2dLgM5hKOs6HlQ==
@@ -7796,7 +7796,7 @@ negotiator@0.6.1:
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
   integrity sha1-KzJxhOiZIQEXeyhWP7XnECrNDKk=
 
-neo-async@^2.5.0:
+neo-async@^2.5.0, neo-async@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.0.tgz#b9d15e4d71c6762908654b5183ed38b753340835"
   integrity sha512-MFh0d/Wa7vkKO3Y3LlacqAEeHK0mckVqzDieUKTT+KGxi+zIpeVsFxymkIiRpbpDziHc290Xr9A1O4Om7otoRA==
@@ -10274,14 +10274,14 @@ test-exclude@^4.2.1:
     read-pkg-up "^1.0.1"
     require-main-filename "^1.0.1"
 
-thread-loader@2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/thread-loader/-/thread-loader-2.1.0.tgz#7f9aeeaeddf69c5cbc50f9b91672c9a08d3d4ada"
-  integrity sha512-mrznY9FhHqRouv3U6gEMmDJByoZlF3R9O1i6ihciu5/AtCNcJyomAFnNytGKF6iL4fhpsfin50f6WCRB5LRJSg==
+thread-loader@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/thread-loader/-/thread-loader-2.1.1.tgz#c105639b4908486f7756167870ada8b5b544f0a4"
+  integrity sha512-hMaTITa01Qt/I/Q1vKYDu2wjfWhJAfP5J3gOw32ng3/7DZHOOhBGVwsRvyHKk4I/KVTPaQi6J7fdlY+2nzjguw==
   dependencies:
-    async "^2.6.1"
     loader-runner "^2.3.1"
     loader-utils "^1.1.0"
+    neo-async "^2.6.0"
 
 throat@^4.0.0:
   version "4.1.0"
