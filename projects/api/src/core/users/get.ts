@@ -31,7 +31,7 @@ async function getUserByFromDB(
   options: DBOptions = {},
 ): Promise<User | null> {
   const query = db
-    .select('*')
+    .select(`${usersTableName}.*`)
     .from(usersTableName)
     .where(args)
     .first();

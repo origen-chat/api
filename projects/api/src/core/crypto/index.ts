@@ -1,1 +1,1 @@
-export { sha256 } from './crypto';
+export { sha256, generateRandomHexString } from './crypto';

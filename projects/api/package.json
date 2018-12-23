@@ -33,7 +33,7 @@
     "chalk": "2.4.1",
     "cors": "2.8.5",
     "dataloader": "1.4.0",
-    "date-fns": "1.30.1",
+    "date-fns": "^2.0.0-alpha.26",
     "express": "4.16.4",
     "graphql": "14.0.2",
     "graphql-iso-date": "3.6.1",
