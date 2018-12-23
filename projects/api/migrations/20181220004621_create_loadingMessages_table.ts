@@ -39,6 +39,8 @@ async function createLoadingMessagesTable(knex: Knex): Promise<void> {
       .onDelete(constants.onDelete.cascade)
       .nullable();
 
+    table.string('category', 64).nullable();
+
     timestamps({ knex, table });
   });
 }
@@ -51,10 +53,10 @@ async function addCustomLoadingMessageFieldsConstraint(
     ADD CONSTRAINT custom_loading_message_fields
     CHECK (
       (
-        "${workspaceIdColumnName}" IS NOT NULL AND ${authorIdColumnName} IS NOT NULL
+        "${workspaceIdColumnName}" IS NOT NULL AND "${authorIdColumnName}" IS NOT NULL
       ) OR
       (
-        "${workspaceIdColumnName}" IS NULL AND ${authorIdColumnName} IS NULL
+        "${workspaceIdColumnName}" IS NULL AND "${authorIdColumnName}" IS NULL
       )
     );
   `;

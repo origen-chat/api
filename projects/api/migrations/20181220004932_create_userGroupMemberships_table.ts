@@ -2,7 +2,7 @@ import Knex from 'knex';
 
 import { constants, timestamps } from './helpers';
 
-const userGroupMembershipsTableName = 'userGroupChannels';
+const userGroupMembershipsTableName = 'userGroupMemberships';
 const userGroupsTableName = 'userGroups';
 const usersTableName = 'users';
 
@@ -16,7 +16,7 @@ export async function up(knex: Knex): Promise<void> {
 async function createUserGroupMembershipsTable(knex: Knex): Promise<void> {
   await knex.schema.createTable(userGroupMembershipsTableName, table => {
     table
-      .integer('id')
+      .increments('id')
       .unsigned()
       .primary();
 

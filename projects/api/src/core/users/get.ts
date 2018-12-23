@@ -1,5 +1,5 @@
 import db, { maybeAddTransactionToQuery } from '../db';
-import { DBOptions, Email, ID, Nullable } from '../types';
+import { DBOptions, Email, ID } from '../types';
 import { getCachedUser, maybeCacheUser } from './cache';
 import { usersTableName } from './constants';
 import { UniqueUsername, User } from './types';
@@ -57,7 +57,7 @@ export async function getUserByUniqueUsername(
 export async function getUserByEmail(
   email: Email,
   options: DBOptions = {},
-): Promise<Nullable<User>> {
+): Promise<User | null> {
   const user = await getUserByFromDB({ email }, options);
 
   await maybeCacheUser(user);
@@ -92,9 +92,7 @@ async function getUsersByFromDB(
   args: GetUsersByFromDBArgs,
   options: DBOptions = {},
 ): Promise<ReadonlyArray<User>> {
-  const query = db
-    .select(`${usersTableName}.*`, `users.username`)
-    .from(usersTableName);
+  const query = db.select(`${usersTableName}.*`).from(usersTableName);
 
   if (args.ids) {
     query.whereIn('id', args.ids as any);

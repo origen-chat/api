@@ -6,6 +6,7 @@ import { DBOptions } from '../types';
 import { User } from '../users';
 import { addOwnerToWorkspace } from '../workspaceMemberships';
 import { workspacesTableName } from './constants';
+import { enqueuePostCreateWorkspaceJob } from './jobs';
 import { Workspace } from './types';
 
 export type CreateWorkspaceArgs = InsertWorkspaceIntoDBArgs;
@@ -32,6 +33,8 @@ export async function createWorkspace(
       workspaceOwner,
       optionsWithTransaction,
     );
+
+    await enqueuePostCreateWorkspaceJob(workspace);
 
     return workspace;
   }, options);

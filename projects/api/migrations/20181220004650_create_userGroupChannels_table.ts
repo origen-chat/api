@@ -16,7 +16,7 @@ export async function up(knex: Knex): Promise<void> {
 async function createUserGroupChannelsTable(knex: Knex): Promise<void> {
   await knex.schema.createTable(userGroupChannelsTableName, table => {
     table
-      .integer('id')
+      .increments('id')
       .unsigned()
       .primary();
 

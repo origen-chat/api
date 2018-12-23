@@ -31,6 +31,8 @@ const Workspace = gql`
       last: NonNegativeInt
       before: Cursor
     ): WorkspaceMemberConnection!
+
+    randomLoadingMessage: LoadingMessage
   }
 `;
 

@@ -10,6 +10,7 @@ import * as db from './db';
 import * as errorTracking from './errorTracking';
 import * as helpers from './helpers';
 import * as images from './images';
+import * as loadingMessages from './loadingMessages';
 import logger from './logger';
 import * as messages from './messages';
 import * as notifications from './notifications';
@@ -50,6 +51,7 @@ export {
   notifications,
   userNotifications,
   presence,
+  loadingMessages,
   apps,
   bots,
   actors,

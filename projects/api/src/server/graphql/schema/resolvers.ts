@@ -10,6 +10,8 @@ import { resolver as dateResolver } from '../Date';
 import { resolver as dateTimeResolver } from '../DateTime';
 import { resolver as emailResolver } from '../Email';
 import { resolver as jsonResolver } from '../JSON';
+import { resolver as loadingMessageResolver } from '../LoadingMessage';
+import { resolver as loadingMessageCategoryResolver } from '../LoadingMessageCategory';
 import { resolver as localeResolver } from '../Locale';
 import { resolver as messageResolver } from '../Message';
 import { resolver as mutationResolver } from '../Mutation';
@@ -48,6 +50,8 @@ const resolvers = {
   Message: messageResolver,
   Reactable: reactableResolver,
   Bookmarkable: bookmarkableResolver,
+  LoadingMessage: loadingMessageResolver,
+  LoadingMessageCategory: loadingMessageCategoryResolver,
 };
 
 export default resolvers;

@@ -2,7 +2,7 @@ import Knex from 'knex';
 
 import { constants, timestamps } from './helpers';
 
-const userGroupsTableName = 'loadingMessages';
+const userGroupsTableName = 'userGroups';
 const workspacesTableName = 'workspaces';
 
 const workspaceIdColumnName = 'workspaceId';

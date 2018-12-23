@@ -13,6 +13,8 @@ import { typeDefs as dateTypeDefs } from '../Date';
 import { typeDefs as dateTimeTypeDefs } from '../DateTime';
 import { typeDefs as emailTypeDefs } from '../Email';
 import { typeDefs as jsonTypeDefs } from '../JSON';
+import { typeDefs as loadingMessageTypeDefs } from '../LoadingMessage';
+import { typeDefs as loadingMessageCategoryTypeDefs } from '../LoadingMessageCategory';
 import { typeDefs as localeTypeDefs } from '../Locale';
 import { typeDefs as messageTypeDefs } from '../Message';
 import { typeDefs as mutationTypeDefs } from '../Mutation';
@@ -50,6 +52,8 @@ const typeDefs: ReadonlyArray<DocumentNode> = [
   ...botTypeDefs,
   ...workspaceTypeDefs,
   ...workspaceMembershipRoleTypeDefs,
+  ...loadingMessageTypeDefs,
+  ...loadingMessageCategoryTypeDefs,
   ...channelTypeDefs,
   ...channelPrivacyTypeDefs,
   ...messageTypeDefs,
