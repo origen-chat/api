@@ -15,15 +15,18 @@ export async function addInitialLoadingMessagesToWorkspace(
     )
     SELECT ?, lm."id", TRUE
       FROM "${loadingMessagesTableName}" AS lm
-    LEFT JOIN "${workspaceLoadingMessagesTableName}" AS wlm
+    LEFT JOIN (
+      SELECT * FROM "${workspaceLoadingMessagesTableName}"
+      WHERE "workspaceId" = ?
+    ) AS wlm
       ON wlm."loadingMessageId" = lm."id"
     WHERE
-      wlm."workspaceId" <> ? AND
+      wlm."workspaceId" IS NULL AND
       lm."category"
         IN (
           '${NativeLoadingMessageCategory.Motivational}',
           '${NativeLoadingMessageCategory.ProTip}'
-        );
+        )
     GROUP BY lm."id";
   `;
 

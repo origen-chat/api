@@ -56,10 +56,10 @@ export async function createNamedChannel(
       optionsWithTransaction,
     );
 
-    await enqueuePostCreateNamedChannelJob(insertedNamedChannel);
-
     return insertedNamedChannel;
   }, options);
+
+  await enqueuePostCreateNamedChannelJob(namedChannel);
 
   return namedChannel;
 }

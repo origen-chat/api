@@ -9,9 +9,12 @@ const workspacesTableName = 'workspaces';
 const authorIdColumnName = 'authorId';
 const workspaceIdColumnName = 'workspaceId';
 
+const motivationalCategory = 'motivational';
+
 export async function up(knex: Knex): Promise<void> {
   await createLoadingMessagesTable(knex);
   await addCustomLoadingMessageFieldsConstraint(knex);
+  await populateInitialLoadingMessages(knex);
 }
 
 async function createLoadingMessagesTable(knex: Knex): Promise<void> {
@@ -39,6 +42,8 @@ async function createLoadingMessagesTable(knex: Knex): Promise<void> {
       .onDelete(constants.onDelete.cascade)
       .nullable();
 
+    table.string('authorString', 128).nullable();
+
     table.string('category', 64).nullable();
 
     timestamps({ knex, table });
@@ -62,6 +67,28 @@ async function addCustomLoadingMessageFieldsConstraint(
   `;
 
   await knex.schema.raw(constraintQuery);
+}
+
+async function populateInitialLoadingMessages(knex: Knex): Promise<void> {
+  const loadingMessagesData = [
+    {
+      message: 'youLookNiceToday',
+      category: motivationalCategory,
+      authorString: 'loopTeam',
+    },
+    {
+      message: 'haveAGreatDayAtWork',
+      category: motivationalCategory,
+      authorString: 'loopTeam',
+    },
+    {
+      message: 'weLikeYou',
+      category: motivationalCategory,
+      authorString: 'loopTeam',
+    },
+  ];
+
+  await knex.insert(loadingMessagesData).into(loadingMessagesTableName);
 }
 
 export async function down(knex: Knex): Promise<void> {

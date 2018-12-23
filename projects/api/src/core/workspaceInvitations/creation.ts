@@ -20,10 +20,10 @@ export async function createWorkspaceInvitation(
       optionsWithTransaction,
     );
 
-    await enqueuePostCreateWorkspaceInvitationJob(createdWorkspaceInvitation);
-
     return createdWorkspaceInvitation;
   }, options);
+
+  await enqueuePostCreateWorkspaceInvitationJob(workspaceMembership);
 
   return workspaceMembership;
 }

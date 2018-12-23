@@ -75,10 +75,10 @@ async function registerUser(
       optionsWithTransaction,
     );
 
-    await enqueuePostRegisterUserJob(user);
-
     return user;
   }, options);
+
+  await enqueuePostRegisterUserJob(registeredUser);
 
   return registeredUser;
 }

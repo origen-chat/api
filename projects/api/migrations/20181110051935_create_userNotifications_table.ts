@@ -36,7 +36,7 @@ async function createUserNotificationsTable(knex: Knex): Promise<void> {
       .onDelete(constants.onDelete.cascade)
       .notNullable();
 
-    table.timestamp('readAt');
+    table.timestamp('readAt').nullable();
 
     table.unique([notificationIdColumnName, userIdColumnName]);
 

@@ -34,10 +34,10 @@ export async function createWorkspace(
       optionsWithTransaction,
     );
 
-    await enqueuePostCreateWorkspaceJob(workspace);
-
     return workspace;
   }, options);
+
+  await enqueuePostCreateWorkspaceJob(createdWorkspace);
 
   return createdWorkspace;
 }
