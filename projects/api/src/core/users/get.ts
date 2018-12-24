@@ -22,9 +22,13 @@ export async function getUserById(
 }
 
 export type GetUserByFromDBArgs =
-  | Pick<User, 'id'>
-  | Pick<User, 'email'>
-  | UniqueUsername;
+  | Pick<User, 'id'> &
+      Readonly<{ email?: undefined }> &
+      Partial<Record<keyof UniqueUsername, undefined>>
+  | Pick<User, 'email'> &
+      Readonly<{ id?: undefined }> &
+      Partial<Record<keyof UniqueUsername, undefined>>
+  | UniqueUsername & Readonly<{ id?: undefined; email?: undefined }>;
 
 async function getUserByFromDB(
   args: GetUserByFromDBArgs,

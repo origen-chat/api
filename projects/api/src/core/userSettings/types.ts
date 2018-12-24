@@ -5,5 +5,7 @@ export type UserSettings = Readonly<{
 
   locale: Locale;
   timezone: Timezone | null;
+
+  colorThemeId: ID | null;
 }> &
   Timestamps;

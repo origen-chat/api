@@ -4,8 +4,10 @@ import { constants, timestamps } from './helpers';
 
 const userSettingsTableName = 'userSettings';
 const usersTableName = 'users';
+const colorThemesTableName = 'colorThemes';
 
 const userIdColumnName = 'userId';
+const colorThemeIdColumnName = 'colorThemeId';
 
 export async function up(knex: Knex): Promise<void> {
   await createUserSettingsTable(knex);
@@ -27,6 +29,14 @@ async function createUserSettingsTable(knex: Knex): Promise<void> {
       .defaultTo('en');
 
     table.string('timezone', 128).nullable();
+
+    table
+      .integer(colorThemeIdColumnName)
+      .unsigned()
+      .references('id')
+      .inTable(colorThemesTableName)
+      .onDelete(constants.onDelete.restrict)
+      .nullable();
 
     timestamps({ knex, table });
   });
