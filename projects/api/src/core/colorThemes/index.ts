@@ -1,6 +1,7 @@
 export { ColorTheme, Colors } from './types';
-export { colorThemesTableName } from './constants';
+export { colorThemesTableName, defaultColorThemeName } from './constants';
 export {
+  getDefaultColorTheme,
   getColorThemeById,
   getColorThemeByName,
   getColorThemesByIds,

@@ -5,7 +5,7 @@ import { usersTableName } from './constants';
 import { User } from './types';
 import { getUnusedUsernameIdentifier } from './usernames';
 
-export type UpdateUserArgs = DoUpdateUserInDBArgs;
+export type UpdateUserArgs = UpdateUserInDBArgs;
 
 export async function updateUser(
   user: User,

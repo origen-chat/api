@@ -36,7 +36,7 @@ async function createUserSettingsTable(knex: Knex): Promise<void> {
       .references('id')
       .inTable(colorThemesTableName)
       .onDelete(constants.onDelete.restrict)
-      .nullable();
+      .notNullable();
 
     timestamps({ knex, table });
   });

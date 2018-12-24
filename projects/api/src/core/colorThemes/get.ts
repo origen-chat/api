@@ -1,7 +1,14 @@
 import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions, ID } from '../types';
-import { colorThemesTableName } from './constants';
+import { colorThemesTableName, defaultColorThemeName } from './constants';
 import { ColorTheme } from './types';
+
+export async function getDefaultColorTheme(): Promise<ColorTheme> {
+  // eslint-disable-next-line typescript/no-non-null-assertion
+  const defaultColorTheme = (await getColorThemeByName(defaultColorThemeName))!;
+
+  return defaultColorTheme;
+}
 
 export async function getColorThemeById(
   id: ID,

@@ -9,6 +9,7 @@ const authorIdColumnName = 'authorId';
 
 export async function up(knex: Knex): Promise<void> {
   await createColorThemesTable(knex);
+  await populateNativeColorThemes(knex);
 }
 
 async function createColorThemesTable(knex: Knex): Promise<void> {
@@ -31,10 +32,22 @@ async function createColorThemesTable(knex: Knex): Promise<void> {
       .onDelete(constants.onDelete.cascade)
       .nullable();
 
-    table.jsonb('colors').notNullable();
+    table.jsonb('colors').nullable();
 
     timestamps({ knex, table });
   });
+}
+
+async function populateNativeColorThemes(knex: Knex): Promise<void> {
+  const colorThemes = [
+    {
+      name: 'default',
+      authorId: null,
+      colors: null,
+    },
+  ];
+
+  await knex.insert(colorThemes).into(colorThemesTableName);
 }
 
 export async function down(knex: Knex): Promise<void> {

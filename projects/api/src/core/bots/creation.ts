@@ -37,9 +37,9 @@ function makeDoInsertBotIntoDBArgs(
   return doInsertBotArgs;
 }
 
-export type DoInsertBotIntoDBArgs = Pick<Bot, 'name'>;
+type DoInsertBotIntoDBArgs = Pick<Bot, 'name'>;
 
-export async function doInsertBotIntoDB(
+async function doInsertBotIntoDB(
   args: DoInsertBotIntoDBArgs,
   options: DBOptions = {},
 ): Promise<Bot> {
