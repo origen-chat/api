@@ -19,7 +19,7 @@ export class BaseScrollToTop extends PureComponent<BaseScrollToTopProps> {
   }
 }
 
-const ScrollToTop: React.SFC = () => (
+const ScrollToTop: React.FunctionComponent = () => (
   <Route
     render={({ location }) => <BaseScrollToTop pathname={location.pathname} />}
   />

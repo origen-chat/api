@@ -15,6 +15,7 @@ module.exports = {
     'unicorn',
     'jest',
     'react',
+    'react-hooks',
     'import',
     'jsx-a11y',
     'typescript',
@@ -109,6 +110,8 @@ module.exports = {
         'typescript/class-name-casing': 'error',
         'typescript/generic-type-naming': ['error', '^T[A-Z][a-zA-Z]+$'],
         'typescript/no-non-null-assertion': 'error',
+
+        'react-hooks/rules-of-hooks': 'error',
       },
     },
   ],

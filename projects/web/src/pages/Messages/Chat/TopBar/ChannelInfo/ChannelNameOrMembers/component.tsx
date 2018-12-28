@@ -20,7 +20,7 @@ export type ChannelNameOrMembersProps = Readonly<
     }
 >;
 
-export const ChannelNameOrMembers: React.SFC<
+export const ChannelNameOrMembers: React.FunctionComponent<
   ChannelNameOrMembersProps
 > = props => {
   if (props.channelType === ChannelType.NAMED) {

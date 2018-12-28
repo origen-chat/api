@@ -4,7 +4,7 @@ import React from 'react';
 
 import BarButton from '../BarButton';
 
-export const WorkspaceOptionsButton: React.SFC = () => (
+export const WorkspaceOptionsButton: React.FunctionComponent = () => (
   <BarButton>
     <FontAwesomeIcon icon={faEllipsisV} />
   </BarButton>

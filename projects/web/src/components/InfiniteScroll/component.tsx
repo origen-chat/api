@@ -53,23 +53,21 @@ export class InfiniteScroll extends React.PureComponent<InfiniteScrollProps> {
 
     return (
       <>
-        {infiniteScrollDirection === 'up' &&
-          hasMore && (
-            <>
-              {loader}
-              {sentinel}
-            </>
-          )}
+        {infiniteScrollDirection === 'up' && hasMore && (
+          <>
+            {loader}
+            {sentinel}
+          </>
+        )}
 
         {children}
 
-        {infiniteScrollDirection === 'down' &&
-          hasMore && (
-            <>
-              {sentinel}
-              {loader}
-            </>
-          )}
+        {infiniteScrollDirection === 'down' && hasMore && (
+          <>
+            {sentinel}
+            {loader}
+          </>
+        )}
       </>
     );
   }

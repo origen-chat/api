@@ -17,7 +17,7 @@ export type PresenceStatusIndicatorProps = Readonly<{
   status: string;
 }>;
 
-export const PresenceStatusIndicator: React.SFC<
+export const PresenceStatusIndicator: React.FunctionComponent<
   PresenceStatusIndicatorProps
 > = props => {
   const backgroundColor = getBackgroundColor(props.status);

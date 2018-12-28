@@ -25,7 +25,7 @@ export type BaseHomeProps = Readonly<
     }
 >;
 
-export const BaseHome: React.SFC<BaseHomeProps> = props => {
+export const BaseHome: React.FunctionComponent<BaseHomeProps> = props => {
   if (props.loading) {
     return <>loading</>;
   }
@@ -63,7 +63,7 @@ const firstWorkspaceQuery = gql`
 
 class FirstWorkspaceQuery extends Query<FirstWorkspace> {}
 
-const Home: React.SFC = () => (
+const Home: React.FunctionComponent = () => (
   <FirstWorkspaceQuery query={firstWorkspaceQuery}>
     {result => {
       const baseHomeProps = makeBaseHomeProps(result);

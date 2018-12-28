@@ -49,7 +49,7 @@ export type ChatProps = StateProps & OwnProps;
 
 export type OwnProps = Readonly<{}>;
 
-export const Chat: React.SFC<ChatProps> = props => (
+export const Chat: React.FunctionComponent<ChatProps> = props => (
   <Wrapper navBarState={props.navBarState}>
     <TopBar />
   </Wrapper>

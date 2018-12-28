@@ -21,7 +21,7 @@ export type ModalStackProps = StateProps & OwnProps;
 
 export type OwnProps = Readonly<{}>;
 
-export const ModalStack: React.SFC<ModalStackProps> = props => {
+export const ModalStack: React.FunctionComponent<ModalStackProps> = props => {
   const modals = renderModals(props.modalsProps);
   const portalElement = <Container>{modals}</Container>;
 

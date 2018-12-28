@@ -24,7 +24,7 @@ export type ToggleWorkspacesBarButtonProps = StateProps &
 
 type OwnProps = Readonly<{}>;
 
-export const ToggleWorkspacesBarButton: React.SFC<
+export const ToggleWorkspacesBarButton: React.FunctionComponent<
   ToggleWorkspacesBarButtonProps
 > = props => {
   const handleClick = (): void => {

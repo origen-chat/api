@@ -8,7 +8,7 @@ import App from '../App';
 
 const reduxStore = createReduxStore();
 
-export const Root: React.SFC = () => (
+export const Root: React.FunctionComponent = () => (
   <StrictMode>
     <App apolloClient={apolloClient} reduxStore={reduxStore} theme={theme} />
   </StrictMode>

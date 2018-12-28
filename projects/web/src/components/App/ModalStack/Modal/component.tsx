@@ -5,6 +5,6 @@ export type ModalProps = Readonly<{
   [name: string]: any;
 }>;
 
-export const Modal: React.SFC<ModalProps> = props => null;
+export const Modal: React.FunctionComponent<ModalProps> = props => null;
 
 export default Modal;

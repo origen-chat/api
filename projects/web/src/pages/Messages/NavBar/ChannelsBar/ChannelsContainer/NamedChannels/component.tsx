@@ -27,7 +27,9 @@ export type BaseNamedChannelsProps = Readonly<
     }
 >;
 
-export const BaseNamedChannels: React.SFC<BaseNamedChannelsProps> = props => {
+export const BaseNamedChannels: React.FunctionComponent<
+  BaseNamedChannelsProps
+> = props => {
   let namedChannels: React.ReactNode;
 
   if (props.loading) {
@@ -71,7 +73,7 @@ class NamedChannelsQuery extends Query<
   WorkspaceNamedChannelsVariables
 > {}
 
-export const NamedChannels: React.SFC = () => (
+export const NamedChannels: React.FunctionComponent = () => (
   <Route
     render={({ match }) => (
       <NamedChannelsQuery

@@ -37,7 +37,9 @@ export type BaseBarHeaderProps = Readonly<
     }
 >;
 
-export const BaseBarHeader: React.SFC<BaseBarHeaderProps> = props => {
+export const BaseBarHeader: React.FunctionComponent<
+  BaseBarHeaderProps
+> = props => {
   const workspaceNameProps: WorkspaceNameProps = props.loading
     ? { loading: true }
     : {
@@ -67,7 +69,7 @@ const workspaceQuery = gql`
 
 class WorkspaceQuery extends Query<Workspace, WorkspaceVariables> {}
 
-export const ChannelsBar: React.SFC = () => (
+export const ChannelsBar: React.FunctionComponent = () => (
   <Route
     render={({ match }) => (
       <WorkspaceQuery

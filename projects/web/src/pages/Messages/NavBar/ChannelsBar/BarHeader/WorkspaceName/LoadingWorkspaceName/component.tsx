@@ -1,5 +1,7 @@
 import React from 'react';
 
-export const LoadingWorkspaceName: React.SFC = () => <>loading...</>;
+export const LoadingWorkspaceName: React.FunctionComponent = () => (
+  <>loading...</>
+);
 
 export default LoadingWorkspaceName;

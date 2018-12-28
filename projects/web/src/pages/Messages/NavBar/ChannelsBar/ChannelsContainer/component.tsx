@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   margin: var(--md-space) 0;
 `;
 
-export const BaseChannelsContainer: React.SFC = () => (
+export const BaseChannelsContainer: React.FunctionComponent = () => (
   <Wrapper>
     <NamedChannels />
     <DirectMessageChannels />

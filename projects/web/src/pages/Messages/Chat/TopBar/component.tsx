@@ -27,7 +27,7 @@ const StyledChannelInfo = styled(ChannelInfo)`
   flex: 1 0 auto;
 `;
 
-export const TopBar: React.SFC = () => (
+export const TopBar: React.FunctionComponent = () => (
   <Wrapper>
     <StyledToggleNavBarButton />
     <StyledChannelInfo />

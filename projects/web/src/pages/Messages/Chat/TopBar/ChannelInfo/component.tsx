@@ -42,7 +42,9 @@ export type BaseChannelInfoProps = Readonly<
     ClassNameProp
 >;
 
-export const BaseChannelInfo: React.SFC<BaseChannelInfoProps> = props => {
+export const BaseChannelInfo: React.FunctionComponent<
+  BaseChannelInfoProps
+> = props => {
   if (props.loading) {
     return null;
   }
@@ -98,7 +100,7 @@ class ChannelInfoQuery extends Query<
 
 export type ChannelInfoProps = ClassNameProp;
 
-export const ChannelInfo: React.SFC<ChannelInfoProps> = props => (
+export const ChannelInfo: React.FunctionComponent<ChannelInfoProps> = props => (
   <Route
     render={({ match }) => (
       <ChannelInfoQuery

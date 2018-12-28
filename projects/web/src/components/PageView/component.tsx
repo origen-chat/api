@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
 
 import { sendPageView } from '../../analytics';
@@ -7,22 +7,19 @@ export type PageViewProps = Readonly<{
   pathname: string;
 }>;
 
-export class PageViewBase extends PureComponent<PageViewProps> {
-  public componentDidMount() {
-    sendPageView({ path: this.props.pathname });
-  }
+export const PageViewBase: React.FunctionComponent<PageViewProps> = props => {
+  useSendPageView(props.pathname);
 
-  public componentDidUpdate(prevProps: PageViewProps) {
-    const { pathname: prevPathname } = prevProps;
+  return null;
+};
 
-    if (prevPathname !== this.props.pathname) {
-      sendPageView({ path: this.props.pathname });
-    }
-  }
-
-  public render() {
-    return null;
-  }
+function useSendPageView(pathname: string): void {
+  useEffect(
+    () => {
+      sendPageView({ path: pathname });
+    },
+    [pathname],
+  );
 }
 
 const PageView = () => (

@@ -20,7 +20,9 @@ export type ChannelMembersProps = Readonly<{
   members: ReadonlyArray<ChannelInfo_workspace_channel_members_edges_node>;
 }>;
 
-export const ChannelMembers: React.SFC<ChannelMembersProps> = props => (
+export const ChannelMembers: React.FunctionComponent<
+  ChannelMembersProps
+> = props => (
   <Wrapper>
     {renderOnlineIndicator(props.members)}
     {renderMembers(props.members)}

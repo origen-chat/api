@@ -22,7 +22,7 @@ const StyledAddWorkspaceButton = styled(AddWorkspaceButton)`
   flex: 0 0 auto;
 `;
 
-export const WorkapacesBar: React.SFC = () => (
+export const WorkapacesBar: React.FunctionComponent = () => (
   <Wrapper>
     <StyledWorkspacesContainer />
     <StyledAddWorkspaceButton />

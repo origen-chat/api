@@ -19,7 +19,7 @@ export type BaseChannelProps = Readonly<
     }
 >;
 
-export const BaseChannel: React.SFC<BaseChannelProps> = props => {
+export const BaseChannel: React.FunctionComponent<BaseChannelProps> = props => {
   let channel: React.ReactNode;
   if (props.loading) {
     channel = <LoadingChannel />;
@@ -32,7 +32,7 @@ export const BaseChannel: React.SFC<BaseChannelProps> = props => {
 
 export type ChannelProps = BaseChannelProps;
 
-export const Channel: React.SFC<ChannelProps> = () => (
+export const Channel: React.FunctionComponent<ChannelProps> = () => (
   <Route
     render={({ match }) => {
       const baseChannelProps = makeBaseChannelProps(match.params);

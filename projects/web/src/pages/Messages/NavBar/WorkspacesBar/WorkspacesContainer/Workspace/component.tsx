@@ -37,7 +37,7 @@ export type WorkspaceProps = Readonly<
     ClassNameProp
 >;
 
-export const Workspace: React.SFC<WorkspaceProps> = props => {
+export const Workspace: React.FunctionComponent<WorkspaceProps> = props => {
   if (props.loading) {
     return <LoadingWorkspace />;
   }

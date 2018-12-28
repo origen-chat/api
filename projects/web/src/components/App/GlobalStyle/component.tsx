@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
+import colors from './colors';
 import { fadeTransition } from './transitions';
 
 export const GlobalStyle = createGlobalStyle`
@@ -7,41 +8,36 @@ export const GlobalStyle = createGlobalStyle`
     --sans-serif-font-family: sans-serif;
     --display-font-family: var(--sans-serif-font-family);
 
-    --primary-color: hsla(10, 85%, 61%, 1);
-    --secondary-color: hsla(245, 91%, 74%, 1);
-
-    --primary-font-color: hsla(0, 0%, 10%, 1);
-    --secondary-font-color: hsla(0, 0%, 30%, 1);
-    --tertiary-font-color: hsla(0, 0%, 40%, 1);
-    --quaternary-font-color: hsla(0, 0%, 70%, 1);
-
-    --grey: hsla(18, 22%, 91%, 1);
-    --dark-grey: hsla(60, 1%, 85%, 1);
-
+    --xxs-font-size: 0.7rem;
     --xs-font-size: 0.8rem;
-    --sm-font-size: 0.82rem;
+    --sm-font-size: 0.9rem;
     --md-font-size: 1rem;
     --lg-font-size: 1.4rem;
     --xl-font-size: 2.5rem;
     --xxl-font-size: 5rem;
 
-    --base-space: 0.2rem;
-    --xxs-space: calc(var(--base-space) * 2);
-    --xs-space: calc(var(--base-space) * 3);
-    --sm-space: calc(var(--base-space) * 5);
-    --md-space: calc(var(--base-space) * 8);
-    --lg-space: calc(var(--base-space) * 13);
-    --xl-space: calc(var(--base-space) * 21);
+    --xxs-space: 0.2rem;
+    --xs-space: 0.5rem;
+    --sm-space: 0.8rem;
+    --md-space: 1rem;
+    --lg-space: 2rem;
+    --xl-space: 3rem;
+    --xxl-space: 5rem;
 
+    --xs-transition: 0.05s;
     --sm-transition: 0.1s;
     --md-transition: 0.2s;
     --lg-transition: 0.3s;
+    --xl-transition: 0.5s;
 
-    --xs-border-radius: 5%;
-    --sm-border-radius: 10%;
-    --md-border-radius: 20%;
-    --lg-border-radius: 30%;
-    --xl-border-radius: 50%;
+    --xs-border-radius: 0.1rem;
+    --sm-border-radius: 0.2rem;
+    --md-border-radius: 0.5rem;
+    --lg-border-radius: 0.8rem;
+    --xl-border-radius: 1rem;
+    --xxl-border-radius: 50%;
+
+    ${colors}
 
     --workspaces-bar-width: 5rem;
     --channels-bar-width: 16rem;

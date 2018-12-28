@@ -23,7 +23,7 @@ export type BarButtonProps = Readonly<{
   ((DraggableProvidedDraggableProps & DraggableProvidedDragHandleProps) | {}) &
   ClassNameProp;
 
-export const BarButton: React.SFC<BarButtonProps> = props => (
+export const BarButton: React.FunctionComponent<BarButtonProps> = props => (
   <StyledLink {...props}>{props.children}</StyledLink>
 );
 

@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import { Home, Messages, Oauth2Callback, SignIn } from '../../../pages';
 
-export const Routes: React.SFC = () => (
+export const Routes: React.FunctionComponent = () => (
   <Switch>
     <Route exact path="/" component={Home} />
     <Route path="/signin" component={SignIn} />

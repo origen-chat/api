@@ -13,9 +13,9 @@ export type AddWorkspaceButtonProps = Readonly<{
   className?: string;
 }>;
 
-export const AddWorkspaceButton: React.SFC<AddWorkspaceButtonProps> = ({
-  className,
-}) => (
+export const AddWorkspaceButton: React.FunctionComponent<
+  AddWorkspaceButtonProps
+> = ({ className }) => (
   <StyledBarButton
     to="/workspaces/add"
     title="Add a new workspace"

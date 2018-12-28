@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   background-color: var(--grey);
 `;
 
-export const ChannelsBar: React.SFC = () => (
+export const ChannelsBar: React.FunctionComponent = () => (
   <Wrapper>
     <BarHeader />
     <ChannelsContainer />

@@ -42,7 +42,7 @@ export type BaseWorkapacesContainerProps = Readonly<
 
 export type LoadMoreWorkspaces = () => Promise<void>;
 
-export const BaseWorkapacesContainer: React.SFC<
+export const BaseWorkapacesContainer: React.FunctionComponent<
   BaseWorkapacesContainerProps
 > = props => {
   if (props.loading) {
@@ -122,7 +122,9 @@ export type WorkspacesContainerProps = Partial<
   Pick<BaseWorkapacesContainerProps, 'className'>
 >;
 
-const WorkapacesContainer: React.SFC<WorkspacesContainerProps> = props => (
+const WorkapacesContainer: React.FunctionComponent<
+  WorkspacesContainerProps
+> = props => (
   <WorkspacesQuery query={workspacesQuery}>
     {result => (
       <Route

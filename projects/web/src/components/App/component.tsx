@@ -21,7 +21,7 @@ export type AppProps = Readonly<{
   theme: Theme;
 }>;
 
-export const App: React.SFC<AppProps> = ({
+export const App: React.FunctionComponent<AppProps> = ({
   apolloClient,
   reduxStore,
   theme,

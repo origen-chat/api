@@ -12,7 +12,7 @@ export type DirectMessagesChannelsProps = DispatchProps & OwnProps;
 
 type OwnProps = Readonly<{}>;
 
-export const DirectMessagesChannels: React.SFC<
+export const DirectMessagesChannels: React.FunctionComponent<
   DirectMessagesChannelsProps
 > = props => (
   <Wrapper>

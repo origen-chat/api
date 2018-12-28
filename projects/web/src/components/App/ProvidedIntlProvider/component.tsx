@@ -14,7 +14,7 @@ export type BaseProvidedIntlProviderProps = Readonly<
     }
 >;
 
-export const BaseProvidedIntlProvider: React.SFC<
+export const BaseProvidedIntlProvider: React.FunctionComponent<
   BaseProvidedIntlProviderProps
 > = props => {
   if (props.loading) {
@@ -40,7 +40,7 @@ const viewerLocaleQuery = gql`
 
 class ViewerLocaleQuery extends Query {}
 
-export const ProvidedIntlProvider: React.SFC = props => (
+export const ProvidedIntlProvider: React.FunctionComponent = props => (
   <ViewerLocaleQuery query={viewerLocaleQuery}>
     {result => {
       const baseProvidedIntlProviderProps = makeBaseProvidedIntlProviderProps(

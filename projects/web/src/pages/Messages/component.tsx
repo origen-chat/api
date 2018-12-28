@@ -11,7 +11,7 @@ const Wrapper = styled.main`
   overflow: hidden;
 `;
 
-export const Messages: React.SFC = () => (
+export const Messages: React.FunctionComponent = () => (
   <Wrapper>
     <NavBar />
     <Chat />
