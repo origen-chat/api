@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
 import { setToken } from '../../auth';
@@ -9,20 +9,18 @@ export type Oauth2CallbackProps = RouteComponentProps<
   }>
 >;
 
-class Oauth2Callback extends React.Component<Oauth2CallbackProps> {
-  public async componentDidMount() {
-    const searchParams = new URLSearchParams(this.props.location.search);
+export const Oauth2Callback: React.FunctionComponent<
+  Oauth2CallbackProps
+> = props => {
+  useEffect(() => {
+    const searchParams = new URLSearchParams(props.location.search);
     const authToken = searchParams.get('authToken')!;
 
-    await setToken(authToken);
+    setToken(authToken).then(hardRedirectToHome);
+  });
 
-    hardRedirectToHome();
-  }
-
-  public render() {
-    return <>golaa</>;
-  }
-}
+  return null;
+};
 
 function hardRedirectToHome(): void {
   window.location.href = '/';

@@ -1,6 +1,13 @@
 import { css } from 'styled-components';
 
 export const colors = css`
+  --dark-primary-text-color: hsl();
+  --dark-secondary-text-color: hsl();
+  --dark-tertiary-text-color: hsl();
+  --light-primary-text-color: hsl();
+  --light-secondary-text-color: hsl();
+  --light-tertiary-text-color: hsl();
+
   --primary-color-100: hsl();
   --primary-color-200: hsl();
   --primary-color-300: hsl();
@@ -60,6 +67,8 @@ export const colors = css`
   --success-color-700: hsl();
   --success-color-800: hsl();
   --success-color-900: hsl();
+
+  --shadow-color: hsla(0, 0, 0, 0.2);
 `;
 
 export default colors;

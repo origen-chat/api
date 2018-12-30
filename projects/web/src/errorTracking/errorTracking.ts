@@ -1,24 +1,19 @@
-import Raven from 'raven-js';
+import * as sentry from '@sentry/browser';
 
+import { env } from '../config';
 import { isProductionEnvironment } from '../helpers';
 
-export const initializeErrorTracking = (): void => {
-  if (isProductionEnvironment) {
-    const sentryDsn = '';
-    const ravenOptions: Raven.RavenOptions = {
-      environment: process.env.NODE_ENV,
-      debug: !isProductionEnvironment,
-    };
+export function initializeErrorTracking(): void {
+  const sentryOptions: sentry.BrowserOptions = {
+    dsn: env.sentryDsn,
+    enabled: env.enableErrorTracking,
+    environment: env.nodeEnvironment,
+    debug: !isProductionEnvironment,
+  };
 
-    Raven.config(sentryDsn, ravenOptions).install();
-  }
-};
+  sentry.init(sentryOptions);
+}
 
-export const captureException = (
-  error: Error,
-  options?: Raven.RavenOptions,
-) => {
-  if (isProductionEnvironment) {
-    Raven.captureException(error, options);
-  }
-};
+export function captureException(error: Error): void {
+  sentry.captureException(error);
+}

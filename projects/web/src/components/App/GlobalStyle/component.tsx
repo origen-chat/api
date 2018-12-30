@@ -1,28 +1,19 @@
 import { createGlobalStyle } from 'styled-components';
 
+import borders from './borders';
 import colors from './colors';
+import fonts from './fonts';
+import shadows from './shadows';
+import spaces from './spaces';
 import { fadeTransition } from './transitions';
 
 export const GlobalStyle = createGlobalStyle`
   :root {
-    --sans-serif-font-family: sans-serif;
-    --display-font-family: var(--sans-serif-font-family);
-
-    --xxs-font-size: 0.7rem;
-    --xs-font-size: 0.8rem;
-    --sm-font-size: 0.9rem;
-    --md-font-size: 1rem;
-    --lg-font-size: 1.4rem;
-    --xl-font-size: 2.5rem;
-    --xxl-font-size: 5rem;
-
-    --xxs-space: 0.2rem;
-    --xs-space: 0.5rem;
-    --sm-space: 0.8rem;
-    --md-space: 1rem;
-    --lg-space: 2rem;
-    --xl-space: 3rem;
-    --xxl-space: 5rem;
+    ${fonts}
+    ${spaces}
+    ${colors}
+    ${borders}
+    ${shadows}
 
     --xs-transition: 0.05s;
     --sm-transition: 0.1s;
@@ -30,14 +21,11 @@ export const GlobalStyle = createGlobalStyle`
     --lg-transition: 0.3s;
     --xl-transition: 0.5s;
 
-    --xs-border-radius: 0.1rem;
-    --sm-border-radius: 0.2rem;
-    --md-border-radius: 0.5rem;
-    --lg-border-radius: 0.8rem;
-    --xl-border-radius: 1rem;
-    --xxl-border-radius: 50%;
-
-    ${colors}
+    --opacity-10: 0.1;
+    --opacity-40: 0.4;
+    --opacity-50: 0.5;
+    --opacity-60: 0.6;
+    --opacity-90: 0.9;
 
     --workspaces-bar-width: 5rem;
     --channels-bar-width: 16rem;

@@ -1,9 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Chat from './Chat';
-import NavBar from './NavBar';
-
 const Wrapper = styled.main`
   height: 100%;
   width: 100%;
@@ -12,10 +9,7 @@ const Wrapper = styled.main`
 `;
 
 export const Messages: React.FunctionComponent = () => (
-  <Wrapper>
-    <NavBar />
-    <Chat />
-  </Wrapper>
+  <Wrapper>Messages</Wrapper>
 );
 
 export default Messages;

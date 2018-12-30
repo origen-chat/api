@@ -1,5 +1,5 @@
 import { env } from '../config';
 
-export const isDevelopmentEnvironment = env.environment === 'development';
+export const isDevelopmentEnvironment = env.nodeEnvironment === 'development';
 
-export const isProductionEnvironment = env.environment === 'production';
+export const isProductionEnvironment = env.nodeEnvironment === 'production';
