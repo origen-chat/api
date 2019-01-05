@@ -12,7 +12,8 @@ export const borders = css`
   --md-border-radius: 0.5rem;
   --lg-border-radius: 0.8rem;
   --xl-border-radius: 1rem;
-  --xxl-border-radius: 50%;
+  --xxl-border-radius: 2rem;
+  --xxxl-border-radius: 50%;
 `;
 
 export default borders;

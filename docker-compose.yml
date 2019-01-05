@@ -51,6 +51,7 @@ services:
       dockerfile: dev.dockerfile
     ports:
       - '3000:4000'
+      - '9001:9001'
     volumes:
       - ./projects/web:/usr/src/app
       - /usr/src/app/node_modules

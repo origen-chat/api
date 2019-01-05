@@ -27,7 +27,6 @@ function getPresets(babelEnv) {
 
 function getPlugins(babelEnv) {
   const basePlugins = [
-    '@babel/plugin-proposal-optional-catch-binding',
     '@babel/plugin-proposal-class-properties',
     '@babel/plugin-syntax-dynamic-import',
     'react-hot-loader/babel',

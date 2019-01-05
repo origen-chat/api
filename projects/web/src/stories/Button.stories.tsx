@@ -7,6 +7,7 @@ import React from 'react';
 import Button from '../components/Button';
 
 const events = actions(
+  'onClick',
   'onPointerDown',
   'onPointerUp',
   'onPointerOver',
@@ -21,7 +22,11 @@ storiesOf(Button.name, module).add('contained', () => (
       { Primary: 'primary', Accent: 'accent', Danger: 'danger' },
       'primary',
     )}
-    size="medium"
+    size={select(
+      'Size',
+      { Small: 'small', Medium: 'medium', Large: 'large' },
+      'medium',
+    )}
     label={text('Label', 'Primary')}
     {...events}
   />

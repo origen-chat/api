@@ -3,8 +3,8 @@ import { css } from 'styled-components';
 import breakpoints from './breakpoints';
 
 export const fonts = css`
-  --sans-serif-font-family: sans-serif;
-  --display-font-family: var(--sans-serif-font-family);
+  --sans-serif-font-family: 'Open Sans', sans-serif;
+  --display-font-family: 'Nunito', var(--sans-serif-font-family);
 
   --xs-font-size: 0.7rem;
   --sm-font-size: 0.8rem;
@@ -22,6 +22,10 @@ export const fonts = css`
   --md-line-height: 1.5;
   --lg-line-height: 1.8;
   --xl-line-height: 2;
+
+  --normal-letter-spacing: normal;
+  --lg-letter-spacing: 0.1em;
+  --xl-letter-spacing: 0.2em;
 
   @media (min-width: ${breakpoints.lg}) {
     --lg-font-size: 1.5rem;

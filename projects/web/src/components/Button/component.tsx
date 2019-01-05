@@ -4,9 +4,42 @@ import { ClassNameProp } from '../../types';
 
 const Wrapper = styled.button`
   display: inline-flex;
+  flex-flow: row nowrap;
+  justify-content: center;
 
-  border-radius: var(--sm-border-radius);
+  border-radius: var(--xxl-border-radius);
   cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: var(--lg-letter-spacing);
+  font-weight: var(--bold-font-weight);
+
+  ${props =>
+    (props.type as ButtonType) === 'contained' &&
+    css`
+      border-style: none;
+    `}
+
+  ${props =>
+    (props.size as ButtonSize) === 'small' &&
+    css`
+      font-size: var(--xs-font-size);
+      padding: 0 var(--sm-padding);
+      height: 1.3rem;
+    `}
+
+  ${props =>
+    (props.size as ButtonSize) === 'medium' &&
+    css`
+      font-size: var(--sm-font-size);
+      padding: var(--sm-padding) var(--md-padding);
+    `}
+
+  ${props =>
+    (props.size as ButtonSize) === 'large' &&
+    css`
+      font-size: var(--md-font-size);
+      padding: var(--md-padding) var(--xl-padding);
+    `}
 
   ${props =>
     props.disabled &&
@@ -21,6 +54,10 @@ const Wrapper = styled.button`
     `};
 `;
 
+const Label = styled.span`
+  text-align: center;
+`;
+
 export type ButtonProps = Readonly<{
   label: string;
   type?: ButtonType;
@@ -28,11 +65,11 @@ export type ButtonProps = Readonly<{
   size?: ButtonSize;
   disabled?: boolean;
 }> &
-  Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onPointerDown'> &
+  Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'> &
   Partial<
     Pick<
       React.ButtonHTMLAttributes<HTMLButtonElement>,
-      'onPointerUp' | 'onPointerOver' | 'onPointerLeave'
+      'onPointerDown' | 'onPointerUp' | 'onPointerOver' | 'onPointerLeave'
     >
   > &
   ClassNameProp;
@@ -89,6 +126,8 @@ export const Button: React.FunctionComponent<ButtonProps> = props => {
   return (
     <Wrapper
       type={props.type}
+      size={props.size}
+      color={props.color}
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
       onPointerOver={handlePointerOver}
@@ -97,8 +136,9 @@ export const Button: React.FunctionComponent<ButtonProps> = props => {
       isPointerDown={isPointerDown}
       disabled={props.disabled}
       className={props.className}
+      onClick={props.onClick}
     >
-      {props.label}
+      <Label>{props.label}</Label>
     </Wrapper>
   );
 };
