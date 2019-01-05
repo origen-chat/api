@@ -764,10 +764,10 @@
     globals "^11.1.0"
     lodash "^4.17.10"
 
-"@babel/types@7.2.0", "@babel/types@^7.2.0":
-  version "7.2.0"
-  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.2.0.tgz#7941c5b2d8060e06f9601d6be7c223eef906d5d8"
-  integrity sha512-b4v7dyfApuKDvmPb+O488UlGuR1WbwMXFsO/cyqMrnfvRAChZKJAYeeglWTjUO1b9UghKKgepAQM5tsvBJca6A==
+"@babel/types@7.2.2", "@babel/types@^7.2.2":
+  version "7.2.2"
+  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.2.2.tgz#44e10fc24e33af524488b716cdaee5360ea8ed1e"
+  integrity sha512-fKCuD6UFUMkR541eDWL+2ih/xFZBXPOg/7EQFeTluMDebfqR4jrpaCjLhkWlQS4hT6nRa2PMEgXKbRB5/H2fpg==
   dependencies:
     esutils "^2.0.2"
     lodash "^4.17.10"
@@ -791,10 +791,10 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@babel/types@^7.2.2":
-  version "7.2.2"
-  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.2.2.tgz#44e10fc24e33af524488b716cdaee5360ea8ed1e"
-  integrity sha512-fKCuD6UFUMkR541eDWL+2ih/xFZBXPOg/7EQFeTluMDebfqR4jrpaCjLhkWlQS4hT6nRa2PMEgXKbRB5/H2fpg==
+"@babel/types@^7.2.0":
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.2.0.tgz#7941c5b2d8060e06f9601d6be7c223eef906d5d8"
+  integrity sha512-b4v7dyfApuKDvmPb+O488UlGuR1WbwMXFsO/cyqMrnfvRAChZKJAYeeglWTjUO1b9UghKKgepAQM5tsvBJca6A==
   dependencies:
     esutils "^2.0.2"
     lodash "^4.17.10"
@@ -1257,10 +1257,15 @@
   dependencies:
     "@types/graphql" "*"
 
-"@types/graphql@*", "@types/graphql@14.0.3":
+"@types/graphql@*":
   version "14.0.3"
   resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-14.0.3.tgz#389e2e5b83ecdb376d9f98fae2094297bc112c1c"
   integrity sha512-TcFkpEjcQK7w8OcrQcd7iIBPjU0rdyi3ldj6d0iJ4PPSzbWqPBvXj9KSwO14hTOX2dm9RoiH7VuxksJLNYdXUQ==
+
+"@types/graphql@14.0.4":
+  version "14.0.4"
+  resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-14.0.4.tgz#d71a75967cd93c33eaea32b626b362ce0f2b2ae9"
+  integrity sha512-gI98ANelzzpq7lZzuYCUJg8LZDjQc7ekj7cxoWt8RezOKaVaAyK27U6AHa9LEqikP1NUhyi8blQQkHYHVRZ7Tg==
 
 "@types/ioredis@*", "@types/ioredis@4.0.4":
   version "4.0.4"
@@ -1269,10 +1274,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/jest@23.3.10":
-  version "23.3.10"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.10.tgz#4897974cc317bf99d4fe6af1efa15957fa9c94de"
-  integrity sha512-DC8xTuW/6TYgvEg3HEXS7cu9OijFqprVDXXiOcdOKZCU/5PJNLZU37VVvmZHdtMiGOa8wAA/We+JzbdxFzQTRQ==
+"@types/jest@23.3.11":
+  version "23.3.11"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.11.tgz#d3a936ae753d9e484965f5cbd19027c2b8af2551"
+  integrity sha512-eroF85PoG87XjCwzxey7yBsQNkIY/TV5myKKSG/022A0FW25afdu/uub6JDMS5eT68zBBt82S+w/MFOTjeLM3Q==
 
 "@types/json-schema@7.0.1":
   version "7.0.1"
@@ -1412,10 +1417,10 @@
   resolved "https://registry.yarnpkg.com/@types/stack-trace/-/stack-trace-0.0.29.tgz#eb7a7c60098edb35630ed900742a5ecb20cfcb4d"
   integrity sha512-TgfOX+mGY/NyNxJLIbDWrO9DjGoVSW9+aB8H2yy1fy32jsvxijhmyJI9fDFgvz3YP4lvJaq9DzdR/M1bOgVc9g==
 
-"@types/stripe@6.18.0":
-  version "6.18.0"
-  resolved "https://registry.yarnpkg.com/@types/stripe/-/stripe-6.18.0.tgz#4434c2cdfce2900b5bbac7421e42abf449f2b08a"
-  integrity sha512-a/qkct+8fUBZl6MWzYaAhLC81wh9ViibnCVwsq+cfi64+mD/mj0aLhWKRAwPa72ErBG+35x0VJq8pNEQUxpRvQ==
+"@types/stripe@6.19.1":
+  version "6.19.1"
+  resolved "https://registry.yarnpkg.com/@types/stripe/-/stripe-6.19.1.tgz#62264970a4076ccec7daaef421eee8a593d469c3"
+  integrity sha512-VQjQpY+lhLsnG1rxRexoY3exfccf55pGcLIiw+fLKhyFzQJjIB21vP9NWVxVT37ZqZ2ir8BaFGJlINq28h/S4Q==
   dependencies:
     "@types/node" "*"
 
@@ -1584,58 +1589,58 @@ apollo-cache-control@0.4.0:
     apollo-server-env "2.2.0"
     graphql-extensions "0.4.0"
 
-apollo-codegen-core@0.30.8:
-  version "0.30.8"
-  resolved "https://registry.yarnpkg.com/apollo-codegen-core/-/apollo-codegen-core-0.30.8.tgz#987ac42cefb3e79c31b21916d82702ed302a5ccd"
-  integrity sha512-lnGrcSuzNApDADstXKbhI2pc4tZQa2I1CKtvovwitqod0EKYQgGp4qNGvpE7M1sjdu34SHNpYWC5uJBsMRzelw==
+apollo-codegen-core@0.30.9:
+  version "0.30.9"
+  resolved "https://registry.yarnpkg.com/apollo-codegen-core/-/apollo-codegen-core-0.30.9.tgz#c580192980842864ae9cefd543235c4d0673cbeb"
+  integrity sha512-P3kB5Gdy32IGl7bWyb2HCo4WWFoQpSzMronATOCG8Bvp+f+edwe8JBuN0d04mn2xVdup+hqVpHv4UBoXUE5Pzw==
   dependencies:
     "@babel/generator" "7.1.3"
     "@babel/parser" "^7.1.3"
-    "@babel/types" "7.2.0"
+    "@babel/types" "7.2.2"
     apollo-env "0.2.5"
     apollo-language-server "1.1.8"
     ast-types "^0.11.6"
     common-tags "^1.5.1"
     recast "^0.16.0"
 
-apollo-codegen-flow@0.30.8:
-  version "0.30.8"
-  resolved "https://registry.yarnpkg.com/apollo-codegen-flow/-/apollo-codegen-flow-0.30.8.tgz#c1fbc5be9699eb7249445c56615ceb40e257ba28"
-  integrity sha512-sxfZGK0Iln5wjkk4u0aJczRudenvs3WWL6K5UJMzEawAboE782eUoBzlrs2FBuLfBqj0FULh/6XcQf8RVHj79A==
+apollo-codegen-flow@0.30.9:
+  version "0.30.9"
+  resolved "https://registry.yarnpkg.com/apollo-codegen-flow/-/apollo-codegen-flow-0.30.9.tgz#90d004dd9ad7fb1afd12feb30f93f6e09abea2a9"
+  integrity sha512-2s59dUaEh3doiigiXhxUxtWp/5FBAESgZnjgR5eGdtUmaf0ErDp8mdV/1DOx4UXZcVa371/10jQZcbEjAtgO7g==
   dependencies:
-    "@babel/types" "7.2.0"
-    apollo-codegen-core "0.30.8"
+    "@babel/types" "7.2.2"
+    apollo-codegen-core "0.30.9"
     apollo-env "0.2.5"
     change-case "^3.0.1"
     inflected "^2.0.3"
 
-apollo-codegen-scala@0.30.8:
-  version "0.30.8"
-  resolved "https://registry.yarnpkg.com/apollo-codegen-scala/-/apollo-codegen-scala-0.30.8.tgz#7061d3618345ccba433d83cdefa8cfe18c8bb465"
-  integrity sha512-c0L90N83cotFJFKhixW8OKySBe1KRjFNXYCUv4EBCa3LdvMxRXjP1h5+L0QfOVn/Rtxir7R8Rh+bZb4lPYky2w==
+apollo-codegen-scala@0.30.9:
+  version "0.30.9"
+  resolved "https://registry.yarnpkg.com/apollo-codegen-scala/-/apollo-codegen-scala-0.30.9.tgz#34f8a2e0bb620acdc6e1d91a5c8e619276b62cbf"
+  integrity sha512-v8Khsf2q0yVrqy3QGsvmcMs+bleJzsh6i57oH2RJfLN8vGVgcR+meY4ei54mfV2CAuNQpPD7PmIeQhZqKI2w/A==
   dependencies:
-    apollo-codegen-core "0.30.8"
+    apollo-codegen-core "0.30.9"
     apollo-env "0.2.5"
     change-case "^3.0.1"
     inflected "^2.0.3"
 
-apollo-codegen-swift@0.30.8:
-  version "0.30.8"
-  resolved "https://registry.yarnpkg.com/apollo-codegen-swift/-/apollo-codegen-swift-0.30.8.tgz#1225a158ced15bf7b9b15b7df62bbe2c59c4450e"
-  integrity sha512-bNQKo5v1lIXfrDGXj7/48XyxPqSmNb+uiy1TpVvBTvmqx801GtX+O1ILlX/xvhmI+HF+6zT1+JPrfEvVghSNkA==
+apollo-codegen-swift@0.30.9:
+  version "0.30.9"
+  resolved "https://registry.yarnpkg.com/apollo-codegen-swift/-/apollo-codegen-swift-0.30.9.tgz#e83beecfe59ac63c1674955b0d77065ef8ec3442"
+  integrity sha512-fr4iP8DiUy3lhpX82mDNaPW8+0TrqUl2vsTaE2Qlu3ctreTK4e7Hq0Wj7RUuwefYw6Tj4cfOnw5F0er/w01E/w==
   dependencies:
-    apollo-codegen-core "0.30.8"
+    apollo-codegen-core "0.30.9"
     apollo-env "0.2.5"
     change-case "^3.0.1"
     inflected "^2.0.3"
 
-apollo-codegen-typescript@0.30.8:
-  version "0.30.8"
-  resolved "https://registry.yarnpkg.com/apollo-codegen-typescript/-/apollo-codegen-typescript-0.30.8.tgz#2dcb2b75b9ee288d58f57c61e9999598440cfa28"
-  integrity sha512-mhgALqzYoU8oP9yJacZK9dS9Niww308rkrLhg0ZFyJk8C7MyVwmhKuuoTcPoIL5PKj/Hp6R0eOAmCxuoZNCoeg==
+apollo-codegen-typescript@0.30.9:
+  version "0.30.9"
+  resolved "https://registry.yarnpkg.com/apollo-codegen-typescript/-/apollo-codegen-typescript-0.30.9.tgz#42ce3f1015c2b653e8a78eaabaefd9394429ec6a"
+  integrity sha512-P8XZ50jO3qyyWhJXSL8sweyi8aYo7YwaSiavhOWTS4X9SQpIo7F/2Xc6guosOAdKivGRj2Q0lOauXSE472ynwg==
   dependencies:
-    "@babel/types" "7.2.0"
-    apollo-codegen-core "0.30.8"
+    "@babel/types" "7.2.2"
+    apollo-codegen-core "0.30.9"
     apollo-env "0.2.5"
     change-case "^3.0.1"
     inflected "^2.0.3"
@@ -1869,10 +1874,10 @@ apollo-utilities@^1.0.0, apollo-utilities@^1.0.1:
   dependencies:
     fast-json-stable-stringify "^2.0.0"
 
-apollo@2.1.8:
-  version "2.1.8"
-  resolved "https://registry.yarnpkg.com/apollo/-/apollo-2.1.8.tgz#2ef092e0c99fd434e4a3ffea15dae342e7a7feec"
-  integrity sha512-Q5LWcdxB9FwkveGGEndF9slCA+/KAWpnv3H5BKXXoLVV+4yZapKx6A3F3HaKwqpiWoWsnbZlVO9t9T6kZOhywA==
+apollo@2.1.9:
+  version "2.1.9"
+  resolved "https://registry.yarnpkg.com/apollo/-/apollo-2.1.9.tgz#1290a849738cd1b1ed3353ccacc7d218366a041f"
+  integrity sha512-gkuhPxuMcwfBoT+HVN/XdI3l1fX5+9uE3Me4YvdEskJ4UCOMkH5EScm0WfSA/IpOwPlI12oOmHJu1ICSI20v0A==
   dependencies:
     "@apollographql/apollo-tools" "0.2.9"
     "@oclif/command" "^1.4.21"
@@ -1882,11 +1887,11 @@ apollo@2.1.8:
     "@oclif/plugin-not-found" "^1.0.9"
     "@oclif/plugin-plugins" "^1.7.2"
     "@oclif/plugin-warn-if-update-available" "^1.3.9"
-    apollo-codegen-core "0.30.8"
-    apollo-codegen-flow "0.30.8"
-    apollo-codegen-scala "0.30.8"
-    apollo-codegen-swift "0.30.8"
-    apollo-codegen-typescript "0.30.8"
+    apollo-codegen-core "0.30.9"
+    apollo-codegen-flow "0.30.9"
+    apollo-codegen-scala "0.30.9"
+    apollo-codegen-swift "0.30.9"
+    apollo-codegen-typescript "0.30.9"
     apollo-engine-reporting "0.0.2"
     apollo-env "0.2.5"
     apollo-language-server "1.1.8"
@@ -2572,6 +2577,15 @@ chalk@2.4.1, chalk@^2.0.0, chalk@^2.0.1, chalk@^2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.4.1.tgz#18c49ab16a037b6eb0152cc83e3471338215b66e"
   integrity sha512-ObN6h1v2fTJSmUXoS3nMQ92LbDK9be4TV+6G+omQlGJFdcUX5heKi1LZ1YnRMIgwTLEj3E24bT6tYni50rlCfQ==
+  dependencies:
+    ansi-styles "^3.2.1"
+    escape-string-regexp "^1.0.5"
+    supports-color "^5.3.0"
+
+chalk@2.4.2:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.4.2.tgz#cd42541677a54333cf541a49108c1432b44c9424"
+  integrity sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==
   dependencies:
     ansi-styles "^3.2.1"
     escape-string-regexp "^1.0.5"
@@ -7788,7 +7802,14 @@ retry@0.12.0:
   resolved "https://registry.yarnpkg.com/retry/-/retry-0.12.0.tgz#1b42a6266a21f07421d1b0b54b7dc167b01c013b"
   integrity sha1-G0KmJmoh8HQh0bC1S33BZ7AcATs=
 
-rimraf@2.6.2, rimraf@^2.5.4, rimraf@^2.6.1, rimraf@^2.6.2:
+rimraf@2.6.3:
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.6.3.tgz#b2d104fe0d8fb27cf9e0a1cda8262dd3833c6cab"
+  integrity sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==
+  dependencies:
+    glob "^7.1.3"
+
+rimraf@^2.5.4, rimraf@^2.6.1, rimraf@^2.6.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.6.2.tgz#2ed8150d24a16ea8651e6d6ef0f47c4158ce7a36"
   integrity sha512-lreewLK/BlghmxtfH36YYVg1i8IAce4TI7oao75I1g245+6BctqTVQiBP3YUJ9C6DQOXJmkYR9X9fCLtCOJc5w==
