@@ -30,7 +30,7 @@
     "bluebird": "3.5.3",
     "body-parser": "1.18.3",
     "bull": "3.5.2",
-    "chalk": "2.4.1",
+    "chalk": "2.4.2",
     "cors": "2.8.5",
     "dataloader": "1.4.0",
     "date-fns": "2.0.0-alpha.26",
