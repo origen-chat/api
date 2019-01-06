@@ -1,1 +1,0 @@
-export { SomethingWentWrongError } from './errors';
