@@ -5,30 +5,28 @@ services:
     ports:
       - '80:80'
       - '443:443'
-      - '4000:443'
     volumes:
       - ./keys:/etc/nginx/certs:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
     depends_on:
       - api
-      - web
 
   api:
     build:
-      context: ./projects/api
+      context: .
       dockerfile: dev.dockerfile
     ports:
-      - '5000:4000'
+      - '4000:4000'
       # Node inspector port.
       - '9229:9229'
     volumes:
-      - ./projects/api:/usr/src/app
+      - .:/usr/src/app
       - /usr/src/app/node_modules
     depends_on:
       - postgres
       - redis
     environment:
-      - VIRTUAL_HOST=api.dev.loop.com
+      - VIRTUAL_HOST=api.local.origen.chat
       - VIRTUAL_PORT=4000
 
       - CERT_NAME=shared
@@ -37,33 +35,12 @@ services:
       - DB_HOST=postgres
       - DB_USER=postgres
       - DB_PASSWORD=postgres
-      - DB_NAME=loop_dev
+      - DB_NAME=origen_dev
 
       - REDIS_HOST=redis
       - REDIS_PORT=6379
 
-      - WEB_ROOT_URL=https://dev.loop.com
-    env_file: .env
-
-  web:
-    build:
-      context: ./projects/web
-      dockerfile: dev.dockerfile
-    ports:
-      - '3000:4000'
-      - '9001:9001'
-    volumes:
-      - ./projects/web:/usr/src/app
-      - /usr/src/app/node_modules
-    environment:
-      - VIRTUAL_HOST=dev.loop.com
-      - VIRTUAL_PORT=4000
-
-      - CERT_NAME=shared
-      - NODE_ENV=development
-
-      - API_ENDPOINT=https://api.dev.loop.com
-      - GRAPHQL_WS_ENDPOINT=wss://api.dev.loop.com/graphql
+      - WEB_ROOT_URL=https://app.local.origen.chat:3000
     env_file: .env
 
   postgres:

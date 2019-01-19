@@ -1,7 +1,7 @@
 import { ID, Identifiable, Timestamps } from '../types';
 
 export type UserGroupMembership = Readonly<{
-  userId: ID;
+  memberId: ID;
   userGroupId: ID;
 }> &
   Identifiable &

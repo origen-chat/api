@@ -12,6 +12,9 @@
     "migrate": "knex --knexfile=knexfile.ts migrate:latest",
     "make-migration": "knex --knexfile=knexfile.ts migrate:make",
     "rollback-migration": "knex --knexfile=knexfile.ts migrate:rollback",
+    "make-keys": "mkcert localhost api.local.origen.chat 127.0.0.1 ::1 0.0.0.0",
+    "premake-keys": "yarn clean-keys",
+    "postmake-keys": "mkdirp keys && mv localhost+4.pem keys/shared.crt && mv localhost+4-key.pem keys/shared.key",
     "test": "cross-env NODE_ENV=test jest",
     "pretest": "cross-env NODE_ENV=test yarn migrate",
     "test:ci": "yarn test --coverage",
@@ -20,6 +23,7 @@
     "typecheck": "yarn typecheck:ts",
     "typecheck:ts": "tsc",
     "clean": "rimraf dist",
+    "clean-keys": "rimraf keys/shared.key keys/shared.crt",
     "logs": "docker-compose logs --follow --tail=10",
     "lint": "eslint \"src/**/*.{js,ts}\"",
     "lint:fix": "eslint --fix \"src/**/*.{js,ts}\""

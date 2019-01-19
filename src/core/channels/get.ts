@@ -7,14 +7,17 @@ import { getCachedChannel, maybeCacheChannel } from './cache';
 import { channelsTableName } from './constants';
 import { Channel, ChannelType, DirectMessagesChannel } from './types';
 
-export async function getChannelById(id: ID): Promise<Channel | null> {
+export async function getChannelById(
+  id: ID,
+  options: DBOptions = {},
+): Promise<Channel | null> {
   const cachedChannel = await getCachedChannel(id);
 
   if (cachedChannel) {
     return cachedChannel;
   }
 
-  const channel = await getChannelByFromDB({ id });
+  const channel = await getChannelByFromDB({ id }, options);
 
   await maybeCacheChannel(channel);
 

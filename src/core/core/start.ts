@@ -1,4 +1,4 @@
-import { startBackgroundWorkers } from '../backgroundWorkers';
+import { maybeStartBackgroundWorkers } from '../backgroundWorkers';
 import { startDB } from '../db';
 import { initializeErrorTracking } from '../errorTracking';
 import { startJobQueues } from '../jobQueues';
@@ -17,7 +17,7 @@ export async function startCore(): Promise<void> {
   await Promise.all([startRedis(), startDB(), startPubsub()]);
 
   startJobQueues();
-  startBackgroundWorkers();
+  maybeStartBackgroundWorkers();
 
   isStarted = true;
 }

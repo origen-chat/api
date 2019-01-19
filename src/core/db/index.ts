@@ -11,4 +11,8 @@ export {
   maybeAddTransactionToQuery,
   TransactionFunction,
 } from './transactions';
-export { insertIntoDB, InsertIntoDBArgs } from './insertion';
+export {
+  insertIntoDB,
+  InsertIntoDBArgs,
+  InsertIntoDBOptions,
+} from './insertion';

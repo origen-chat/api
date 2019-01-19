@@ -1,10 +1,10 @@
-import { QueryBuilder, Raw, Transaction } from 'knex';
+import * as Knex from 'knex';
 
 import { DBOptions } from '../types';
 import { db } from './db';
 
 export type TransactionFunction<TReturn> = (
-  transaction: Transaction,
+  transaction: Knex.Transaction,
 ) => Promise<TReturn>;
 
 export type DoInTransactionOptions = DBOptions;
@@ -23,16 +23,19 @@ export async function doInTransaction<TReturn>(
 }
 
 export function maybeAddTransactionToQuery(
-  query: QueryBuilder,
+  query: Knex.QueryBuilder,
   options: DBOptions,
-): QueryBuilder;
-
-export function maybeAddTransactionToQuery(query: Raw, options: DBOptions): Raw;
+): Knex.QueryBuilder;
 
 export function maybeAddTransactionToQuery(
-  query: QueryBuilder | Raw,
+  query: Knex.Raw,
   options: DBOptions,
-): QueryBuilder | Raw {
+): Knex.Raw;
+
+export function maybeAddTransactionToQuery(
+  query: Knex.QueryBuilder | Knex.Raw,
+  options: DBOptions,
+): Knex.QueryBuilder | Knex.Raw {
   if (options.transaction) {
     query.transacting(options.transaction);
   }

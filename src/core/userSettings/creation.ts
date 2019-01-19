@@ -1,4 +1,3 @@
-import { ColorTheme, getDefaultColorTheme } from '../colorThemes';
 import { insertIntoDB } from '../db';
 import { DBOptions } from '../types';
 import { User } from '../users';
@@ -11,24 +10,13 @@ export async function createUserSettings(
   args: CreateUserSettingsArgs,
   options: DBOptions = {},
 ): Promise<UserSettings> {
-  const defaultColorTheme = await getDefaultColorTheme();
-
-  const argsWithDefaultColorTheme: InsertUserSettingsIntoDBArgs = {
-    ...args,
-    colorTheme: defaultColorTheme,
-  };
-
-  const userSettings = await insertUserSettingsIntoDB(
-    argsWithDefaultColorTheme,
-    options,
-  );
+  const userSettings = await insertUserSettingsIntoDB(args, options);
 
   return userSettings;
 }
 
 type InsertUserSettingsIntoDBArgs = Readonly<{
   user: User;
-  colorTheme: ColorTheme;
 }> &
   Partial<Pick<UserSettings, 'locale' | 'timezone'>>;
 
@@ -55,7 +43,6 @@ function makeDoInsertUserSettingsIntoDBArgs(
     userId: args.user.id,
     locale: args.locale || defaultUserSettings.locale,
     timezone: args.timezone || null,
-    colorThemeId: args.colorTheme.id,
   };
 
   return doInsertUserSettingsIntoDBArgs;
@@ -63,7 +50,7 @@ function makeDoInsertUserSettingsIntoDBArgs(
 
 type DoInsertUserSettingsIntoDBArgs = Pick<
   UserSettings,
-  'userId' | 'locale' | 'timezone' | 'colorThemeId'
+  'userId' | 'locale' | 'timezone'
 >;
 
 async function doInsertUserSettingsIntoDB(

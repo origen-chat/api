@@ -4,9 +4,14 @@ import { User } from '../users';
 import { Workspace } from '../workspaces';
 import { userGroupsTableName } from './constants';
 import { UserGroup } from './types';
+import { NamedChannel } from '../channels';
+import { addUsersToUserGroup } from '../userGroupMemberships';
 
 export type CreateUserGroupArgs = InsertUserGroupIntoDBArgs &
-  Readonly<{ members: ReadonlyArray<User> }>;
+  Readonly<{
+    members: ReadonlyArray<User>;
+    channels: ReadonlyArray<NamedChannel>;
+  }>;
 
 export async function createUserGroup(
   args: CreateUserGroupArgs,
@@ -24,6 +29,8 @@ export async function createUserGroup(
       optionsWithTransaction,
     );
 
+    await addUsersToUserGroup({ userGroup, users: args.members });
+
     return userGroup;
   }, options);
 
@@ -38,16 +45,36 @@ async function insertUserGroupIntoDB(
   args: InsertUserGroupIntoDBArgs,
   options: DBOptions = {},
 ): Promise<UserGroup> {
-  const userGroup = await doInsertUserGroupIntoDB(args, options);
+  const doInsertUserGroupIntoDBArgs = makeDoInsertUserGroupIntoDBArgs(args);
+
+  const userGroup = await doInsertUserGroupIntoDB(
+    doInsertUserGroupIntoDBArgs,
+    options,
+  );
 
   return userGroup;
 }
 
-export type DoInsertUserIntoDBArgs = Pick<UserGroup, 'name' | 'workspaceId'> &
+function makeDoInsertUserGroupIntoDBArgs(
+  args: InsertUserGroupIntoDBArgs,
+): DoInsertUserGroupIntoDBArgs {
+  const doInsertUserGroupIntoDBArgs: DoInsertUserGroupIntoDBArgs = {
+    name: args.name,
+    workspaceId: args.workspace.id,
+    description: args.description,
+  };
+
+  return doInsertUserGroupIntoDBArgs;
+}
+
+export type DoInsertUserGroupIntoDBArgs = Pick<
+  UserGroup,
+  'name' | 'workspaceId'
+> &
   Partial<Pick<UserGroup, 'description'>>;
 
 export async function doInsertUserGroupIntoDB(
-  args: DoInsertUserIntoDBArgs,
+  args: DoInsertUserGroupIntoDBArgs,
   options: DBOptions = {},
 ): Promise<UserGroup> {
   const userGroup = await insertIntoDB(

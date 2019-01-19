@@ -6,8 +6,10 @@ import { startListeningOnPostCreateWorkspaceQueue } from './postCreateWorkspace'
 import { startListeningOnPostCreateWorkspaceInvitationQueue } from './postCreateWorkspaceInvitation';
 import { startListeningOnPostRegisterUserQueue } from './postRegisterUser';
 import { startListeningOnPostUpdateMessageQueue } from './postUpdateMessage';
+import { startListeningOnPostCreateUserGroupChannelsQueue } from './postCreateUserGroupChannels';
+import { startListeningOnPostCreateUserGroupMembershipsQueue } from './postCreateUserGroupMemberships';
 
-export function startBackgroundWorkers(): void {
+export function maybeStartBackgroundWorkers(): void {
   if (!config.env.enableBackgroundWorkers) {
     logger.info('🐜 background workers not enabled');
 
@@ -20,6 +22,8 @@ export function startBackgroundWorkers(): void {
   startListeningOnPostUpdateMessageQueue();
   startListeningOnPostCreateWorkspaceInvitationQueue();
   startListeningOnPostCreateNamedChannelQueue();
+  startListeningOnPostCreateUserGroupChannelsQueue();
+  startListeningOnPostCreateUserGroupMembershipsQueue();
 
   logger.info('🐜 background workers ready');
 }

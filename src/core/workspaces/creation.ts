@@ -53,7 +53,7 @@ export async function insertWorkspaceIntoDB(
   args: InsertWorkspaceIntoDBArgs,
   options: DBOptions = {},
 ): Promise<Workspace> {
-  const doInsertWorkspaceArgs = makeDoInsertWorkspaceIntoDbArgs(args);
+  const doInsertWorkspaceArgs = makeDoInsertWorkspaceIntoDBArgs(args);
 
   const workspace = await doInsertWorkspaceIntoDB(
     doInsertWorkspaceArgs,
@@ -63,7 +63,7 @@ export async function insertWorkspaceIntoDB(
   return workspace;
 }
 
-function makeDoInsertWorkspaceIntoDbArgs(
+function makeDoInsertWorkspaceIntoDBArgs(
   args: InsertWorkspaceIntoDBArgs,
 ): DoInsertWorkspaceIntoDBArgs {
   const doInsertWorkspaceIntoDBArgs: DoInsertWorkspaceIntoDBArgs = pick(

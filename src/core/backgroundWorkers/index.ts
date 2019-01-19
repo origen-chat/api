@@ -1,1 +1,1 @@
-export { startBackgroundWorkers } from './backgroundWorkers';
+export { maybeStartBackgroundWorkers } from './backgroundWorkers';
