@@ -9,6 +9,7 @@ import {
   WorkspaceMembership,
   WorkspaceMembershipRole,
 } from './types';
+import { maybeUpdateSubscriptionQuantityInStripe } from './subscriptions';
 
 export async function createWorkspaceOwnerMembership(
   workspace: Workspace,
@@ -49,6 +50,11 @@ export async function createWorkspaceMembership(
         optionsWithTransaction,
       );
     }
+
+    await maybeUpdateSubscriptionQuantityInStripe(
+      { workspace: args.workspace },
+      optionsWithTransaction,
+    );
 
     return createdWorkspaceMembership;
   }, options);

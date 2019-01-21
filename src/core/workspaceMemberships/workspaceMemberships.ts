@@ -1,8 +1,10 @@
-import { DBOptions } from '../types';
-import { User } from '../users';
+import { DBOptions, NonNegativeInteger } from '../types';
+import { User, usersTableName } from '../users';
 import { Workspace } from '../workspaces';
 import { createWorkspaceOwnerMembership } from './creation';
 import { WorkspaceMembership } from './types';
+import db, { maybeAddTransactionToQuery } from '../db';
+import { workspaceMembershipsTableName } from './constants';
 
 export async function addOwnerToWorkspace(
   workspace: Workspace,
@@ -16,4 +18,24 @@ export async function addOwnerToWorkspace(
   );
 
   return workspaceOwnerMembership;
+}
+
+export async function getWorkspaceBillableMemberCount(
+  workspace: Workspace,
+  options: DBOptions = {},
+): Promise<NonNegativeInteger> {
+  const query = db
+    .count(`${usersTableName}.id`)
+    .innerJoin(
+      workspaceMembershipsTableName,
+      `${workspaceMembershipsTableName}.userMemberId`,
+      `${usersTableName}.id`,
+    )
+    .where(`${workspaceMembershipsTableName}.workspaceId`, workspace.id);
+
+  maybeAddTransactionToQuery(query, options);
+
+  const billableMemberCount = await query;
+
+  return billableMemberCount;
 }

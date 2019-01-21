@@ -14,4 +14,7 @@ export {
   createWorkspaceOwnerMembership,
   CreateWorkspaceMembershipArgs,
 } from './creation';
-export { addOwnerToWorkspace } from './workspaceMemberships';
+export {
+  addOwnerToWorkspace,
+  getWorkspaceBillableMemberCount,
+} from './workspaceMemberships';

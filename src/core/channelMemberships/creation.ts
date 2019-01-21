@@ -1,5 +1,5 @@
 import { Channel } from '../channels';
-import { doInTransaction, insertIntoDB } from '../db';
+import { doInTransaction, insertIntoDB, InsertIntoDBOptions } from '../db';
 import { DBOptions } from '../types';
 import { createManyUserChannelSettings } from '../userChannelSettings';
 import { User } from '../users';
@@ -34,7 +34,7 @@ export type CreateChannelMembershipsArgs = InsertChannelMembershipsIntoDBArgs;
 
 export async function createChannelMemberships(
   args: CreateChannelMembershipsArgs,
-  options: DBOptions = {},
+  options: InsertIntoDBOptions = {},
 ): Promise<ReadonlyArray<ChannelMembership>> {
   const channelMemberships = await doInTransaction(async transaction => {
     const optionsWithTransaction: DBOptions = { ...options, transaction };
@@ -63,7 +63,7 @@ type InsertChannelMembershipsIntoDBArgs = Readonly<{
 
 async function insertChannelMembershipsIntoDB(
   args: InsertChannelMembershipsIntoDBArgs,
-  options: DBOptions = {},
+  options: InsertIntoDBOptions = {},
 ): Promise<ReadonlyArray<ChannelMembership>> {
   const doInsertChannelMembershipsArgs = makeDoInsertChannelMembershipsArgs(
     args,
@@ -97,7 +97,7 @@ type DoInsertChannelMembershipsIntoDBArgs = ReadonlyArray<
 
 async function doInsertChannelMembershipsIntoDB(
   args: DoInsertChannelMembershipsIntoDBArgs,
-  options: DBOptions = {},
+  options: InsertIntoDBOptions = {},
 ): Promise<ReadonlyArray<ChannelMembership>> {
   const channelMemberships = await insertIntoDB(
     { data: args, tableName: channelMembershipsTableName },

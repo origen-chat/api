@@ -11,4 +11,12 @@ export {
   CreateChannelMembershipArgs,
   CreateChannelMembershipsArgs,
 } from './creation';
-export { addCreatorToNamedChannel } from './channelMemberships';
+export {
+  addCreatorToNamedChannel,
+  addUserToNamedChannel,
+  addUsersToChannel,
+  addUsersToChannels,
+  AddUserToNamedChannelArgs,
+  AddUsersToChannelArgs,
+  AddUsersToChannelsArgs,
+} from './channelMemberships';
