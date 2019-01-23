@@ -1,5 +1,6 @@
 import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions } from '../types';
+
 import { bookmarksTableName } from './constants';
 import { Bookmark } from './types';
 

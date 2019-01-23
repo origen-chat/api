@@ -1,6 +1,7 @@
 import DataLoader, { Options as DataLoaderOptions } from 'dataloader';
 
 import * as core from '../../core';
+
 import { BatchLoadFunction } from './types';
 
 export type MakeLoaderArgs<
@@ -74,7 +75,7 @@ export function makeBatchLoadFunction<
 
 function makeDefaultNormalizeFunction<
   TKey,
-  TValue extends { [k in TKeyName]: TKey },
+  TValue extends { [TValueKey in TKeyName]: TKey },
   TKeyName extends string
 >(key: TKey, keyName: TKeyName): (value: TValue) => boolean {
   return value => value[keyName] === key;

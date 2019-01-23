@@ -1,6 +1,7 @@
 import { insertIntoDB } from '../db';
 import { DBOptions } from '../types';
 import { User } from '../users';
+
 import { defaultUserSettings, userSettingsTableName } from './constants';
 import { UserSettings } from './types';
 

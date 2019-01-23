@@ -1,4 +1,5 @@
 import { Email, HTML } from '../types';
+
 import { mailgun } from './mailgun';
 
 export type SendEmailArgs = Readonly<{

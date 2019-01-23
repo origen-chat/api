@@ -1,4 +1,5 @@
 import { User } from '../users';
+
 import { UserConnectionStatus } from './constants';
 import { getUserConnectionStatus } from './get';
 

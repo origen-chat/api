@@ -4,6 +4,7 @@ import { Reactable } from '../reactables';
 import { Reaction } from '../reactions';
 import { DBOptions } from '../types';
 import { isUser } from '../users';
+
 import { reactableReactionsTableName } from './constants';
 import { ReactableReaction, ReactableReactionAuthor } from './types';
 

@@ -1,4 +1,5 @@
 import { Actor } from '../actors';
+
 import { isPublicChannel } from './predicates';
 import { Channel } from './types';
 

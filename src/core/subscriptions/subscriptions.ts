@@ -1,7 +1,8 @@
 import { Workspace } from '../workspaces';
 import { DBOptions, NonNegativeInteger } from '../types';
-import { getSubscriptionByWorkspace } from './get';
 import stripe from '../stripe';
+
+import { getSubscriptionByWorkspace } from './get';
 import { Subscription } from './types';
 
 export async function isWorkspaceOnAPaidPlan(

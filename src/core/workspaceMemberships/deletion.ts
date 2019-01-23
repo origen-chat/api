@@ -1,9 +1,10 @@
 import db, { maybeAddTransactionToQuery, doInTransaction } from '../db';
 import { DBOptions } from '../types';
+import { getWorkspaceById } from '../workspaces';
+
 import { workspaceMembershipsTableName } from './constants';
 import { WorkspaceMembership } from './types';
 import { maybeUpdateSubscriptionQuantityInStripe } from './subscriptions';
-import { getWorkspaceById } from '../workspaces';
 import { isUserWorkspaceMembership } from './predicates';
 
 export async function deleteWorkspaceMembership(
@@ -19,7 +20,7 @@ export async function deleteWorkspaceMembership(
     );
 
     if (isUserWorkspaceMembership(workspaceMembership)) {
-      // eslint-disable-next-line typescript/no-non-null-assertion
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const workspace = (await getWorkspaceById(
         workspaceMembership.workspaceId,
       ))!;

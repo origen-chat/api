@@ -1,5 +1,6 @@
 import * as core from '../../../../core';
 import { Resolver } from '../../../types';
+
 import { validateChannelsArgs } from './validation';
 
 export type ResolveChannelsArgs = Readonly<{

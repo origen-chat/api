@@ -3,6 +3,7 @@ import { addSeconds } from 'date-fns/fp';
 import { insertIntoDB } from '../db';
 import { DBOptions, NonNegativeInteger } from '../types';
 import { Workspace } from '../workspaces';
+
 import { generateRandomCode } from './codes';
 import { workspaceInvitationLinksTableName } from './constants';
 import { WorkspaceInvitationLink } from './types';

@@ -1,5 +1,6 @@
 import db, { doInTransaction, maybeAddTransactionToQuery } from '../db';
 import { DBOptions, Mutable } from '../types';
+
 import { cacheUser } from './cache';
 import { usersTableName } from './constants';
 import { User } from './types';

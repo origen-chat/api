@@ -1,4 +1,5 @@
 import * as core from '../../core';
+
 import { getUserFromJWT } from './jwt';
 
 export async function getUserFromAuthorizationHeader(

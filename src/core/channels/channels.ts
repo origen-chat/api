@@ -3,6 +3,7 @@ import { DBOptions } from '../types';
 import { User } from '../users';
 import { areWorkspaceMembers } from '../workspaceMemberships';
 import { Workspace } from '../workspaces';
+
 import { maxUsersInDirectMessagesChannel } from './constants';
 import { createDirectMessagesChannel } from './creation';
 import { getDirectMessagesChannelByMembers } from './get';

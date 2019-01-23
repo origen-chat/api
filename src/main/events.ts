@@ -1,4 +1,5 @@
 import * as core from '../core';
+
 import { shutdownApplication } from './shutdown';
 
 export function handleProcessEvents(): void {

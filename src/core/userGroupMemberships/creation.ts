@@ -1,9 +1,10 @@
 import { insertIntoDB, InsertIntoDBOptions } from '../db';
 import { DBOptions } from '../types';
 import { User } from '../users';
+import { UserGroup } from '../userGroups';
+
 import { userGroupMembershipsTableName } from './constants';
 import { UserGroupMembership } from './types';
-import { UserGroup } from '../userGroups';
 import { enqueuePostCreateUserGroupMembershipsJob } from './jobs';
 
 export type CreateUserGroupMembershipsArgs = InsertUserGroupMembershipsIntoDBArgs;

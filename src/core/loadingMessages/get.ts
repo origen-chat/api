@@ -2,6 +2,7 @@ import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions, ID } from '../types';
 import { workspaceLoadingMessagesTableName } from '../workspaceLoadingMessage';
 import { Workspace } from '../workspaces';
+
 import { loadingMessagesTableName } from './constants';
 import { LoadingMessage } from './types';
 

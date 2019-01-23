@@ -7,15 +7,15 @@ async function cleanDatabase() {
 }
 
 async function deleteFromTables(tableNames) {
-  const deleteFromTablePromises = tableNames.map(tableName =>
-    deleteFromTable(tableName),
-  );
+  const deleteFromTablePromises = tableNames.map(tableName => {
+    deleteFromTable(tableName);
+  });
 
   await Promise.all(deleteFromTablePromises);
 }
 
 async function deleteFromTable(tableName) {
-  await core.db.default.del().from(tableName);
+  await core.db.default.delete().from(tableName);
 }
 
 module.exports.cleanDatabase = cleanDatabase;

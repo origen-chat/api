@@ -1,4 +1,5 @@
 import { AuthenticationError, ForbiddenError } from 'apollo-server-express';
+
 import { channels, workspaces } from '../../../../core';
 import { isViewerAuthenticated } from '../../../helpers';
 import { Resolver } from '../../../types';

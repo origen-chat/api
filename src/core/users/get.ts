@@ -1,5 +1,6 @@
 import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions, Email, ID } from '../types';
+
 import { getCachedUser, maybeCacheUser } from './cache';
 import { usersTableName } from './constants';
 import { UniqueUsername, User } from './types';

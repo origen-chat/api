@@ -1,5 +1,6 @@
 import * as core from '../../../../core';
 import { Resolver } from '../../../types';
+
 import { ActorTypingArgs, ActorTypingPayload } from './types';
 
 export const resolveActorTyping: Resolver<

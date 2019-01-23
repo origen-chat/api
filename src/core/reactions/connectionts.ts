@@ -19,6 +19,7 @@ import {
   PaginationArgs,
 } from '../types';
 import { usersTableName } from '../users';
+
 import { Reaction } from './types';
 
 export type GetReactableReactionAuthorConnectionArgs = Readonly<{

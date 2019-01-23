@@ -1,6 +1,7 @@
 import { insertIntoDB } from '../db';
 import { DBOptions, Nullable } from '../types';
 import { Workspace } from '../workspaces';
+
 import { reactionsTableName } from './constants';
 import { Reaction } from './types';
 

@@ -1,10 +1,11 @@
 import { jobQueues } from '../jobQueues';
-import { JobProcessor } from './types';
 import { UserGroup } from '../userGroups';
 import { ID } from '../types';
 import { getUsersByIds } from '../users';
 import { addUsersToChannels } from '../channelMemberships';
 import { getChannelsInUserGroup } from '../userGroupChannels';
+
+import { JobProcessor } from './types';
 
 export type ProcessPostCreateUserGroupMembershipsJobData = Readonly<{
   userGroup: UserGroup;

@@ -2,6 +2,7 @@ import { insertIntoDB } from '../db';
 import { LoadingMessage } from '../loadingMessages';
 import { DBOptions } from '../types';
 import { Workspace } from '../workspaces';
+
 import { workspaceLoadingMessagesTableName } from './constants';
 import { WorkspaceLoadingMessage } from './types';
 

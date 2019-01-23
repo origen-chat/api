@@ -3,6 +3,7 @@ import { Reactable } from '../reactables';
 import { Reaction } from '../reactions';
 import { DBOptions } from '../types';
 import { User } from '../users';
+
 import { createReactableReaction } from './creation';
 import { deleteReactableReaction } from './deletion';
 import { getReactableReactionByAuthorReactableAndReaction } from './get';

@@ -1,5 +1,6 @@
 import * as core from '../../../../core';
 import { Resolver } from '../../../types';
+
 import { validateMessagesArgs } from './validation';
 
 export type ResolveMessagesArgs = core.types.PaginationArgs;

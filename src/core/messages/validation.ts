@@ -2,6 +2,7 @@ import { isBot } from '../bots';
 import { isChannelMember } from '../channelMemberships/predicates';
 import { Channel } from '../channels';
 import { DBOptions } from '../types';
+
 import { EditMessageArgs, SendMessageArgs } from './messages';
 import { Message, MessageSender } from './types';
 

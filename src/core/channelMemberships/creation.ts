@@ -3,6 +3,7 @@ import { doInTransaction, insertIntoDB, InsertIntoDBOptions } from '../db';
 import { DBOptions } from '../types';
 import { createManyUserChannelSettings } from '../userChannelSettings';
 import { User } from '../users';
+
 import { channelMembershipsTableName } from './constants';
 import { ChannelMembership, ChannelMembershipRole } from './types';
 

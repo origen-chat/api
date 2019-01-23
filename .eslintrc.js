@@ -17,7 +17,7 @@ module.exports = {
     'import',
     'security',
     'jsx-a11y',
-    'typescript',
+    '@typescript-eslint',
     'ramda',
     'graphql',
     'fp',
@@ -38,6 +38,7 @@ module.exports = {
     'plugin:unicorn/recommended',
     'plugin:jest/recommended',
     'airbnb',
+    'plugin:@typescript-eslint/recommended',
     'plugin:ramda/recommended',
     'plugin:eslint-comments/recommended',
     'plugin:fp/recommended',
@@ -49,6 +50,7 @@ module.exports = {
     'no-use-before-define': 'off',
 
     'unicorn/filename-case': 'off',
+    'unicorn/no-abusive-eslint-disable': 'off',
 
     'react/jsx-filename-extension': [
       'error',
@@ -58,6 +60,7 @@ module.exports = {
     'import/no-named-as-default': 'off',
     'import/no-extraneous-dependencies': 'off',
     'import/prefer-default-export': 'off',
+    'import/order': ['error', { 'newlines-between': 'always' }],
 
     'prettier/prettier': 'error',
 
@@ -73,6 +76,8 @@ module.exports = {
     'fp/no-let': 'off',
     'fp/no-unused-expression': 'off',
     'fp/no-rest-parameters': 'off',
+
+    '@typescript-eslint/indent': 'off',
   },
 
   settings: {
@@ -86,7 +91,10 @@ module.exports = {
   overrides: [
     {
       files: ['**/*.ts', '**/*.tsx'],
-      parser: 'typescript-eslint-parser',
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        project: './tsconfig.json',
+      },
 
       rules: {
         'no-undef': 'off',
@@ -102,10 +110,16 @@ module.exports = {
 
         'import/export': 'off',
 
-        'typescript/no-unused-vars': 'error',
-        'typescript/class-name-casing': 'error',
-        'typescript/generic-type-naming': ['error', '^T[A-Z][a-zA-Z]+$'],
-        'typescript/no-non-null-assertion': 'error',
+        '@typescript-eslint/generic-type-naming': [
+          'error',
+          '^T[A-Z][a-zA-Z]+$',
+        ],
+        '@typescript-eslint/no-this-alias': 'error',
+        '@typescript-eslint/restrict-plus-operands': 'error',
+        '@typescript-eslint/no-use-before-define': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/indent': 'off',
+        '@typescript-eslint/explicit-function-return-type': 'off',
       },
     },
   ],

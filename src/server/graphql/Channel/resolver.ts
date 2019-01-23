@@ -1,4 +1,5 @@
 import * as shared from '../shared';
+
 import { resolver as resolveMessages } from './messages';
 import { resolver as resolveWorkspace } from './workspace';
 

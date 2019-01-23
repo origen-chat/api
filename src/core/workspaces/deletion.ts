@@ -1,5 +1,6 @@
 import db from '../db';
 import { DBOptions } from '../types';
+
 import { workspacesTableName } from './constants';
 import { Workspace } from './types';
 

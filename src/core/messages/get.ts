@@ -1,5 +1,6 @@
 import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions, ID } from '../types';
+
 import { messagesTableName } from './constants';
 import { Message } from './types';
 

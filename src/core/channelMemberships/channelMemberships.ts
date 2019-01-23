@@ -1,13 +1,14 @@
 import { Channel, NamedChannel } from '../channels';
 import { DBOptions } from '../types';
 import { User } from '../users';
+import { InsertIntoDBOptions } from '../db';
+
 import {
   createChannelMembership,
   CreateChannelMembershipArgs,
   createChannelMemberships,
 } from './creation';
 import { ChannelMembership, ChannelMembershipRole } from './types';
-import { InsertIntoDBOptions } from '../db';
 
 export async function addCreatorToNamedChannel(
   namedChannel: NamedChannel,

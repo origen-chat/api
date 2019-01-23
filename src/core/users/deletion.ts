@@ -1,5 +1,6 @@
 import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions } from '../types';
+
 import { usersTableName } from './constants';
 import { User } from './types';
 

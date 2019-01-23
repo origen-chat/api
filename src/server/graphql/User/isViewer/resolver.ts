@@ -1,5 +1,4 @@
 import * as core from '../../../../core';
-
 import { getViewerOrThrowIfUnauthenticated } from '../../../helpers';
 import { Resolver } from '../../../types';
 

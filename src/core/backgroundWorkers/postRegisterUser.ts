@@ -1,6 +1,7 @@
 import { sendEmail } from '../emails';
 import { jobQueues } from '../jobQueues';
 import { User } from '../users';
+
 import { JobProcessor } from './types';
 
 export type ProcessPostRegisterUserJobData = Readonly<{

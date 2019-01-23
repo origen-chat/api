@@ -1,6 +1,7 @@
 import db, { maybeAddTransactionToQuery } from '../db';
 import { ComparisonOperator, DBOptions } from '../types';
 import { User, usersTableName } from '../users';
+
 import { socialLoginsTableName } from './constants';
 import { SocialCredentials } from './types';
 

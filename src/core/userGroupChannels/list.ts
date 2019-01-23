@@ -1,9 +1,10 @@
 import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions } from '../types';
-import { userGroupChannelsTableName } from './constants';
-import { UserGroupChannel } from './types';
 import { UserGroup } from '../userGroups';
 import { NamedChannel, channelsTableName } from '../channels';
+
+import { userGroupChannelsTableName } from './constants';
+import { UserGroupChannel } from './types';
 
 export type GetUserGroupChannelsArgs = Readonly<{ userGroup: UserGroup }>;
 

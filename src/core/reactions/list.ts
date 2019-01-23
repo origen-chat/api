@@ -3,6 +3,7 @@ import { isMessage } from '../messages';
 import { reactableReactionsTableName } from '../reactableReactions';
 import { Reactable } from '../reactables';
 import { DBOptions, NonNegativeInteger } from '../types';
+
 import { reactionsTableName } from './constants';
 import { Reaction } from './types';
 

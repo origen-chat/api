@@ -1,6 +1,6 @@
 import db, { maybeAddTransactionToQuery } from '../db';
-
 import { DBOptions } from '../types';
+
 import { cacheChannel } from './cache';
 import { channelsTableName } from './constants';
 import { Channel, NamedChannel } from './types';

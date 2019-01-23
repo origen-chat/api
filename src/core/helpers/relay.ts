@@ -16,6 +16,7 @@ import {
   PageInfo,
   PaginationArgs,
 } from '../types';
+
 import { decodeCursor, encodeCursor } from './cursors';
 
 export type MakeConnectionFromQueryArgs<TNode> = Readonly<{
@@ -162,7 +163,6 @@ function addWhereClausesForPagination(
           queryBuilder2,
           ordering,
           separatedOrderValues[orderingIndex],
-          paginationArgs,
         );
       });
     });
@@ -175,7 +175,6 @@ function addPartialWhereClauses(
   query: QueryBuilder,
   orderBy: OrderBy,
   orderValues: ReadonlyArray<any>,
-  paginationArgs: PaginationArgs,
 ): QueryBuilder {
   orderBy.forEach((orderByEntry, index) => {
     const comparisonOperator = getComparisonOperator(orderBy, index);

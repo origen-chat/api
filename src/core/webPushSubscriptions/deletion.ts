@@ -1,5 +1,6 @@
 import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions } from '../types';
+
 import { webPushSubscriptionsTableName } from './constants';
 import { WebPushSubscription } from './types';
 

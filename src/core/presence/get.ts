@@ -1,5 +1,6 @@
 import { redisClient } from '../redis';
 import { User } from '../users';
+
 import { UserConnectionStatus } from './constants';
 import { makeUserConnectionStatusRedisKey } from './keys';
 

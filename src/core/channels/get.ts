@@ -3,6 +3,7 @@ import db, { maybeAddTransactionToQuery } from '../db';
 import { ComparisonOperator, DBOptions, ID } from '../types';
 import { User } from '../users';
 import { Workspace } from '../workspaces';
+
 import { getCachedChannel, maybeCacheChannel } from './cache';
 import { channelsTableName } from './constants';
 import { Channel, ChannelType, DirectMessagesChannel } from './types';

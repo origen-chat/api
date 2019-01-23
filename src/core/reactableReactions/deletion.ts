@@ -1,5 +1,6 @@
 import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions } from '../types';
+
 import { reactableReactionsTableName } from './constants';
 import { ReactableReaction } from './types';
 

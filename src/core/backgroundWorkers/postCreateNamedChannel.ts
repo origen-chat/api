@@ -1,6 +1,7 @@
 import { NamedChannel } from '../channels';
 import { jobQueues } from '../jobQueues';
 import { sendMessage } from '../messages';
+
 import { JobProcessor } from './types';
 
 export type ProcessPostCreateNamedChannelJobData = Readonly<{

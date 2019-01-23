@@ -3,6 +3,7 @@ import { DBOptions, Mutable } from '../types';
 import { isUser, User } from '../users';
 import { createUserWorkspaceSettings } from '../userWorkspaceSettings/creation';
 import { Workspace } from '../workspaces';
+
 import { workspaceMembershipsTableName } from './constants';
 import {
   WorkspaceMember,

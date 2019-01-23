@@ -1,5 +1,6 @@
 import { redisClient, RedisExpiryMode } from '../redis';
 import { ID, NonNegativeInteger } from '../types';
+
 import { defaultUserCacheExpirationInSeconds } from './constants';
 import { makeUserRedisKey } from './keys';
 import { User } from './types';

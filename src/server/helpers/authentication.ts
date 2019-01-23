@@ -33,7 +33,7 @@ export function getViewerOrThrowIfUnauthenticated<
 ): NonNullable<Context['viewer']> {
   throwIfUnauthenticated(context);
 
-  // eslint-disable-next-line typescript/no-non-null-assertion
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const viewer = context.viewer!;
 
   if (args && core.users.isUser(viewer) && !args.allowed.user) {

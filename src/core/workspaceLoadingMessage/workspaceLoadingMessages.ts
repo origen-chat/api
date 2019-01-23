@@ -4,6 +4,7 @@ import {
   NativeLoadingMessageCategory,
 } from '../loadingMessages';
 import { Workspace } from '../workspaces';
+
 import { workspaceLoadingMessagesTableName } from './constants';
 
 export async function addInitialLoadingMessagesToWorkspace(

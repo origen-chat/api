@@ -1,5 +1,6 @@
 import { insertIntoDB } from '../db';
 import { DBOptions } from '../types';
+
 import { botsTableName } from './constants';
 import { Bot } from './types';
 

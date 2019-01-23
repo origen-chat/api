@@ -4,6 +4,7 @@ import { insertIntoDB } from '../db';
 import stripe from '../stripe';
 import { DBOptions } from '../types';
 import { User } from '../users';
+
 import { customersTableName } from './constants';
 import { makeStripeCustomerData } from './helpers';
 import { Customer } from './types';

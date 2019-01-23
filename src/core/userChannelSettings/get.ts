@@ -1,6 +1,7 @@
 import { ChannelMembership } from '../channelMemberships';
 import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions } from '../types';
+
 import { userChannelSettingsTableName } from './constants';
 import { UserChannelSettings } from './types';
 

@@ -1,5 +1,6 @@
 import { jobQueues } from '../jobQueues';
 import { WorkspaceInvitation } from '../workspaceInvitations';
+
 import { JobProcessor } from './types';
 
 export type ProcessPostCreateWorkspaceInvitationJobData = Readonly<{

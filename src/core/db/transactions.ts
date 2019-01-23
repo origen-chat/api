@@ -1,6 +1,7 @@
 import * as Knex from 'knex';
 
 import { DBOptions } from '../types';
+
 import { db } from './db';
 
 export type TransactionFunction<TReturn> = (

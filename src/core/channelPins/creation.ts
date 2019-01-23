@@ -3,6 +3,7 @@ import { insertIntoDB } from '../db';
 import { Message } from '../messages';
 import { DBOptions } from '../types';
 import { User } from '../users';
+
 import { channelPinsTableName } from './constants';
 import { ChannelPin } from './types';
 

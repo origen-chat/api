@@ -2,6 +2,7 @@ import { Bot, isBot } from '../bots';
 import { Channel } from '../channels';
 import { DBOptions } from '../types';
 import { User } from '../users';
+
 import { getChannelMembershipByChannelAndUser } from './get';
 
 export async function isChannelMember(

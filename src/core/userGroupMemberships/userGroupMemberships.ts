@@ -1,11 +1,12 @@
 import { DBOptions } from '../types';
+import { User } from '../users';
+import { UserGroup } from '../userGroups';
+
 import { UserGroupMembership } from './types';
 import {
   CreateUserGroupMembershipsArgs,
   createUserGroupMemberships,
 } from './creation';
-import { User } from '../users';
-import { UserGroup } from '../userGroups';
 
 export type AddUserToUserGroupArgs = Readonly<{
   user: User;
@@ -16,10 +17,13 @@ export async function addUserToUserGroup(
   args: AddUserToUserGroupArgs,
   options: DBOptions = {},
 ): Promise<UserGroupMembership> {
-  const [userGroupMembership] = await addUsersToUserGroup({
-    userGroup: args.userGroup,
-    users: [args.user],
-  });
+  const [userGroupMembership] = await addUsersToUserGroup(
+    {
+      userGroup: args.userGroup,
+      users: [args.user],
+    },
+    options,
+  );
 
   return userGroupMembership;
 }

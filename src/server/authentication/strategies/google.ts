@@ -7,6 +7,7 @@ import {
 import { env } from '../../../config';
 import * as core from '../../../core';
 import { makeOauth2CallbackUrl } from '../../helpers';
+
 import { DoneFunction, oauth2VerifyFunction } from './helpers';
 
 const { googleClientId, googleClientSecret } = env;

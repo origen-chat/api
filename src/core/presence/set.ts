@@ -1,6 +1,7 @@
 import { redisClient, RedisExpiryMode } from '../redis';
 import { NonNegativeInteger } from '../types';
 import { User } from '../users';
+
 import {
   UserConnectionStatus,
   userConnectionStatusExpirationInSeconds,

@@ -3,6 +3,7 @@ import * as webPush from 'web-push';
 
 import { DBOptions } from '../types';
 import { User } from '../users';
+
 import {
   createWebPushSubscription,
   CreateWebPushSubscriptionArgs,

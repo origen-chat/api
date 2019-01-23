@@ -2,6 +2,7 @@ import Stripe from 'stripe';
 
 import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions } from '../types';
+
 import { plansTableName } from './constants';
 import { makeStripePlanData } from './helpers';
 import { Plan } from './types';

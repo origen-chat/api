@@ -2,6 +2,7 @@ import { groupBy } from 'ramda';
 
 import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions, ID, Nullable } from '../types';
+
 import { webPushSubscriptionsTableName } from './constants';
 import { formatRawWebPushSubscription } from './helpers';
 import { WebPushSubscription } from './types';

@@ -1,6 +1,7 @@
 import { ChannelMembership } from '../channelMemberships';
 import { insertIntoDB } from '../db';
 import { DBOptions } from '../types';
+
 import {
   defaultUserChannelSettings,
   userChannelSettingsTableName,

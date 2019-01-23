@@ -1,6 +1,7 @@
 import Queue, { QueueOptions } from 'bull';
 
 import { createRedisClient } from '../redis';
+
 import { JobQueueName } from './constants';
 import { client, subscriber } from './redis';
 import { JobQueues } from './types';

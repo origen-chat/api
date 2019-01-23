@@ -1,5 +1,6 @@
 import { Channel } from '../channels';
 import { DBOptions } from '../types';
+
 import { createChannelPin, CreateChannelPinArgs } from './creation';
 import { deleteAllChannelPins, deleteChannelPin } from './deletion';
 import {

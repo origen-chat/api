@@ -1,7 +1,8 @@
 import db, { maybeAddTransactionToQuery } from '../db';
+import { ID, DBOptions } from '../types';
+
 import { userGroupsTableName } from './constants';
 import { UserGroup } from './types';
-import { ID, DBOptions } from '../types';
 
 export async function getUserGroupById(
   id: ID,

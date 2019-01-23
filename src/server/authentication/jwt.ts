@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 
 import { env } from '../../config';
 import * as core from '../../core';
+
 import { defaultJWTExpiresIn, jwtIssuer } from './constants';
 
 export type Payload = Readonly<{

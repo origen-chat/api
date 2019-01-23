@@ -12,6 +12,7 @@ import {
   OrderByDirection,
   PaginationArgs,
 } from '../types';
+
 import { messagesTableName } from './constants';
 import { Message } from './types';
 

@@ -2,6 +2,7 @@ import BluebirdPromise from 'bluebird';
 import Redis from 'ioredis';
 
 import logger from '../logger';
+
 import { createRedisClient, waitForRedisClientToBeReady } from './helpers';
 
 // @ts-ignore

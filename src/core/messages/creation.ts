@@ -3,6 +3,7 @@ import { Channel } from '../channels';
 import { insertIntoDB } from '../db';
 import { DBOptions, Mutable } from '../types';
 import { isUser, User } from '../users';
+
 import { messagesTableName } from './constants';
 import { enqueuePostCreateMessageJob } from './jobs';
 import { publishMessageSent } from './publishers';

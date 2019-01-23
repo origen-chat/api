@@ -1,5 +1,6 @@
 import { Actor } from '../actors';
 import { Channel } from '../channels';
+
 import { publishActorTyping } from './publishers';
 
 export type BroadcastTypingArgs = Readonly<{

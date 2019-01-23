@@ -1,9 +1,10 @@
 import { insertIntoDB, InsertIntoDBOptions } from '../db';
 import { DBOptions } from '../types';
-import { userGroupChannelsTableName } from './constants';
-import { UserGroupChannel } from './types';
 import { UserGroup } from '../userGroups';
 import { NamedChannel } from '../channels';
+
+import { userGroupChannelsTableName } from './constants';
+import { UserGroupChannel } from './types';
 import { enqueuePostCreateUserGroupChannelsJob } from './jobs';
 
 export type CreateUserGroupChannelsArgs = InsertUserGroupChannelsIntoDBArgs;

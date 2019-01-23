@@ -17,6 +17,7 @@ import {
   WorkspaceMembershipRole,
   workspaceMembershipsTableName,
 } from '../workspaceMemberships';
+
 import { workspacesTableName } from './constants';
 import { Workspace } from './types';
 

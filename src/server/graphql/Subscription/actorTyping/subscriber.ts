@@ -4,6 +4,7 @@ import * as core from '../../../../core';
 import { Resolver, Root } from '../../../types';
 import { withDecodedGlobalIds } from '../../helpers';
 import { NodeType } from '../../types';
+
 import { ActorTypingArgs, ActorTypingPayload } from './types';
 
 const filter: Resolver<ActorTypingPayload, ActorTypingArgs> = async (

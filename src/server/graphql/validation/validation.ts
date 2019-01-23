@@ -1,6 +1,6 @@
 import Ajv, { ErrorObject } from 'ajv';
-
 import { JSONSchema6 } from 'json-schema';
+
 import { UserInputError } from '../errors';
 
 export function validateArgs(args: unknown, schema: JSONSchema6): void {

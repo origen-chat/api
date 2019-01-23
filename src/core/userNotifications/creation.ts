@@ -2,6 +2,7 @@ import { insertIntoDB } from '../db';
 import { Notification } from '../notifications';
 import { DBOptions } from '../types';
 import { User } from '../users';
+
 import { userNotificationsTableName } from './constants';
 import { UserNotification } from './types';
 

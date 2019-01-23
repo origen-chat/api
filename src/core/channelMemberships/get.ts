@@ -2,6 +2,7 @@ import { Channel } from '../channels';
 import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions, ID, Nullable } from '../types';
 import { User } from '../users';
+
 import { channelMembershipsTableName } from './constants';
 import { ChannelMembership } from './types';
 

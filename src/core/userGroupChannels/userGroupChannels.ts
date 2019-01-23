@@ -1,11 +1,12 @@
 import { DBOptions } from '../types';
+import { UserGroup } from '../userGroups';
+import { NamedChannel } from '../channels';
+
 import { UserGroupChannel } from './types';
 import {
   createUserGroupChannels,
   CreateUserGroupChannelsArgs,
 } from './creation';
-import { UserGroup } from '../userGroups';
-import { NamedChannel } from '../channels';
 
 export type AddChannelToUserGroupArgs = Readonly<{
   channel: NamedChannel;

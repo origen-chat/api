@@ -1,5 +1,4 @@
 import * as core from '../../../../core';
-
 import { getViewerOrThrowIfUnauthenticated } from '../../../helpers';
 import { Resolver } from '../../../types';
 import { AuthorizationError } from '../../errors';
@@ -19,7 +18,7 @@ export const resolveSettings: Resolver<
     throw new AuthorizationError();
   }
 
-  // eslint-disable-next-line typescript/no-non-null-assertion
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const userSettings = (await core.userSettings.getUserSettingsByUser(user))!;
 
   return userSettings;

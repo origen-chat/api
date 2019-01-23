@@ -2,6 +2,7 @@ import pubsub from '../pubsub';
 import { Reactable } from '../reactables';
 import { Reaction } from '../reactions';
 import { User } from '../users';
+
 import { pubsubKeys } from './constants';
 
 export type PublishReactableReactionToggledArgs = Readonly<{

@@ -1,5 +1,6 @@
 import { DBOptions } from '../types';
 import { User } from '../users';
+
 import { createSocialLogin, CreateSocialLoginArgs } from './creation';
 import { SocialCredentials, SocialLogin } from './types';
 

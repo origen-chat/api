@@ -12,6 +12,7 @@ import {
   PaginationArgs,
 } from '../types';
 import { Workspace } from '../workspaces';
+
 import { channelsTableName } from './constants';
 import { Channel, ChannelType } from './types';
 

@@ -1,5 +1,6 @@
 import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions } from '../types';
+
 import { messagesTableName } from './constants';
 import { publishMessageDeleted } from './publishers';
 import { Message } from './types';

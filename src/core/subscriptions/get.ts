@@ -1,8 +1,9 @@
 import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions, ID } from '../types';
+import { Workspace } from '../workspaces';
+
 import { subscriptionsTableName } from './constants';
 import { Subscription } from './types';
-import { Workspace } from '../workspaces';
 
 export async function getSubscriptionById(
   id: ID,

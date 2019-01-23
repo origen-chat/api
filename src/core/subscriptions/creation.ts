@@ -5,6 +5,7 @@ import { insertIntoDB } from '../db';
 import { Plan } from '../plans';
 import { DBOptions } from '../types';
 import { Workspace } from '../workspaces';
+
 import { subscriptionsTableName } from './constants';
 import { makeStripeSubscriptionData } from './helpers';
 import { Subscription } from './types';

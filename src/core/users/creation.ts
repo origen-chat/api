@@ -1,6 +1,7 @@
 import { doInTransaction, insertIntoDB } from '../db';
 import { DBOptions, Mutable } from '../types';
 import { createUserSettings } from '../userSettings';
+
 import { usersTableName } from './constants';
 import { User } from './types';
 import { getUnusedUsernameIdentifier } from './usernames';

@@ -2,10 +2,11 @@ import { doInTransaction, insertIntoDB } from '../db';
 import { DBOptions } from '../types';
 import { User } from '../users';
 import { Workspace } from '../workspaces';
-import { userGroupsTableName } from './constants';
-import { UserGroup } from './types';
 import { NamedChannel } from '../channels';
 import { addUsersToUserGroup } from '../userGroupMemberships';
+
+import { userGroupsTableName } from './constants';
+import { UserGroup } from './types';
 
 export type CreateUserGroupArgs = InsertUserGroupIntoDBArgs &
   Readonly<{

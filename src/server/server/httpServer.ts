@@ -6,6 +6,7 @@ import express from 'express';
 
 import { passport } from '../authentication';
 import { router } from '../router';
+
 import graphqlServer from './graphqlServer';
 
 const expressApp = express();

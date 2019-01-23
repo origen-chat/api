@@ -2,6 +2,7 @@ import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions, ID } from '../types';
 import { User } from '../users';
 import { Workspace } from '../workspaces';
+
 import { workspaceMembershipsTableName } from './constants';
 import { WorkspaceMembership } from './types';
 

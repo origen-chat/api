@@ -1,6 +1,7 @@
 import { insertIntoDB } from '../db';
 import { DBOptions } from '../types';
 import { WorkspaceMembership } from '../workspaceMemberships';
+
 import {
   defaultUserWorkspaceSettings,
   userWorkspaceSettingsTableName,

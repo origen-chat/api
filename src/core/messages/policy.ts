@@ -1,6 +1,7 @@
 import { Actor } from '../actors';
 import { Channel } from '../channels';
 import { isUser } from '../users';
+
 import { Message } from './types';
 
 export type CanEditMessageArgs = Readonly<{

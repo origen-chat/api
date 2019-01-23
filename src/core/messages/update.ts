@@ -1,6 +1,7 @@
 import { Channel } from '../channels';
 import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions } from '../types';
+
 import { messagesTableName } from './constants';
 import { enqueuePostUpdateMessageJob } from './jobs';
 import { publishMessageEdited } from './publishers';

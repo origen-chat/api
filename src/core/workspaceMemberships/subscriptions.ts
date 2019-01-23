@@ -2,6 +2,7 @@ import { Workspace } from '../workspaces';
 import { getSubscriptionByWorkspace } from '../subscriptions/get';
 import { DBOptions } from '../types';
 import { updateSubscriptionQuantityInStripe } from '../subscriptions';
+
 import { getWorkspaceBillableMemberCount } from './workspaceMemberships';
 
 export type MaybeUpdateSubscriptionQuantityInStripeArgs = Readonly<{

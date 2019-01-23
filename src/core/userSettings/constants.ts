@@ -1,4 +1,5 @@
 import { Locale } from '../types';
+
 import { UserSettings } from './types';
 
 export const userSettingsTableName = 'userSettings';

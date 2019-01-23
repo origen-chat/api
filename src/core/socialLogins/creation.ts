@@ -1,6 +1,7 @@
 import { insertIntoDB } from '../db';
 import { DBOptions } from '../types';
 import { User } from '../users';
+
 import { socialLoginsTableName } from './constants';
 import { SocialLogin } from './types';
 

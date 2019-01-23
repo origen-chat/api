@@ -2,6 +2,7 @@ import * as core from '../../../../core';
 import { getViewerOrThrowIfUnauthenticated } from '../../../helpers';
 import { Resolver } from '../../../types';
 import { AuthorizationError } from '../../errors';
+
 import { validateWorkspacesArgs } from './validation';
 
 export type ResolveWorkspacesArgs = Readonly<{

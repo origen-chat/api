@@ -1,6 +1,7 @@
 import db, { maybeAddTransactionToQuery } from '../db';
 import { generateRandomInteger } from '../helpers';
 import { DBOptions } from '../types';
+
 import {
   maxUsernameCount,
   usernameIdentifierLength,

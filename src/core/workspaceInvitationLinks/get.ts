@@ -1,6 +1,7 @@
 import db, { maybeAddTransactionToQuery } from '../db';
 import { ComparisonOperator, DBOptions } from '../types';
 import { Workspace } from '../workspaces';
+
 import { workspaceInvitationLinksTableName } from './constants';
 import { WorkspaceInvitationLink } from './types';
 

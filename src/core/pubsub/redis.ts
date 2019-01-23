@@ -1,4 +1,5 @@
 import { Redis } from 'ioredis';
+
 import logger from '../logger';
 import { createRedisClient, waitForRedisClientToBeReady } from '../redis';
 

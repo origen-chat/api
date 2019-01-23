@@ -1,9 +1,10 @@
 import { DBOptions, NonNegativeInteger } from '../types';
 import { User, usersTableName } from '../users';
 import { Workspace } from '../workspaces';
+import db, { maybeAddTransactionToQuery } from '../db';
+
 import { createWorkspaceOwnerMembership } from './creation';
 import { WorkspaceMembership } from './types';
-import db, { maybeAddTransactionToQuery } from '../db';
 import { workspaceMembershipsTableName } from './constants';
 
 export async function addOwnerToWorkspace(

@@ -1,5 +1,6 @@
 import { redisClient, RedisExpiryMode } from '../redis';
 import { ID, NonNegativeInteger } from '../types';
+
 import { defaultChannelCacheExpirationInSeconds } from './constants';
 import { makeChannelRedisKey } from './keys';
 import { Channel } from './types';

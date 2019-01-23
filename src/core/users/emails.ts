@@ -1,4 +1,5 @@
 import { DBOptions } from '../types';
+
 import { User } from './types';
 import { updateUser, UpdateUserArgs } from './update';
 

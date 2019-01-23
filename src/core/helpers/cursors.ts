@@ -1,4 +1,5 @@
 import { Cursor, CursorData } from '../types';
+
 import { decodeBase64, encodeBase64 } from './base64';
 
 export function encodeCursor(cursorData: CursorData): Cursor {

@@ -1,6 +1,7 @@
 import { insertIntoDB } from '../db';
 import { DBOptions } from '../types';
 import { User } from '../users';
+
 import { webPushSubscriptionsTableName } from './constants';
 import { formatRawWebPushSubscription } from './helpers';
 import { RawWebPushSubscription, WebPushSubscription } from './types';

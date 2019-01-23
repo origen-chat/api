@@ -2,6 +2,7 @@ import { doInTransaction, insertIntoDB } from '../db';
 import { DBOptions, Email } from '../types';
 import { User } from '../users';
 import { Workspace } from '../workspaces';
+
 import { workspaceInvitationsTableName } from './constants';
 import { enqueuePostCreateWorkspaceInvitationJob } from './jobs';
 import { WorkspaceInvitation, WorkspaceInvitationStatus } from './types';

@@ -4,6 +4,7 @@ import Stripe from 'stripe';
 import { Customer, getCustomerByStripeCustomerId } from '../customers';
 import { getPlanByStripePlanId, Plan } from '../plans';
 import { DBOptions } from '../types';
+
 import { StripeSubscriptionData } from './types';
 
 export function makeStripeSubscriptionData(

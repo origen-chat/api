@@ -9,6 +9,7 @@ import { doInTransaction, insertIntoDB } from '../db';
 import { DBOptions, Mutable } from '../types';
 import { User } from '../users';
 import { Workspace } from '../workspaces';
+
 import { channelsTableName, initialDefaultChannelName } from './constants';
 import { enqueuePostCreateNamedChannelJob } from './jobs';
 import {

@@ -1,9 +1,10 @@
 import db, { maybeAddTransactionToQuery } from '../db';
 import { DBOptions } from '../types';
-import { userGroupMembershipsTableName } from './constants';
-import { UserGroupMembership } from './types';
 import { UserGroup } from '../userGroups';
 import { User, usersTableName } from '../users';
+
+import { userGroupMembershipsTableName } from './constants';
+import { UserGroupMembership } from './types';
 
 export type GetUserGroupMembershipsArgs = Readonly<{ userGroup: UserGroup }>;
 

@@ -1,5 +1,6 @@
 import * as config from '../../config';
 import logger from '../logger';
+
 import { startListeningOnPostCreateMessageQueue } from './postCreateMessage';
 import { startListeningOnPostCreateNamedChannelQueue } from './postCreateNamedChannel';
 import { startListeningOnPostCreateWorkspaceQueue } from './postCreateWorkspace';

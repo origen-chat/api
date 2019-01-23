@@ -4,6 +4,7 @@ import { MutationInputArg, Resolver, Root } from '../../../types';
 import { NotFoundableEntity, NotFoundError } from '../../errors';
 import { withDecodedGlobalIds } from '../../helpers';
 import { NodeType } from '../../types';
+
 import { validateCreateNamedChannelArgs } from './validation';
 
 export type ResolveCreateNamedChannelArgs = MutationInputArg<{

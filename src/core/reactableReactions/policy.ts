@@ -1,4 +1,5 @@
 import { User } from '../users';
+
 import { ToggleReactableReactionArgs } from './reactableReactions';
 
 export function canUserToggleReactableReaction(

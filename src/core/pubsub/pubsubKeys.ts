@@ -12,7 +12,7 @@ function makePubsubKeyMaker<TNamespace extends string>(
 }
 
 export type PubsubKeys<TPubsubKeyWithoutNamespace extends string> = Readonly<
-  { [key in TPubsubKeyWithoutNamespace]: PubsubKey }
+  { [TKey in TPubsubKeyWithoutNamespace]: PubsubKey }
 >;
 
 export function makePubsubKeys<TPubsubKeyWithoutNamespace extends string>(
