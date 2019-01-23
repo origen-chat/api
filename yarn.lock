@@ -1630,7 +1630,7 @@
     "@types/events" "*"
     "@types/node" "*"
 
-"@typescript-eslint/eslint-plugin@^1.1.0":
+"@typescript-eslint/eslint-plugin@1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-1.1.0.tgz#80f44f44f400eb7dc56040190d369443ff7fffc8"
   integrity sha512-uKP19jUxIIY8hfv99FKsKs1mEea+vOE9i4SxttGmDI1EMf7hpb5Who3NGYrXDlvZo/yFgoD1XeTk1b4H+Ako6g==
@@ -1638,7 +1638,7 @@
     "@typescript-eslint/parser" "1.1.0"
     requireindex "^1.2.0"
 
-"@typescript-eslint/parser@1.1.0", "@typescript-eslint/parser@^1.1.0":
+"@typescript-eslint/parser@1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-1.1.0.tgz#cce0e0951e6543d6ab7ef87a3e020335bf8c5999"
   integrity sha512-Cs8ZPIcJBFmwSTXS+Qk7wiOC2i2jmj8Nuutk3/l7kqzYeQwDKYo4n0XHpodvUOqFnEcQt+SVfdUg90BfjuQdbg==
