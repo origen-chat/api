@@ -2,10 +2,10 @@ import db, { maybeAddTransactionToQuery, doInTransaction } from '../db';
 import { DBOptions } from '../types';
 import { getWorkspaceById } from '../workspaces';
 
+import { isUserWorkspaceMembership } from './predicates';
+import { maybeUpdateSubscriptionQuantityInStripe } from './subscriptions';
 import { workspaceMembershipsTableName } from './constants';
 import { WorkspaceMembership } from './types';
-import { maybeUpdateSubscriptionQuantityInStripe } from './subscriptions';
-import { isUserWorkspaceMembership } from './predicates';
 
 export async function deleteWorkspaceMembership(
   workspaceMembership: WorkspaceMembership,

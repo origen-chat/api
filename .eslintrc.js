@@ -1,11 +1,12 @@
 module.exports = {
   root: true,
 
-  parser: 'babel-eslint',
+  parser: '@typescript-eslint/parser',
 
   parserOptions: {
     ecmaVersion: 2019,
     sourceType: 'module',
+    project: './tsconfig.json',
   },
 
   plugins: [
@@ -13,10 +14,8 @@ module.exports = {
     'promise',
     'unicorn',
     'jest',
-    'react',
     'import',
     'security',
-    'jsx-a11y',
     '@typescript-eslint',
     'ramda',
     'graphql',
@@ -37,13 +36,12 @@ module.exports = {
     'plugin:promise/recommended',
     'plugin:unicorn/recommended',
     'plugin:jest/recommended',
-    'airbnb',
+    'airbnb-base',
     'plugin:@typescript-eslint/recommended',
     'plugin:ramda/recommended',
     'plugin:eslint-comments/recommended',
     'plugin:fp/recommended',
     'prettier',
-    'prettier/react',
   ],
 
   rules: {
@@ -51,11 +49,6 @@ module.exports = {
 
     'unicorn/filename-case': 'off',
     'unicorn/no-abusive-eslint-disable': 'off',
-
-    'react/jsx-filename-extension': [
-      'error',
-      { extensions: ['.js', '.jsx', '.tsx'] },
-    ],
 
     'import/no-named-as-default': 'off',
     'import/no-extraneous-dependencies': 'off',
@@ -78,12 +71,13 @@ module.exports = {
     'fp/no-rest-parameters': 'off',
 
     '@typescript-eslint/indent': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
   },
 
   settings: {
     'import/resolver': {
       node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        extensions: ['.js', '.ts'],
       },
     },
   },
@@ -92,7 +86,10 @@ module.exports = {
     {
       files: ['**/*.ts', '**/*.tsx'],
       parser: '@typescript-eslint/parser',
+
       parserOptions: {
+        ecmaVersion: 2019,
+        sourceType: 'module',
         project: './tsconfig.json',
       },
 
@@ -115,7 +112,7 @@ module.exports = {
           '^T[A-Z][a-zA-Z]+$',
         ],
         '@typescript-eslint/no-this-alias': 'error',
-        '@typescript-eslint/restrict-plus-operands': 'error',
+        // '@typescript-eslint/restrict-plus-operands': 'error',
         '@typescript-eslint/no-use-before-define': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/indent': 'off',
