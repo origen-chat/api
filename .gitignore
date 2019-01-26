@@ -2,9 +2,8 @@
 node_modules
 
 # Artifacts
-/projects/api/dist
-/projects/web/dist
-/projects/api/schema.json
+/dist
+/schema.json
 
 # Testing
 coverage

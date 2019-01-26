@@ -28,9 +28,12 @@ async function waitForSubscriberAndPublisherRedisClientsToBeReady(): Promise<
   ]);
 }
 
-export async function waitForSubscriberAndPublisherRedisClientsToBeEnded(): Promise<
+export async function closeSubscriberAndPublisherRedisClientsAndWaitToBeEnded(): Promise<
   void
 > {
+  subscriber.disconnect();
+  publisher.disconnect();
+
   await Promise.all([
     waitForRedisClientToBeEnded(subscriber),
     waitForRedisClientToBeEnded(publisher),
