@@ -1,13 +1,13 @@
-const core = require('../core/index.ts');
+import * as core from '../core';
 
-const { cleanDatabase } = require('./postgres');
-const { cleanCache } = require('./redis');
+import { cleanDatabase } from './postgres';
+import { cleanCache } from './redis';
 
 async function globalTeardown() {
   await cleanDatabase();
   await cleanCache();
 
-  await core.shutdown.shutdownCore();
+  await core.core.shutdownCore();
 }
 
 module.exports = globalTeardown;

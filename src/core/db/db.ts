@@ -64,4 +64,6 @@ export async function startDB(): Promise<void> {
  */
 export async function closeDatabaseConnections(): Promise<void> {
   await db.destroy();
+
+  logger.info('📚 database (PostgreSQL) connections closed');
 }

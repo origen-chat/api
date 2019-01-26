@@ -1,11 +1,9 @@
-const registerBabel = require('@babel/register');
+import './dotenv';
 
-registerBabel({ extensions: ['.js', '.ts'] });
+import * as core from '../core';
 
-const core = require('../core/index.ts');
-
-const { cleanDatabase } = require('./postgres');
-const { cleanCache } = require('./redis');
+import { cleanDatabase } from './postgres';
+import { cleanCache } from './redis';
 
 async function globalSetup() {
   await core.core.startCore();

@@ -9,24 +9,46 @@ const { serverPort, serverHost } = env;
 /**
  * Starts the main server.
  */
-export async function startServer() {
-  startListening();
+export async function startServer(): Promise<void> {
+  await startListening();
 }
 
-function startListening() {
-  httpServer.listen(
-    serverPort,
-    serverHost,
-    (): void => {
-      core.logger.info(`🚀 server ready at http://${serverHost}:${serverPort}`);
+async function startListening(): Promise<void> {
+  return new Promise(resolve => {
+    httpServer.listen(
+      serverPort,
+      serverHost,
+      (): void => {
+        core.logger.info(
+          `🚀 server ready at http://${serverHost}:${serverPort}`,
+        );
 
-      core.logger.info(
-        `🚀 graphql endpoints ready at http://${serverHost}:${serverPort}${
-          graphqlServer.graphqlPath
-        } and ws://${serverHost}:${serverPort}${
-          graphqlServer.subscriptionsPath
-        }`,
-      );
-    },
-  );
+        core.logger.info(
+          `🚀 graphql endpoints ready at http://${serverHost}:${serverPort}${
+            graphqlServer.graphqlPath
+          } and ws://${serverHost}:${serverPort}${
+            graphqlServer.subscriptionsPath
+          }`,
+        );
+
+        resolve();
+      },
+    );
+  });
+}
+
+export async function closeServer(): Promise<void> {
+  await closeHttpServer();
+}
+
+async function closeHttpServer(): Promise<void> {
+  return new Promise<void>((resolve, reject) => {
+    httpServer.close((error: Error) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve();
+      }
+    });
+  });
 }

@@ -16,8 +16,8 @@ export async function startCore(): Promise<void> {
 
   await Promise.all([startRedis(), startDB(), startPubsub()]);
 
-  startJobQueues();
-  maybeStartBackgroundWorkers();
+  await startJobQueues();
+  await maybeStartBackgroundWorkers();
 
   isStarted = true;
 }

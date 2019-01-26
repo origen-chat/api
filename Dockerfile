@@ -14,7 +14,7 @@ RUN yarn build:prod
 
 # ---
 
-FROM node:11.7.0-alpine
+FROM node:11.8.0-alpine
 
 LABEL maintainer="strattadb@gmail.com"
 

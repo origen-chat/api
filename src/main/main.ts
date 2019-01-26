@@ -18,6 +18,8 @@ export async function startApplication(): Promise<void> {
 
     handleProcessEvents();
     handleSignals();
+
+    core.logger.info('👍 application ready');
   } catch (error) {
     core.logger.error(`😕 error thrown when starting: ${error}`);
   }

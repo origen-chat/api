@@ -3,10 +3,16 @@ import Queue, { QueueOptions } from 'bull';
 import { createRedisClient } from '../redis';
 
 import { JobQueueName } from './constants';
-import { client, subscriber } from './redis';
+import {
+  publisher,
+  subscriber,
+  startSubscriberAndPublisherRedisClients,
+} from './redis';
 import { JobQueues } from './types';
 
-export function createJobQueues(): JobQueues {
+export async function createJobQueues(): Promise<JobQueues> {
+  await startSubscriberAndPublisherRedisClients();
+
   const jobQueues = Object.values(JobQueueName).reduce(
     (acc, queueName) => ({ ...acc, [queueName]: createJobQueue(queueName) }),
     {},
@@ -26,7 +32,7 @@ function createJobQueue(
       }
 
       if (type === 'client') {
-        return client;
+        return publisher;
       }
 
       return createRedisClient();

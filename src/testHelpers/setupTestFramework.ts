@@ -1,11 +1,11 @@
-const { cleanDatabase } = require('./postgres');
-const { cleanCache } = require('./redis');
+import { cleanDatabase } from './postgres';
+import { cleanCache } from './redis';
 
-async function setupTestFramework() {
+export function setupTestFramework(): void {
   beforeEach(async () => {
     await cleanDatabase();
     await cleanCache();
   });
 }
 
-module.exports = setupTestFramework;
+export default setupTestFramework;

@@ -1,11 +1,11 @@
 import * as core from '../../core';
 
-import { closeHttpServer } from './httpServer';
+import { closeServer } from './server';
 
 export async function shutdownServer(): Promise<void> {
   core.logger.info('🔌 shutting down server...');
 
-  await closeHttpServer();
+  await closeServer();
 
   core.logger.info('🔌 server shut down');
 }

@@ -9,7 +9,7 @@ export function handleSignals(): void {
 }
 
 function handleSignal(signal: NodeJS.Signals): void {
-  process.on(signal, async () => {
+  process.once(signal, async () => {
     core.logger.info(`📞 received ${signal} signal`);
 
     await shutdownApplication({ exitCode: 1 });

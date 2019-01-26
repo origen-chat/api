@@ -23,16 +23,4 @@ export const httpServer = http.createServer(expressApp);
 
 graphqlServer.installSubscriptionHandlers(httpServer);
 
-export async function closeHttpServer(): Promise<void> {
-  return new Promise<void>((resolve, reject) => {
-    httpServer.close((error: Error) => {
-      if (error) {
-        reject(error);
-      } else {
-        resolve();
-      }
-    });
-  });
-}
-
 export default httpServer;

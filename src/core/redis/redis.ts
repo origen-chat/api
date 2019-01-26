@@ -1,12 +1,12 @@
-import BluebirdPromise from 'bluebird';
 import Redis from 'ioredis';
 
 import logger from '../logger';
 
-import { createRedisClient, waitForRedisClientToBeReady } from './helpers';
-
-// @ts-ignore
-Redis.Promise = BluebirdPromise;
+import {
+  createRedisClient,
+  waitForRedisClientToBeReady,
+  waitForRedisClientToBeEnded,
+} from './helpers';
 
 // eslint-disable-next-line import/no-mutable-exports
 export let redisClient: Redis.Redis;
@@ -47,10 +47,12 @@ function handleRedisClientEvents(): void {
   });
 }
 
-export function closeRedisConnection(): void {
+export async function closeRedisConnection(): Promise<void> {
   if (!redisClient) {
     return;
   }
 
   redisClient.disconnect();
+
+  await waitForRedisClientToBeEnded(redisClient);
 }

@@ -1,5 +1,8 @@
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 
+import { waitForRedisClientToBeEnded } from '../redis';
+import logger from '../logger';
+
 import {
   publisher,
   startSubscriberAndPublisherRedisClients,
@@ -16,8 +19,18 @@ export async function startPubsub(): Promise<void> {
     subscriber,
     publisher,
   });
+
+  logger.info('📡 pubsub ready');
 }
 
-export function closePubSub(): void {
+export async function closePubSub(): Promise<void> {
   pubsub.close();
+
+  await Promise.all([
+    waitForRedisClientToBeEnded(subscriber),
+    waitForRedisClientToBeEnded(publisher),
+  ]);
+
+  logger.info('📡 pubsub subscriber and publisher (Redis) connections closed');
+  logger.info('📡 pubsub terminated');
 }
