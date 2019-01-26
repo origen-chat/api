@@ -48,7 +48,6 @@ module.exports = {
     'no-use-before-define': 'off',
 
     'unicorn/filename-case': 'off',
-    'unicorn/no-abusive-eslint-disable': 'off',
 
     'import/no-named-as-default': 'off',
     'import/no-extraneous-dependencies': 'off',

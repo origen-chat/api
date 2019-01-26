@@ -13,6 +13,8 @@ coverage
 /k8s/**/charts
 /keys
 .env
+.env.*
+!.env.example
 *.pyc
 .DS_Store
 .idea

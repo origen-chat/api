@@ -66,6 +66,11 @@ const env = makeEnv({
     required: true,
     envVarName: 'REDIS_PORT',
   },
+  redisDB: {
+    parser: parsers.nonNegativeInteger,
+    required: true,
+    envVarName: 'REDIS_DB',
+  },
   mockSchema: {
     parser: parsers.boolean,
     required: false,
@@ -156,10 +161,17 @@ const env = makeEnv({
     required: true,
     envVarName: 'GCP_STORAGE_BUCKET_NAME',
   },
+  enableAPI: {
+    parser: parsers.boolean,
+    required: true,
+    description: 'If enabled, this server will handle the API',
+    envVarName: 'ENABLE_BACKGROUND_WORKERS',
+  },
   enableBackgroundWorkers: {
     parser: parsers.boolean,
-    required: false,
-    defaultValue: true,
+    required: true,
+    description:
+      'If enabled, background workers will process jobs in this server',
     envVarName: 'ENABLE_BACKGROUND_WORKERS',
   },
 });

@@ -9,12 +9,11 @@ module.exports = {
   ],
   coveragePathIgnorePatterns: ['node_modules/', '<rootDir>/dist/'],
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json'],
-  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
-  globalSetup: '<rootDir>/src/testHelpers/globalSetup.js',
-  globalTeardown: '<rootDir>/src/testHelpers/globalTeardown.js',
-  setupTestFrameworkScriptFile:
-    '<rootDir>/src/testHelpers/setupTestFramework.js',
-  modulePathIgnorePatterns: ['<rootDir>/dist/'],
+  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.[jt]sx?$',
+  globalSetup: '<rootDir>/src/testHelpers/globalSetup.ts',
+  globalTeardown: '<rootDir>/src/testHelpers/globalTeardown.ts',
+  setupFilesAfterEnv: ['<rootDir>/src/testHelpers/setupTestFramework.ts'],
+  modulePathIgnorePatterns: ['<rootDir>/dist/', 'node_modules'],
   transform: {
     '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
   },
