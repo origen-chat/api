@@ -14,9 +14,8 @@ export let isStarted = false;
 export async function startCore(): Promise<void> {
   initializeErrorTracking();
 
-  await Promise.all([startRedis(), startDB(), startPubsub()]);
+  await Promise.all([startRedis(), startDB(), startPubsub(), startJobQueues()]);
 
-  await startJobQueues();
   await maybeStartBackgroundWorkers();
 
   isStarted = true;

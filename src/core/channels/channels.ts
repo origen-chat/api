@@ -53,7 +53,7 @@ async function doGetOrCreateDirectMessagesChannel(
   options: DBOptions = {},
 ): Promise<DirectMessagesChannel> {
   const directMessagesChannel = await doInTransaction(async transaction => {
-    const optionsWithTransaction: DBOptions = { transaction };
+    const optionsWithTransaction: DBOptions = { ...options, transaction };
 
     const existingChannel = await getDirectMessagesChannelByMembers(
       { workspace, members },

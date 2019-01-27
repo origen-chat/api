@@ -1,11 +1,21 @@
+import * as core from '../core';
+
 import { cleanDatabase } from './postgres';
 import { cleanCache } from './redis';
 
-export function setupTestFramework(): void {
+setupTestFramework();
+
+function setupTestFramework(): void {
+  beforeAll(async () => {
+    await core.core.startCore();
+  });
+
   beforeEach(async () => {
     await cleanDatabase();
     await cleanCache();
   });
-}
 
-export default setupTestFramework;
+  afterAll(async () => {
+    await core.core.shutdownCore();
+  });
+}

@@ -30,17 +30,6 @@ services:
       - VIRTUAL_PORT=4000
 
       - CERT_NAME=shared
-      - NODE_ENV=development
-
-      - DB_HOST=postgres
-      - DB_USER=postgres
-      - DB_PASSWORD=postgres
-      - DB_NAME=origen_dev
-
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
-
-      - WEB_ROOT_URL=https://app.local.origen.chat:3000
     env_file: .env
 
   postgres:
@@ -52,7 +41,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=loop_dev
+      - POSTGRES_DB=origen_dev
 
   redis:
     image: redis:5.0

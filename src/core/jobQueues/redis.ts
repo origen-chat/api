@@ -12,30 +12,32 @@ export let subscriber: Redis;
 // eslint-disable-next-line import/no-mutable-exports
 export let publisher: Redis;
 
-export async function startSubscriberAndPublisherRedisClients(): Promise<void> {
+// eslint-disable-next-line import/no-mutable-exports
+export let defaultRedisClient: Redis;
+
+export async function startRedisClients(): Promise<void> {
   subscriber = createRedisClient();
   publisher = createRedisClient();
+  defaultRedisClient = createRedisClient();
 
-  await waitForSubscriberAndPublisherRedisClientsToBeReady();
+  await waitForRedisClientsToBeReady();
 }
 
-async function waitForSubscriberAndPublisherRedisClientsToBeReady(): Promise<
-  void
-> {
+async function waitForRedisClientsToBeReady(): Promise<void> {
   await Promise.all([
     waitForRedisClientToBeReady(subscriber),
     waitForRedisClientToBeReady(publisher),
+    waitForRedisClientToBeReady(defaultRedisClient),
   ]);
 }
 
-export async function closeSubscriberAndPublisherRedisClientsAndWaitToBeEnded(): Promise<
-  void
-> {
+export async function closeRedisClientsAndWaitToBeEnded(): Promise<void> {
   subscriber.disconnect();
   publisher.disconnect();
 
   await Promise.all([
     waitForRedisClientToBeEnded(subscriber),
     waitForRedisClientToBeEnded(publisher),
+    waitForRedisClientToBeEnded(defaultRedisClient),
   ]);
 }

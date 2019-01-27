@@ -7,14 +7,14 @@ module.exports = {
     '!**/node_modules/**',
     '!**/dist/**',
   ],
-  coveragePathIgnorePatterns: ['node_modules/', '<rootDir>/dist/'],
+  coveragePathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/dist/'],
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json'],
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.[jt]sx?$',
   globalSetup: '<rootDir>/src/testHelpers/globalSetup.ts',
-  globalTeardown: '<rootDir>/src/testHelpers/globalTeardown.ts',
   setupFilesAfterEnv: ['<rootDir>/src/testHelpers/setupTestFramework.ts'],
-  modulePathIgnorePatterns: ['<rootDir>/dist/', 'node_modules'],
+  modulePathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/dist/'],
+  watchPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/dist/'],
   transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
+    '^.+\\.([jt]sx?)$': 'babel-jest',
   },
 };

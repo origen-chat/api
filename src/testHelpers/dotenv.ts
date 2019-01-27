@@ -8,8 +8,6 @@ const dotenvFilePath = path.resolve(
   '.env.test',
 );
 
-overrideProcessEnv();
-
 export async function overrideProcessEnv(): Promise<void> {
   const dotenvFile = fs.readFileSync(dotenvFilePath);
 
