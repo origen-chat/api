@@ -29,7 +29,7 @@
     "lint:fix": "eslint --fix \"src/**/*.{js,ts}\""
   },
   "dependencies": {
-    "@google-cloud/storage": "2.4.0",
+    "@google-cloud/storage": "2.4.1",
     "@sentry/node": "4.5.3",
     "@strattadb/environment": "5.2.0",
     "ajv": "6.7.0",
