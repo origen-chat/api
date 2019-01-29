@@ -17,7 +17,6 @@
     "premake-keys": "yarn clean-keys",
     "postmake-keys": "mkdirp keys && mv localhost+4.pem keys/shared.crt && mv localhost+4-key.pem keys/shared.key",
     "test": "cross-env NODE_ENV=test jest",
-    "pretest": "cross-env NODE_ENV=test yarn migrate",
     "test:ci": "yarn test --coverage",
     "test:watch": "jest --onlyChanged --watch",
     "prebuild": "yarn typecheck && yarn clean-dist",

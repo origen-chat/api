@@ -10,7 +10,9 @@ import {
 import { JobQueues } from './types';
 
 export async function createJobQueues(): Promise<JobQueues> {
-  await startRedisClients();
+  const queueCount = Object.keys(JobQueueName).length;
+
+  await startRedisClients(queueCount);
 
   const jobQueues = Object.values(JobQueueName).reduce(
     (acc, queueName) => ({ ...acc, [queueName]: createJobQueue(queueName) }),

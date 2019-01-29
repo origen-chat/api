@@ -1,5 +1,5 @@
-import * as core from '../core';
+import { redisClient } from '../core/redis';
 
 export async function cleanCache(): Promise<void> {
-  await core.redis.redisClient.flushdb();
+  await redisClient.flushdb();
 }

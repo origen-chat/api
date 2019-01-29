@@ -1,7 +1,7 @@
-import * as core from '../core';
+import * as db from '../core/db';
 
 export async function cleanDatabase(): Promise<void> {
-  const tableNames = Object.values(core.db.tableNames);
+  const tableNames = Object.values(db.tableNames);
 
   await deleteFromTables(tableNames);
 }
@@ -17,7 +17,5 @@ async function deleteFromTables(
 }
 
 async function deleteFromTable(tableName: string): Promise<void> {
-  await core.db.default.delete().from(tableName);
+  await db.default.delete().from(tableName);
 }
-
-module.exports.cleanDatabase = cleanDatabase;

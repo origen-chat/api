@@ -1,4 +1,5 @@
-import * as core from '../core';
+import { startCore } from '../core/core/start';
+import { shutdownCore } from '../core/core/shutdown';
 
 import { cleanDatabase } from './postgres';
 import { cleanCache } from './redis';
@@ -7,7 +8,7 @@ setupTestFramework();
 
 function setupTestFramework(): void {
   beforeAll(async () => {
-    await core.core.startCore();
+    await startCore();
   });
 
   beforeEach(async () => {
@@ -16,6 +17,6 @@ function setupTestFramework(): void {
   });
 
   afterAll(async () => {
-    await core.core.shutdownCore();
+    await shutdownCore();
   });
 }
