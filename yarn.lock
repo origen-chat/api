@@ -1618,10 +1618,10 @@
   resolved "https://registry.yarnpkg.com/@types/stack-trace/-/stack-trace-0.0.29.tgz#eb7a7c60098edb35630ed900742a5ecb20cfcb4d"
   integrity sha512-TgfOX+mGY/NyNxJLIbDWrO9DjGoVSW9+aB8H2yy1fy32jsvxijhmyJI9fDFgvz3YP4lvJaq9DzdR/M1bOgVc9g==
 
-"@types/stripe@6.19.4":
-  version "6.19.4"
-  resolved "https://registry.yarnpkg.com/@types/stripe/-/stripe-6.19.4.tgz#37b76cabfc8dd8db7dd352941f3e6877360ccba9"
-  integrity sha512-+oy8t6bPA68WTyBVAzi59NUwBOWj/lXqolbO0SuX22a306V6Ba9tqxIiO/alTop/V3VD7sKaUgHJ61vsoMDZGA==
+"@types/stripe@6.19.5":
+  version "6.19.5"
+  resolved "https://registry.yarnpkg.com/@types/stripe/-/stripe-6.19.5.tgz#d970084c888b5dfe29fb2f7b6cc32b08159b0d00"
+  integrity sha512-NHSloxUEjergjDO3U5ZOJgURP6H9vPlJGWbwdUOCB/r24vMzZevjGfbUiwR0u51Yum9AId/7VG/qcbq5q/Hcng==
   dependencies:
     "@types/node" "*"
 
