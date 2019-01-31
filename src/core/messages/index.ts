@@ -7,6 +7,7 @@ export {
   isMessageSentBySystem,
 } from './predicates';
 export { getMessageById, getMessagesByIds } from './get';
+export { getUpdatedMessages, GetUpdatedMessagesArgs } from './list';
 export { getMessageConnection, GetMessageConnectionArgs } from './connections';
 export { createMessage, CreateMessageArgs } from './creation';
 export {
