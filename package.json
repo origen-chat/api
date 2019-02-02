@@ -32,7 +32,7 @@
     "@google-cloud/storage": "2.4.1",
     "@sentry/node": "4.5.3",
     "@strattadb/environment": "5.2.0",
-    "ajv": "6.7.0",
+    "ajv": "6.8.1",
     "apollo-server-express": "2.3.3",
     "bluebird": "3.5.3",
     "body-parser": "1.18.3",
