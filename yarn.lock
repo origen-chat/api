@@ -1868,58 +1868,58 @@ apollo-cache-control@0.4.1:
     apollo-server-env "2.2.0"
     graphql-extensions "0.4.2"
 
-apollo-codegen-core@0.32.2:
-  version "0.32.2"
-  resolved "https://registry.yarnpkg.com/apollo-codegen-core/-/apollo-codegen-core-0.32.2.tgz#1a995b4f55f46ed0b34ec8c3225f9de96e478794"
-  integrity sha512-mzpPuB4H6My0+QrQLwRXhdoGQaud/2Qfzd+H72yjiSvqyEhrdK50uBE0S1pwkRBJ0mVx9sXgvDXcz9qDjUhv5w==
+apollo-codegen-core@0.32.3:
+  version "0.32.3"
+  resolved "https://registry.yarnpkg.com/apollo-codegen-core/-/apollo-codegen-core-0.32.3.tgz#c8b67ceb9b4fbcbdb38cd1e7e764663532051634"
+  integrity sha512-QLOM/XoH+j68A7bxehjNyLdk6HG1O76tJLZN6AnXZcWYAKt/OFvE7Vv2opWVuseBgMcZGMsmVdxph/8hFdVcww==
   dependencies:
     "@babel/generator" "7.1.3"
     "@babel/parser" "^7.1.3"
     "@babel/types" "7.3.0"
     apollo-env "0.3.0"
-    apollo-language-server "1.4.0"
+    apollo-language-server "1.4.1"
     ast-types "^0.11.6"
     common-tags "^1.5.1"
     recast "^0.16.0"
 
-apollo-codegen-flow@0.32.2:
-  version "0.32.2"
-  resolved "https://registry.yarnpkg.com/apollo-codegen-flow/-/apollo-codegen-flow-0.32.2.tgz#edd68ea9a960f8e93467b199eb4fe03d02b6e7d9"
-  integrity sha512-oqVn7OubouYiWlBBPsDXeKB7cf29ZTmBpLCEameR3WKhMNyx3VpbA0kiTNEZOSjYYsY7HVV8l6/6dmjTuYmzrw==
+apollo-codegen-flow@0.32.3:
+  version "0.32.3"
+  resolved "https://registry.yarnpkg.com/apollo-codegen-flow/-/apollo-codegen-flow-0.32.3.tgz#66301aa4f7805b74ed4b9e973c26036c7e81e386"
+  integrity sha512-7vS1mM/0QFbx6G3Hp+4O+dk7ltkoivkfrtW6o85io3sGG8iOuCBytcMK+jUjh2AcdtzEA5vi+mvwlRJ6/VswWw==
   dependencies:
     "@babel/types" "7.3.0"
-    apollo-codegen-core "0.32.2"
+    apollo-codegen-core "0.32.3"
     apollo-env "0.3.0"
     change-case "^3.0.1"
     inflected "^2.0.3"
 
-apollo-codegen-scala@0.32.2:
-  version "0.32.2"
-  resolved "https://registry.yarnpkg.com/apollo-codegen-scala/-/apollo-codegen-scala-0.32.2.tgz#92f805f03d8e5b85ffc8f1f5b31327a0809f645d"
-  integrity sha512-fjkPbNXgvRUHOCjrQ8nUTNYcNPTEDO+mkMQ5B5vjaG0XCf5mhAJDBfsMXoHY0Z8kiZoN9GOYtXOIaNKkpu9KbA==
+apollo-codegen-scala@0.32.3:
+  version "0.32.3"
+  resolved "https://registry.yarnpkg.com/apollo-codegen-scala/-/apollo-codegen-scala-0.32.3.tgz#c54c5ff159bdbb05ad70fd066e99cbc37bfcc776"
+  integrity sha512-j34KQrQBsqnIWu015IaGEErN8mZeLIl6/m93QvNJtNvulTTpxrT37KwTgnFrQDr0rnNZ6kjozW1JLhTxN9yKEA==
   dependencies:
-    apollo-codegen-core "0.32.2"
+    apollo-codegen-core "0.32.3"
     apollo-env "0.3.0"
     change-case "^3.0.1"
     inflected "^2.0.3"
 
-apollo-codegen-swift@0.32.2:
-  version "0.32.2"
-  resolved "https://registry.yarnpkg.com/apollo-codegen-swift/-/apollo-codegen-swift-0.32.2.tgz#8f472931fc521f0435b3496b95031b8f22b60ebe"
-  integrity sha512-J9U3z1+7bJVuO8g4CJ7+QLTfi8QX9Vl+FTtxkRUJaOCSY93DjD6zt86q3fLRly7CnZXNg9qIuTv8Kq7w1cokAg==
+apollo-codegen-swift@0.32.3:
+  version "0.32.3"
+  resolved "https://registry.yarnpkg.com/apollo-codegen-swift/-/apollo-codegen-swift-0.32.3.tgz#7b2d060622240d174ccb339448b793bf93bc05f2"
+  integrity sha512-kGf4T7oQz0/FC12Cf2+n3b8wQ1AHPyLwfH7zkT34p6EtcQtkjIYza3LJgAUZ0k9v1Xk9q0TMRQL+j1JVW+bNyg==
   dependencies:
-    apollo-codegen-core "0.32.2"
+    apollo-codegen-core "0.32.3"
     apollo-env "0.3.0"
     change-case "^3.0.1"
     inflected "^2.0.3"
 
-apollo-codegen-typescript@0.32.2:
-  version "0.32.2"
-  resolved "https://registry.yarnpkg.com/apollo-codegen-typescript/-/apollo-codegen-typescript-0.32.2.tgz#f77c156b80ac5ea890abe5b112a071f2715df9c2"
-  integrity sha512-Ona6rosLiimAXeQYmjRPwLQNp7w1c3PLZe6ezyUhj+q7PKm2zrkQg/qQJOcuN+TnOZeGuodWxqFjTpFcqwGkKg==
+apollo-codegen-typescript@0.32.3:
+  version "0.32.3"
+  resolved "https://registry.yarnpkg.com/apollo-codegen-typescript/-/apollo-codegen-typescript-0.32.3.tgz#84c7b7eba7c7455a27c0129bfee4de5831efc692"
+  integrity sha512-caIdBrb9nxABq0HWkd75enFxyeja2IKSvaHESuECaaW2RNQF0HY2j4Hx7OClC4nySW3HCRxbcEEnQalRB1Ismg==
   dependencies:
     "@babel/types" "7.3.0"
-    apollo-codegen-core "0.32.2"
+    apollo-codegen-core "0.32.3"
     apollo-env "0.3.0"
     change-case "^3.0.1"
     inflected "^2.0.3"
@@ -1958,6 +1958,18 @@ apollo-engine-reporting@0.2.1:
     graphql-extensions "0.4.2"
     lodash "^4.17.10"
 
+apollo-engine-reporting@0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/apollo-engine-reporting/-/apollo-engine-reporting-0.2.2.tgz#ae57972bfd7e499f510335014d7ba7390508aa6b"
+  integrity sha512-EiTw/VPLjL7X3EKV21jpr44nRaMv0xGvcbBxc2q6fEaa95tU/QTkwtQv+/3sTaH20+fIY2Rjlo8y6MzKZ3bNdw==
+  dependencies:
+    apollo-engine-reporting-protobuf "0.2.0"
+    apollo-server-core "2.3.4"
+    apollo-server-env "2.2.0"
+    async-retry "^1.2.1"
+    graphql-extensions "0.4.3"
+    lodash "^4.17.10"
+
 apollo-env@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/apollo-env/-/apollo-env-0.3.0.tgz#6150cedeb8a6f6620172c0ab4222bd73d185651c"
@@ -1966,10 +1978,10 @@ apollo-env@0.3.0:
     core-js "^3.0.0-beta.3"
     node-fetch "^2.2.0"
 
-apollo-language-server@1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/apollo-language-server/-/apollo-language-server-1.4.0.tgz#e545c6c554c75c21e90f1926f539288475e3634b"
-  integrity sha512-FkBvXNSKWSru0rGhWOYJLhP1AFCzbmY+QWMCl7zC6394m0npUBBXDI1alwDn6wgYmyG88Lo5M3/jLDluiT5KIg==
+apollo-language-server@1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/apollo-language-server/-/apollo-language-server-1.4.1.tgz#8c19e3ccd0f1c34009d0e7d4bdd121c11a897bd7"
+  integrity sha512-T5HEpwEZ25gRPZn86uEJyX1Rq6VEnGP5sL6M0zx5LQJWEiTLwlJktXZHtBW4Fimf/RikIairySE/MwGd5aY5yg==
   dependencies:
     "@apollographql/apollo-tools" "0.3.0"
     "@apollographql/graphql-language-service-interface" "^2.0.2"
@@ -1987,8 +1999,8 @@ apollo-language-server@1.4.0:
     cosmiconfig "^5.0.6"
     dotenv "^6.1.0"
     glob "^7.1.3"
-    graphql "^14.0.2"
-    graphql-tag "^2.10.0"
+    graphql "14.0.2"
+    graphql-tag "^2.10.1"
     lodash "^4.17.11"
     minimatch "^3.0.4"
     minimist "^1.2.0"
@@ -2084,6 +2096,32 @@ apollo-server-core@2.3.3:
     subscriptions-transport-ws "^0.9.11"
     ws "^6.0.0"
 
+apollo-server-core@2.3.4, apollo-server-core@^2.3.4:
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/apollo-server-core/-/apollo-server-core-2.3.4.tgz#556829fa788c09b7a9a3bded5f0b99d5eebd7393"
+  integrity sha512-fVnF1V6iVxstRUmtTPmNFgIelRBtEDS4/doLxdOjtNMGrec46KT0LSTU3xaC4Xsv0iY0DlSHtochZsX7ojznBg==
+  dependencies:
+    "@apollographql/apollo-tools" "^0.3.0"
+    "@apollographql/graphql-playground-html" "^1.6.6"
+    "@types/ws" "^6.0.0"
+    apollo-cache-control "0.4.1"
+    apollo-datasource "0.2.2"
+    apollo-engine-reporting "0.2.2"
+    apollo-server-caching "0.2.2"
+    apollo-server-env "2.2.0"
+    apollo-server-errors "2.2.0"
+    apollo-server-plugin-base "0.2.3"
+    apollo-tracing "0.4.1"
+    fast-json-stable-stringify "^2.0.0"
+    graphql-extensions "0.4.3"
+    graphql-subscriptions "^1.0.0"
+    graphql-tag "^2.9.2"
+    graphql-tools "^4.0.0"
+    graphql-upload "^8.0.2"
+    lodash "^4.17.10"
+    subscriptions-transport-ws "^0.9.11"
+    ws "^6.0.0"
+
 apollo-server-env@2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/apollo-server-env/-/apollo-server-env-2.2.0.tgz#5eec5dbf46581f663fd6692b2e05c7e8ae6d6034"
@@ -2135,10 +2173,10 @@ apollo-utilities@^1.0.0, apollo-utilities@^1.0.1:
   dependencies:
     fast-json-stable-stringify "^2.0.0"
 
-apollo@2.4.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/apollo/-/apollo-2.4.1.tgz#d39f061598239311a7efccc682535382c1830fdf"
-  integrity sha512-dxs7p5X9hUpPmtIT7ahqUwnY2NHVMQSjhSBa6LFX9vgHxKKhiGUAPm4bA3tywXXgvSJXLBICFJ5y4zzXiDQFpg==
+apollo@2.4.2:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/apollo/-/apollo-2.4.2.tgz#a3f00cf4db490df468a3261800fa1cc86868c217"
+  integrity sha512-kAHR5g0uRLiP+Pg2ByjSABeMHRR3jpAYmi7qnXMbV22rS0O4rZxA34UxFRqoOU2httj47BYXMCaDDtL8WuncMA==
   dependencies:
     "@apollographql/apollo-tools" "0.3.0"
     "@oclif/command" "^1.4.21"
@@ -2148,14 +2186,15 @@ apollo@2.4.1:
     "@oclif/plugin-not-found" "^1.0.9"
     "@oclif/plugin-plugins" "^1.7.2"
     "@oclif/plugin-warn-if-update-available" "^1.3.9"
-    apollo-codegen-core "0.32.2"
-    apollo-codegen-flow "0.32.2"
-    apollo-codegen-scala "0.32.2"
-    apollo-codegen-swift "0.32.2"
-    apollo-codegen-typescript "0.32.2"
-    apollo-engine-reporting "0.2.1"
+    apollo-codegen-core "0.32.3"
+    apollo-codegen-flow "0.32.3"
+    apollo-codegen-scala "0.32.3"
+    apollo-codegen-swift "0.32.3"
+    apollo-codegen-typescript "0.32.3"
+    apollo-engine-reporting "0.2.2"
     apollo-env "0.3.0"
-    apollo-language-server "1.4.0"
+    apollo-language-server "1.4.1"
+    apollo-server-core "^2.3.4"
     chalk "^2.4.1"
     cli-ux "^4.3.0"
     env-ci "^3.0.0"
@@ -2163,12 +2202,11 @@ apollo@2.4.1:
     git-parse "^1.0.3"
     git-rev-sync "^1.12.0"
     glob "^7.1.2"
-    graphql "^14.0.2"
+    graphql "14.0.2"
     graphql-tag "^2.9.2"
     heroku-cli-util "^8.0.9"
     listr "^0.14.1"
     lodash "^4.17.10"
-    rimraf "^2.6.2"
     tty "^1.0.1"
     vscode-uri "^1.0.6"
 
@@ -5192,7 +5230,12 @@ graphql-subscriptions@1.0.0, graphql-subscriptions@^1.0.0:
   dependencies:
     iterall "^1.2.1"
 
-graphql-tag@^2.10.0, graphql-tag@^2.9.2:
+graphql-tag@^2.10.1:
+  version "2.10.1"
+  resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.10.1.tgz#10aa41f1cd8fae5373eaf11f1f67260a3cad5e02"
+  integrity sha512-jApXqWBzNXQ8jYa/HLkZJaVw9jgwNqZkywa2zfFn16Iv1Zb7ELNHkJaXHR7Quvd5SIGsy6Ny7SUKATgnu05uEg==
+
+graphql-tag@^2.9.2:
   version "2.10.0"
   resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.10.0.tgz#87da024be863e357551b2b8700e496ee2d4353ae"
   integrity sha512-9FD6cw976TLLf9WYIUPCaaTpniawIjHWZSwIRZSjrfufJamcXbVVYfN2TWvJYbw0Xf2JjYbl1/f2+wDnBVw3/w==
@@ -5223,17 +5266,17 @@ graphql-upload@^8.0.2:
     http-errors "^1.7.1"
     object-path "^0.11.4"
 
+graphql@14.0.2:
+  version "14.0.2"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-14.0.2.tgz#7dded337a4c3fd2d075692323384034b357f5650"
+  integrity sha512-gUC4YYsaiSJT1h40krG3J+USGlwhzNTXSb4IOZljn9ag5Tj+RkoXrWp+Kh7WyE3t1NCfab5kzCuxBIvOMERMXw==
+  dependencies:
+    iterall "^1.2.2"
+
 graphql@14.1.1:
   version "14.1.1"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-14.1.1.tgz#d5d77df4b19ef41538d7215d1e7a28834619fac0"
   integrity sha512-C5zDzLqvfPAgTtP8AUPIt9keDabrdRAqSWjj2OPRKrKxI9Fb65I36s1uCs1UUBFnSWTdO7hyHi7z1ZbwKMKF6Q==
-  dependencies:
-    iterall "^1.2.2"
-
-graphql@^14.0.2:
-  version "14.0.2"
-  resolved "https://registry.yarnpkg.com/graphql/-/graphql-14.0.2.tgz#7dded337a4c3fd2d075692323384034b357f5650"
-  integrity sha512-gUC4YYsaiSJT1h40krG3J+USGlwhzNTXSb4IOZljn9ag5Tj+RkoXrWp+Kh7WyE3t1NCfab5kzCuxBIvOMERMXw==
   dependencies:
     iterall "^1.2.2"
 
