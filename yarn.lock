@@ -1631,10 +1631,10 @@
   resolved "https://registry.yarnpkg.com/@types/stack-trace/-/stack-trace-0.0.29.tgz#eb7a7c60098edb35630ed900742a5ecb20cfcb4d"
   integrity sha512-TgfOX+mGY/NyNxJLIbDWrO9DjGoVSW9+aB8H2yy1fy32jsvxijhmyJI9fDFgvz3YP4lvJaq9DzdR/M1bOgVc9g==
 
-"@types/stripe@6.19.5":
-  version "6.19.5"
-  resolved "https://registry.yarnpkg.com/@types/stripe/-/stripe-6.19.5.tgz#d970084c888b5dfe29fb2f7b6cc32b08159b0d00"
-  integrity sha512-NHSloxUEjergjDO3U5ZOJgURP6H9vPlJGWbwdUOCB/r24vMzZevjGfbUiwR0u51Yum9AId/7VG/qcbq5q/Hcng==
+"@types/stripe@6.19.6":
+  version "6.19.6"
+  resolved "https://registry.yarnpkg.com/@types/stripe/-/stripe-6.19.6.tgz#395b06c4b319d5299037a794cde14fe3b1739c75"
+  integrity sha512-JOqN2W/3dhj8o67zOXAZFH6NeECwtMuSc6jQ7DtGuYw8WaHHGjtaFHFpnPczCY5TE/qHpGSs5QIrbrE2jfCb0w==
   dependencies:
     "@types/node" "*"
 
