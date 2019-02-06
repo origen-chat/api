@@ -967,10 +967,10 @@
     lodash.get "^4"
     ts-node "^7"
 
-"@google-cloud/common@^0.30.2":
-  version "0.30.2"
-  resolved "https://registry.yarnpkg.com/@google-cloud/common/-/common-0.30.2.tgz#a00c4811d6f0c3eb86f163192215de750fbc61c6"
-  integrity sha512-JLIaSpMhhUetiwS30iC2SwNP51mayuSbyhRVdagqFC6rDVcqMHHsN8QJwUhCjOoHyfQ04n9SinfMCQzJTR9Liw==
+"@google-cloud/common@^0.31.0":
+  version "0.31.0"
+  resolved "https://registry.yarnpkg.com/@google-cloud/common/-/common-0.31.0.tgz#51a82d681043e2718bd32708586d3131b019d7a8"
+  integrity sha512-mO7WFavzqmr24btNb2zimUh+M3fGnIKGbkR1VT6ZG3yDV+S7BiZPmPiFHKRJVrxwi5sA9U6X6fpNpHgj7j2a2w==
   dependencies:
     "@google-cloud/projectify" "^0.3.2"
     "@google-cloud/promisify" "^0.3.0"
@@ -1005,12 +1005,12 @@
   resolved "https://registry.yarnpkg.com/@google-cloud/promisify/-/promisify-0.3.1.tgz#f641e6d944a8e0a05ee0cb1091dfa60089becdba"
   integrity sha512-QzB0/IMvB0eFxFK7Eqh+bfC8NLv3E9ScjWQrPOk6GgfNroxcVITdTlT8NRsRrcp5+QQJVPLkRqKG0PUdaWXmHw==
 
-"@google-cloud/storage@2.4.1":
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/@google-cloud/storage/-/storage-2.4.1.tgz#51871149304dd1341e2c32906abdbf8213ef1ea6"
-  integrity sha512-g9GQ/CWkB2Y1wyMnlWvj7dGbChIxfuran0O6kUtvqTKTLBpZpsvWo86xQV723JMXi/BenLkE1vy353bnRsa3Fw==
+"@google-cloud/storage@2.4.2":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@google-cloud/storage/-/storage-2.4.2.tgz#24c3ea68e3368ec42193532a7b6e22e16bc3ea49"
+  integrity sha512-G4rlt5h2oypPYU2ZtmF3N0FpE47aRvsxp8NmZEdlScd5LgjDAu5Ha01hMOA/ZHBVsUlOGFfa+TxU5Ei/56+0Gg==
   dependencies:
-    "@google-cloud/common" "^0.30.2"
+    "@google-cloud/common" "^0.31.0"
     "@google-cloud/paginator" "^0.1.0"
     "@google-cloud/promisify" "^0.3.0"
     arrify "^1.0.0"
