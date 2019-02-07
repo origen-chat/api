@@ -15,6 +15,7 @@ module.exports = {
   modulePathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/dist/'],
   watchPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/dist/'],
   transform: {
-    '^.+\\.([jt]sx?)$': 'babel-jest',
+    '^.+\\.[jt]sx?$': 'babel-jest',
   },
+  errorOnDeprecated: true,
 };

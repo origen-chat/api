@@ -71,6 +71,7 @@ module.exports = {
 
     '@typescript-eslint/indent': 'off',
     '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
   },
 
   settings: {
@@ -84,13 +85,6 @@ module.exports = {
   overrides: [
     {
       files: ['**/*.ts', '**/*.tsx'],
-      parser: '@typescript-eslint/parser',
-
-      parserOptions: {
-        ecmaVersion: 2019,
-        sourceType: 'module',
-        project: './tsconfig.json',
-      },
 
       rules: {
         'no-undef': 'off',
@@ -112,7 +106,6 @@ module.exports = {
         ],
         '@typescript-eslint/no-this-alias': 'error',
         // '@typescript-eslint/restrict-plus-operands': 'error',
-        '@typescript-eslint/no-use-before-define': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/indent': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',

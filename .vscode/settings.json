@@ -1,8 +1,4 @@
 {
-  "tslint.autoFixOnSave": true,
-  "tslint.configFile": "tslint.json",
-  "tslint.jsEnable": false,
-  "tslint.packageManager": "yarn",
   "javascript.suggestionActions.enabled": false,
   "jest.autoEnable": false,
   "jest.enableCodeLens": false,
@@ -30,6 +26,5 @@
     "javascriptreact",
     "typescript",
     "typescriptreact"
-  ],
-  "typescript.tsdk": "node_modules/typescript/lib"
+  ]
 }
