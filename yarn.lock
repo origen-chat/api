@@ -1386,10 +1386,10 @@
     "@types/connect" "*"
     "@types/node" "*"
 
-"@types/bull@3.5.6":
-  version "3.5.6"
-  resolved "https://registry.yarnpkg.com/@types/bull/-/bull-3.5.6.tgz#bc39903fcfee062adcf4d5579c3ab4582096dc4d"
-  integrity sha512-0Unmv2R77rzwK9d4PIL0KrBp25wSQt8QCHC4IqB4sawU317zJw33d6lpaxDWqr5alTts9v9N0mGWjNOjLMxGEw==
+"@types/bull@3.5.7":
+  version "3.5.7"
+  resolved "https://registry.yarnpkg.com/@types/bull/-/bull-3.5.7.tgz#7a98a4d717378da3999cb702f791e118215a34fd"
+  integrity sha512-qWx6akitp9aFKnVG3nwNpul+jgRAxMllfzwl2HjNl72PPjLOA8ffY4BJtAP15+8b8nfEP6Tv8ANYKGT6JcEetw==
   dependencies:
     "@types/ioredis" "*"
 
