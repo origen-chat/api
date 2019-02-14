@@ -36,7 +36,7 @@
     "apollo-server-express": "2.4.0",
     "bluebird": "3.5.3",
     "body-parser": "1.18.3",
-    "bull": "3.6.0",
+    "bull": "3.7.0",
     "chalk": "2.4.2",
     "cors": "2.8.5",
     "dataloader": "1.4.0",
