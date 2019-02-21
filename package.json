@@ -33,7 +33,7 @@
     "@sentry/node": "4.6.3",
     "@strattadb/environment": "6.1.0",
     "ajv": "6.9.1",
-    "apollo-server-express": "2.4.3",
+    "apollo-server-express": "2.4.5",
     "bluebird": "3.5.3",
     "body-parser": "1.18.3",
     "bull": "3.7.0",
