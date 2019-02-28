@@ -31,4 +31,4 @@ COPY --from=builder /usr/src/app/dist/ dist
 
 EXPOSE 4000
 
-CMD ["node", "dist/index.js"]
+CMD ["node", "--experimental-modules", "dist/index.js"]

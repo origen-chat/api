@@ -13,6 +13,7 @@ module.exports = api => {
         },
         debug,
         useBuiltIns,
+        modules: false,
       },
     ],
     '@babel/preset-typescript',

@@ -7,7 +7,7 @@
   "scripts": {
     "start:dev": "cross-env NODE_ENV=development nodemon --inspect=0.0.0.0:9229 --nolazy --config nodemon.json src/index.ts",
     "start:dev:no-debug": "cross-env NODE_ENV=development nodemon --config nodemon.json src/index.ts",
-    "build:prod": "cross-env NODE_ENV=production babel --extensions \".ts\" --out-dir dist src",
+    "build:prod": "cross-env NODE_ENV=production babel --source-maps --extensions \".ts\" --out-dir dist src",
     "download-graphql-schema": "apollo schema:download schema.json",
     "predownload-graphql-schema": "yarn clean-graphql-schema",
     "migrate": "knex --knexfile=knexfile.ts migrate:latest",
