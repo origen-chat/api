@@ -75,7 +75,7 @@
     "@commitlint/prompt-cli": "7.5.0",
     "@commitlint/travis-cli": "7.5.2",
     "@types/bluebird": "3.5.26",
-    "@types/bull": "3.5.10",
+    "@types/bull": "3.5.11",
     "@types/dotenv": "6.1.0",
     "@types/graphql": "14.0.7",
     "@types/graphql-iso-date": "3.3.1",
