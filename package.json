@@ -92,7 +92,7 @@
     "@types/passport-jwt": "3.0.1",
     "@types/ramda": "0.26.5",
     "@types/sharp": "0.22.1",
-    "@types/stripe": "6.25.6",
+    "@types/stripe": "6.25.7",
     "@types/uuid": "3.4.4",
     "@types/web-push": "3.3.0",
     "@typescript-eslint/eslint-plugin": "1.5.0",
