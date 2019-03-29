@@ -5875,10 +5875,10 @@ graphql-tools@^4.0.0:
     iterall "^1.1.3"
     uuid "^3.1.0"
 
-graphql-type-json@0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/graphql-type-json/-/graphql-type-json-0.2.2.tgz#d4d3808fbf2ead9b6184fd338fe23794cd9715be"
-  integrity sha512-srKbRJWxvZ8J6b7P3F0PrOtKgWg3pxlUPb1xbSIB+aMdK+UPKpp4aDzPV1A+IUTlea6lk9FWwI08UXQApC03lw==
+graphql-type-json@0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/graphql-type-json/-/graphql-type-json-0.2.3.tgz#f3760c4a54868231d25967fce4c351caa8687ef2"
+  integrity sha512-eKXlL72yu95V1E/se06yY8HE7z53zmLckEHpLydzsmkyb0ozDwtU+hVaDH7zBEog5LVy2kK4sbEa4zseijZywg==
 
 graphql-upload@^8.0.2:
   version "8.0.2"
