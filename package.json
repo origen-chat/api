@@ -76,7 +76,7 @@
     "@commitlint/travis-cli": "7.5.2",
     "@types/bluebird": "3.5.26",
     "@types/bull": "3.5.11",
-    "@types/dotenv": "6.1.0",
+    "@types/dotenv": "6.1.1",
     "@types/graphql": "14.2.0",
     "@types/graphql-iso-date": "3.3.1",
     "@types/graphql-type-json": "0.1.3",
