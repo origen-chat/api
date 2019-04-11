@@ -1947,10 +1947,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.14.4.tgz#1c586b991457cbb58fef51bc4e0cfcfa347714b5"
   integrity sha512-DT25xX/YgyPKiHFOpNuANIQIVvYEwCWXgK2jYYwqgaMrYE6+tq+DtmMwlD3drl6DJbUwtlIDnn0d7tIn/EbXBg==
 
-"@types/passport-google-oauth@1.0.39":
-  version "1.0.39"
-  resolved "https://registry.yarnpkg.com/@types/passport-google-oauth/-/passport-google-oauth-1.0.39.tgz#af0e9035a1c3e03849d86baabfcec4c210ab49d1"
-  integrity sha512-Gtzju0dYVt3gW4g3a21NJjA73q18PydJNE3PlETQXbK/dd2/rvDLNC4SrEiGv7bS+fX9cvyDckqH+g49zYmDrw==
+"@types/passport-google-oauth@1.0.40":
+  version "1.0.40"
+  resolved "https://registry.yarnpkg.com/@types/passport-google-oauth/-/passport-google-oauth-1.0.40.tgz#57c761768b568abe798a0595ac127556669bae77"
+  integrity sha512-p9qE9QU9wwqnD2XNi0USSB4frYn9yx44GamYPY/2BIT69V+rwL4U0jMznFpQ71vFNvRe+/0nh61LnbNcfyV5/Q==
   dependencies:
     "@types/express" "*"
     "@types/passport" "*"
