@@ -2608,10 +2608,10 @@ apollo-utilities@^1.0.0, apollo-utilities@^1.0.1:
   dependencies:
     fast-json-stable-stringify "^2.0.0"
 
-apollo@2.8.2:
-  version "2.8.2"
-  resolved "https://registry.yarnpkg.com/apollo/-/apollo-2.8.2.tgz#c76b89b7b447a58a0b9ff6dfa0d662aa0fb50066"
-  integrity sha512-1+hMgV1BU5F+K5QocP1gopKm7y3E0P3i0RS33rhnBeImblUsj6tNPmcIAq2UO9mxGVyirn3jJ0KyLxaR+8OcAg==
+apollo@2.8.3:
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/apollo/-/apollo-2.8.3.tgz#ebb12e059cc3727185a8db8a926590e95982a469"
+  integrity sha512-qYC2T7qtfGhwd+4KaYzUEC9u8Ag9vLY+SKDf0B0wHedVCz3qDXaw3mzu4p8VJCOUUmRPt0eGfbRYw/zsrxQGCw==
   dependencies:
     "@apollographql/apollo-tools" "0.3.5"
     "@oclif/command" "1.5.12"
