@@ -11013,10 +11013,10 @@ strip-json-comments@^2.0.1, strip-json-comments@~2.0.1:
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
   integrity sha1-PFMZQukIwml8DsNEhYwobHygpgo=
 
-stripe@6.29.0:
-  version "6.29.0"
-  resolved "https://registry.yarnpkg.com/stripe/-/stripe-6.29.0.tgz#9f56958b30ae126d1cf383d16e3f5e6651e5afe1"
-  integrity sha512-SsYYztu0W0edx41mHIT1B5eX+hpVqsXUqZhbqXrVSkE7vnLdPzS9O5OjenudVUaRjdgB02ETQNU7utSp5FNGoQ==
+stripe@6.30.0:
+  version "6.30.0"
+  resolved "https://registry.yarnpkg.com/stripe/-/stripe-6.30.0.tgz#6ab211af6be61f93f6dc977180b4a8e964e00053"
+  integrity sha512-CZDegnyLjBjlYWl5mq6ixmxdLuKFWuia0AvIVTZv7XM0Hqqq7Z7KCV6VbAxY7iy+1fZCGOvCTJQsS/mQw84D0w==
   dependencies:
     lodash.isplainobject "^4.0.6"
     qs "^6.6.0"
