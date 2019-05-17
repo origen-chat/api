@@ -41,7 +41,7 @@
     "cors": "2.8.5",
     "dataloader": "1.4.0",
     "date-fns": "2.0.0-alpha.27",
-    "express": "4.16.4",
+    "express": "4.17.0",
     "graphql": "14.3.0",
     "graphql-iso-date": "3.6.1",
     "graphql-redis-subscriptions": "2.1.0",
