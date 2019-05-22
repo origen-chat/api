@@ -2124,14 +2124,6 @@
   dependencies:
     "@typescript-eslint/typescript-estree" "1.9.0"
 
-"@typescript-eslint/experimental-utils@^1.9.1-alpha.3":
-  version "1.9.1-alpha.10"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-1.9.1-alpha.10.tgz#e7d34051d7db6d38242c3dfef36196c9f2258fca"
-  integrity sha512-serdoovBwMk8/jw28LyzO0LVyXjyjMSYs2+EnYFUG/Frbw1u4sYfszDK5pdt96Zw5aAnh5p2ij3FB7mkC/MsOQ==
-  dependencies:
-    "@typescript-eslint/typescript-estree" "1.9.1-alpha.10+5792aa1"
-    eslint-scope "^4.0.0"
-
 "@typescript-eslint/parser@1.9.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-1.9.0.tgz#5796cbfcb9a3a5757aeb671c1ac88d7a94a95962"
@@ -2146,14 +2138,6 @@
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-1.9.0.tgz#5d6d49be936e96fb0f859673480f89b070a5dd9b"
   integrity sha512-7Eg0TEQpCkTsEwsl1lIzd6i7L3pJLQFWesV08dS87bNz0NeSjbL78gNAP1xCKaCejkds4PhpLnZkaAjx9SU8OA==
-  dependencies:
-    lodash.unescape "4.0.1"
-    semver "5.5.0"
-
-"@typescript-eslint/typescript-estree@1.9.1-alpha.10+5792aa1":
-  version "1.9.1-alpha.10"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-1.9.1-alpha.10.tgz#c77886f684325beff00d0453939b5d8a0643b923"
-  integrity sha512-X5Px4dv8gTOMWZJcoZ1NJs41+NV8SG0sdgP+k6aBpXWZ01pkCjQ5KXyy5JWPJ8iA3G3PXB89n17AbXTW/BDFFw==
   dependencies:
     lodash.unescape "4.0.1"
     semver "5.5.0"
@@ -4664,12 +4648,10 @@ eslint-plugin-import@2.17.2:
     read-pkg-up "^2.0.0"
     resolve "^1.10.0"
 
-eslint-plugin-jest@22.6.2:
-  version "22.6.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-22.6.2.tgz#7fded62bfb82c89abd6bf84641f6b2fda72f72fd"
-  integrity sha512-xCkS24evC8gsj9ZBmoRr+S8wxuF5FnKKLmjcAVLz48jYdzkHjkPBwhkBIvJ1GobflCPf55g/0zAUzTtpXRyHaA==
-  dependencies:
-    "@typescript-eslint/experimental-utils" "^1.9.1-alpha.3"
+eslint-plugin-jest@22.6.3:
+  version "22.6.3"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-22.6.3.tgz#6d06594153c9278e02916f96f544ebd7ba36a4c7"
+  integrity sha512-Db1b54TCPrxHYz4Mmn/jI48WIIlM6L7ajuyxpse8OjybkM+/xSmDGA46DLqnVe+JoShU+Dc3j6X6IEU4XfiLtw==
 
 eslint-plugin-node@8.0.1:
   version "8.0.1"
