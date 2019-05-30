@@ -2360,63 +2360,63 @@ apollo-cache-control@0.6.1:
     apollo-server-env "2.3.0"
     graphql-extensions "0.6.1"
 
-apollo-codegen-core@0.34.3:
-  version "0.34.3"
-  resolved "https://registry.yarnpkg.com/apollo-codegen-core/-/apollo-codegen-core-0.34.3.tgz#9aac6495fa8ac66ed2bb317bf7a328f9a7cc2b7f"
-  integrity sha512-m81oxOyxv8e116Qy89F0Bxunt83Z4atBPh5c3WHC6/ZAa8WC3fn883FJJJNmClOCCDUamY2BqJ1Epmw8d103jA==
+apollo-codegen-core@0.34.4:
+  version "0.34.4"
+  resolved "https://registry.yarnpkg.com/apollo-codegen-core/-/apollo-codegen-core-0.34.4.tgz#cf106f0fc63bab05990cab06f0eb0dbe54c975cb"
+  integrity sha512-pEx78D8BUR6BHC8g1rtPHxecyYG/O7DmNs4DohI3gE0NrYRXvG/ZKVNShUsB+8y3EMVxh6fzyNY++x06ipDuKw==
   dependencies:
     "@babel/generator" "7.4.4"
     "@babel/parser" "^7.1.3"
     "@babel/types" "7.4.4"
     apollo-env "0.5.1"
-    apollo-language-server "1.9.0"
+    apollo-language-server "1.9.1"
     ast-types "^0.13.0"
     common-tags "^1.5.1"
     recast "^0.18.0"
 
-apollo-codegen-flow@0.33.13:
-  version "0.33.13"
-  resolved "https://registry.yarnpkg.com/apollo-codegen-flow/-/apollo-codegen-flow-0.33.13.tgz#9d40c2e72446110ae40e0b76f0e9460ae6ef9b1c"
-  integrity sha512-5sFlUUXsY6s1Ys3aLFOtLNgLWOc/dCrWmlfW24thxyaWy17s35HVPOy4P4fAA2LJTt01CxDi4wFJquiLyah1NQ==
+apollo-codegen-flow@0.33.14:
+  version "0.33.14"
+  resolved "https://registry.yarnpkg.com/apollo-codegen-flow/-/apollo-codegen-flow-0.33.14.tgz#42a4b742ce5669c85c44b6a8816da30bdb76d58f"
+  integrity sha512-aYb/WJtO/VdOGBiDinacCOYHQJdHEHuCKERsfG9csg7JBP4AF+u/KZsqpBo9wHL/Pf4XnC3XCLd5QoiVi/Dx9Q==
   dependencies:
     "@babel/generator" "7.4.4"
     "@babel/types" "7.4.4"
-    apollo-codegen-core "0.34.3"
+    apollo-codegen-core "0.34.4"
     apollo-env "0.5.1"
     change-case "^3.0.1"
     common-tags "^1.5.1"
     inflected "^2.0.3"
 
-apollo-codegen-scala@0.34.13:
-  version "0.34.13"
-  resolved "https://registry.yarnpkg.com/apollo-codegen-scala/-/apollo-codegen-scala-0.34.13.tgz#7f9e5ecde45fc738b0b67e7bc643b56f4d164abc"
-  integrity sha512-9YAtWrNSpS/XIPqwGscs9eZyo/j1vMtCTgjxM9FZxLhWAJZ7ZHhSZdcA3IRea0lDJTGC7v+srnindDUxsaRaeA==
+apollo-codegen-scala@0.34.14:
+  version "0.34.14"
+  resolved "https://registry.yarnpkg.com/apollo-codegen-scala/-/apollo-codegen-scala-0.34.14.tgz#64820db1b483aac3a0ea5e520100f8e17267feda"
+  integrity sha512-/CJhDoye9N4Do5a0ttzES4NY1qUhPPbgvf0TWKU1RIuR5LatiOOMI7p2W0X3e/sijVY/7HgDdZABlqrO9mOITA==
   dependencies:
-    apollo-codegen-core "0.34.3"
+    apollo-codegen-core "0.34.4"
     apollo-env "0.5.1"
     change-case "^3.0.1"
     common-tags "^1.5.1"
     inflected "^2.0.3"
 
-apollo-codegen-swift@0.33.13:
-  version "0.33.13"
-  resolved "https://registry.yarnpkg.com/apollo-codegen-swift/-/apollo-codegen-swift-0.33.13.tgz#688ff72065545b3e959abefa0307c636df4724dc"
-  integrity sha512-Ta02wPc1bMdcA/o20w2TgtQqQNNkyoH48bWE397n8/7LKnZjTojJfzTNmW8A1vRnVJYr+T5r6Jaz1DMsfzHCBg==
+apollo-codegen-swift@0.33.14:
+  version "0.33.14"
+  resolved "https://registry.yarnpkg.com/apollo-codegen-swift/-/apollo-codegen-swift-0.33.14.tgz#67f535cffce1910140f18ede4477a1a9578ccac9"
+  integrity sha512-iDn2CvQJUo5eJpWgM7NNsyi66Bu1E+J2pfZgd3W5ee/ekRwrec5UnFOmrjtHJlg+gZ8R9gbgQ1WwXPEFsGqBUQ==
   dependencies:
-    apollo-codegen-core "0.34.3"
+    apollo-codegen-core "0.34.4"
     apollo-env "0.5.1"
     change-case "^3.0.1"
     common-tags "^1.5.1"
     inflected "^2.0.3"
 
-apollo-codegen-typescript@0.34.3:
-  version "0.34.3"
-  resolved "https://registry.yarnpkg.com/apollo-codegen-typescript/-/apollo-codegen-typescript-0.34.3.tgz#7df7084fa3897542ab842e0ae3d32747c4450336"
-  integrity sha512-hknP+evj3TnUqhgdrGHIKNv+M7OaIOd02k5H+0JNZOdj/Fdquf8K8JkJcu7j7BFF3ifsVHKbIlR9rD1Kzoh0vg==
+apollo-codegen-typescript@0.34.4:
+  version "0.34.4"
+  resolved "https://registry.yarnpkg.com/apollo-codegen-typescript/-/apollo-codegen-typescript-0.34.4.tgz#8dd1c962a1c3166ea15f84b1e5c9d07e4afecfe1"
+  integrity sha512-MWGrqFcv/JijtI6PxGGMyRhyu65ltWsdfPOXJ8Y9KDDG3ib6wM7z9gaWj0Mr+SI2iDRhhwx6WIM2A9ge4eiqkQ==
   dependencies:
     "@babel/generator" "7.4.4"
     "@babel/types" "7.4.4"
-    apollo-codegen-core "0.34.3"
+    apollo-codegen-core "0.34.4"
     apollo-env "0.5.1"
     change-case "^3.0.1"
     common-tags "^1.5.1"
@@ -2483,10 +2483,10 @@ apollo-graphql@^0.2.1-alpha.1:
     apollo-env "0.4.1-alpha.1"
     lodash.sortby "^4.7.0"
 
-apollo-language-server@1.9.0:
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/apollo-language-server/-/apollo-language-server-1.9.0.tgz#2575d363b1a55da1b14df7647dd296f2e4c0e3b6"
-  integrity sha512-bLJVvdemG/8g1Ija/pdgqYCedu+hMniteFIGI/CCNTOOu3Oi3cfwuhKYmuvwWZ2EQny01s1ER5ybfCWE7I1S2w==
+apollo-language-server@1.9.1:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/apollo-language-server/-/apollo-language-server-1.9.1.tgz#2505cabf3a81ceddf1831858086d7f5d0a2ad5a4"
+  integrity sha512-7AhmDlK8gbv3UmR+ppICkRBQw64TnzKRIUGl+a6lt4V3sMVkMoBQZACc95lMim7pTUOY2qTesVvjIShjDbXAVw==
   dependencies:
     "@apollographql/apollo-tools" "0.3.7"
     "@apollographql/graphql-language-service-interface" "^2.0.2"
@@ -2510,7 +2510,7 @@ apollo-language-server@1.9.0:
     minimatch "^3.0.4"
     moment "^2.24.0"
     vscode-languageserver "^5.1.0"
-    vscode-uri "^1.0.6"
+    vscode-uri "1.0.6"
 
 apollo-link-context@^1.0.9:
   version "1.0.12"
@@ -2639,10 +2639,10 @@ apollo-utilities@^1.0.0, apollo-utilities@^1.0.1:
   dependencies:
     fast-json-stable-stringify "^2.0.0"
 
-apollo@2.12.4:
-  version "2.12.4"
-  resolved "https://registry.yarnpkg.com/apollo/-/apollo-2.12.4.tgz#c1ffa99826adffd03427167c49559f44dbb89714"
-  integrity sha512-5fBb5sbw/tabALT/zQL66hXANZoBlsj18HUZK9S7FPw6+ciGu9z4+roDl5OK960PNcHTFONHJhjw7FfDo+mbig==
+apollo@2.12.5:
+  version "2.12.5"
+  resolved "https://registry.yarnpkg.com/apollo/-/apollo-2.12.5.tgz#3e18f7cf4e673b542775f46ee4f0c2b87c982b70"
+  integrity sha512-QHKXZ2Pn+soJ8C2Qjt2cMJyNuXF+NGdX6t2BIi+JPFeAG6mU56Q0PIAYbv5pr2/YvhHJTrIDHvA1QR04BTJqxg==
   dependencies:
     "@apollographql/apollo-tools" "0.3.7"
     "@oclif/command" "1.5.13"
@@ -2653,14 +2653,14 @@ apollo@2.12.4:
     "@oclif/plugin-not-found" "1.2.2"
     "@oclif/plugin-plugins" "1.7.8"
     "@oclif/plugin-warn-if-update-available" "1.7.0"
-    apollo-codegen-core "0.34.3"
-    apollo-codegen-flow "0.33.13"
-    apollo-codegen-scala "0.34.13"
-    apollo-codegen-swift "0.33.13"
-    apollo-codegen-typescript "0.34.3"
+    apollo-codegen-core "0.34.4"
+    apollo-codegen-flow "0.33.14"
+    apollo-codegen-scala "0.34.14"
+    apollo-codegen-swift "0.33.14"
+    apollo-codegen-typescript "0.34.4"
     apollo-env "0.5.1"
     apollo-graphql "0.3.1"
-    apollo-language-server "1.9.0"
+    apollo-language-server "1.9.1"
     chalk "2.4.2"
     env-ci "3.2.0"
     gaze "1.1.3"
