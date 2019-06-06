@@ -51,7 +51,7 @@
     "jsonwebtoken": "8.5.1",
     "knex": "0.17.3",
     "mailgun-js": "0.22.0",
-    "ms": "2.1.1",
+    "ms": "2.1.2",
     "passport": "0.4.0",
     "passport-google-oauth20": "2.0.0",
     "passport-jwt": "4.0.0",
