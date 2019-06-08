@@ -47,7 +47,7 @@
     "graphql-redis-subscriptions": "2.1.0",
     "graphql-subscriptions": "1.1.0",
     "graphql-type-json": "0.3.0",
-    "ioredis": "4.9.5",
+    "ioredis": "4.10.0",
     "jsonwebtoken": "8.5.1",
     "knex": "0.17.3",
     "mailgun-js": "0.22.0",
