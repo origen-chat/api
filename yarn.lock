@@ -4091,10 +4091,10 @@ date-and-time@^0.6.3:
   resolved "https://registry.yarnpkg.com/date-and-time/-/date-and-time-0.6.3.tgz#2daee52df67c28bd93bce862756ac86b68cf4237"
   integrity sha512-lcWy3AXDRJOD7MplwZMmNSRM//kZtJaLz4n6D1P5z9wEmZGBKhJRBIr1Xs9KNQJmdXPblvgffynYji4iylUTcA==
 
-date-fns@2.0.0-alpha.31:
-  version "2.0.0-alpha.31"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.0.0-alpha.31.tgz#51bcfdca25dfc9bea334a556ab33dfc0bb00421c"
-  integrity sha512-S19PwMqnbYsqcbCg02Yj9gv4veVNZ0OX7v2+zcd+Mq0RI7LoDKJipJjnMrTZ3Cc6blDuTce5G/pHXcVIGRwJWQ==
+date-fns@2.0.0-alpha.32:
+  version "2.0.0-alpha.32"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.0.0-alpha.32.tgz#e36472aac2ff49b199dd7b257807ca1c89bbe603"
+  integrity sha512-Rv9g3piGxEp10ujgPODgVDfkn1Xz1HDZASEKmGsP/RhU4DCAugdNfnEjE52mvz8G3Ha5XFlQMDEb6Lwryb9Wfg==
 
 date-fns@^1.27.2:
   version "1.29.0"
