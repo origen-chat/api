@@ -33,7 +33,7 @@ services:
     env_file: .env
 
   postgres:
-    image: postgres:11.3
+    image: postgres:11.4
     ports:
       - '5432:5432'
     volumes:
