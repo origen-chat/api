@@ -77,7 +77,7 @@
     "@types/bluebird": "3.5.27",
     "@types/bull": "3.5.14",
     "@types/dotenv": "6.1.1",
-    "@types/graphql": "14.2.1",
+    "@types/graphql": "14.2.2",
     "@types/graphql-iso-date": "3.3.1",
     "@types/graphql-type-json": "0.3.0",
     "@types/ioredis": "4.0.12",
