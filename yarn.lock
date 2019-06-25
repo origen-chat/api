@@ -2455,7 +2455,15 @@ apollo-env@0.5.1:
     node-fetch "^2.2.0"
     sha.js "^2.4.11"
 
-apollo-graphql@0.3.2, apollo-graphql@^0.3.2:
+apollo-graphql@0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/apollo-graphql/-/apollo-graphql-0.3.3.tgz#ce1df194f6e547ad3ce1e35b42f9c211766e1658"
+  integrity sha512-t3CO/xIDVsCG2qOvx2MEbuu4b/6LzQjcBBwiVnxclmmFyAxYCIe7rpPlnLHSq7HyOMlCWDMozjoeWfdqYSaLqQ==
+  dependencies:
+    apollo-env "0.5.1"
+    lodash.sortby "^4.7.0"
+
+apollo-graphql@^0.3.2:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/apollo-graphql/-/apollo-graphql-0.3.2.tgz#8881a87f1d5fcf80837b34dba90737e664eabe9a"
   integrity sha512-YbzYGR14GV0023m//EU66vOzZ3i7c04V/SF8Qk+60vf1sOWyKgO6mxZJ4BKhw10qWUayirhSDxq3frYE+qSG0A==
@@ -2619,10 +2627,10 @@ apollo-utilities@^1.0.0, apollo-utilities@^1.0.1:
   dependencies:
     fast-json-stable-stringify "^2.0.0"
 
-apollo@2.14.0:
-  version "2.14.0"
-  resolved "https://registry.yarnpkg.com/apollo/-/apollo-2.14.0.tgz#acc624dd470b68138f48c08ee4545ec351bab1c7"
-  integrity sha512-5xHNH+4BJQVZyCeK/FGZy1SLSIR3kwM0rCIMeiFNmVB4mcm4yrW2JhKrJqNtr/JBCp7dsgbBMKyqKHNyPXSDsA==
+apollo@2.14.1:
+  version "2.14.1"
+  resolved "https://registry.yarnpkg.com/apollo/-/apollo-2.14.1.tgz#143dfaa16c2523c24cf2bbf9c4dc3fb8f4ca9771"
+  integrity sha512-S8sdZRkSQwCyR51242/tA28U+7zOzaf7YV4yqrWCfF1j7PVds9hrbWw1JtC5l/HMoRmQQL5ZKXO5JHZX4EwK7A==
   dependencies:
     "@apollographql/apollo-tools" "0.3.7"
     "@oclif/command" "1.5.14"
@@ -2639,7 +2647,7 @@ apollo@2.14.0:
     apollo-codegen-swift "0.33.17"
     apollo-codegen-typescript "0.34.7"
     apollo-env "0.5.1"
-    apollo-graphql "0.3.2"
+    apollo-graphql "0.3.3"
     apollo-language-server "1.11.0"
     chalk "2.4.2"
     env-ci "3.2.2"
