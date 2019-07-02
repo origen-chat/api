@@ -1951,10 +1951,10 @@
   resolved "https://registry.yarnpkg.com/@types/long/-/long-4.0.0.tgz#719551d2352d301ac8b81db732acb6bdc28dbdef"
   integrity sha512-1w52Nyx4Gq47uuu0EVcsHBxZFJgurQ+rTKS3qMHxR1GY2T8c2AJYd6vZoZ9q1rupaDjU0yT+Jc2XTyXkjeMA+Q==
 
-"@types/mailgun-js@0.22.0":
-  version "0.22.0"
-  resolved "https://registry.yarnpkg.com/@types/mailgun-js/-/mailgun-js-0.22.0.tgz#860429e22c3a5c5dad894b88c51ac174149b804e"
-  integrity sha512-06BY5pmcWwbm9Gav4+zYCKhxKsI+4vzKJzG33AXnmBPlet8MFaGRb0LBIwTFcwqEtxVx3zeY2GWw/yRQRdokWw==
+"@types/mailgun-js@0.22.1":
+  version "0.22.1"
+  resolved "https://registry.yarnpkg.com/@types/mailgun-js/-/mailgun-js-0.22.1.tgz#451d1ed1e6f3f49d13f8b99b98d02d164647a6c2"
+  integrity sha512-1VUbBrhMsj67N5gUPUqmpPtd513A7vCAxZv2PC9RAc0RYExJNf3RBuJOpA98UjPNWEaxWOafado2qmNRKKkgsA==
   dependencies:
     "@types/form-data" "*"
     "@types/node" "*"
