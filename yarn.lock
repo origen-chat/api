@@ -2011,10 +2011,10 @@
   dependencies:
     "@types/express" "*"
 
-"@types/ramda@0.26.14":
-  version "0.26.14"
-  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.26.14.tgz#3a6fb82b225ee0b2c8a9b3a657c9942445037d79"
-  integrity sha512-OKSReh+kGIPiLzYnQIdAtrdE0w1lW1dnTsdFtbVYEj8kWdYKpolF+bZAvHaNCiTq2C91iwGJ/7q81DOjRQOHrw==
+"@types/ramda@0.26.15":
+  version "0.26.15"
+  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.26.15.tgz#217d9d2133f55040bd5db0e67dbbf6ec8509446f"
+  integrity sha512-kmIO8GVOLv0A8UxFr5lJaqp4g8jbXNhH0grBaPL6NgkOqSirRKpV9+5DTmIDXTyq2G18YMdxDhnScEZtY4brtQ==
 
 "@types/range-parser@*":
   version "1.2.3"
