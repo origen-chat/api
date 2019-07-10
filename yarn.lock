@@ -6369,6 +6369,11 @@ inherits@2, inherits@2.0.3, inherits@^2.0.1, inherits@^2.0.3, inherits@~2.0.1, i
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
   integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
 
+inherits@~2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.4.tgz#0fa2c64f932917c3433a0ded55363aae37416b7c"
+  integrity sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
+
 ini@^1.3.4, ini@^1.3.5, ini@~1.3.0:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.5.tgz#eee25f56db1c9ec6085e0c22778083f596abf927"
@@ -7594,20 +7599,20 @@ kleur@^3.0.0:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-3.0.1.tgz#4f5b313f5fa315432a400f19a24db78d451ede62"
   integrity sha512-P3kRv+B+Ra070ng2VKQqW4qW7gd/v3iD8sy/zOdcYRsfiD+QBokQNOps/AfP6Hr48cBhIIBFWckB9aO+IZhrWg==
 
-knex@0.18.3:
-  version "0.18.3"
-  resolved "https://registry.yarnpkg.com/knex/-/knex-0.18.3.tgz#d6e0ed263c9f29ca31721f446364e91252543f72"
-  integrity sha512-+UGXPW/FFSOtPSB1KrWslmFntwiSUuMGp5BkheO6pT3cGaLQSJ9wLKYgqOPkyUIK9xDkKraj+OfPXCkQHwldLw==
+knex@0.18.4:
+  version "0.18.4"
+  resolved "https://registry.yarnpkg.com/knex/-/knex-0.18.4.tgz#2f8e5903265c313e9120c49879132d2e6f312ad3"
+  integrity sha512-BnCU+Xsvv05AUOKZ5hh9xbG1pbZkjhHlJSeBL7BCbTDIum5eyNIs8/jYaHa7nheonQpKCWez3/xne4OBndNaEg==
   dependencies:
     bluebird "^3.5.5"
     colorette "1.0.8"
     commander "^2.20.0"
     debug "4.1.1"
     getopts "2.2.4"
-    inherits "~2.0.3"
+    inherits "~2.0.4"
     interpret "^1.2.0"
     liftoff "3.1.0"
-    lodash "^4.17.11"
+    lodash "^4.17.14"
     mkdirp "^0.5.1"
     pg-connection-string "2.0.0"
     tarn "^1.1.5"
@@ -7964,6 +7969,11 @@ lodash@^3.3.1:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
   integrity sha1-W/Rejkm6QYnhfUgnid/RW9FAt7Y=
+
+lodash@^4.17.14:
+  version "4.17.14"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.14.tgz#9ce487ae66c96254fe20b599f21b6816028078ba"
+  integrity sha512-mmKYbW3GLuJeX+iGP+Y7Gp1AiGHGbXHCOh/jZmrawMmsE7MS4znI3RL2FsjbqOyMayHInjOeykW7PEajUk1/xw==
 
 log-symbols@^1.0.2:
   version "1.0.2"
