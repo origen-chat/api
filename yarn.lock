@@ -1991,13 +1991,13 @@
   resolved "https://registry.yarnpkg.com/@types/long/-/long-4.0.0.tgz#719551d2352d301ac8b81db732acb6bdc28dbdef"
   integrity sha512-1w52Nyx4Gq47uuu0EVcsHBxZFJgurQ+rTKS3qMHxR1GY2T8c2AJYd6vZoZ9q1rupaDjU0yT+Jc2XTyXkjeMA+Q==
 
-"@types/mailgun-js@0.22.1":
-  version "0.22.1"
-  resolved "https://registry.yarnpkg.com/@types/mailgun-js/-/mailgun-js-0.22.1.tgz#451d1ed1e6f3f49d13f8b99b98d02d164647a6c2"
-  integrity sha512-1VUbBrhMsj67N5gUPUqmpPtd513A7vCAxZv2PC9RAc0RYExJNf3RBuJOpA98UjPNWEaxWOafado2qmNRKKkgsA==
+"@types/mailgun-js@0.22.2":
+  version "0.22.2"
+  resolved "https://registry.yarnpkg.com/@types/mailgun-js/-/mailgun-js-0.22.2.tgz#5b213aec58f8c5a9106fd96d2fafbef8ea5febc1"
+  integrity sha512-vgY2pKEHSZJKyQibu50NUZ9R4bmXvJGFigc4cA9bBlGlLEuULs8IU03z3nbmdSySol2HBkHuzoGGgbrhtwkjNg==
   dependencies:
-    "@types/form-data" "*"
     "@types/node" "*"
+    form-data "^2.5.0"
 
 "@types/mime@*":
   version "2.0.0"
@@ -5323,6 +5323,15 @@ form-data@^2.3.3, form-data@~2.3.2:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/form-data/-/form-data-2.3.3.tgz#dcce52c05f644f298c6a7ab936bd724ceffbf3a6"
   integrity sha512-1lLKB2Mu3aGP1Q/2eCOx0fNbRMe7XdwktwOruhfqqd0rIJWwN4Dh+E3hrPSlDCXnSR7UtZ1N38rVXm+6+MEhJQ==
+  dependencies:
+    asynckit "^0.4.0"
+    combined-stream "^1.0.6"
+    mime-types "^2.1.12"
+
+form-data@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/form-data/-/form-data-2.5.0.tgz#094ec359dc4b55e7d62e0db4acd76e89fe874d37"
+  integrity sha512-WXieX3G/8side6VIqx44ablyULoGruSde5PNTxoUyo5CeyAMX6nVWUd0rgist/EuX655cjhUhTo1Fo3tRYqbcA==
   dependencies:
     asynckit "^0.4.0"
     combined-stream "^1.0.6"
