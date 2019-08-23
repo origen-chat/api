@@ -1941,12 +1941,12 @@
   dependencies:
     graphql "14.5.0"
 
-"@types/graphql-type-json@0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@types/graphql-type-json/-/graphql-type-json-0.3.0.tgz#e1f4c94c89238407842a106d2d87b1afb5430ddb"
-  integrity sha512-Qu2dkjikNAQg63w0VoE7/hMZn/hRdfCgXSW84NmuWV3EboRVEVgrtqKBCFdZRY6n3ksd+vaYm9StmRWWuJUIZw==
+"@types/graphql-type-json@0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@types/graphql-type-json/-/graphql-type-json-0.3.1.tgz#9c370b9cfa8aec1dba9f5a1e900e1315f9e43af6"
+  integrity sha512-JSPuVHAVW9rDeE3Bsn2QF5cF1rjjWB2UCe22F9inieMRPti9zZvgfus5XOE6xHz2BRnb0HTY6Y9gIZZZjnRcsw==
   dependencies:
-    "@types/graphql" "*"
+    graphql "14.5.0"
 
 "@types/graphql-upload@^8.0.0":
   version "8.0.0"
