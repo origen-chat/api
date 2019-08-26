@@ -1941,12 +1941,12 @@
   dependencies:
     graphql "^14.5.3"
 
-"@types/graphql-type-json@0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@types/graphql-type-json/-/graphql-type-json-0.3.1.tgz#9c370b9cfa8aec1dba9f5a1e900e1315f9e43af6"
-  integrity sha512-JSPuVHAVW9rDeE3Bsn2QF5cF1rjjWB2UCe22F9inieMRPti9zZvgfus5XOE6xHz2BRnb0HTY6Y9gIZZZjnRcsw==
+"@types/graphql-type-json@0.3.2":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@types/graphql-type-json/-/graphql-type-json-0.3.2.tgz#1a7105e6546fc1630a5db4834bfbc0eb554986e4"
+  integrity sha512-c1cq4o8EhY0Z39ua8UXwG8uBs23xBYA/Uw0tXFl6SuTUpkVv/IJqf6pHQbfdC7nwFRhX2ifTOV/UIg0Q/IJsbg==
   dependencies:
-    graphql "14.5.0"
+    graphql "^14.5.3"
 
 "@types/graphql-upload@^8.0.0":
   version "8.0.0"
@@ -6074,13 +6074,6 @@ graphql-upload@^8.0.2:
   version "14.4.0"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-14.4.0.tgz#e97086acfc0338e4fdc8f7dba519c6b8a6badfd9"
   integrity sha512-E55z1oK6e4cGxCqlSsRWytYDPcIUxky3XkbuQUf6TIjCmn6C7CuBJpmkMF1066q95yPAGOZVPTVT7jABKbRFSA==
-  dependencies:
-    iterall "^1.2.2"
-
-graphql@14.5.0:
-  version "14.5.0"
-  resolved "https://registry.yarnpkg.com/graphql/-/graphql-14.5.0.tgz#4801e6460942c9c591944617f6dd224a9e531520"
-  integrity sha512-wnGcTD181L2xPnIwHHjx/moV4ulxA2Kms9zcUY+B/SIrK+2N+iOC6WNgnR2zVTmg1Z8P+CZq5KXibTnatg3WUw==
   dependencies:
     iterall "^1.2.2"
 
