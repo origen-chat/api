@@ -1979,10 +1979,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/ioredis@4.0.15":
-  version "4.0.15"
-  resolved "https://registry.yarnpkg.com/@types/ioredis/-/ioredis-4.0.15.tgz#e503e0174f161aa1e668a18cdb87423af04435c3"
-  integrity sha512-nhexA6bsi2gXtNcpYl0QWyzX7/xjJ2IAoyPKQldig7NsCY5x0qJhiTf8EzgFKTgbptLmsVUyRNyLsAutTaUxMg==
+"@types/ioredis@4.0.16":
+  version "4.0.16"
+  resolved "https://registry.yarnpkg.com/@types/ioredis/-/ioredis-4.0.16.tgz#fce798b33c8965005eb32302baed0c0ec7966d56"
+  integrity sha512-gDMVXyajIJtl2Fzp/l46LBmf842Z7mXarq7eajeAfbES6aDqP7WSF5oCToCQ0kfwKb/WEjXLfb7g37aremXSBg==
   dependencies:
     "@types/node" "*"
 
