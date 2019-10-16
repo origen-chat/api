@@ -104,7 +104,7 @@
     "codecov": "3.6.1",
     "cross-env": "5.2.1",
     "danger": "7.1.4",
-    "dotenv": "7.0.0",
+    "dotenv": "8.2.0",
     "eslint": "5.16.0",
     "eslint-config-airbnb-base": "13.2.0",
     "eslint-config-prettier": "4.3.0",
