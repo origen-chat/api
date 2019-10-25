@@ -1965,10 +1965,10 @@
     "@types/connect" "*"
     "@types/node" "*"
 
-"@types/bull@3.10.4":
-  version "3.10.4"
-  resolved "https://registry.yarnpkg.com/@types/bull/-/bull-3.10.4.tgz#2a1142c6881325ce5b4ffc9660fcb2c1d9063b37"
-  integrity sha512-wv9nJHsToD4sEAMIqYZ7DSN8i8tFfeWfmAXt5+duUpR7iP7WiilK2+bazpXNxdq6UhKg3VQ2bAtaU6fSAXoiAA==
+"@types/bull@3.10.5":
+  version "3.10.5"
+  resolved "https://registry.yarnpkg.com/@types/bull/-/bull-3.10.5.tgz#06bb3551c2eae88075fdc03d462063f647dbb0eb"
+  integrity sha512-1/4/tNitRNBjXpQ9tJdWJxpbVft0fFUPc5d0UPB/1NJgxn8Wd9xjSkFkS+YxwUqW6+NfFzOFqqPMPL+yzLL6LQ==
   dependencies:
     "@types/ioredis" "*"
 
