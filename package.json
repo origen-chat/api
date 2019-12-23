@@ -55,7 +55,7 @@
     "passport": "0.4.1",
     "passport-google-oauth20": "2.0.0",
     "passport-jwt": "4.0.0",
-    "pg": "7.14.0",
+    "pg": "7.15.1",
     "ramda": "0.26.1",
     "sharp": "0.23.3",
     "stripe": "6.36.0",
