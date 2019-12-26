@@ -86,7 +86,7 @@
     "@types/jsonwebtoken": "8.3.5",
     "@types/mailgun-js": "0.22.3",
     "@types/ms": "0.7.31",
-    "@types/node": "10.17.11",
+    "@types/node": "10.17.12",
     "@types/passport": "1.0.2",
     "@types/passport-google-oauth": "1.0.41",
     "@types/passport-jwt": "3.0.3",
