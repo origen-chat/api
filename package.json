@@ -82,7 +82,7 @@
     "@types/graphql-type-json": "0.3.2",
     "@types/ioredis": "4.14.3",
     "@types/jest": "24.0.24",
-    "@types/json-schema": "7.0.3",
+    "@types/json-schema": "7.0.4",
     "@types/jsonwebtoken": "8.3.5",
     "@types/mailgun-js": "0.22.3",
     "@types/ms": "0.7.31",
