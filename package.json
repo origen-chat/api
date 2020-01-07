@@ -90,7 +90,7 @@
     "@types/passport": "1.0.2",
     "@types/passport-google-oauth": "1.0.41",
     "@types/passport-jwt": "3.0.3",
-    "@types/ramda": "0.26.38",
+    "@types/ramda": "0.26.39",
     "@types/sharp": "0.23.1",
     "@types/stripe": "6.32.13",
     "@types/uuid": "3.4.6",
