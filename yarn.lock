@@ -3460,7 +3460,7 @@ bl@^3.0.0:
   dependencies:
     readable-stream "^3.0.1"
 
-bluebird@3.7.2, bluebird@^3.7.2:
+bluebird@3.7.2:
   version "3.7.2"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.7.2.tgz#9f229c15be272454ffa973ace0dbee79a1b0c36f"
   integrity sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==
@@ -4174,10 +4174,10 @@ commander@^4.0.1:
   resolved "https://registry.yarnpkg.com/commander/-/commander-4.0.1.tgz#b67622721785993182e807f4883633e6401ba53c"
   integrity sha512-IPF4ouhCP+qdlcmCedhxX4xiGBPyigb8v5NeUp+0LyhwLgxMqyp3S0vl7TAPfS/hiP7FC3caI/PB9lTmP8r1NA==
 
-commander@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-4.1.0.tgz#545983a0603fe425bc672d66c9e3c89c42121a83"
-  integrity sha512-NIQrwvv9V39FHgGFm36+U9SMQzbiHvU79k+iADraJTpmrFFfx7Ds0IvDoAdZsDrknlkRk14OYoWXb57uTh7/sw==
+commander@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-4.1.1.tgz#9fd602bd936294e9e9ef46a3f4d6964044b18068"
+  integrity sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==
 
 commander@~2.17.1:
   version "2.17.1"
@@ -8077,14 +8077,13 @@ kleur@^3.0.0:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-3.0.1.tgz#4f5b313f5fa315432a400f19a24db78d451ede62"
   integrity sha512-P3kRv+B+Ra070ng2VKQqW4qW7gd/v3iD8sy/zOdcYRsfiD+QBokQNOps/AfP6Hr48cBhIIBFWckB9aO+IZhrWg==
 
-knex@0.20.8:
-  version "0.20.8"
-  resolved "https://registry.yarnpkg.com/knex/-/knex-0.20.8.tgz#b41c72773185e1032f4a77074198413521827860"
-  integrity sha512-fLiSg5PIBisORs0M+UGjg2s1P/E1BrYvb/NkSVk6Y90HJujkqLufSC6ag+hDgXqW73mFAF283M6+q3/NW0TrHw==
+knex@0.20.12:
+  version "0.20.12"
+  resolved "https://registry.yarnpkg.com/knex/-/knex-0.20.12.tgz#33e576fb53b624c6cf346f7a4c81f0a1e06191fc"
+  integrity sha512-pxJBsfW9EGfc1l5ObD5+91/gveDXZZrx35kW+2tihJYpsAqUoqAnUT2v0xBQrWTDlt3Tifg9Gt84P/0abomPrA==
   dependencies:
-    bluebird "^3.7.2"
     colorette "1.1.0"
-    commander "^4.1.0"
+    commander "^4.1.1"
     debug "4.1.1"
     esm "^3.2.25"
     getopts "2.2.5"
@@ -8096,7 +8095,7 @@ knex@0.20.8:
     pg-connection-string "2.1.0"
     tarn "^2.0.0"
     tildify "2.0.0"
-    uuid "^3.3.3"
+    uuid "^7.0.1"
     v8flags "^3.1.3"
 
 kuler@1.0.x:
@@ -12342,10 +12341,10 @@ uuid@^3.1.0, uuid@^3.3.2:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
   integrity sha512-yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA==
 
-uuid@^3.3.3:
-  version "3.3.3"
-  resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.3.tgz#4568f0216e78760ee1dbf3a4d2cf53e224112866"
-  integrity sha512-pW0No1RGHgzlpHJO1nsVrHKpOEIxkGg1xB+v0ZmdNH5OAeAwzAVrCnI2/6Mtx+Uys6iaylxa+D3g4j63IKKjSQ==
+uuid@^7.0.1:
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-7.0.2.tgz#7ff5c203467e91f5e0d85cfcbaaf7d2ebbca9be6"
+  integrity sha512-vy9V/+pKG+5ZTYKf+VcphF5Oc6EFiu3W8Nv3P3zIh0EqVI80ZxOzuPfe9EHjkFNvf8+xuTHVeei4Drydlx4zjw==
 
 v8flags@^3.1.1:
   version "3.1.2"
