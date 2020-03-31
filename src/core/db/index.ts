@@ -3,14 +3,10 @@ export {
   db as default,
   startDB,
   closeDatabaseConnections,
-  knexConfigs,
+  connectionOptions,
 } from './db';
 export { tableNames } from './tableNames';
-export {
-  doInTransaction,
-  maybeAddTransactionToQuery,
-  TransactionFunction,
-} from './transactions';
+export { maybeUseTransaction } from './transactions';
 export {
   insertIntoDB,
   InsertIntoDBArgs,

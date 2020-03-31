@@ -41,6 +41,11 @@ const env = makeEnv({
     required: true,
     envVarName: 'DB_HOST',
   },
+  dbPort: {
+    parser: parsers.port,
+    required: true,
+    envVarName: 'DB_PORT',
+  },
   dbUser: {
     parser: parsers.string,
     required: true,
@@ -55,6 +60,16 @@ const env = makeEnv({
     parser: parsers.string,
     required: true,
     envVarName: 'DB_NAME',
+  },
+  dbPoolMinClients: {
+    parser: parsers.nonNegativeInteger,
+    required: true,
+    envVarName: 'DB_POOL_MIN_CLIENTS',
+  },
+  dbPoolMaxClients: {
+    parser: parsers.nonNegativeInteger,
+    required: true,
+    envVarName: 'DB_POOL_MAX_CLIENTS',
   },
   redisHost: {
     parser: parsers.string,

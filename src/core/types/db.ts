@@ -1,18 +1,5 @@
-import { Transaction } from 'knex';
+import { Transaction } from 'postre';
 
 export type DBOptions = Readonly<{
-  transaction?: Transaction;
+  transaction?: Transaction<any>;
 }>;
-
-export enum ComparisonOperator {
-  GreatherThan = '>',
-  GreatherThanOrEqual = '>=',
-  LessThan = '<',
-  LessThanOrEqual = '<=',
-  Equal = '=',
-}
-
-export enum OrderByDirection {
-  ASC = 'ASC',
-  DESC = 'DESC',
-}
