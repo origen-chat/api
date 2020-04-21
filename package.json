@@ -107,7 +107,7 @@
     "dotenv": "7.0.0",
     "eslint": "5.16.0",
     "eslint-config-airbnb-base": "13.2.0",
-    "eslint-config-prettier": "4.3.0",
+    "eslint-config-prettier": "6.11.0",
     "eslint-plugin-eslint-comments": "3.1.2",
     "eslint-plugin-fp": "2.3.0",
     "eslint-plugin-graphql": "3.1.1",
