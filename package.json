@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@google-cloud/storage": "2.5.0",
-    "@sentry/node": "4.6.6",
+    "@sentry/node": "5.15.5",
     "@strattadb/environment": "6.2.0",
     "ajv": "6.12.0",
     "apollo-server-express": "2.11.0",
